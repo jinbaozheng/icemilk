@@ -3,7 +3,7 @@
  */
 'use strict';
 import axios from 'axios';
-import UrlTool from '../tool/JUrlTool.js';
+import UrlTool from '../tool/JToolUrl.js';
 
 class NetworkManager {
   static baseUrl = '';

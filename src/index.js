@@ -13,7 +13,8 @@ import NetworkOther from './network/JNetworkOther';
 import NetworkTrade from './network/JNetworkTrade';
 import NetworkConfig from './network/JNetworkConfig';
 
-export {Network as JNetwork,
+export {
+  Network as JNetwork,
   NetworkAccount as JNetworkAccount,
   NetworkCinema as JNetworkCinema,
   NetworkCity as JNetworkCity,
@@ -23,4 +24,15 @@ export {Network as JNetwork,
   NetworkMine as JNetworkMine,
   NetworkOther as JNetworkOther,
   NetworkTrade as JNetworkTrade,
-  NetworkConfig as JNetworkConfig};
+  NetworkConfig as JNetworkConfig
+};
+
+import ToolDate from './tool/JToolDate';
+import ToolNumber from './tool/JToolNumber';
+import ToolUrl from './tool/JToolUrl';
+
+export {
+  ToolDate as JToolDate,
+  ToolNumber as JToolNumber,
+  ToolUrl as JToolUrl
+};

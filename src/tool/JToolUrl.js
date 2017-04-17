@@ -3,12 +3,11 @@
  */
 
 class UrlTool {
-
   /**
-   * 自合 URL
-   * @param baseUrl
-   * @param subUrl
-   * @param parameters
+   * 合成URL完整地址
+   * @param baseUrl 基础地址
+   * @param subUrl 相对地址
+   * @param parameters 参数
    * @returns {*}
    */
   static urlFromPortion(baseUrl, subUrl, parameters) {
@@ -24,7 +23,6 @@ class UrlTool {
         paras.push(key + '=' + parameters[key]);
       }
     }
-
     let iUrl = baseUrl + subUrl;
     if (paras.length > 0) {
       iUrl = iUrl + '?' + paras.join('&');
