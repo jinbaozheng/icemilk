@@ -9,11 +9,11 @@ class NetworkAccountManager {
   /**
    * 用户登录
    * @param mobile 登录需要的手机号码
-   * @param password 密码
+   * @param password 登录需要的密码
    * @returns {{terminate, then}|*}
    */
   static accountLogin(mobile, password) {
-    return NetworkManager.post(accountUrl.login, {
+    return NetworkManager.POST(accountUrl.login, {
       mobile: mobile,
       password: password
     });
@@ -21,10 +21,11 @@ class NetworkAccountManager {
 
   /**
    * 用户登出
+   * @param sessionId 用户登录标识
    * @returns {{terminate, then}|*}
    */
   static accountLogout(sessionId) {
-    return NetworkManager.post(accountUrl.logout, {}, sessionId);
+    return NetworkManager.POST(accountUrl.logout, {}, sessionId);
   }
 
   /**
@@ -34,7 +35,7 @@ class NetworkAccountManager {
    * @returns {{terminate, then}|*}
    */
   static accountGetVerifyCode(mobile, type) {
-    return NetworkManager.post(accountUrl.verifycode, {
+    return NetworkManager.POST(accountUrl.verifycode, {
       mobile: mobile,
       codetype: type
     });
@@ -48,7 +49,7 @@ class NetworkAccountManager {
    * @returns {{terminate, then}|*}
    */
   static accountRegister(mobile, verifyCode, password) {
-    return NetworkManager.post(accountUrl.register, {
+    return NetworkManager.POST(accountUrl.register, {
       mobile: mobile,
       verifyCode: verifyCode,
       password: password
@@ -63,7 +64,7 @@ class NetworkAccountManager {
    * @returns {{terminate, then}|*}
    */
   static accountUpdatepass(mobile, verfyCode, password) {
-    return NetworkManager.post(accountUrl.updatepass, {
+    return NetworkManager.POST(accountUrl.updatepass, {
       mobile: mobile,
       verifyCode: verfyCode,
       password: password

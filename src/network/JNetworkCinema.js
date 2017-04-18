@@ -12,7 +12,7 @@ class NetworkCinemaManager {
    * @returns {*}
    */
   static cinemaDetail(cinemaId) {
-    return NetworkManager.post(cinemaUrl.detail, {cinemaId});
+    return NetworkManager.POST(cinemaUrl.detail, {cinemaId});
   }
 
   /**
@@ -23,7 +23,7 @@ class NetworkCinemaManager {
    * @returns {*} 返回影院列表
    */
   static cinemaContrastNeedLocation(filmId, regionName, orderType) {
-    return NetworkManager.post(cinemaUrl.cinemasbyregion, {
+    return NetworkManager.POST(cinemaUrl.cinemasbyregion, {
       ...NetworkManager.locationParas(),
       filmId,
       regionName,
@@ -38,7 +38,7 @@ class NetworkCinemaManager {
    * @returns {{terminate, then}|*}
    */
   static cinemaContrastNoFilmNeedLocation(regionName, orderType) {
-    return NetworkManager.post(cinemaUrl.cinemaspage, {
+    return NetworkManager.POST(cinemaUrl.cinemaspage, {
       ...NetworkManager.locationParas(),
       regionName,
       orderType
@@ -51,17 +51,17 @@ class NetworkCinemaManager {
    * @returns {*}
    */
   static cinemaScreenings(cinemaId) {
-    return NetworkManager.post(cinemaUrl.screenings, {cinemaId});
+    return NetworkManager.POST(cinemaUrl.screenings, {cinemaId});
   }
 
   /**
    * 指定影院的排片的最近日期列表
    * @param cinemaId 影院ID
-   * @param filmId 银
+   * @param filmId 影片ID
    * @returns {*}
    */
   static cinemaScreeningsDate(cinemaId, filmId) {
-    return NetworkManager.post(cinemaUrl.screeningsdate, {cinemaId, filmId});
+    return NetworkManager.POST(cinemaUrl.screeningsdate, {cinemaId, filmId});
   }
 
   /**
@@ -72,7 +72,7 @@ class NetworkCinemaManager {
    * @returns {*}
    */
   static cinemaScreeningsItem(cinemaId, filmId, date) {
-    return NetworkManager.post(cinemaUrl.screeningsitem, {cinemaId, filmId, date});
+    return NetworkManager.POST(cinemaUrl.screeningsitem, {cinemaId, filmId, date});
   }
 
   /**
@@ -85,16 +85,16 @@ class NetworkCinemaManager {
     if (type === 'meituan' || type === 'dazhong') {
       type = 'maoyan';
     }
-    return NetworkManager.post(cinemaUrl.realtimeseat, {type, ...paras, uuid: Math.random()});
+    return NetworkManager.POST(cinemaUrl.realtimeseat, {type, ...paras, uuid: Math.random()});
   }
 
   /**
    * 影院列表 （已弃用）（临时使用了）
-   * @param filmId 城市id
+   * @param filmId 影片id
    * @returns {{terminate, then}|*}
    */
   static cinemaListNeedLocation(filmId) {
-    return NetworkManager.post(cinemaUrl.cinemas, {
+    return NetworkManager.POST(cinemaUrl.cinemas, {
       ...NetworkManager.locationParas(),
       filmId
     });
@@ -111,7 +111,7 @@ class NetworkCinemaManager {
    * @returns {{terminate, then}|*}
    */
   static newCinemaListNeedLocation(filmid, region, order, feature, inType, date) {
-    return NetworkManager.post(cinemaUrl.list,
+    return NetworkManager.POST(cinemaUrl.list,
       {
         ...NetworkManager.locationParas(),
         filmId: filmid,
@@ -134,7 +134,7 @@ class NetworkCinemaManager {
     if (!loginParas.hasAccount) {
       return NetworkManager.failedAuthorizationNetwork();
     }
-    return NetworkManager.post(cinemaUrl.collectcinema, {
+    return NetworkManager.POST(cinemaUrl.collectcinema, {
       openId: loginParas.openId,
       cinemaId: cinemaId,
       cinemaName: cinemaName
@@ -154,7 +154,7 @@ class NetworkCinemaManager {
     if (!loginParas.hasAccount) {
       return NetworkManager.failedAuthorizationNetwork();
     }
-    return NetworkManager.post(cinemaUrl.cancelcollectcinema, {
+    return NetworkManager.POST(cinemaUrl.cancelcollectcinema, {
       openId: loginParas.openId,
       cinemaId: cinemaId
     }, {

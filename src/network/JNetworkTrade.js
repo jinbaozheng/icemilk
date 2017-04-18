@@ -12,36 +12,18 @@ class NetworkTradeManager {
    * @param paras 锁座参数
    * @returns {{terminate, then}|*}
    */
-  static tradeLockSeat(type, paras) {
-    return NetworkManager.post(tradeUrl.lockseat, {type, ...paras});
-  }
-
-  /**
-   * 锁座
-   * @param type 平台类型
-   * @param paras 锁座参数
-   * @returns {{terminate, then}|*}
-   */
   static tradeLockSeatNeedLogin(type, paras) {
     let loginParas = NetworkManager.loginParas();
-    return NetworkManager.post(tradeUrl.lockseat, {type, ...paras}, loginParas);
-  }
-
-  // 取消锁座
-  // @param orderId 订单Id
-  static cancelOrder(orderId) {
-    console.log(orderId);
-    return NetworkManager.post(tradeUrl.cancelOrder, {orderId})
+    return NetworkManager.POST(tradeUrl.lockseat, {type, ...paras}, loginParas);
   }
 
   /**
-   * 下订单
-   * @param type 平台类型
-   * @param paras 下订单参数
+   * 取消锁座
+   * @param orderId 订单Id
    * @returns {{terminate, then}|*}
    */
-  static tradeConfirmOrder(type, paras) {
-    return NetworkManager.post(tradeUrl.applyticket, {type, ...paras});
+  static cancelLockSeatNeedLogin(orderId) {
+    return NetworkManager.POST(tradeUrl.cancelOrder, {orderId})
   }
 
   /**
@@ -52,14 +34,21 @@ class NetworkTradeManager {
    */
   static tradeConfirmOrderNeedLogin(type, paras) {
     let loginParas = NetworkManager.loginParas();
-    return NetworkManager.post(tradeUrl.applyticket, {type, ...paras}, loginParas);
+    return NetworkManager.POST(tradeUrl.applyticket, {type, ...paras}, loginParas);
   }
 
+  /**
+   * 申请预订单
+   * @param orderId 订单Id
+   * @param payType 支付类型
+   * @param prizeIds 待定
+   * @param redIds 待定
+   * @returns {{terminate, then}|*}
+   */
   static tradePrePayOrderNeedLogin(orderId, payType, prizeIds, redIds) {
     let loginParas = NetworkManager.loginParas();
-    return NetworkManager.post(tradeUrl.prepay, {orderId, payType, prizeIds, redIds}, loginParas);
+    return NetworkManager.POST(tradeUrl.prepay, {orderId, payType, prizeIds, redIds}, loginParas);
   }
-
 }
 
 export default NetworkTradeManager;

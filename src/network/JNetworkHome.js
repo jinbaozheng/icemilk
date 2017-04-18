@@ -11,7 +11,7 @@ class NetworkHomeManager {
    * @returns {*}
    */
   static homeMainPageNeedLocation() {
-    return NetworkManager.post(homeUrl.main, {...NetworkManager.locationParas()});
+    return NetworkManager.POST(homeUrl.main, {...NetworkManager.locationParas()});
   }
 }
 

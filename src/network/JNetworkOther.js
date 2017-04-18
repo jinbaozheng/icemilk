@@ -14,13 +14,13 @@ class NetworkOtherManager {
    */
   static search(val, lastKey) {
     // if (GlobalConstant.store.state.rootStore.location.hasLocation) {
-    return NetworkManager.post(otherUrl.search, {
+    return NetworkManager.POST(otherUrl.search, {
       ...NetworkManager.locationParas(),
       queryStr: val,
       lastKey: lastKey
     });
     // } else {
-    //   return NetworkManager.post(otherUrl.search, {
+    //   return NetworkManager.POST(otherUrl.search, {
     //     cityId: GlobalConstant.store.state.rootStore.userLocationCity.id,
     //     queryStr: val,
     //     lastKey: lastKey
@@ -28,8 +28,15 @@ class NetworkOtherManager {
     // }
   }
 
+  /**
+   * 按城市搜索
+   * @param cityId 城市Id
+   * @param query 关键字
+   * @param lastKey 目前无用
+   * @returns {{terminate, then}|*}
+   */
   static searchSearch(cityId, query, lastKey) {
-    return NetworkManager.post(otherUrl.search, {
+    return NetworkManager.POST(otherUrl.search, {
       cityId: cityId,
       query: query,
       lastKey: lastKey
@@ -41,7 +48,7 @@ class NetworkOtherManager {
    * @returns {{terminate, then}|*}
    */
   static hotQuery() {
-    return NetworkManager.post(otherUrl.hotquery);
+    return NetworkManager.POST(otherUrl.hotquery);
   }
 
   /**
@@ -49,13 +56,17 @@ class NetworkOtherManager {
    * @returns {{terminate, then}|*}
    */
   static bannersNeedCItyIdNeedLocation() {
-    return NetworkManager.post(otherUrl.banner, {
+    return NetworkManager.POST(otherUrl.banner, {
       cityId: NetworkManager.loginParas().cityId
     });
   }
 
+  /**
+   * 广告栏
+   * @returns {{terminate, then}|*}
+   */
   static pageBanners() {
-    return NetworkManager.post(otherUrl.pagebanners, {})
+    return NetworkManager.POST(otherUrl.pagebanners, {})
   }
 }
 

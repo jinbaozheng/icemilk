@@ -11,18 +11,19 @@ class NetworkCityManager {
    * @returns {*}
    */
   static cityListNeedLocation() {
-    return NetworkManager.post(cityUrl.citypage, {...NetworkManager.locationParas()});
+    return NetworkManager.POST(cityUrl.citypage, {...NetworkManager.locationParas()});
   }
 
   /**
    *  获取当前城市（需要定位）
+   *  @param location 定位信息（可空）
    * @returns {*}
    */
   static cityCurrentCityNeedLocation(location) {
     if (location) {
-      return NetworkManager.post(cityUrl.refreshlocation, {longitude: location.longitude, latitude: location.latitude});
+      return NetworkManager.POST(cityUrl.refreshlocation, {longitude: location.longitude, latitude: location.latitude});
     }
-    return NetworkManager.post(cityUrl.refreshlocation, {...NetworkManager.locationParas()});
+    return NetworkManager.POST(cityUrl.refreshlocation, {...NetworkManager.locationParas()});
   }
 
     /**
@@ -30,7 +31,7 @@ class NetworkCityManager {
      * @returns {{terminate, then}|*}
      */
     static cityCities() {
-        return NetworkManager.post(cityUrl.cities, {});
+        return NetworkManager.POST(cityUrl.cities, {});
     }
 }
 

@@ -5,7 +5,7 @@ import Network from './network/JNetwork';
 import NetworkAccount from './network/JNetworkAccount';
 import NetworkCinema from './network/JNetworkCinema';
 import NetworkCity from './network/JNetworkCity';
-import NetworkFilm from './network/JNetworkFile';
+import NetworkFilm from './network/JNetworkFilm';
 import NetworkFilmView from './network/JNetworkFilmView';
 import NetworkHome from './network/JNetworkHome';
 import NetworkMine from './network/JNetworkMine';

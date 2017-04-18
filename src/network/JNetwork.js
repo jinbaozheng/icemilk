@@ -94,7 +94,7 @@ class NetworkManager {
    * @param headers 头参数
    * @returns {{terminate, then}|*} 异步请求块
    */
-  static post(url, parameters, headers) {
+  static POST(url, parameters, headers) {
     let isOk;
     return this.wrapCancelablePromise(new Promise((resolve, reject) => {
       let iHeaders = Object.assign({
@@ -145,7 +145,7 @@ class NetworkManager {
    * @param parameters 地址参数
    * @returns {{terminate, then}|*} 异步请求块
    */
-  static get(url, parameters) {
+  static GET(url, parameters) {
     let isOk;
     return this.wrapCancelablePromise(new Promise((resolve, reject) => {
       let iHeaders = Object.assign({

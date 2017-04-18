@@ -11,7 +11,7 @@ class NetworkFilmManager {
      * @returns {*}
      */
     static filmHotfilms() {
-        return NetworkManager.post(filmUrl.hotfilms, {});
+        return NetworkManager.POST(filmUrl.hotfilms, {});
     }
 
     /**
@@ -21,7 +21,7 @@ class NetworkFilmManager {
      * @returns {{terminate, then}|*}
      */
     static filmHotfilmsWithPage(cityId, page = 1) {
-        return NetworkManager.post(filmUrl.hotfilmspage, {cityId: cityId, page: page});
+        return NetworkManager.POST(filmUrl.hotfilmspage, {cityId: cityId, page: page});
     }
 
     /**
@@ -31,16 +31,17 @@ class NetworkFilmManager {
      * @returns {{terminate, then}|*}
      */
     static filmWaitfilmsWithPage(cityId, page = 1) {
-        return NetworkManager.post(filmUrl.waitfilmspage, {cityId: cityId, page: page});
+        return NetworkManager.POST(filmUrl.waitfilmspage, {cityId: cityId, page: page});
     }
 
     /**
      * 获取影片详情
-     * @param filmId 影片ID
+     * @param platformFilmId 影片ID
+     * * @param platformId 平台id
      * @returns {*}
      */
     static filmDetail(platformFilmId, platformId) {
-        return NetworkManager.post(filmUrl.detailInfo, {platformFilmId, platformId});
+        return NetworkManager.POST(filmUrl.detailInfo, {platformFilmId, platformId});
     }
 
     /**
@@ -48,8 +49,8 @@ class NetworkFilmManager {
      * @param filmId 影院Id
      * @returns {{terminate, then}|*}
      */
-    static filmList(filmId) {
-        return NetworkManager.post(filmUrl.list);
+    static filmList() {
+        return NetworkManager.POST(filmUrl.list);
     }
 
     /**
@@ -58,7 +59,7 @@ class NetworkFilmManager {
      * @returns {{terminate, then}|*}
      */
     static filmWithFilmId(filmId) {
-        return NetworkManager.post(filmUrl.film, {id: filmId});
+        return NetworkManager.POST(filmUrl.film, {id: filmId});
     }
 }
 

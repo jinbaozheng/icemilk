@@ -1,6 +1,11 @@
 /**
  * Created by cuppi on 2017/2/9.
  */
+
+export const homeUrl = {
+  main: '/appapi/main' // older
+};
+
 export const cinemaUrl = {
     detail: '/appapi/cinema/detail',
     comparepage: '/appapi/cinema/comparepage',
@@ -44,10 +49,6 @@ export const filmViewUrl = {
 export const mineUrl = {
     userorders: '/appapi/userorders',
     collectedcinemalist: '/appapi/collectedcinemalist'
-};
-
-export const homeUrl = {
-    main: '/appapi/main'
 };
 
 export const seatUrl = {
