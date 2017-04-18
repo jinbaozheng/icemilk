@@ -3,12 +3,9 @@
  */
 import NetworkManager from './JNetwork';
 class NetworkConfig {
-  static setConfig(obj){
-    NetworkManager.baseUrl = obj.baseUrl;
-  }
-
-  static setDelegate(delegate){
-    NetworkManager.delegate = delegate;
+  static setConfig(config){
+    NetworkManager.baseUrl = config.baseUrl;
+    NetworkManager.delegate = config.delegate;
   }
 }
 
