@@ -37,22 +37,31 @@ var NetworkOtherManager = function () {
      */
     value: function search(val, lastKey) {
       // if (GlobalConstant.store.state.rootStore.location.hasLocation) {
-      return _JNetwork2.default.post(_JUrlList.otherUrl.search, _extends({}, _JNetwork2.default.locationParas(), {
+      return _JNetwork2.default.POST(_JUrlList.otherUrl.search, _extends({}, _JNetwork2.default.locationParas(), {
         queryStr: val,
         lastKey: lastKey
       }));
       // } else {
-      //   return NetworkManager.post(otherUrl.search, {
+      //   return NetworkManager.POST(otherUrl.search, {
       //     cityId: GlobalConstant.store.state.rootStore.userLocationCity.id,
       //     queryStr: val,
       //     lastKey: lastKey
       //   });
       // }
     }
+
+    /**
+     * 按城市搜索
+     * @param cityId 城市Id
+     * @param query 关键字
+     * @param lastKey 目前无用
+     * @returns {{terminate, then}|*}
+     */
+
   }, {
     key: 'searchSearch',
     value: function searchSearch(cityId, query, lastKey) {
-      return _JNetwork2.default.post(_JUrlList.otherUrl.search, {
+      return _JNetwork2.default.POST(_JUrlList.otherUrl.search, {
         cityId: cityId,
         query: query,
         lastKey: lastKey
@@ -67,7 +76,7 @@ var NetworkOtherManager = function () {
   }, {
     key: 'hotQuery',
     value: function hotQuery() {
-      return _JNetwork2.default.post(_JUrlList.otherUrl.hotquery);
+      return _JNetwork2.default.POST(_JUrlList.otherUrl.hotquery);
     }
 
     /**
@@ -78,14 +87,20 @@ var NetworkOtherManager = function () {
   }, {
     key: 'bannersNeedCItyIdNeedLocation',
     value: function bannersNeedCItyIdNeedLocation() {
-      return _JNetwork2.default.post(_JUrlList.otherUrl.banner, {
+      return _JNetwork2.default.POST(_JUrlList.otherUrl.banner, {
         cityId: _JNetwork2.default.loginParas().cityId
       });
     }
+
+    /**
+     * 广告栏
+     * @returns {{terminate, then}|*}
+     */
+
   }, {
     key: 'pageBanners',
     value: function pageBanners() {
-      return _JNetwork2.default.post(_JUrlList.otherUrl.pagebanners, {});
+      return _JNetwork2.default.POST(_JUrlList.otherUrl.pagebanners, {});
     }
   }]);
 

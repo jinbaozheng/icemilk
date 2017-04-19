@@ -122,8 +122,8 @@ var NetworkManager = function () {
      */
 
   }, {
-    key: 'post',
-    value: function post(url, parameters, headers) {
+    key: 'POST',
+    value: function POST(url, parameters, headers) {
       var _this = this;
 
       var isOk = void 0;
@@ -178,8 +178,8 @@ var NetworkManager = function () {
      */
 
   }, {
-    key: 'get',
-    value: function get(url, parameters) {
+    key: 'GET',
+    value: function GET(url, parameters) {
       var _this2 = this;
 
       var isOk = void 0;

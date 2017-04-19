@@ -26,23 +26,46 @@ var NetworkFilmViewManager = function () {
 
   _createClass(NetworkFilmViewManager, null, [{
     key: 'filmviewFilmview',
+
+    /**
+     * 获取指定影院基础数据(如影院电影排片和影院电话及地址)
+     * @param cinemaId 影院Id
+     * @returns {{terminate, then}|*}
+     */
     value: function filmviewFilmview(cinemaId) {
       var loginParas = _JNetwork2.default.loginParas();
-      return _JNetwork2.default.post(_JUrlList.filmViewUrl.filmview, {
+      return _JNetwork2.default.POST(_JUrlList.filmViewUrl.filmview, {
         cinemaId: cinemaId
       }, loginParas.hasAccount ? {
         openId: loginParas.openId
       } : {});
     }
+
+    /**
+     * 获取指定影院排片日期安排
+     * @param cinemaId 影院Id
+     * @param filmId 影片Id
+     * @returns {{terminate, then}|*}
+     */
+
   }, {
     key: 'filmviewDate',
-    value: function filmviewDate(paras) {
-      return _JNetwork2.default.post(_JUrlList.filmViewUrl.foretelldates, paras);
+    value: function filmviewDate(cinemaId, filmId) {
+      return _JNetwork2.default.POST(_JUrlList.filmViewUrl.foretelldates, { cinemaId: cinemaId, filmId: filmId });
     }
+
+    /**
+     * 获取指定影院排片放映厅安排
+     * @param cinemaId 影院Id
+     * @param filmId 影片Id
+     * @param date 日期
+     * @returns {{terminate, then}|*}
+     */
+
   }, {
     key: 'filmviewItems',
-    value: function filmviewItems(paras) {
-      return _JNetwork2.default.post(_JUrlList.filmViewUrl.filmviewitems, paras);
+    value: function filmviewItems(cinemaId, filmId, date) {
+      return _JNetwork2.default.POST(_JUrlList.filmViewUrl.filmviewitems, { cinemaId: cinemaId, filmId: filmId, date: date });
     }
   }]);
 

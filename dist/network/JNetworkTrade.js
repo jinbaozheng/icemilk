@@ -27,53 +27,29 @@ var NetworkTradeManager = function () {
   }
 
   _createClass(NetworkTradeManager, null, [{
-    key: 'tradeLockSeat',
-
-    /**
-     * 锁座
-     * @param type 平台类型
-     * @param paras 锁座参数
-     * @returns {{terminate, then}|*}
-     */
-    value: function tradeLockSeat(type, paras) {
-      return _JNetwork2.default.post(_JUrlList.tradeUrl.lockseat, _extends({ type: type }, paras));
-    }
-
-    /**
-     * 锁座
-     * @param type 平台类型
-     * @param paras 锁座参数
-     * @returns {{terminate, then}|*}
-     */
-
-  }, {
     key: 'tradeLockSeatNeedLogin',
+
+    /**
+     * 锁座
+     * @param type 平台类型
+     * @param paras 锁座参数
+     * @returns {{terminate, then}|*}
+     */
     value: function tradeLockSeatNeedLogin(type, paras) {
       var loginParas = _JNetwork2.default.loginParas();
-      return _JNetwork2.default.post(_JUrlList.tradeUrl.lockseat, _extends({ type: type }, paras), loginParas);
-    }
-
-    // 取消锁座
-    // @param orderId 订单Id
-
-  }, {
-    key: 'cancelOrder',
-    value: function cancelOrder(orderId) {
-      console.log(orderId);
-      return _JNetwork2.default.post(_JUrlList.tradeUrl.cancelOrder, { orderId: orderId });
+      return _JNetwork2.default.POST(_JUrlList.tradeUrl.lockseat, _extends({ type: type }, paras), loginParas);
     }
 
     /**
-     * 下订单
-     * @param type 平台类型
-     * @param paras 下订单参数
+     * 取消锁座
+     * @param orderId 订单Id
      * @returns {{terminate, then}|*}
      */
 
   }, {
-    key: 'tradeConfirmOrder',
-    value: function tradeConfirmOrder(type, paras) {
-      return _JNetwork2.default.post(_JUrlList.tradeUrl.applyticket, _extends({ type: type }, paras));
+    key: 'cancelLockSeatNeedLogin',
+    value: function cancelLockSeatNeedLogin(orderId) {
+      return _JNetwork2.default.POST(_JUrlList.tradeUrl.cancelOrder, { orderId: orderId });
     }
 
     /**
@@ -87,13 +63,23 @@ var NetworkTradeManager = function () {
     key: 'tradeConfirmOrderNeedLogin',
     value: function tradeConfirmOrderNeedLogin(type, paras) {
       var loginParas = _JNetwork2.default.loginParas();
-      return _JNetwork2.default.post(_JUrlList.tradeUrl.applyticket, _extends({ type: type }, paras), loginParas);
+      return _JNetwork2.default.POST(_JUrlList.tradeUrl.applyticket, _extends({ type: type }, paras), loginParas);
     }
+
+    /**
+     * 申请预订单
+     * @param orderId 订单Id
+     * @param payType 支付类型
+     * @param prizeIds 待定
+     * @param redIds 待定
+     * @returns {{terminate, then}|*}
+     */
+
   }, {
     key: 'tradePrePayOrderNeedLogin',
     value: function tradePrePayOrderNeedLogin(orderId, payType, prizeIds, redIds) {
       var loginParas = _JNetwork2.default.loginParas();
-      return _JNetwork2.default.post(_JUrlList.tradeUrl.prepay, { orderId: orderId, payType: payType, prizeIds: prizeIds, redIds: redIds }, loginParas);
+      return _JNetwork2.default.POST(_JUrlList.tradeUrl.prepay, { orderId: orderId, payType: payType, prizeIds: prizeIds, redIds: redIds }, loginParas);
     }
   }]);
 

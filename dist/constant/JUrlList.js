@@ -6,6 +6,11 @@ Object.defineProperty(exports, "__esModule", {
 /**
  * Created by cuppi on 2017/2/9.
  */
+
+var homeUrl = exports.homeUrl = {
+    main: '/appapi/main' // older
+};
+
 var cinemaUrl = exports.cinemaUrl = {
     detail: '/appapi/cinema/detail',
     comparepage: '/appapi/cinema/comparepage',
@@ -49,10 +54,6 @@ var filmViewUrl = exports.filmViewUrl = {
 var mineUrl = exports.mineUrl = {
     userorders: '/appapi/userorders',
     collectedcinemalist: '/appapi/collectedcinemalist'
-};
-
-var homeUrl = exports.homeUrl = {
-    main: '/appapi/main'
 };
 
 var seatUrl = exports.seatUrl = {

@@ -1,16 +1,13 @@
-## 斗票WebSDK接口文档##
-
 [TOC]
-
-## <font color='#ff0000' size:>模块：JNetwork </font> 
-
+# 斗票WebSDK接口文档#
+## <font color='#ff0000' size:>模块：JNetwork(Class) </font> 
 ###<font color='#0099ff'>类：JNetwork</font>
 <font color='#999999'>
 
 * **<mark><font color='#666666'>1. POST请求</font></mark>**
 * >
 ~~~js
-static post(url, parameters, headers){}
+static POST(url, parameters, headers){}
 ~~~
 
 * **请求参数**
@@ -29,7 +26,7 @@ static post(url, parameters, headers){}
 - **调用示例**
 >  
 ~~~js 
-JNetwork.post('/main/hotfilms', {a: 1}, {'Accept': 'application/json','Content-Type': 'application/json'}).then((data) => { 
+JNetwork.POST('/main/hotfilms', {a: 1}, {'Accept': 'application/json','Content-Type': 'application/json'}).then((data) => { 
     console.log(data)
 }, error => {
      console.log(error);
@@ -41,7 +38,7 @@ JNetwork.post('/main/hotfilms', {a: 1}, {'Accept': 'application/json','Content-T
 * **<mark><font color='#666666'>2. GET请求</font></mark>**
 * >
 ~~~js
-static get(url, parameters, headers){}
+static GET(url, parameters, headers){}
 ~~~
 
 * **请求参数**
@@ -60,7 +57,7 @@ static get(url, parameters, headers){}
 - **调用示例**
 >  
 ~~~js 
-JNetwork.get('/main/hotfilms', {a: 1}, {'Accept': 'application/json','Content-Type': 'application/json'}).then((data) => { 
+JNetwork.GET('/main/hotfilms', {a: 1}, {'Accept': 'application/json','Content-Type': 'application/json'}).then((data) => { 
     console.log(data)
 }, error => {
      console.log(error);
@@ -70,8 +67,40 @@ JNetwork.get('/main/hotfilms', {a: 1}, {'Accept': 'application/json','Content-Ty
 **************************************************************************************************
 </font>
 
-###<font color='#0099ff'>类：JNetworkHome</font>
+###<font color='#0099ff'>类：JNetworkConfig</font>
+<font color='#999999'>
 
+* **<font color='#666666'>1. 获取首页数据</font>**
+
+- > ```js
+    static setConfig(config){}
+    ```
+  
+- **请求参数**
+>
+| 请求参数|参数类型|参数说明|
+|:--------|:--------|:------|
+|config|[ConfigModel](#ConfigModel)|object|配置对象|
+
+- **返回参数**
+>
+|返回参数|参数类型|参数说明|
+|:--------|:--------|:------|
+|-|promise|异步请求封装|
+
+- **调用示例**
+>    
+~~~js 
+JNetworkConfig.setConfig({baseUrl: 'https://jbz-dev.idoupiao.com/openfilm',delegate: this}).then((data) => {
+     console.log(data)
+}, error => {
+     console.log(error);
+});
+~~~
+
+**************************************************************************************************
+</font>
+###<font color='#0099ff'>类：JNetworkHome</font>
 <font color='#999999'>
 
 * **<font color='#666666'>1. 获取首页数据</font>**
@@ -1152,8 +1181,6 @@ JNetworkAccount.accountUpdatepass('13764730291', '112525', '123456').then((data)
 ###<font color='#0099ff'>类：JNetworkOther </font>
 <font color='#999999'>
 
-**************************************************************************************************
-
 * **<mark><font color='#666666'>1. 搜索</font></mark>**
 * >
 ~~~js
@@ -1300,6 +1327,110 @@ JNetworkOther.pageBanners().then((data) => {
 ~~~
 
 **************************************************************************************************
+</font>
+
+## <font color='#ff0000' size:>模块：JNetwork(Delegate) </font> 
+
+###<font id='JNetworkDelegate' color='#0099ff'>代理：JNetworkDelegate </font>
+<font color='#999999'>
+
+* **<mark><font color='#666666'>1. 城市信息请求参数代理</font></mark>**
+* >
+~~~js
+static cityParas(){}
+~~~
+
+* **回调参数**
+>
+| 请求参数|参数类型|参数说明|
+|:--------|:--------|:------|
+|-|-|-|
+
+- **返回参数**
+> |返回参数|参数类型|参数说明|
+|:--------|:--------|:------|
+|-|[CityModel](#CityModel)|城市模型|
+
+- **调用示例**
+>  
+~~~js 
+ cityParas() {
+        return store.getState().location.userLocationCity;
+ }
+~~~
 
 **************************************************************************************************
+
+* **<mark><font color='#666666'>2. 定位信息请求参数代理</font></mark>**
+* >
+~~~js
+static locationParas(){}
+~~~
+
+* **回调参数**
+>
+| 请求参数|参数类型|参数说明|
+|:--------|:--------|:------|
+|-|-|-|
+
+- **返回参数**
+> |返回参数|参数类型|参数说明|
+|:--------|:--------|:------|
+|-|[CoordinateModel](#CoordinateModel)|定位信息模型|
+
+- **调用示例**
+>  
+~~~js 
+ locationParas() {
+         return {latitude: 41.816804:, 
+                 longitude: 123.426065};
+ }
+~~~
+
+**************************************************************************************************
+
+**************************************************************************************************
+
+**************************************************************************************************
+
+**************************************************************************************************
+</font>
+
+## <font color='#ff0000' size:>模块：JNetwork(Model) </font> 
+
+###<font id='CityModel' color='#0099ff'>模型：CityModel </font>
+<font color='#999999'>
+**************************************************************************************************
+</font>
+
+###<font id='ConfigModel' color='#0099ff'>模型：ConfigModel </font>
+<font color='#999999'>
+
+* **描述**
+> Network配置模型
+
+* **属性**
+>
+|所属|参数|参数类型|参数说明|
+|:--------|:--------|:--------|:------|
+|-|baseUrl|string|网络请求基础地址|
+|-|delegate|id \<[JNetworkDelegate](#JNetworkDelegate)\>|网络请求代理|
+
+**************************************************************************************************
+
+###<font id='CoordinateModel' color='#0099ff'>模型：CoordinateModel </font>
+<font color='#999999'>
+
+* **描述**
+> 定位模型
+
+* **属性**
+>
+|所属|参数|参数类型|参数说明|
+|:--------|:--------|:--------|:------|
+|-|latitude|double|纬度|
+|-|longitude|double|经度|
+
+**************************************************************************************************
+
 </font>

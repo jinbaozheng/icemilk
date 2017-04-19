@@ -21,9 +21,9 @@ var _JNetworkCity = require('./network/JNetworkCity');
 
 var _JNetworkCity2 = _interopRequireDefault(_JNetworkCity);
 
-var _JNetworkFile = require('./network/JNetworkFile');
+var _JNetworkFilm = require('./network/JNetworkFilm');
 
-var _JNetworkFile2 = _interopRequireDefault(_JNetworkFile);
+var _JNetworkFilm2 = _interopRequireDefault(_JNetworkFilm);
 
 var _JNetworkFilmView = require('./network/JNetworkFilmView');
 
@@ -67,7 +67,7 @@ exports.JNetwork = _JNetwork2.default;
 exports.JNetworkAccount = _JNetworkAccount2.default;
 exports.JNetworkCinema = _JNetworkCinema2.default;
 exports.JNetworkCity = _JNetworkCity2.default;
-exports.JNetworkFilm = _JNetworkFile2.default;
+exports.JNetworkFilm = _JNetworkFilm2.default;
 exports.JNetworkFilmView = _JNetworkFilmView2.default;
 exports.JNetworkHome = _JNetworkHome2.default;
 exports.JNetworkMine = _JNetworkMine2.default;

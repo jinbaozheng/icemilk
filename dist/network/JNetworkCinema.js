@@ -35,7 +35,7 @@ var NetworkCinemaManager = function () {
      * @returns {*}
      */
     value: function cinemaDetail(cinemaId) {
-      return _JNetwork2.default.post(_JUrlList.cinemaUrl.detail, { cinemaId: cinemaId });
+      return _JNetwork2.default.POST(_JUrlList.cinemaUrl.detail, { cinemaId: cinemaId });
     }
 
     /**
@@ -49,7 +49,7 @@ var NetworkCinemaManager = function () {
   }, {
     key: 'cinemaContrastNeedLocation',
     value: function cinemaContrastNeedLocation(filmId, regionName, orderType) {
-      return _JNetwork2.default.post(_JUrlList.cinemaUrl.cinemasbyregion, _extends({}, _JNetwork2.default.locationParas(), {
+      return _JNetwork2.default.POST(_JUrlList.cinemaUrl.cinemasbyregion, _extends({}, _JNetwork2.default.locationParas(), {
         filmId: filmId,
         regionName: regionName,
         orderType: orderType
@@ -66,7 +66,7 @@ var NetworkCinemaManager = function () {
   }, {
     key: 'cinemaContrastNoFilmNeedLocation',
     value: function cinemaContrastNoFilmNeedLocation(regionName, orderType) {
-      return _JNetwork2.default.post(_JUrlList.cinemaUrl.cinemaspage, _extends({}, _JNetwork2.default.locationParas(), {
+      return _JNetwork2.default.POST(_JUrlList.cinemaUrl.cinemaspage, _extends({}, _JNetwork2.default.locationParas(), {
         regionName: regionName,
         orderType: orderType
       }));
@@ -81,20 +81,20 @@ var NetworkCinemaManager = function () {
   }, {
     key: 'cinemaScreenings',
     value: function cinemaScreenings(cinemaId) {
-      return _JNetwork2.default.post(_JUrlList.cinemaUrl.screenings, { cinemaId: cinemaId });
+      return _JNetwork2.default.POST(_JUrlList.cinemaUrl.screenings, { cinemaId: cinemaId });
     }
 
     /**
      * 指定影院的排片的最近日期列表
      * @param cinemaId 影院ID
-     * @param filmId 银
+     * @param filmId 影片ID
      * @returns {*}
      */
 
   }, {
     key: 'cinemaScreeningsDate',
     value: function cinemaScreeningsDate(cinemaId, filmId) {
-      return _JNetwork2.default.post(_JUrlList.cinemaUrl.screeningsdate, { cinemaId: cinemaId, filmId: filmId });
+      return _JNetwork2.default.POST(_JUrlList.cinemaUrl.screeningsdate, { cinemaId: cinemaId, filmId: filmId });
     }
 
     /**
@@ -108,7 +108,7 @@ var NetworkCinemaManager = function () {
   }, {
     key: 'cinemaScreeningsItem',
     value: function cinemaScreeningsItem(cinemaId, filmId, date) {
-      return _JNetwork2.default.post(_JUrlList.cinemaUrl.screeningsitem, { cinemaId: cinemaId, filmId: filmId, date: date });
+      return _JNetwork2.default.POST(_JUrlList.cinemaUrl.screeningsitem, { cinemaId: cinemaId, filmId: filmId, date: date });
     }
 
     /**
@@ -124,19 +124,19 @@ var NetworkCinemaManager = function () {
       if (type === 'meituan' || type === 'dazhong') {
         type = 'maoyan';
       }
-      return _JNetwork2.default.post(_JUrlList.cinemaUrl.realtimeseat, _extends({ type: type }, paras, { uuid: Math.random() }));
+      return _JNetwork2.default.POST(_JUrlList.cinemaUrl.realtimeseat, _extends({ type: type }, paras, { uuid: Math.random() }));
     }
 
     /**
      * 影院列表 （已弃用）（临时使用了）
-     * @param filmId 城市id
+     * @param filmId 影片id
      * @returns {{terminate, then}|*}
      */
 
   }, {
     key: 'cinemaListNeedLocation',
     value: function cinemaListNeedLocation(filmId) {
-      return _JNetwork2.default.post(_JUrlList.cinemaUrl.cinemas, _extends({}, _JNetwork2.default.locationParas(), {
+      return _JNetwork2.default.POST(_JUrlList.cinemaUrl.cinemas, _extends({}, _JNetwork2.default.locationParas(), {
         filmId: filmId
       }));
     }
@@ -155,7 +155,7 @@ var NetworkCinemaManager = function () {
   }, {
     key: 'newCinemaListNeedLocation',
     value: function newCinemaListNeedLocation(filmid, region, order, feature, inType, date) {
-      return _JNetwork2.default.post(_JUrlList.cinemaUrl.list, _extends({}, _JNetwork2.default.locationParas(), {
+      return _JNetwork2.default.POST(_JUrlList.cinemaUrl.list, _extends({}, _JNetwork2.default.locationParas(), {
         filmId: filmid,
         regionName: region,
         orderType: order,
@@ -179,7 +179,7 @@ var NetworkCinemaManager = function () {
       if (!loginParas.hasAccount) {
         return _JNetwork2.default.failedAuthorizationNetwork();
       }
-      return _JNetwork2.default.post(_JUrlList.cinemaUrl.collectcinema, {
+      return _JNetwork2.default.POST(_JUrlList.cinemaUrl.collectcinema, {
         openId: loginParas.openId,
         cinemaId: cinemaId,
         cinemaName: cinemaName
@@ -201,7 +201,7 @@ var NetworkCinemaManager = function () {
       if (!loginParas.hasAccount) {
         return _JNetwork2.default.failedAuthorizationNetwork();
       }
-      return _JNetwork2.default.post(_JUrlList.cinemaUrl.cancelcollectcinema, {
+      return _JNetwork2.default.POST(_JUrlList.cinemaUrl.cancelcollectcinema, {
         openId: loginParas.openId,
         cinemaId: cinemaId
       }, {

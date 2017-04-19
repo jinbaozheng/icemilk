@@ -34,7 +34,7 @@ var NetworkHomeManager = function () {
      * @returns {*}
      */
     value: function homeMainPageNeedLocation() {
-      return _JNetwork2.default.post(_JUrlList.homeUrl.main, _extends({}, _JNetwork2.default.locationParas()));
+      return _JNetwork2.default.POST(_JUrlList.homeUrl.main, _extends({}, _JNetwork2.default.locationParas()));
     }
   }]);
 

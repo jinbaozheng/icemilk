@@ -29,6 +29,10 @@ class UrlTool {
     }
     return iUrl;
   }
+
+  /**
+   * 获取参数
+   */
 }
 
 export default UrlTool;

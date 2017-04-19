@@ -30,11 +30,11 @@ var NetworkAccountManager = function () {
     /**
      * 用户登录
      * @param mobile 登录需要的手机号码
-     * @param password 密码
+     * @param password 登录需要的密码
      * @returns {{terminate, then}|*}
      */
     value: function accountLogin(mobile, password) {
-      return _JNetwork2.default.post(_JUrlList.accountUrl.login, {
+      return _JNetwork2.default.POST(_JUrlList.accountUrl.login, {
         mobile: mobile,
         password: password
       });
@@ -42,13 +42,14 @@ var NetworkAccountManager = function () {
 
     /**
      * 用户登出
+     * @param sessionId 用户登录标识
      * @returns {{terminate, then}|*}
      */
 
   }, {
     key: 'accountLogout',
     value: function accountLogout(sessionId) {
-      return _JNetwork2.default.post(_JUrlList.accountUrl.logout, {}, sessionId);
+      return _JNetwork2.default.POST(_JUrlList.accountUrl.logout, {}, sessionId);
     }
 
     /**
@@ -61,7 +62,7 @@ var NetworkAccountManager = function () {
   }, {
     key: 'accountGetVerifyCode',
     value: function accountGetVerifyCode(mobile, type) {
-      return _JNetwork2.default.post(_JUrlList.accountUrl.verifycode, {
+      return _JNetwork2.default.POST(_JUrlList.accountUrl.verifycode, {
         mobile: mobile,
         codetype: type
       });
@@ -78,7 +79,7 @@ var NetworkAccountManager = function () {
   }, {
     key: 'accountRegister',
     value: function accountRegister(mobile, verifyCode, password) {
-      return _JNetwork2.default.post(_JUrlList.accountUrl.register, {
+      return _JNetwork2.default.POST(_JUrlList.accountUrl.register, {
         mobile: mobile,
         verifyCode: verifyCode,
         password: password
@@ -96,7 +97,7 @@ var NetworkAccountManager = function () {
   }, {
     key: 'accountUpdatepass',
     value: function accountUpdatepass(mobile, verfyCode, password) {
-      return _JNetwork2.default.post(_JUrlList.accountUrl.updatepass, {
+      return _JNetwork2.default.POST(_JUrlList.accountUrl.updatepass, {
         mobile: mobile,
         verifyCode: verfyCode,
         password: password

@@ -34,11 +34,12 @@ var NetworkCityManager = function () {
      * @returns {*}
      */
     value: function cityListNeedLocation() {
-      return _JNetwork2.default.post(_JUrlList.cityUrl.citypage, _extends({}, _JNetwork2.default.locationParas()));
+      return _JNetwork2.default.POST(_JUrlList.cityUrl.citypage, _extends({}, _JNetwork2.default.locationParas()));
     }
 
     /**
      *  获取当前城市（需要定位）
+     *  @param location 定位信息（可空）
      * @returns {*}
      */
 
@@ -46,9 +47,9 @@ var NetworkCityManager = function () {
     key: 'cityCurrentCityNeedLocation',
     value: function cityCurrentCityNeedLocation(location) {
       if (location) {
-        return _JNetwork2.default.post(_JUrlList.cityUrl.refreshlocation, { longitude: location.longitude, latitude: location.latitude });
+        return _JNetwork2.default.POST(_JUrlList.cityUrl.refreshlocation, { longitude: location.longitude, latitude: location.latitude });
       }
-      return _JNetwork2.default.post(_JUrlList.cityUrl.refreshlocation, _extends({}, _JNetwork2.default.locationParas()));
+      return _JNetwork2.default.POST(_JUrlList.cityUrl.refreshlocation, _extends({}, _JNetwork2.default.locationParas()));
     }
 
     /**
@@ -59,7 +60,7 @@ var NetworkCityManager = function () {
   }, {
     key: 'cityCities',
     value: function cityCities() {
-      return _JNetwork2.default.post(_JUrlList.cityUrl.cities, {});
+      return _JNetwork2.default.POST(_JUrlList.cityUrl.cities, {});
     }
   }]);
 

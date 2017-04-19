@@ -25,8 +25,14 @@ var NetworkMineManager = function () {
   }
 
   _createClass(NetworkMineManager, null, [{
-    key: 'mineOrder',
-    value: function mineOrder() {
+    key: 'mineOrderNeedLogin',
+
+
+    /**
+     * 我的订单
+     * @returns {*}
+     */
+    value: function mineOrderNeedLogin() {
       var loginParas = _JNetwork2.default.locationParas();
       if (!loginParas.hasAccount) {
         return _JNetwork2.default.failedAuthorizationNetwork();
@@ -34,15 +40,21 @@ var NetworkMineManager = function () {
       var openId = loginParas.openId,
           sessionId = loginParas.sessionId;
 
-      return _JNetwork2.default.post(_JUrlList.mineUrl.userorders, {
+      return _JNetwork2.default.POST(_JUrlList.mineUrl.userorders, {
         openId: openId
       }, {
         openId: openId, sessionId: sessionId
       });
     }
+
+    /**
+     * 我的收藏
+     * @returns {*}
+     */
+
   }, {
-    key: 'mineFavorite',
-    value: function mineFavorite() {
+    key: 'mineFavoriteNeedLogin',
+    value: function mineFavoriteNeedLogin() {
       var loginParas = _JNetwork2.default.locationParas();
       if (!loginParas.hasAccount) {
         return _JNetwork2.default.failedAuthorizationNetwork();
@@ -50,7 +62,7 @@ var NetworkMineManager = function () {
       var openId = loginParas.openId,
           sessionId = loginParas.sessionId;
 
-      return _JNetwork2.default.post(_JUrlList.mineUrl.collectedcinemalist, {
+      return _JNetwork2.default.POST(_JUrlList.mineUrl.collectedcinemalist, {
         openId: openId
       }, {
         openId: openId, sessionId: sessionId
