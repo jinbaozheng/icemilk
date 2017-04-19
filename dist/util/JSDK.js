@@ -24,7 +24,17 @@ var JSDK = function () {
   _createClass(JSDK, null, [{
     key: 'version',
     value: function version() {
-      // packageInfo.version();
+      return _package2.default.version;
+    }
+  }, {
+    key: 'readme',
+    value: function readme() {
+      return 'https://git.oschina.net/cuppi/jbzwebsdk/raw/master/JBZWebSDK%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3-JNetwork.pdf';
+    }
+  }, {
+    key: 'readmemd',
+    value: function readmemd() {
+      return 'https://git.oschina.net/cuppi/jbzwebsdk/blob/master/JBZWebSDK%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3-JNetwork.md';
     }
   }]);
 

@@ -143,9 +143,10 @@ class NetworkManager {
    * get请求
    * @param url 相对地址
    * @param parameters 地址参数
+   * @param headers 头参数
    * @returns {{terminate, then}|*} 异步请求块
    */
-  static GET(url, parameters) {
+  static GET(url, parameters, headers) {
     let isOk;
     return this.wrapCancelablePromise(new Promise((resolve, reject) => {
       let iHeaders = Object.assign({

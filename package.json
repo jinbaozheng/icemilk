@@ -1,6 +1,6 @@
 {
   "name": "jbzwebsdk",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "description": "Shanghai jinbaozheng easy network technology Co.,Ltd sdk",
   "main": "index.js",
   "engines": {

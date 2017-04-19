@@ -130,7 +130,7 @@ class NetworkCinemaManager {
    * @returns {{terminate, then}|*}
    */
   static cinemaFavoriteCinemaNeedLogin(cinemaId, cinemaName) {
-    let loginParas = NetworkManager.locationParas();
+    let loginParas = NetworkManager.loginParas();
     if (!loginParas.hasAccount) {
       return NetworkManager.failedAuthorizationNetwork();
     }
@@ -150,7 +150,7 @@ class NetworkCinemaManager {
    * @returns {{terminate, then}|*}
    */
   static cinemaCancelFavoriteCinemaNeedLogin(cinemaId) {
-    let loginParas = NetworkManager.locationParas();
+    let loginParas = NetworkManager.loginParas();
     if (!loginParas.hasAccount) {
       return NetworkManager.failedAuthorizationNetwork();
     }
