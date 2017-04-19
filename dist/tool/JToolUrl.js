@@ -46,6 +46,11 @@ var UrlTool = function () {
       }
       return iUrl;
     }
+
+    /**
+     * 获取参数
+     */
+
   }]);
 
   return UrlTool;

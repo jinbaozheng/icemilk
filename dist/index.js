@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.JToolUrl = exports.JToolNumber = exports.JToolDate = exports.JNetworkConfig = exports.JNetworkTrade = exports.JNetworkOther = exports.JNetworkMine = exports.JNetworkHome = exports.JNetworkFilmView = exports.JNetworkFilm = exports.JNetworkCity = exports.JNetworkCinema = exports.JNetworkAccount = exports.JNetwork = undefined;
+exports.JSDK = exports.JToolUrl = exports.JToolNumber = exports.JToolDate = exports.JNetworkConfig = exports.JNetworkTrade = exports.JNetworkOther = exports.JNetworkMine = exports.JNetworkHome = exports.JNetworkFilmView = exports.JNetworkFilm = exports.JNetworkCity = exports.JNetworkCinema = exports.JNetworkAccount = exports.JNetwork = undefined;
 
 var _JNetwork = require('./network/JNetwork');
 
@@ -49,6 +49,10 @@ var _JNetworkConfig = require('./network/JNetworkConfig');
 
 var _JNetworkConfig2 = _interopRequireDefault(_JNetworkConfig);
 
+var _JSDK = require('./util/JSDK');
+
+var _JSDK2 = _interopRequireDefault(_JSDK);
+
 var _JToolDate = require('./tool/JToolDate');
 
 var _JToolDate2 = _interopRequireDefault(_JToolDate);
@@ -63,6 +67,9 @@ var _JToolUrl2 = _interopRequireDefault(_JToolUrl);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * Created by cuppi on 2017/4/14.
+ */
 exports.JNetwork = _JNetwork2.default;
 exports.JNetworkAccount = _JNetworkAccount2.default;
 exports.JNetworkCinema = _JNetworkCinema2.default;
@@ -73,10 +80,8 @@ exports.JNetworkHome = _JNetworkHome2.default;
 exports.JNetworkMine = _JNetworkMine2.default;
 exports.JNetworkOther = _JNetworkOther2.default;
 exports.JNetworkTrade = _JNetworkTrade2.default;
-exports.JNetworkConfig = _JNetworkConfig2.default; /**
-                                                    * Created by cuppi on 2017/4/14.
-                                                    */
-
+exports.JNetworkConfig = _JNetworkConfig2.default;
 exports.JToolDate = _JToolDate2.default;
 exports.JToolNumber = _JToolNumber2.default;
 exports.JToolUrl = _JToolUrl2.default;
+exports.JSDK = _JSDK2.default;
