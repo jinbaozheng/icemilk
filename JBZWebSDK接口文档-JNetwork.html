@@ -467,24 +467,10 @@ pre[class*="language-"] {
 </head>
 
 <body>
-<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
-<script type="text/javascript" src="js/jquery.ztree.core-3.5.js"></script>
-<script type="text/javascript" src="jquery.ztree_toc.js"></script>
-<link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
-
-<!--<SCRIPT type="text/javascript" >-->
-  <!--&lt;!&ndash;-->
-  <!--$(document).ready(function(){-->
-    <!--$('#tree').ztree_toc({-->
-
-    <!--});-->
-  <!--});-->
-  <!--//&ndash;&gt;-->
-<!--</SCRIPT>-->
-
-<h1 id="toc_0">斗票WebSDK接口文档</h1>
 
 <p>[TOC]</p>
+
+<h1 id="toc_0">斗票WebSDK接口文档</h1>
 
 <h2 id="toc_1"><font color='#ff0000' size:>模块：JNetwork(Class) </font></h2>
 
@@ -504,8 +490,8 @@ pre[class*="language-"] {
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -528,23 +514,23 @@ pre[class*="language-"] {
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left">data</td>
+<td style="text-align: left">*</td>
+<td style="text-align: left">请求返回的数据</td>
 </tr>
 </tbody>
 </table>
@@ -552,11 +538,17 @@ pre[class*="language-"] {
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetwork.POST(&#39;/main/hotfilms&#39;, {a: 1}, {&#39;Accept&#39;: &#39;application/json&#39;,&#39;Content-Type&#39;: &#39;application/json&#39;}).then((data) =&gt; {
-console.log(data)
-}, error =&gt; {
- console.log(error);
-});</code></pre></div>
+<div><pre><code class="language-javascript">  JNetwork.POST(&#39;/refreshlocation&#39;, {
+    longitude: 122.0248313589239,
+    latitude: 37.33800802417976
+  }, {
+    &#39;Accept&#39;: &#39;application/json&#39;,
+    &#39;Content-Type&#39;: &#39;application/json&#39;
+  }).then(data =&gt; {
+    console.log(data);
+  }, error =&gt; {
+    console.log(error);
+  });</code></pre></div>
 </blockquote></li>
 </ul>
 
@@ -574,8 +566,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -598,23 +590,23 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left">data</td>
+<td style="text-align: left">*</td>
+<td style="text-align: left">请求返回的数据</td>
 </tr>
 </tbody>
 </table>
@@ -622,11 +614,14 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetwork.GET(&#39;/main/hotfilms&#39;, {a: 1}, {&#39;Accept&#39;: &#39;application/json&#39;,&#39;Content-Type&#39;: &#39;application/json&#39;}).then((data) =&gt; {
-console.log(data)
-}, error =&gt; {
- console.log(error);
-});</code></pre></div>
+<div><pre><code class="language-javascript">  JNetwork.GET(&#39;/refreshlocation&#39;, {
+    longitude: 122.0248313589239,
+    latitude: 37.33800802417976
+  }).then(data =&gt; {
+    console.log(data);
+  }, error =&gt; {
+    console.log(error);
+  });</code></pre></div>
 </blockquote></li>
 </ul>
 
@@ -653,8 +648,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -667,23 +662,23 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left">-</td>
+<td style="text-align: left">-</td>
 </tr>
 </tbody>
 </table>
@@ -691,11 +686,9 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkConfig.setConfig({baseUrl: &#39;https://jbz-dev.idoupiao.com/openfilm&#39;,delegate: this}).then((data) =&gt; {
- console.log(data)
-}, error =&gt; {
- console.log(error);
-});</code></pre></div>
+<div><pre><code class="language-javascript">JNetworkConfig.setConfig({
+    baseUrl: &#39;https://jbz-dev.idoupiao.com/openfilm/appapi&#39;
+  });</code></pre></div>
 </blockquote></li>
 </ul>
 
@@ -703,76 +696,7 @@ console.log(data)
 
 <p></font></p>
 
-<h3 id="toc_4"><font color='#0099ff'>类：JNetworkHome</font></h3>
-
-<p><font color='#999999'></p>
-
-<ul>
-<li><p><strong><font color='#666666'>1. 获取首页数据</font></strong></p></li>
-<li><blockquote>
-<div><pre><code class="language-javascript">static homeMainPageNeedLocation(){}</code></pre></div>
-</blockquote></li>
-</ul>
-
-<ul>
-<li><p><strong>请求参数</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">-</td>
-<td style="text-align: left">-</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>返回参数</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>调用示例</strong></p>
-
-<blockquote>
-<div><pre><code class="language-javascript">JNetworkHome.homeMainPageNeedLocation().then((data) =&gt; {
- console.log(data)
-}, error =&gt; {
- console.log(error);
-});</code></pre></div>
-
-<p></font></p>
-</blockquote></li>
-</ul>
-
-<hr>
-
-<h3 id="toc_5"><font color='#0099ff'>类：JNetworkFilm </font></h3>
+<h3 id="toc_4"><font color='#0099ff'>类：JNetworkFilm </font></h3>
 
 <p><font color='#999999'></p>
 
@@ -789,8 +713,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -803,23 +727,28 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
+<td style="text-align: left">hotFilms</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">热门影片列表</td>
+</tr>
+<tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left"><a href="#FilmDetailModel">FilmDetailModel</a></td>
+<td style="text-align: left">热门影片</td>
 </tr>
 </tbody>
 </table>
@@ -849,15 +778,15 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
 <td style="text-align: left">cityId</td>
-<td style="text-align: left">string</td>
+<td style="text-align: left">int</td>
 <td style="text-align: left">城市Id</td>
 </tr>
 <tr>
@@ -868,23 +797,28 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
+<td style="text-align: left">films</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">获取到的影片列表</td>
+</tr>
+<tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left"><a href="#BaseFilmModel">BaseFilmModel</a></td>
+<td style="text-align: left">影片</td>
 </tr>
 </tbody>
 </table>
@@ -914,8 +848,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -933,23 +867,23 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left"><a href="#BaseFilmModel">BaseFilmModel</a></td>
+<td style="text-align: left">影片</td>
 </tr>
 </tbody>
 </table>
@@ -968,9 +902,9 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666' size='3'>4. 获取影片详情</font><mark></strong></li>
+<li><strong><mark><font color='#666666' size='3'>4. 获取影片详情 (交行使用的)?</font><mark></strong></li>
 <li><blockquote>
-<div><pre><code class="language-javascript">static filmDetail(platformFilmId, platformId){}</code></pre></div>
+<div><pre><code class="language-javascript">static filmDetail(filmId, platform){}</code></pre></div>
 </blockquote></li>
 <li><p><strong>请求参数</strong></p>
 
@@ -979,42 +913,42 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td style="text-align: left">platformFilmId</td>
+<td style="text-align: left">filmId</td>
 <td style="text-align: left">string</td>
 <td style="text-align: left">影片ID</td>
 </tr>
 <tr>
-<td style="text-align: left">platformId</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">平台id</td>
+<td style="text-align: left">platform</td>
+<td style="text-align: left"><a href="#EnumPlatform">EnumPlatform</a></td>
+<td style="text-align: left">平台类型</td>
 </tr>
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left"><a href="#FilmDetailModel">FilmDetailModel</a></td>
+<td style="text-align: left">影片详情</td>
 </tr>
 </tbody>
 </table>
@@ -1022,7 +956,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkFilm.filmDetail().then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkFilm.filmDetail(&#39;248700&#39;, &#39;maoyan&#39;).then((data) =&gt; {
  console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1033,7 +967,7 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>5. 获取所有电影列表</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>5. 获取所有电影列表 (交行使用的)?</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static filmList(){}</code></pre></div>
 </blockquote></li>
@@ -1044,37 +978,52 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">filmId</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">影院Id</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>返回参数</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left">-</td>
+<td style="text-align: left">-</td>
+</tr>
+</tbody>
+</table>
+</blockquote></li>
+<li><p><strong>返回数据</strong></p>
+
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">upcommingFilms</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">待映影片列表</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left"><a href="#FilmDetailModel">FilmDetailModel</a></td>
+<td style="text-align: left">影片</td>
+</tr>
+<tr>
+<td style="text-align: left">hotFilms</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">热映影片列表</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left"><a href="#FilmDetailModel">FilmDetailModel</a></td>
+<td style="text-align: left">影片</td>
 </tr>
 </tbody>
 </table>
@@ -1082,7 +1031,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkFilm.filmList().then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkFilm.filmList().then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1104,8 +1053,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1118,23 +1067,38 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
+<td style="text-align: left">film</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">影片列表</td>
+</tr>
+<tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left"><a href="#FilmDetailModel">FilmDetailModel</a></td>
+<td style="text-align: left">影片</td>
+</tr>
+<tr>
+<td style="text-align: left">hotComments</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">热门评论</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left"><a href="#CommentModel">CommentModel</a></td>
+<td style="text-align: left">评论</td>
 </tr>
 </tbody>
 </table>
@@ -1142,7 +1106,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkFilm.filmWithFilmId(&#39;a123321321&#39;).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkFilm.filmWithFilmId(&#39;1a692bb163fa4609b59927055faab749&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1154,12 +1118,12 @@ console.log(data)
 
 <p></font></p>
 
-<h3 id="toc_6"><font color='#0099ff'>类：JNetworkCinema </font></h3>
+<h3 id="toc_5"><font color='#0099ff'>类：JNetworkCinema </font></h3>
 
 <p><font color='#999999'></p>
 
 <ul>
-<li><strong><mark><font color='#666666'>1. 获取影院详情</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>1. 获取影院详情 (暂时不可用)</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static cinemaDetail(cinemaId){}</code></pre></div>
 </blockquote></li>
@@ -1170,8 +1134,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1184,23 +1148,23 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left">-</td>
+<td style="text-align: left">-</td>
 </tr>
 </tbody>
 </table>
@@ -1208,7 +1172,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.cinemaDetail(&#39;a123123123&#39;).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkCinema.cinemaDetail(&#39;a123123123&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1230,8 +1194,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1254,23 +1218,38 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
+<td style="text-align: left">cinemas</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">影院列表</td>
+</tr>
+<tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left"><a href="#CinemaCompareModel">CinemaCompareModel</a></td>
+<td style="text-align: left">影院</td>
+</tr>
+<tr>
+<td style="text-align: left">regions</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">行政区列表</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left"><a href="#RegionModel">RegionModel</a></td>
+<td style="text-align: left">行政区</td>
 </tr>
 </tbody>
 </table>
@@ -1278,7 +1257,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.cinemaContrastNeedLocation(&#39;a123123123&#39;, &#39;浦东新区&#39;, 1).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkCinema.cinemaContrastNeedLocation(&#39;1a692bb163fa4609b59927055faab749&#39;, &#39;&#39;, 1).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1300,8 +1279,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1319,23 +1298,38 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
+<td style="text-align: left">cinemas</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">影院列表</td>
+</tr>
+<tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left"><a href="#CinemaCompareModel">CinemaCompareModel</a></td>
+<td style="text-align: left">影院</td>
+</tr>
+<tr>
+<td style="text-align: left">regions</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">行政区列表</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left"><a href="#RegionModel">RegionModel</a></td>
+<td style="text-align: left">行政区</td>
 </tr>
 </tbody>
 </table>
@@ -1343,7 +1337,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.cinemaContrastNoFilmNeedLocation(&#39;浦东新区&#39;, 1).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkCinema.cinemaContrastNoFilmNeedLocation(&#39;&#39;, 1).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1354,7 +1348,7 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>4. 指定影院的排片的电影列表及影院本身的信息</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>4. 指定影院的排片的电影列表及影院本身的信息(交行使用的)?</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static cinemaScreenings(cinemaId){}</code></pre></div>
 </blockquote></li>
@@ -1365,8 +1359,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1379,15 +1373,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1403,7 +1397,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.cinemaScreenings(&#39;a123123123&#39;).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkCinema.cinemaScreenings(&#39;a123123123&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1414,7 +1408,7 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>5. 指定影院的排片的最近日期列表</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>5. 指定影院的排片的最近日期列表(交行使用的)?</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static cinemaScreeningsDate(cinemaId, filmId){}</code></pre></div>
 </blockquote></li>
@@ -1425,8 +1419,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1444,15 +1438,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1468,7 +1462,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.cinemaScreeningsDate(&#39;a123123&#39;, &#39;b123123&#39;).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkCinema.cinemaScreeningsDate(&#39;a123123&#39;, &#39;b123123&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1479,7 +1473,7 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>6. 指定影院的某个影片的某天的排片的详细信息</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>6. 指定影院的某个影片的某天的排片的详细信息(交行使用的)?</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static cinemaScreeningsItem(cinemaId, filmId, date){}</code></pre></div>
 </blockquote></li>
@@ -1490,8 +1484,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1514,15 +1508,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1538,7 +1532,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.cinemaScreeningsItem(&#39;a123123123&#39;, &#39;b123123123&#39;, &#39;2017-04-18&#39;).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkCinema.cinemaScreeningsItem(&#39;a123123123&#39;, &#39;b123123123&#39;, &#39;2017-04-18&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1549,7 +1543,7 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>7. 实时座位图</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>7. 实时座位图(交行使用的)?</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static cinemaSeat(type, paras){}</code></pre></div>
 </blockquote></li>
@@ -1560,8 +1554,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1579,15 +1573,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1603,7 +1597,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.cinemaSeat(&#39;meituan&#39;, {}).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkCinema.cinemaSeat(&#39;meituan&#39;, {}).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1625,8 +1619,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1639,23 +1633,33 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
+<td style="text-align: left">cinemas</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">影院列表</td>
+</tr>
+<tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left"><a href="#CinemaModel">CinemaModel</a></td>
+<td style="text-align: left">影院</td>
+</tr>
+<tr>
+<td style="text-align: left">recommandCinema</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">推荐影院</td>
 </tr>
 </tbody>
 </table>
@@ -1663,7 +1667,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.cinemaListNeedLocation(&#39;a123123123&#39;).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkCinema.cinemaListNeedLocation(&#39;1a692bb163fa4609b59927055faab749&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1674,7 +1678,7 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>9. 整合后的影院列表</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>9. 整合后的影院列表(交行使用的)?</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static newCinemaListNeedLocation(filmid, region, order, feature, inType, date){}</code></pre></div>
 </blockquote></li>
@@ -1685,8 +1689,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1724,15 +1728,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1748,7 +1752,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.newCinemaListNeedLocation().then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkCinema.newCinemaListNeedLocation().then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1770,8 +1774,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1789,15 +1793,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1813,7 +1817,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.cinemaFavoriteCinemaNeedLogin(&#39;a123123&#39;, &#39;上海电影院&#39;).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkCinema.cinemaFavoriteCinemaNeedLogin(&#39;a123123&#39;, &#39;上海电影院&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1835,8 +1839,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1849,15 +1853,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1873,7 +1877,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.cinemaCancelFavoriteCinemaNeedLogin(&#39;a123123&#39;).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkCinema.cinemaCancelFavoriteCinemaNeedLogin(&#39;a123123&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1885,7 +1889,7 @@ console.log(data)
 
 <p></font></p>
 
-<h3 id="toc_7"><font color='#0099ff'>类：JNetworkFilmView </font></h3>
+<h3 id="toc_6"><font color='#0099ff'>类：JNetworkFilmView </font></h3>
 
 <p><font color='#999999'></p>
 
@@ -1901,8 +1905,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1915,15 +1919,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1939,7 +1943,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkFilmView.filmviewFilmview(&#39;a123123&#39;).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkFilmView.filmviewFilmview(&#39;a123123&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1961,8 +1965,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -1980,15 +1984,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2004,7 +2008,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkFilmView.filmviewDate(&#39;a123123&#39;, &#39;b123123&#39;).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkFilmView.filmviewDate(&#39;a123123&#39;, &#39;b123123&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2026,8 +2030,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2050,15 +2054,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2074,7 +2078,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkFilmView.filmviewItems(&#39;a123123&#39;, &#39;b123123&#39;, &#39;2017-04-18&#39;).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkFilmView.filmviewItems(&#39;a123123&#39;, &#39;b123123&#39;, &#39;2017-04-18&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2086,7 +2090,7 @@ console.log(data)
 
 <p></font></p>
 
-<h3 id="toc_8"><font color='#0099ff'>类：JNetworkTrade </font></h3>
+<h3 id="toc_7"><font color='#0099ff'>类：JNetworkTrade </font></h3>
 
 <p><font color='#999999'></p>
 
@@ -2102,8 +2106,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2121,15 +2125,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2145,7 +2149,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkTrade.tradeLockSeatNeedLogin(&#39;maoyan&#39;, {}).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkTrade.tradeLockSeatNeedLogin(&#39;maoyan&#39;, {}).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2167,8 +2171,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2181,15 +2185,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2205,7 +2209,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkTrade.cancelLockSeatNeedLogin(&#39;dd11111111&#39;).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkTrade.cancelLockSeatNeedLogin(&#39;dd11111111&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2227,8 +2231,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2246,15 +2250,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2270,7 +2274,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkTrade.tradeConfirmOrderNeedLogin(&#39;maoyan&#39;, {}).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkTrade.tradeConfirmOrderNeedLogin(&#39;maoyan&#39;, {}).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2292,8 +2296,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2321,15 +2325,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2345,7 +2349,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkTrade.tradePrePayOrderNeedLogin(&#39;d123123&#39;, &#39;weixin&#39;, &#39;&#39;, &#39;&#39;).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkTrade.tradePrePayOrderNeedLogin(&#39;d123123&#39;, &#39;weixin&#39;, &#39;&#39;, &#39;&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2357,7 +2361,7 @@ console.log(data)
 
 <p></font></p>
 
-<h3 id="toc_9"><font color='#0099ff'>类：JNetworkMine </font></h3>
+<h3 id="toc_8"><font color='#0099ff'>类：JNetworkMine </font></h3>
 
 <p><font color='#999999'></p>
 
@@ -2373,8 +2377,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2387,15 +2391,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2411,7 +2415,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkMine.mineOrderNeedLogin().then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkMine.mineOrderNeedLogin().then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2433,8 +2437,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2447,15 +2451,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2471,7 +2475,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkMine.mineFavoriteNeedLogin().then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkMine.mineFavoriteNeedLogin().then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2483,7 +2487,7 @@ console.log(data)
 
 <p></font></p>
 
-<h3 id="toc_10"><font color='#0099ff'>类：JNetworkCity </font></h3>
+<h3 id="toc_9"><font color='#0099ff'>类：JNetworkCity </font></h3>
 
 <p><font color='#999999'></p>
 
@@ -2499,8 +2503,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2513,15 +2517,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2537,7 +2541,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCity.cityListNeedLocation().then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkCity.cityListNeedLocation().then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2559,8 +2563,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2573,15 +2577,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2597,7 +2601,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCity.cityListNeedLocation({longitude:121.458858, latitude:23.484588}).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkCity.cityListNeedLocation({longitude:121.458858, latitude:23.484588}).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2619,8 +2623,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2633,15 +2637,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2657,7 +2661,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCity.cityCities().then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkCity.cityCities().then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2669,7 +2673,7 @@ console.log(data)
 
 <p></font></p>
 
-<h3 id="toc_11"><font color='#0099ff'>类：JNetworkAccount </font></h3>
+<h3 id="toc_10"><font color='#0099ff'>类：JNetworkAccount </font></h3>
 
 <p><font color='#999999'></p>
 
@@ -2685,8 +2689,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2704,15 +2708,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2728,7 +2732,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkAccount.accountLogin(&#39;13764730291&#39;, &#39;123456&#39;).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkAccount.accountLogin(&#39;13764730291&#39;, &#39;123456&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2750,8 +2754,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2764,15 +2768,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2788,7 +2792,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkAccount.accountLogout(&#39;&#39;).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkAccount.accountLogout(&#39;&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2810,8 +2814,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2829,15 +2833,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2853,7 +2857,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkAccount.accountGetVerifyCode(&#39;13764730291&#39;, 2).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkAccount.accountGetVerifyCode(&#39;13764730291&#39;, 2).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2875,8 +2879,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2899,15 +2903,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2923,7 +2927,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkAccount.accountRegister(&#39;13764730291&#39;, &#39;112525&#39;, &#39;123456&#39;).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkAccount.accountRegister(&#39;13764730291&#39;, &#39;112525&#39;, &#39;123456&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2945,8 +2949,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2969,15 +2973,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -2993,7 +2997,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkAccount.accountUpdatepass(&#39;13764730291&#39;, &#39;112525&#39;, &#39;123456&#39;).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkAccount.accountUpdatepass(&#39;13764730291&#39;, &#39;112525&#39;, &#39;123456&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -3005,7 +3009,7 @@ console.log(data)
 
 <p></font></p>
 
-<h3 id="toc_12"><font color='#0099ff'>类：JNetworkOther </font></h3>
+<h3 id="toc_11"><font color='#0099ff'>类：JNetworkOther </font></h3>
 
 <p><font color='#999999'></p>
 
@@ -3021,8 +3025,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -3040,15 +3044,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -3064,7 +3068,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkOther.search(&#39;上海&#39;).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkOther.search(&#39;上海&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -3086,8 +3090,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -3110,15 +3114,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -3134,7 +3138,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkOther.searchSearch().then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkOther.searchSearch().then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -3156,8 +3160,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -3170,15 +3174,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -3194,7 +3198,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkOther.hotQuery().then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkOther.hotQuery().then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -3216,8 +3220,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -3230,15 +3234,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -3254,7 +3258,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkOther.bannersNeedCItyIdNeedLocation().then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkOther.bannersNeedCItyIdNeedLocation().then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -3276,8 +3280,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -3290,15 +3294,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -3314,7 +3318,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkOther.pageBanners().then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkOther.pageBanners().then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -3326,9 +3330,9 @@ console.log(data)
 
 <p></font></p>
 
-<h2 id="toc_13"><font color='#ff0000' size:>模块：JNetwork(Delegate) </font></h2>
+<h2 id="toc_12"><font color='#ff0000' size:>模块：JNetwork(Delegate) </font></h2>
 
-<h3 id="toc_14"><font id='JNetworkDelegate' color='#0099ff'>代理：JNetworkDelegate </font></h3>
+<h3 id="toc_13"><font id='JNetworkDelegate' color='#0099ff'>代理：JNetworkDelegate </font></h3>
 
 <p><font color='#999999'></p>
 
@@ -3344,8 +3348,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -3358,15 +3362,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -3402,8 +3406,8 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">请求参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -3416,15 +3420,15 @@ console.log(data)
 </tbody>
 </table>
 </blockquote></li>
-<li><p><strong>返回参数</strong></p>
+<li><p><strong>返回数据</strong></p>
 
 <blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align: left">返回参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">返回数据</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
 </tr>
 </thead>
 
@@ -3441,7 +3445,7 @@ console.log(data)
 
 <blockquote>
 <div><pre><code class="language-javascript">locationParas() {
-     return {latitude: 41.816804:,
+     return {latitude: 41.816804:, 
              longitude: 123.426065};
 }</code></pre></div>
 </blockquote></li>
@@ -3449,17 +3453,11 @@ console.log(data)
 
 <hr>
 
-<hr>
-
-<hr>
-
-<hr>
-
 <p></font></p>
 
-<h2 id="toc_15"><font color='#ff0000' size:>模块：JNetwork(Model) </font></h2>
+<h2 id="toc_14"><font color='#ff0000' size:>模块：JNetwork(Model) </font></h2>
 
-<h3 id="toc_16"><font id='CityModel' color='#0099ff'>模型：CityModel </font></h3>
+<h3 id="toc_15"><font id='CityModel' color='#0099ff'>模型：CityModel </font></h3>
 
 <p><font color='#999999'></p>
 
@@ -3467,7 +3465,7 @@ console.log(data)
 
 <p></font></p>
 
-<h3 id="toc_17"><font id='ConfigModel' color='#0099ff'>模型：ConfigModel </font></h3>
+<h3 id="toc_16"><font id='ConfigModel' color='#0099ff'>模型：ConfigModel </font></h3>
 
 <p><font color='#999999'></p>
 
@@ -3485,8 +3483,9 @@ console.log(data)
 <tr>
 <th style="text-align: left">所属</th>
 <th style="text-align: left">参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
+<th style="text-align: left">数据示例</th>
 </tr>
 </thead>
 
@@ -3496,12 +3495,14 @@ console.log(data)
 <td style="text-align: left">baseUrl</td>
 <td style="text-align: left">string</td>
 <td style="text-align: left">网络请求基础地址</td>
+<td style="text-align: left">http:https://jbz-dev.idoupiao.com/openfilm/</td>
 </tr>
 <tr>
 <td style="text-align: left">-</td>
 <td style="text-align: left">delegate</td>
 <td style="text-align: left">id &lt;<a href="#JNetworkDelegate">JNetworkDelegate</a>&gt;</td>
 <td style="text-align: left">网络请求代理</td>
+<td style="text-align: left">-</td>
 </tr>
 </tbody>
 </table>
@@ -3510,7 +3511,7 @@ console.log(data)
 
 <hr>
 
-<h3 id="toc_18"><font id='CoordinateModel' color='#0099ff'>模型：CoordinateModel </font></h3>
+<h3 id="toc_17"><font id='CoordinateModel' color='#0099ff'>模型：CoordinateModel </font></h3>
 
 <p><font color='#999999'></p>
 
@@ -3528,8 +3529,9 @@ console.log(data)
 <tr>
 <th style="text-align: left">所属</th>
 <th style="text-align: left">参数</th>
-<th style="text-align: left">参数类型</th>
-<th style="text-align: left">参数说明</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
+<th style="text-align: left">数据示例</th>
 </tr>
 </thead>
 
@@ -3539,12 +3541,762 @@ console.log(data)
 <td style="text-align: left">latitude</td>
 <td style="text-align: left">double</td>
 <td style="text-align: left">纬度</td>
+<td style="text-align: left">122.024831358</td>
 </tr>
 <tr>
 <td style="text-align: left">-</td>
 <td style="text-align: left">longitude</td>
 <td style="text-align: left">double</td>
 <td style="text-align: left">经度</td>
+<td style="text-align: left">37.3380080241</td>
+</tr>
+</tbody>
+</table>
+</blockquote></li>
+</ul>
+
+<hr>
+
+<h3 id="toc_18"><font id='BaseFilmModel' color='#0099ff'>模型：BaseFilmModel </font></h3>
+
+<p><font color='#999999'></p>
+
+<ul>
+<li><p><strong>描述</strong></p>
+
+<blockquote>
+<p>影片基础模型</p>
+</blockquote></li>
+<li><p><strong>属性</strong></p>
+
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left">所属</th>
+<th style="text-align: left">参数</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
+<th style="text-align: left">数据示例</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">name</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">名称</td>
+<td style="text-align: left">速度与激情8</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">grade</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">评分</td>
+<td style="text-align: left">9.2</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">dimensional</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">放映类型</td>
+<td style="text-align: left">2D/3D/IMAX 3D/中国巨幕/全景声</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">description</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">描述</td>
+<td style="text-align: left">车主要黑化 家族被击垮</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">director</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">导演</td>
+<td style="text-align: left">F·加里·格雷</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">actors</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">演员</td>
+<td style="text-align: left">范·迪塞尔,杰森·斯坦森,道恩·强森</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">showDate</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">日期</td>
+<td style="text-align: left">2017-04-14</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">duration</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">时长(单位:分钟)</td>
+<td style="text-align: left">136</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">bigImg</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">大图</td>
+<td style="text-align: left">http://sep9.cn/c4gwtj</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">id</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">金保证Id</td>
+<td style="text-align: left">1a692bb163fa4609b59927055faab749</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+</blockquote></li>
+</ul>
+
+<h3 id="toc_19"><font id='FilmDetailModel' color='#0099ff'>模型：FilmDetailModel : <a href="#BaseFilmModel">BaseFilmModel</a> </font></h3>
+
+<p><font color='#999999'></p>
+
+<ul>
+<li><p><strong>描述</strong></p>
+
+<blockquote>
+<p>影片详情模型</p>
+</blockquote></li>
+<li><p><strong>属性</strong></p>
+
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left">所属</th>
+<th style="text-align: left">参数</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
+<th style="text-align: left">数据示例</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">category</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">类型</td>
+<td style="text-align: left">&quot;动作,惊悚,犯罪&quot;</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">language</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">语言</td>
+<td style="text-align: left">英语</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">area</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">上映国家</td>
+<td style="text-align: left">大陆上映</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">info</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">信息</td>
+<td style="text-align: left"><p>在这一部中&gt;</p></td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">isShow</td>
+<td style="text-align: left">bool</td>
+<td style="text-align: left">是否已经上映</td>
+<td style="text-align: left">true</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">smallImg</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">小图</td>
+<td style="text-align: left">http://omdf7d8sn.bkt.clouddn.com/film/bd/速度与激情8</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">photos</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">图片列表(&#39;,&#39;号分离)</td>
+<td style="text-align: left">http://sep9.cn/x4mbtk,http://sep9.cn/3q2ax1</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">bdId</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">糯米Id</td>
+<td style="text-align: left">94866</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">dcId</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">单车Id</td>
+<td style="text-align: left">911</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">myId</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">猫眼Id</td>
+<td style="text-align: left">248700</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">mzId</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">卖座Id</td>
+<td style="text-align: left">3456</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">wpId</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">网票Id</td>
+<td style="text-align: left">26608</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">spiderId</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">蜘蛛Id</td>
+<td style="text-align: left">201704760207</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">createdTime</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">创建时间</td>
+<td style="text-align: left">1492286400000</td>
+</tr>
+</tbody>
+</table>
+</blockquote></li>
+</ul>
+
+<hr>
+
+<h3 id="toc_20"><font id='CommentModel' color='#0099ff'>模型：CommentModel</font></h3>
+
+<p><font color='#999999'></p>
+
+<ul>
+<li><p><strong>描述</strong></p>
+
+<blockquote>
+<p>影片评论模型</p>
+</blockquote></li>
+<li><p><strong>属性</strong></p>
+
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left">所属</th>
+<th style="text-align: left">参数</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
+<th style="text-align: left">数据示例</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">nick</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">类型</td>
+<td style="text-align: left">cuppi</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">insertTime</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">插入时间</td>
+<td style="text-align: left">2017-04-19 01:50:26</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">score</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">评分</td>
+<td style="text-align: left">5</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">sureViewed</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">?</td>
+<td style="text-align: left">1</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">approve</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">点赞</td>
+<td style="text-align: left">709</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">filmId</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">?</td>
+<td style="text-align: left">248700</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">oppose</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">?</td>
+<td style="text-align: left">0</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">spoiler</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">?</td>
+<td style="text-align: left">0</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">id</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">?</td>
+<td style="text-align: left">102450041</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">time</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">评论时间</td>
+<td style="text-align: left">2017-04-14 02:57</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">content</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">内容</td>
+<td style="text-align: left">从2001年的速1一直追到2017年的速8，从不会飙车的毛头小子，到独挡一面团队领袖。保罗的离去让</td>
+</tr>
+</tbody>
+</table>
+</blockquote></li>
+</ul>
+
+<hr>
+
+<h3 id="toc_21"><font id='BaseCinemaModel' color='#0099ff'>模型：BaseCinemaModel</font></h3>
+
+<p><font color='#999999'></p>
+
+<ul>
+<li><p><strong>描述</strong></p>
+
+<blockquote>
+<p>影院基础模型</p>
+</blockquote></li>
+<li><p><strong>属性</strong></p>
+
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left">所属</th>
+<th style="text-align: left">参数</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
+<th style="text-align: left">数据示例</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">name</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">名称</td>
+<td style="text-align: left">大地影院罗宾森店</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">address</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">地址</td>
+<td style="text-align: left">上海市嘉定区城中路138号罗宾森广场4楼</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">distance</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">距离</td>
+<td style="text-align: left">12351.6</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">compareCount</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">平台数量</td>
+<td style="text-align: left">4</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">cinemaNames</td>
+<td style="text-align: left">Array &lt;<a href="#EnumPlatform">EnumPlatform</a>&gt;</td>
+<td style="text-align: left">平台名字列表</td>
+<td style="text-align: left">[&quot;dazhong&quot;,&quot;baidu&quot;]</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">showTime</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">?</td>
+<td style="text-align: left">2017-04-19 18:15</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">id</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">金保证Id</td>
+<td style="text-align: left">802965</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">minJbzPrice</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">金保证价格</td>
+<td style="text-align: left">33</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">price</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">价格</td>
+<td style="text-align: left">33</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">minPrice</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">最低价格</td>
+<td style="text-align: left">33</td>
+</tr>
+</tbody>
+</table>
+</blockquote></li>
+</ul>
+
+<hr>
+
+<h3 id="toc_22"><font id='CinemaModel' color='#0099ff'>模型：CinemaModel : <a href="#BaseCinemaModel">BaseCinemaModel</a> </font></h3>
+
+<p><font color='#999999'></p>
+
+<ul>
+<li><p><strong>描述</strong></p>
+
+<blockquote>
+<p>影院比价的模型</p>
+</blockquote></li>
+<li><p><strong>属性</strong></p>
+
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left">所属</th>
+<th style="text-align: left">参数</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
+<th style="text-align: left">数据示例</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">regionName</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">行政区</td>
+<td style="text-align: left">宝山区</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">longitude</td>
+<td style="text-align: left">double</td>
+<td style="text-align: left">经度</td>
+<td style="text-align: left">121.412</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">latitude</td>
+<td style="text-align: left">double</td>
+<td style="text-align: left">纬度</td>
+<td style="text-align: left">31.4595</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">cityId</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">城市Id</td>
+<td style="text-align: left">2</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">cinemaId</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">影院Id</td>
+<td style="text-align: left">800620</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">cinemaName</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">影院名称</td>
+<td style="text-align: left">上海亿博国际影城</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">filmId</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">影片Id</td>
+<td style="text-align: left">1a692bb163fa4609b59927055faab749</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">compareNames</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">比价名称列表</td>
+<td style="text-align: left">spider,baidu</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">filmName</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">?</td>
+<td style="text-align: left">速度与激情8</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">highPrice</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">?</td>
+<td style="text-align: left">3500</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">createdTime</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">?</td>
+<td style="text-align: left">2017-04-12 09:33:09</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">showDate</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">?</td>
+<td style="text-align: left">2017-04-15</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">lowPrice</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">?</td>
+<td style="text-align: left">3300</td>
+</tr>
+</tbody>
+</table>
+</blockquote></li>
+</ul>
+
+<hr>
+
+<h3 id="toc_23"><font id='CinemaCompareModel' color='#0099ff'>模型：CinemaCompareModel : <a href="#BaseCinemaModel">BaseCinemaModel</a> </font></h3>
+
+<p><font color='#999999'></p>
+
+<ul>
+<li><p><strong>描述</strong></p>
+
+<blockquote>
+<p>影院比价的模型</p>
+</blockquote></li>
+<li><p><strong>属性</strong></p>
+
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left">所属</th>
+<th style="text-align: left">参数</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
+<th style="text-align: left">数据示例</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">jbzShowTime</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">?</td>
+<td style="text-align: left">2017-04-19 18:15</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">addDc</td>
+<td style="text-align: left">bool</td>
+<td style="text-align: left">?</td>
+<td style="text-align: left">true</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">type</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">当前模型的平台</td>
+<td style="text-align: left">baidu</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">priority</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">优先级</td>
+<td style="text-align: left">2</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">~[wpId, spId, mzId, dcId, myId, mtId, dzId, bdId]</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">平台商的Id</td>
+<td style="text-align: left">870</td>
+</tr>
+</tbody>
+</table>
+</blockquote></li>
+</ul>
+
+<hr>
+
+<h3 id="toc_24"><font id='RegionModel' color='#0099ff'>模型：RegionModel </font></h3>
+
+<p><font color='#999999'></p>
+
+<ul>
+<li><p><strong>描述</strong></p>
+
+<blockquote>
+<p>行政区模型</p>
+</blockquote></li>
+<li><p><strong>属性</strong></p>
+
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left">所属</th>
+<th style="text-align: left">参数</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
+<th style="text-align: left">数据示例</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">ID</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">行政区Id</td>
+<td style="text-align: left">289</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">Name</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">行政区名字</td>
+<td style="text-align: left">宝山区</td>
+</tr>
+</tbody>
+</table>
+</blockquote></li>
+</ul>
+
+<hr>
+
+<p></font></p>
+
+<h2 id="toc_25"><font color='#ff0000' size:>模块：JNetwork(Enum) </font></h2>
+
+<h3 id="toc_26"><font id='EnumPlatform' color='#0099ff'>枚举：EnumPlatform </font></h3>
+
+<p><font color='#999999'></p>
+
+<ul>
+<li><p><strong>描述</strong></p>
+
+<blockquote>
+<p>平台枚举</p>
+</blockquote></li>
+<li><p><strong>属性</strong></p>
+
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left">类型</th>
+<th style="text-align: left">枚举</th>
+<th style="text-align: left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">string</td>
+<td style="text-align: left">wangpiao</td>
+<td style="text-align: left">网票</td>
+</tr>
+<tr>
+<td style="text-align: left">*</td>
+<td style="text-align: left">maizuo</td>
+<td style="text-align: left">卖座</td>
+</tr>
+<tr>
+<td style="text-align: left">*</td>
+<td style="text-align: left">spider</td>
+<td style="text-align: left">蜘蛛</td>
+</tr>
+<tr>
+<td style="text-align: left">*</td>
+<td style="text-align: left">danche</td>
+<td style="text-align: left">单车</td>
+</tr>
+<tr>
+<td style="text-align: left">*</td>
+<td style="text-align: left">maoyan</td>
+<td style="text-align: left">猫眼</td>
+</tr>
+<tr>
+<td style="text-align: left">*</td>
+<td style="text-align: left">dazhong</td>
+<td style="text-align: left">大众</td>
+</tr>
+<tr>
+<td style="text-align: left">*</td>
+<td style="text-align: left">meituan</td>
+<td style="text-align: left">美团</td>
 </tr>
 </tbody>
 </table>
