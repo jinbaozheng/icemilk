@@ -8,30 +8,26 @@ import {filmUrl} from '../constant/JUrlList';
 class NetworkFilmManager {
     /**
      *  获取热门电影
-     * @returns {*}
-     */
-    static filmHotfilms() {
-        return NetworkManager.POST(filmUrl.hotfilms, {});
-    }
-
-    /**
-     * 获取热门电影
      * @param cityId 城市Id
      * @param page 页号
-     * @returns {{terminate, then}|*}
+     * @returns {*}
      */
-    static filmHotfilmsWithPage(cityId, page = 1) {
-        return NetworkManager.POST(filmUrl.hotfilmspage, {cityId: cityId, page: page});
+    static filmHotfilms(cityId, page) {
+      if(!page || page <= 0){
+        return NetworkManager.POST(filmUrl.jbzHotFilms, {cityId});
+      } else {
+        return NetworkManager.POST(filmUrl.jbzHotFilmsPage, {cityId, page});
+      }
     }
 
     /**
      * 获取待映电影
-     * @param cityId
-     * @param page
+     * @param cityId 城市Id
+     * @param page 页号
      * @returns {{terminate, then}|*}
      */
-    static filmWaitfilmsWithPage(cityId, page = 1) {
-        return NetworkManager.POST(filmUrl.waitfilmspage, {cityId: cityId, page: page});
+    static filmWaitfilms(cityId, page = 1) {
+        return NetworkManager.POST(filmUrl.jbzWaitFilmsPage, {cityId: cityId, page: page});
     }
 
     /**
@@ -40,27 +36,24 @@ class NetworkFilmManager {
      * * @param platformId 平台id
      * @returns {*}
      */
-    static filmDetail(platformFilmId, platformId) {
-        return NetworkManager.POST(filmUrl.detailInfo, {platformFilmId, platformId});
+    static filmDetail(filmId, platform) {
+      if(platform){
+        return NetworkManager.POST(filmUrl.jbzFilmDetail, {filmId, platform});
+      } else {
+        return NetworkManager.POST(filmUrl.jbzFilm, {id: filmId});
+      }
     }
 
     /**
      * 获取所有电影列表
-     * @param filmId 影院Id
      * @returns {{terminate, then}|*}
      */
-    static filmList() {
-        return NetworkManager.POST(filmUrl.list);
+    static filmList(cityId) {
+      return NetworkFilmManager.unrealizedMethod();
+        // return NetworkManager.POST(filmUrl.jbzFilmList);
     }
 
-    /**
-     * 获取指定影片
-     * @param filmId
-     * @returns {{terminate, then}|*}
-     */
-    static filmWithFilmId(filmId) {
-        return NetworkManager.POST(filmUrl.film, {id: filmId});
-    }
+
 }
 
 export default NetworkFilmManager;

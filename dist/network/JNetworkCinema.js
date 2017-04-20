@@ -175,7 +175,7 @@ var NetworkCinemaManager = function () {
   }, {
     key: 'cinemaFavoriteCinemaNeedLogin',
     value: function cinemaFavoriteCinemaNeedLogin(cinemaId, cinemaName) {
-      var loginParas = _JNetwork2.default.locationParas();
+      var loginParas = _JNetwork2.default.loginParas();
       if (!loginParas.hasAccount) {
         return _JNetwork2.default.failedAuthorizationNetwork();
       }
@@ -197,7 +197,7 @@ var NetworkCinemaManager = function () {
   }, {
     key: 'cinemaCancelFavoriteCinemaNeedLogin',
     value: function cinemaCancelFavoriteCinemaNeedLogin(cinemaId) {
-      var loginParas = _JNetwork2.default.locationParas();
+      var loginParas = _JNetwork2.default.loginParas();
       if (!loginParas.hasAccount) {
         return _JNetwork2.default.failedAuthorizationNetwork();
       }

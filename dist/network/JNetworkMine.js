@@ -33,7 +33,7 @@ var NetworkMineManager = function () {
      * @returns {*}
      */
     value: function mineOrderNeedLogin() {
-      var loginParas = _JNetwork2.default.locationParas();
+      var loginParas = _JNetwork2.default.loginParas();
       if (!loginParas.hasAccount) {
         return _JNetwork2.default.failedAuthorizationNetwork();
       }
@@ -55,7 +55,7 @@ var NetworkMineManager = function () {
   }, {
     key: 'mineFavoriteNeedLogin',
     value: function mineFavoriteNeedLogin() {
-      var loginParas = _JNetwork2.default.locationParas();
+      var loginParas = _JNetwork2.default.loginParas();
       if (!loginParas.hasAccount) {
         return _JNetwork2.default.failedAuthorizationNetwork();
       }

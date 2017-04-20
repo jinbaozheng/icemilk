@@ -22,4 +22,4 @@ class NumberTool {
     }
 }
 
-module.exports = NumberTool;
+export default NumberTool;

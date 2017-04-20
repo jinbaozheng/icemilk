@@ -50,6 +50,12 @@ class NetworkManager {
     });
   }
 
+  static unrealizedMethod(){
+    return new Promise((resolve, reject) => {
+      reject(new Error('unrealized method'));
+    });
+  }
+
   /**
    * 包裹可取消的请求 （使用fetch请求时使用，目前通过axios请求，无需使用）
    * @param promise 异步请求块

@@ -73,6 +73,13 @@ var NetworkManager = function () {
         reject(new Error('authorization error'));
       });
     }
+  }, {
+    key: 'unrealizedMethod',
+    value: function unrealizedMethod() {
+      return new Promise(function (resolve, reject) {
+        reject(new Error('unrealized method'));
+      });
+    }
 
     /**
      * 包裹可取消的请求 （使用fetch请求时使用，目前通过axios请求，无需使用）
@@ -174,12 +181,13 @@ var NetworkManager = function () {
      * get请求
      * @param url 相对地址
      * @param parameters 地址参数
+     * @param headers 头参数
      * @returns {{terminate, then}|*} 异步请求块
      */
 
   }, {
     key: 'GET',
-    value: function GET(url, parameters) {
+    value: function GET(url, parameters, headers) {
       var _this2 = this;
 
       var isOk = void 0;

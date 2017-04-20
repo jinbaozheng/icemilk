@@ -12,7 +12,7 @@ class NetworkMineManager {
    * @returns {*}
    */
   static mineOrderNeedLogin() {
-    let loginParas = NetworkManager.locationParas();
+    let loginParas = NetworkManager.loginParas();
     if (!loginParas.hasAccount) {
       return NetworkManager.failedAuthorizationNetwork();
     }
@@ -29,7 +29,7 @@ class NetworkMineManager {
    * @returns {*}
    */
   static mineFavoriteNeedLogin() {
-    let loginParas = NetworkManager.locationParas();
+    let loginParas = NetworkManager.loginParas();
     if (!loginParas.hasAccount) {
       return NetworkManager.failedAuthorizationNetwork();
     }

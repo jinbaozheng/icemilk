@@ -79,7 +79,7 @@ static GET(url, parameters, headers){}
 ###<font color='#0099ff'>类：JNetworkConfig</font>
 <font color='#999999'>
 
-* **<font color='#666666'>1. 获取首页数据</font>**
+* **<mark><font color='#666666'>1. 获取首页数据</font></mark>**
 
 - > ```js
     static setConfig(config){}
@@ -111,41 +111,10 @@ JNetworkConfig.setConfig({
 ###<font color='#0099ff'>类：JNetworkFilm </font>
 <font color='#999999'>
 
-* **<mark><font color='#666666' size='3'>1. 获取热门电影</font><mark>**
-
-- ~~~js
-  static filmHotfilms(){}
-  ~~~
-  
-* **请求参数**
->
-| 请求参数|数据类型|数据说明|
-|:--------|:--------|:------|
-|-|-|-|
-
-- **返回数据**
-> 
-|返回数据|数据类型|数据说明|
-|:--------|:--------|:------|
-|hotFilms|Array|热门影片列表|
-|-|[FilmDetailModel](#FilmDetailModel)|热门影片|
-
-- **调用示例**
->    
-~~~js 
-JNetworkFilm.filmHotfilms().then((data) => {
-     console.log(data)
-}, error => {
-     console.log(error);
-});
-~~~
-
-**************************************************************************************************
-
-* **<mark><font color='#666666' size='3'>2. 分页获取热门电影</font></mark>**
+* **<mark><font color='#666666'>2. 分页获取热门电影</font></mark>**
 * >
   ~~~js
-  static filmHotfilmsWithPage(cityId, page = 1){}
+  static filmHotfilms(cityId = empty, page = empty){}
   ~~~
   
 * **请求参数**
@@ -159,12 +128,12 @@ JNetworkFilm.filmHotfilms().then((data) => {
 > |返回数据|数据类型|数据说明|
 |:--------|:--------|:------|
 |films|Array|获取到的影片列表|
-|-|[BaseFilmModel](#BaseFilmModel)|影片|
+|-|[FilmDetailModel](#FilmDetailModel)|影片|
 
 - **调用示例**
 >    
 ~~~js 
-JNetworkFilm.filmHotfilmsWithPage(2, 1).then((data) => {
+JNetworkFilm.filmHotfilms(2, 1).then((data) => {
      console.log(data)
 }, error => {
      console.log(error);
@@ -173,7 +142,7 @@ JNetworkFilm.filmHotfilmsWithPage(2, 1).then((data) => {
 
 **************************************************************************************************
 
-* **<mark><font color='#666666' size='3'>3. 获取待映电影</font></mark>**
+* **<mark><font color='#666666'>3. 获取待映电影</font></mark>**
 * >
   ~~~js
   static filmWaitfilmsWithPage(cityId, page = 1){}
@@ -189,7 +158,7 @@ JNetworkFilm.filmHotfilmsWithPage(2, 1).then((data) => {
 - **返回数据**
 > |返回数据|数据类型|数据说明|
 |:--------|:--------|:------|
-|-|[BaseFilmModel](#BaseFilmModel)|影片|
+|-|[FilmDetailModel](#FilmDetailModel)|影片|
 
 - **调用示例**
 >    
@@ -203,17 +172,17 @@ JNetworkFilm.filmWaitfilmsWithPage(2, 1).then((data) => {
 
 **************************************************************************************************
 
-* **<mark><font color='#666666' size='3'>4. 获取影片详情 (交行使用的)?</font><mark>**
+* **<mark><font color='#666666'>4. 获取影片详情</font><mark>**
 * >
   ~~~js
-  static filmDetail(filmId, platform){}
+  static filmDetail(filmId, platform = empty){}
   ~~~
   
 * **请求参数**
 >
 | 请求参数|数据类型|数据说明|
 |:--------|:--------|:------|
-|filmId|string|影片ID|
+|filmId|string|影片Id(如果platform为空, 则使用jbz的id,否则使用平台的Id)|
 |platform|[EnumPlatform](#EnumPlatform)|平台类型|
 
 - **返回数据**
@@ -233,17 +202,17 @@ JNetworkFilm.filmDetail('248700', 'maoyan').then((data) => {
 
 **************************************************************************************************
 
-* **<mark><font color='#666666'>5. 获取所有电影列表 (交行使用的)?</font></mark>**
+* **<mark><font color='#666666'>5. 获取所有电影列表 (未实现)?</font></mark>**
 * >
 ~~~js
-static filmList(){}
+static filmList(cityId = empty){}
 ~~~
 
 * **请求参数**
 >
 | 请求参数|数据类型|数据说明|
 |:--------|:--------|:------|
-|-|-|-|
+|cityId|int|需要获取电影列表的城市|
 
 - **返回数据**
 > |返回数据|数据类型|数据说明|
@@ -265,37 +234,7 @@ JNetworkFilm.filmList().then((data) => {
 
 
 **************************************************************************************************
-* **<mark><font color='#666666'>6. 获取指定影片</font></mark>**
-* >
-~~~js
-static filmWithFilmId(filmId){}
-~~~
 
-* **请求参数**
->
-| 请求参数|数据类型|数据说明|
-|:--------|:--------|:------|
-|filmId|string|影院Id|
-
-- **返回数据**
-> |返回数据|数据类型|数据说明|
-|:--------|:--------|:------|
-|film|Array|影片列表|
-|-|[FilmDetailModel](#FilmDetailModel)|影片|
-|hotComments|Array|热门评论|
-|-|[CommentModel](#CommentModel)|评论|
-
-- **调用示例**
->  
-~~~js 
-JNetworkFilm.filmWithFilmId('1a692bb163fa4609b59927055faab749').then((data) => { 
-    console.log(data)
-}, error => {
-     console.log(error);
-});
-~~~
-
-**************************************************************************************************
 </font>
 
 ###<font color='#0099ff'>类：JNetworkCinema </font>

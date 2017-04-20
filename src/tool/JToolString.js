@@ -51,4 +51,4 @@ class StringTool {
     }
 }
 
-module.exports = StringTool;
+export default StringTool;
