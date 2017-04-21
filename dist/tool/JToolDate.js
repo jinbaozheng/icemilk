@@ -4,9 +4,13 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * Created by cuppi on 2016/11/25.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
 
 var _JToolNumber = require('./JToolNumber.js');
 
@@ -14,14 +18,12 @@ var _JToolNumber2 = _interopRequireDefault(_JToolNumber);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 var DateTool = function () {
     function DateTool() {
-        _classCallCheck(this, DateTool);
+        (0, _classCallCheck3.default)(this, DateTool);
     }
 
-    _createClass(DateTool, null, [{
+    (0, _createClass3.default)(DateTool, null, [{
         key: 'chineseTimeFromTime',
         value: function chineseTimeFromTime(time, unit) {
             if (unit === 'm') {
@@ -34,17 +36,11 @@ var DateTool = function () {
                 return hours + '小时' + minutes + '分钟';
             }
         }
-
-        // 当前日期
-
     }, {
         key: 'currentDate',
         value: function currentDate() {
             return new Date();
         }
-
-        // 格式化日期
-
     }, {
         key: 'formatDateToString',
         value: function formatDateToString(date, format) {
@@ -52,27 +48,22 @@ var DateTool = function () {
                 num += '';
                 return num.replace(/^(\d)$/, '0$1');
             };
-            // 指定格式字符
+
             var cfg = {
-                yyyy: date.getFullYear(), // 年 : 4位
-                yy: date.getFullYear().toString().substring(2), // 年 : 2位
-                M: date.getMonth() + 1, // 月 : 如果1位的时候不补0
-                MM: paddNum(date.getMonth() + 1), // 月 : 如果1位的时候补0
-                d: date.getDate(), // 日 : 如果1位的时候不补0
-                dd: paddNum(date.getDate()), // 日 : 如果1位的时候补0
-                hh: date.getHours(), // 时
-                mm: paddNum(date.getMinutes()), // 分
-                ss: paddNum(date.getSeconds()) // 秒
-            };
+                yyyy: date.getFullYear(),
+                yy: date.getFullYear().toString().substring(2),
+                M: date.getMonth() + 1,
+                MM: paddNum(date.getMonth() + 1),
+                d: date.getDate(),
+                dd: paddNum(date.getDate()),
+                hh: date.getHours(),
+                mm: paddNum(date.getMinutes()),
+                ss: paddNum(date.getSeconds()) };
             format || (format = 'yyyy-MM-dd hh:mm:ss');
             return format.replace(/([a-z])(\1)*/ig, function (m) {
                 return cfg[m];
             });
         }
-
-        // 转换 2016-05-02 或 2016/05/01等 类型
-        // 到 2016年05月03日
-
     }, {
         key: 'formatDateToChineseDate',
         value: function formatDateToChineseDate(date, separator, nozero) {
@@ -91,19 +82,13 @@ var DateTool = function () {
             }
             return result;
         }
-
-        // 转换 2016-05-02 或 2016/05/01等 类型
-
     }, {
         key: 'formatStringToDate',
         value: function formatStringToDate(date, separator) {
             var _date = date.split(separator);
-            // 月份从0 开始
+
             return new Date(_date[0], parseInt(_date[1]) - 1, _date[2]);
         }
-
-        // 转换 2016-05-02 或 2016/05/01等 类型
-
     }, {
         key: 'formatDateStringToDateString',
         value: function formatDateStringToDateString(date, separator, toSeparator) {
@@ -143,8 +128,6 @@ var DateTool = function () {
         value: function weekDayFromDate(date) {
             return DateTool.weekDay(DateTool.formatStringToDate(date, '-'));
         }
-        // 格式化为   2015-01-02
-
     }, {
         key: 'getDateByAddDay',
         value: function getDateByAddDay(date, addDay) {
@@ -176,7 +159,6 @@ var DateTool = function () {
             }
         }
     }]);
-
     return DateTool;
 }();
 

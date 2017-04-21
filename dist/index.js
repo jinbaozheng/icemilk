@@ -63,9 +63,6 @@ var _JSDK2 = _interopRequireDefault(_JSDK);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/**
- * Created by cuppi on 2017/4/14.
- */
 exports.JNetwork = _JNetwork2.default;
 exports.JNetworkAccount = _JNetworkAccount2.default;
 exports.JNetworkCinema = _JNetworkCinema2.default;

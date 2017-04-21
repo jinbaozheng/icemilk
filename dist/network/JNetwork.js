@@ -1,15 +1,29 @@
-/**
- * Created by cuppi on 2016/11/22.
- */
+
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends2 = require('babel-runtime/helpers/extends');
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _assign = require('babel-runtime/core-js/object/assign');
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
 
 var _axios = require('axios');
 
@@ -21,21 +35,13 @@ var _JToolUrl2 = _interopRequireDefault(_JToolUrl);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 var NetworkManager = function () {
   function NetworkManager() {
-    _classCallCheck(this, NetworkManager);
+    (0, _classCallCheck3.default)(this, NetworkManager);
   }
 
-  _createClass(NetworkManager, null, [{
+  (0, _createClass3.default)(NetworkManager, null, [{
     key: 'locationParas',
-
-
-    /**
-     *  需要定位的请求的公共参数
-     * @returns {{cityId: number, longitude: number, latitude: number}} 公共参数
-     */
     value: function locationParas() {
       if (this.delegate) {
         var cityParas = this.delegate.cityParas();
@@ -69,34 +75,25 @@ var NetworkManager = function () {
   }, {
     key: 'failedAuthorizationNetwork',
     value: function failedAuthorizationNetwork() {
-      return new Promise(function (resolve, reject) {
+      return new _promise2.default(function (resolve, reject) {
         reject(new Error('authorization error'));
       });
     }
   }, {
     key: 'unrealizedMethod',
     value: function unrealizedMethod() {
-      return new Promise(function (resolve, reject) {
+      return new _promise2.default(function (resolve, reject) {
         reject(new Error('unrealized method'));
       });
     }
-
-    /**
-     * 包裹可取消的请求 （使用fetch请求时使用，目前通过axios请求，无需使用）
-     * @param promise 异步请求块
-     * @returns {*} 被包裹后的异步请求块
-     */
-
   }, {
     key: 'wrapCancelablePromise',
     value: function wrapCancelablePromise(promise) {
       var hasCanceled_ = false;
-      var wrappedPromise = new Promise(function (resolve, reject) {
+      var wrappedPromise = new _promise2.default(function (resolve, reject) {
         promise.then(function (val) {
           return hasCanceled_ ? function () {} : resolve(val);
-        }, function () {
-          // 不写会有警告
-        });
+        }, function () {});
         promise.catch(function (error) {
           return hasCanceled_ ? function () {} : reject(error);
         });
@@ -114,41 +111,28 @@ var NetworkManager = function () {
     key: 'inType',
     value: function inType() {
       var intype = '';
-      // if (Platform.OS === 'android'){
-      //     intype = 'DPANDROID';
-      // }
+
       return intype;
     }
-
-    /**
-     * post请求
-     * @param url 相对地址
-     * @param parameters 地址参数
-     * @param headers 头参数
-     * @returns {{terminate, then}|*} 异步请求块
-     */
-
   }, {
     key: 'POST',
     value: function POST(url, parameters, headers) {
       var _this = this;
 
       var isOk = void 0;
-      return this.wrapCancelablePromise(new Promise(function (resolve, reject) {
-        var iHeaders = Object.assign({
+      return this.wrapCancelablePromise(new _promise2.default(function (resolve, reject) {
+        var iHeaders = (0, _assign2.default)({
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         }, headers);
-        if (headers) {
-          // console.log(iHeaders)
-        }
+        if (headers) {}
         console.log('POST ' + _JToolUrl2.default.urlFromPortion(_this.baseUrl, url, parameters));
         (0, _axios2.default)(url, {
           timeout: _this.timeout,
           method: 'post',
           baseURL: _this.baseUrl,
           headers: iHeaders,
-          params: _extends({}, parameters, { inType: _this.inType() })
+          params: (0, _extends3.default)({}, parameters, { inType: _this.inType() })
         }).then(function (response) {
           isOk = response.status === 200;
           return response.data;
@@ -167,7 +151,6 @@ var NetworkManager = function () {
             reject(responseJson);
           }
         }).catch(function (error) {
-          // 请求超时
           if (error.message.indexOf('timeout' !== -1)) {
             reject(new Error('请求超时, 请稍后重试'));
           } else {
@@ -176,36 +159,25 @@ var NetworkManager = function () {
         });
       }));
     }
-
-    /**
-     * get请求
-     * @param url 相对地址
-     * @param parameters 地址参数
-     * @param headers 头参数
-     * @returns {{terminate, then}|*} 异步请求块
-     */
-
   }, {
     key: 'GET',
     value: function GET(url, parameters, headers) {
       var _this2 = this;
 
       var isOk = void 0;
-      return this.wrapCancelablePromise(new Promise(function (resolve, reject) {
-        var iHeaders = Object.assign({
+      return this.wrapCancelablePromise(new _promise2.default(function (resolve, reject) {
+        var iHeaders = (0, _assign2.default)({
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         }, headers);
-        if (headers) {
-          // console.log(iHeaders)
-        }
+        if (headers) {}
         console.log('GET ' + _JToolUrl2.default.urlFromPortion(_this2.baseUrl, url, parameters));
         (0, _axios2.default)(url, {
           timeout: _this2.timeout,
           method: 'get',
           baseURL: _this2.baseUrl,
           headers: iHeaders,
-          params: _extends({}, parameters, { inType: _this2.inType() })
+          params: (0, _extends3.default)({}, parameters, { inType: _this2.inType() })
         }).then(function (response) {
           isOk = response.status === 200;
           return response.data;
@@ -224,7 +196,6 @@ var NetworkManager = function () {
             reject(responseJson);
           }
         }).catch(function (error) {
-          // 请求超时
           if (error.message.indexOf('timeout' !== -1)) {
             reject(new Error('请求超时, 请稍后重试'));
           } else {
@@ -234,7 +205,6 @@ var NetworkManager = function () {
       }));
     }
   }]);
-
   return NetworkManager;
 }();
 

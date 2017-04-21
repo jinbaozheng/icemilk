@@ -3,13 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-/**
- * Created by cuppi on 2017/2/9.
- */
-
 var homeUrl = exports.homeUrl = {
-  main: '/appapi/main' // older
-};
+  main: '/appapi/main' };
 
 var cinemaUrl = exports.cinemaUrl = {
   detail: '/appapi/cinema/detail',
@@ -19,7 +14,7 @@ var cinemaUrl = exports.cinemaUrl = {
   screeningsitem: '/appapi/cinema/screeningsitem',
   realtimeseat: '/appapi/realtimeseats',
   list: '/appapi/cinema/list',
-  //  分割
+
   cinemas: '/appapi/cinemas',
   cinemasbyregion: '/appapi/cinemasbyregion',
   cinemaspage: '/appapi/cinemaspage',
@@ -29,7 +24,7 @@ var cinemaUrl = exports.cinemaUrl = {
 
 var cityUrl = exports.cityUrl = {
   citypage: '/appapi/main/citypage',
-  //  分割
+
   refreshlocation: '/appapi/refreshlocation',
   cities: '/appapi/cities'
 };
@@ -73,7 +68,7 @@ var tradeUrl = exports.tradeUrl = {
   lockseat: '/appapi/lockseat',
   applyticket: '/appapi/applyticket',
   prepay: '/appapi/prepay',
-  //  分割
+
   wplockseat: '/appapi/wplockseat',
   splockseat: '/appapi/splockseat',
   mzlockseat: '/appapi/mzlockseat',
@@ -89,7 +84,7 @@ var otherUrl = exports.otherUrl = {
   hotquery: '/appapi/main/hotquery',
   banner: '/appapi/main/banner',
   pagebanners: '/tip/banner',
-  //  分割
+
   wxMakePreOrder: '/appapi/wxMakePreOrder',
   search: '/appapi/search'
 };

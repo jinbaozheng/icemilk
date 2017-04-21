@@ -4,16 +4,26 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _parseInt = require('babel-runtime/core-js/number/parse-int');
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _parseInt2 = _interopRequireDefault(_parseInt);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var StringTool = function () {
     function StringTool() {
-        _classCallCheck(this, StringTool);
+        (0, _classCallCheck3.default)(this, StringTool);
     }
 
-    _createClass(StringTool, null, [{
+    (0, _createClass3.default)(StringTool, null, [{
         key: 'isMobile',
         value: function isMobile(mobile) {
             return (/^1[34578]\d{9}$/.test(mobile)
@@ -46,7 +56,7 @@ var StringTool = function () {
         key: 'numberIfAZ',
         value: function numberIfAZ(c) {
             if (/^[0-9]*$/.test(c)) {
-                return Number.parseInt(c);
+                return (0, _parseInt2.default)(c);
             }
             var asc = c.charCodeAt(0);
             if (asc >= 65 && asc <= 90) {
@@ -60,24 +70,19 @@ var StringTool = function () {
             }
             return asc;
         }
-
-        // 删除所有标签  空格
-
     }, {
         key: 'remainStr',
         value: function remainStr(item) {
             if (item) {
-                // 过滤标签
                 var temp1 = item.replace(/<[^>]+>/g, '');
-                // 过滤&nbsp空格符
+
                 var temp2 = temp1.replace(/&nbsp;/g, '');
-                // 过滤空格
+
                 var realStr = temp2.replace(/(^\s*)/g, '');
                 return realStr;
             }
         }
     }]);
-
     return StringTool;
 }();
 

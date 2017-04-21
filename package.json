@@ -1,14 +1,14 @@
 {
   "name": "jbzwebsdk",
-  "version": "1.0.11",
+  "version": "1.0.35",
   "description": "Shanghai jinbaozheng easy network technology Co.,Ltd sdk",
-  "main": "index.js",
+  "main": "dist/index.js",
   "engines": {
     "node": ">= 0.6"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src -d dist",
+    "build": "babel --plugins transform-runtime src -d dist",
     "prepublish": "npm run build"
   },
   "repository": {
@@ -27,14 +27,16 @@
   },
   "author": {
     "name": "cuppi",
-    "email" : "cuppi413@163.com",
-    "url" : "https://github.com/cuppi"
+    "email": "cuppi413@163.com",
+    "url": "https://github.com/cuppi"
   },
-  "dependencies": {
+  "devDependencies": {
+    "axios": "*",
     "babel-cli": "^6.0.0",
     "babel-preset-es2015": "*",
-    "babel-preset-stage-0": "*",
-    "axios": "*"
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-runtime": "^6.23.0"
   },
   "license": "MIT"
 }

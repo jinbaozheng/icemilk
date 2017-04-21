@@ -1,15 +1,21 @@
-/**
- * Created by cuppi on 2016/12/1.
- */
+
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends2 = require('babel-runtime/helpers/extends');
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
 
 var _JNetwork = require('./JNetwork.js');
 
@@ -19,45 +25,19 @@ var _JUrlList = require('../constant/JUrlList');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 var NetworkOtherManager = function () {
   function NetworkOtherManager() {
-    _classCallCheck(this, NetworkOtherManager);
+    (0, _classCallCheck3.default)(this, NetworkOtherManager);
   }
 
-  _createClass(NetworkOtherManager, null, [{
+  (0, _createClass3.default)(NetworkOtherManager, null, [{
     key: 'search',
-
-    /**
-     * 搜索
-     * @param val 关键字
-     * @param lastKey 目前无用
-     * @returns {{terminate, then}|*}
-     */
     value: function search(val, lastKey) {
-      // if (GlobalConstant.store.state.rootStore.location.hasLocation) {
-      return _JNetwork2.default.POST(_JUrlList.otherUrl.search, _extends({}, _JNetwork2.default.locationParas(), {
+      return _JNetwork2.default.POST(_JUrlList.otherUrl.search, (0, _extends3.default)({}, _JNetwork2.default.locationParas(), {
         queryStr: val,
         lastKey: lastKey
       }));
-      // } else {
-      //   return NetworkManager.POST(otherUrl.search, {
-      //     cityId: GlobalConstant.store.state.rootStore.userLocationCity.id,
-      //     queryStr: val,
-      //     lastKey: lastKey
-      //   });
-      // }
     }
-
-    /**
-     * 按城市搜索
-     * @param cityId 城市Id
-     * @param query 关键字
-     * @param lastKey 目前无用
-     * @returns {{terminate, then}|*}
-     */
-
   }, {
     key: 'searchSearch',
     value: function searchSearch(cityId, query, lastKey) {
@@ -67,23 +47,11 @@ var NetworkOtherManager = function () {
         lastKey: lastKey
       });
     }
-
-    /**
-     * 热搜词汇
-     * @returns {{terminate, then}|*}
-     */
-
   }, {
     key: 'hotQuery',
     value: function hotQuery() {
       return _JNetwork2.default.POST(_JUrlList.otherUrl.hotquery);
     }
-
-    /**
-     * 广告接口
-     * @returns {{terminate, then}|*}
-     */
-
   }, {
     key: 'bannersNeedCItyIdNeedLocation',
     value: function bannersNeedCItyIdNeedLocation() {
@@ -91,19 +59,12 @@ var NetworkOtherManager = function () {
         cityId: _JNetwork2.default.loginParas().cityId
       });
     }
-
-    /**
-     * 广告栏
-     * @returns {{terminate, then}|*}
-     */
-
   }, {
     key: 'pageBanners',
     value: function pageBanners() {
       return _JNetwork2.default.POST(_JUrlList.otherUrl.pagebanners, {});
     }
   }]);
-
   return NetworkOtherManager;
 }();
 
