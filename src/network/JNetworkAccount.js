@@ -13,7 +13,7 @@ class NetworkAccountManager {
    * @returns {{terminate, then}|*}
    */
   static accountLogin(mobile, password) {
-    return NetworkManager.POST(accountUrl.login, {
+    return NetworkManager.POST(accountUrl.jbzLogin, {
       mobile: mobile,
       password: password
     });
@@ -25,7 +25,7 @@ class NetworkAccountManager {
    * @returns {{terminate, then}|*}
    */
   static accountLogout(sessionId) {
-    return NetworkManager.POST(accountUrl.logout, {}, sessionId);
+    return NetworkManager.POST(accountUrl.jbzLogout, {}, sessionId);
   }
 
   /**
@@ -34,8 +34,8 @@ class NetworkAccountManager {
    * @param type 验证码类型 （1：注册使用 2：忘记密码使用）
    * @returns {{terminate, then}|*}
    */
-  static accountGetVerifyCode(mobile, type) {
-    return NetworkManager.POST(accountUrl.verifycode, {
+  static accountVerifyCode(mobile, type) {
+    return NetworkManager.POST(accountUrl.jbzVerifycode, {
       mobile: mobile,
       codetype: type
     });
@@ -49,7 +49,7 @@ class NetworkAccountManager {
    * @returns {{terminate, then}|*}
    */
   static accountRegister(mobile, verifyCode, password) {
-    return NetworkManager.POST(accountUrl.register, {
+    return NetworkManager.POST(accountUrl.jbzRegister, {
       mobile: mobile,
       verifyCode: verifyCode,
       password: password
@@ -64,7 +64,7 @@ class NetworkAccountManager {
    * @returns {{terminate, then}|*}
    */
   static accountUpdatepass(mobile, verfyCode, password) {
-    return NetworkManager.POST(accountUrl.updatepass, {
+    return NetworkManager.POST(accountUrl.jbzUpdatepass, {
       mobile: mobile,
       verifyCode: verfyCode,
       password: password

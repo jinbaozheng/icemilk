@@ -3,17 +3,17 @@
  */
 'use strict';
 import NetworkManager from './JNetwork.js';
-import {filmViewUrl} from '../constant/JUrlList';
+import {screeningUrl} from '../constant/JUrlList';
 
-class NetworkFilmViewManager {
+class NetworkScreeningManager {
   /**
    * 获取指定影院基础数据(如影院电影排片和影院电话及地址)
    * @param cinemaId 影院Id
    * @returns {{terminate, then}|*}
    */
-  static filmviewFilmview(cinemaId) {
+  static screeningFilmList(cinemaId) {
     let loginParas = NetworkManager.loginParas();
-    return NetworkManager.POST(filmViewUrl.filmview, {
+    return NetworkManager.POST(screeningUrl.jbzFilmList, {
       cinemaId: cinemaId
     }, loginParas.hasAccount ? {
         openId: loginParas.openId
@@ -26,8 +26,8 @@ class NetworkFilmViewManager {
    * @param filmId 影片Id
    * @returns {{terminate, then}|*}
    */
-  static filmviewDate(cinemaId, filmId) {
-    return NetworkManager.POST(filmViewUrl.foretelldates, {cinemaId, filmId});
+  static screeningDateList(cinemaId, filmId) {
+    return NetworkManager.POST(screeningUrl.jbzDateList, {cinemaId, filmId});
   }
 
   /**
@@ -37,9 +37,9 @@ class NetworkFilmViewManager {
    * @param date 日期
    * @returns {{terminate, then}|*}
    */
-  static filmviewItems(cinemaId, filmId, date) {
-    return NetworkManager.POST(filmViewUrl.filmviewitems, {cinemaId, filmId, date});
+  static screeningItems(cinemaId, filmId, date) {
+    return NetworkManager.POST(screeningUrl.jbzItems, {cinemaId, filmId, date});
   }
 }
 
-export default NetworkFilmViewManager;
+export default NetworkScreeningManager;

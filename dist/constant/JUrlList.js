@@ -65,7 +65,7 @@ var accountUrl = exports.accountUrl = {
 };
 
 var tradeUrl = exports.tradeUrl = {
-  lockseat: '/appapi/lockseat',
+  jbzLockSeat: '/appapi/lockseat',
   applyticket: '/appapi/applyticket',
   prepay: '/appapi/prepay',
 

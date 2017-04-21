@@ -56,6 +56,12 @@ class NetworkManager {
     });
   }
 
+  static wrongInType(){
+    return new Promise((resolve, reject) => {
+      reject(new Error('the inType is not exist, please check your inType Function in JBZNetwork\'s delegate'));
+    });
+  }
+
   /**
    * 包裹可取消的请求 （使用fetch请求时使用，目前通过axios请求，无需使用）
    * @param promise 异步请求块

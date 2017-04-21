@@ -14,7 +14,7 @@ class NetworkTradeManager {
    */
   static tradeLockSeatNeedLogin(type, paras) {
     let loginParas = NetworkManager.loginParas();
-    return NetworkManager.POST(tradeUrl.lockseat, {type, ...paras}, loginParas);
+    return NetworkManager.POST(tradeUrl.jbzLockSeat, {type, ...paras}, loginParas);
   }
 
   /**
@@ -23,7 +23,7 @@ class NetworkTradeManager {
    * @returns {{terminate, then}|*}
    */
   static cancelLockSeatNeedLogin(orderId) {
-    return NetworkManager.POST(tradeUrl.cancelOrder, {orderId})
+    return NetworkManager.POST(tradeUrl.jbzCancelOrder, {orderId})
   }
 
   /**
@@ -32,9 +32,18 @@ class NetworkTradeManager {
    * @param paras 下订单参数
    * @returns {{terminate, then}|*}
    */
-  static tradeConfirmOrderNeedLogin(type, paras) {
+  static tradeApplyOrderNeedLoginInType(type, paras) {
     let loginParas = NetworkManager.loginParas();
-    return NetworkManager.POST(tradeUrl.applyticket, {type, ...paras}, loginParas);
+    let inType = NetworkManager.inType();
+    if (inType === 'DPIOS' || inType === 'DPANDROID') {
+      return NetworkManager.POST(tradeUrl.jbzAppApplyTicket, {type, ...paras}, loginParas);
+    }
+
+    if (inType === 'DPWX' || inType === 'DPWEB' || inType === 'PC') {
+      return NetworkManager.POST(tradeUrl.jbzWepApplyTicket, {type, ...paras}, loginParas);
+    }
+
+    return NetworkManager.wrongInType();
   }
 
   /**
@@ -45,9 +54,20 @@ class NetworkTradeManager {
    * @param redIds 待定
    * @returns {{terminate, then}|*}
    */
-  static tradePrePayOrderNeedLogin(orderId, payType, prizeIds, redIds) {
+  static tradePrePayOrderNeedLoginInType(orderId, payType, prizeIds, redIds) {
     let loginParas = NetworkManager.loginParas();
-    return NetworkManager.POST(tradeUrl.prepay, {orderId, payType, prizeIds, redIds}, loginParas);
+    let inType = NetworkManager.inType();
+
+    if (inType === 'DPIOS' || inType === 'DPANDROID') {
+      return NetworkManager.POST(tradeUrl.jbzAppPrepay, {orderId, payType, prizeIds, redIds}, loginParas);
+    }
+
+
+    if (inType === 'DPWX' || inType === 'DPWEB' || inType === 'PC') {
+      return NetworkManager.POST(tradeUrl.jbzWebPrepay, {orderId, payType, prizeIds, redIds}, loginParas);
+    }
+
+    return NetworkManager.wrongInType();
   }
 }
 

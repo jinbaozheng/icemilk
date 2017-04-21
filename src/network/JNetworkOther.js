@@ -8,39 +8,25 @@ import {otherUrl} from '../constant/JUrlList';
 class NetworkOtherManager {
   /**
    * 搜索
-   * @param val 关键字
-   * @param lastKey 目前无用
-   * @returns {{terminate, then}|*}
-   */
-  static search(val, lastKey) {
-    // if (GlobalConstant.store.state.rootStore.location.hasLocation) {
-    return NetworkManager.POST(otherUrl.search, {
-      ...NetworkManager.locationParas(),
-      queryStr: val,
-      lastKey: lastKey
-    });
-    // } else {
-    //   return NetworkManager.POST(otherUrl.search, {
-    //     cityId: GlobalConstant.store.state.rootStore.userLocationCity.id,
-    //     queryStr: val,
-    //     lastKey: lastKey
-    //   });
-    // }
-  }
-
-  /**
-   * 按城市搜索
    * @param cityId 城市Id
-   * @param query 关键字
-   * @param lastKey 目前无用
+   * @param key 关键字
+   * @param lastKey 下一页的句柄
    * @returns {{terminate, then}|*}
    */
-  static searchSearch(cityId, query, lastKey) {
-    return NetworkManager.POST(otherUrl.search, {
-      cityId: cityId,
-      query: query,
-      lastKey: lastKey
-    });
+  static otherSearch(cityId, key, lastKey) {
+    if (cityId){
+      // return NetworkManager.POST(otherUrl.jbzSearch, {
+      //   cityId,
+      //   queryStr: key,
+      //   lastKey: lastKey
+      // });
+    } else {
+      return NetworkManager.POST(otherUrl.jbzSearch, {
+        queryStr: key,
+        lastKey: lastKey
+      });
+    }
+
   }
 
   /**
@@ -55,18 +41,14 @@ class NetworkOtherManager {
    * 广告接口
    * @returns {{terminate, then}|*}
    */
-  static bannersNeedCItyIdNeedLocation() {
-    return NetworkManager.POST(otherUrl.banner, {
-      cityId: NetworkManager.loginParas().cityId
-    });
-  }
-
-  /**
-   * 广告栏
-   * @returns {{terminate, then}|*}
-   */
-  static pageBanners() {
-    return NetworkManager.POST(otherUrl.pagebanners, {})
+  static otherBanners(cityId) {
+    if (cityId){
+      return NetworkManager.POST(otherUrl.jbzBanners, {
+        cityId: cityId
+      });
+    } else {
+      return NetworkManager.POST(otherUrl.jbzBanners, {})
+    }
   }
 }
 

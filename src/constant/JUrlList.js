@@ -7,26 +7,24 @@ export const homeUrl = {
 };
 
 export const cinemaUrl = {
-  detail: '/appapi/cinema/detail',
   comparepage: '/appapi/cinema/comparepage',
-  screenings: '/appapi/cinema/screenings',
-  screeningsdate: '/appapi/cinema/screeningsdate',
-  screeningsitem: '/appapi/cinema/screeningsitem',
-  realtimeseat: '/appapi/realtimeseats',
-  list: '/appapi/cinema/list',
   //  分割
-  cinemas: '/appapi/cinemas',
-  cinemasbyregion: '/appapi/cinemasbyregion',
-  cinemaspage: '/appapi/cinemaspage',
-  collectcinema: '/appapi/collectcinema',
-  cancelcollectcinema: '/appapi/cancelcollectcinema'
+  jbzList: '/appapi/cinema/list',
+
+  jbzCollectcinema: '/account/collectcinema',
+  jbzCancelcollectcinema: '/account/cancelcollectcinema',
+  jbzRealtimeSeat: '/main/realtimeseats',
+  jbzCinemas: '/main/cinemas',
+  jbzCinemaspage: '/main/cinemaspage',
+  jbzCinemasbyregion: '/main/cinemasbyregion',
+  jbzDetail: '/cinema/detail'
 };
 
 export const cityUrl = {
   citypage: '/appapi/main/citypage',
   //  分割
-  refreshlocation: '/appapi/refreshlocation',
-  cities: '/appapi/cities'
+  jbzCurrentLocation: '/main/refreshlocation',
+  jbzCities: '/main/cities'
 };
 
 export const filmUrl = {
@@ -38,10 +36,10 @@ export const filmUrl = {
   jbzFilmList: ''
 };
 
-export const filmViewUrl = {
-  filmview: '/appapi/filmview',
-  foretelldates: '/appapi/foretelldates',
-  filmviewitems: '/appapi/filmviewitems'
+export const screeningUrl = {
+  jbzFilmList: '/main/filmview',
+  jbzDateList: '/main/foretelldates',
+  jbzItems: '/main/filmviewitems'
 };
 
 export const mineUrl = {
@@ -57,34 +55,24 @@ export const seatUrl = {
 };
 
 export const accountUrl = {
-  login: '/appapi/login',
-  logout: '/appapi/logout',
-  verifycode: '/appapi/verifycode',
-  register: '/appapi/register',
-  updatepass: '/appapi/updatepass'
+  jbzLogin: '/account/login',
+  jbzLogout: '/account/logout',
+  jbzVerifycode: '/account/verifycode',
+  jbzRegister: '/account/register',
+  jbzUpdatepass: '/account/updatepass'
 };
 
 export const tradeUrl = {
-  lockseat: '/appapi/lockseat',
-  applyticket: '/appapi/applyticket',
-  prepay: '/appapi/prepay',
-  //  分割
-  wplockseat: '/appapi/wplockseat',
-  splockseat: '/appapi/splockseat',
-  mzlockseat: '/appapi/mzlockseat',
-  dclockseat: '/appapi/dclockseat',
-  wpapplyticket: '/appapi/wpapplyticket',
-  spapplyticket: '/appapi/spapplyticket',
-  mzapplyticket: '/appapi/mzapplyticket',
-  dcapplyticket: '/appapi/dcapplyticket',
-  cancelOrder: '/appapi/cancelOrder'
+  jbzLockSeat: '/main/lockseat',
+  jbzAppApplyTicket: '/appapi/applyticket',
+  jbzWepApplyTicket: '/webapi/applyticket',
+  jbzCancelOrder: '/main/cancelOrder',
+  jbzAppPrepay: '/webapi/prepay',
+  jbzWebPrepay: '/appapi/prepay',
 };
 
 export const otherUrl = {
   hotquery: '/appapi/main/hotquery',
-  banner: '/appapi/main/banner',
-  pagebanners: '/tip/banner',
-  //  分割
-  wxMakePreOrder: '/appapi/wxMakePreOrder',
-  search: '/appapi/search'
+  jbzBanners: '/tip/banner',
+  jbzSearch: '/main/search'
 };
