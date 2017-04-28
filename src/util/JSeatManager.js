@@ -9,7 +9,6 @@ import AutoSeatPicking from '../arithmetic/AutoSeatPicking';
 const _cellSize = 30;
 const _cellSpace = 8;
 let instance = null;
-
 class SeatManager {
   /**
    * 构造器
