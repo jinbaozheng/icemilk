@@ -57,11 +57,11 @@ class NetworkCinemaManager {
    * @param paras （根据不同平台变化）
    * @returns {*}
    */
-  static cinemaSeat(type, paras) {
+  static cinemaSeats(type, paras) {
     if (type === 'meituan' || type === 'dazhong') {
       type = 'maoyan';
     }
-    return NetworkManager.POST(cinemaUrl.jbzRealtimeSeat, {type, ...paras, uuid: Math.random()});
+    return NetworkManager.POST(cinemaUrl.jbzRealtimeSeat, {type, ...paras, random: Math.random()});
   }
 
   /**
@@ -105,7 +105,6 @@ class NetworkCinemaManager {
     }, {
       'sessionId': loginParas.sessionId
     });
-
   }
 
   /**

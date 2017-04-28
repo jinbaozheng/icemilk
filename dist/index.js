@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.JSDK = exports.JToolUrl = exports.JToolNumber = exports.JToolDate = exports.JNetworkConfig = exports.JNetworkTrade = exports.JNetworkOther = exports.JNetworkMine = exports.JNetworkScreening = exports.JNetworkFilm = exports.JNetworkCity = exports.JNetworkCinema = exports.JNetworkAccount = exports.JNetwork = undefined;
+exports.JManagerSeat = exports.JSDK = exports.JToolUrl = exports.JToolNumber = exports.JToolDate = exports.JNetworkConfig = exports.JNetworkTrade = exports.JNetworkOther = exports.JNetworkMine = exports.JNetworkScreening = exports.JNetworkFilm = exports.JNetworkCity = exports.JNetworkCinema = exports.JNetworkAccount = exports.JNetwork = undefined;
 
 var _JNetwork = require('./network/JNetwork');
 
@@ -61,6 +61,10 @@ var _JSDK = require('./util/JSDK');
 
 var _JSDK2 = _interopRequireDefault(_JSDK);
 
+var _JSeatManager = require('./util/JSeatManager');
+
+var _JSeatManager2 = _interopRequireDefault(_JSeatManager);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.JNetwork = _JNetwork2.default;
@@ -77,3 +81,4 @@ exports.JToolDate = _JToolDate2.default;
 exports.JToolNumber = _JToolNumber2.default;
 exports.JToolUrl = _JToolUrl2.default;
 exports.JSDK = _JSDK2.default;
+exports.JManagerSeat = _JSeatManager2.default;

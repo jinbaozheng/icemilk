@@ -34,8 +34,10 @@ export {
 };
 
 import JSDK from './util/JSDK';
+import ManagerSeat from './util/JSeatManager';
 export {
-  JSDK
+  JSDK,
+  ManagerSeat as JManagerSeat
 };
 
 

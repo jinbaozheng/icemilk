@@ -7,7 +7,7 @@
 
 * **<mark><font color='#666666'>1. POST请求</font></mark>**
 
-* > 
+* > ​
 ~~~js
 static POST(url, parameters, headers){}
 ~~~
@@ -45,7 +45,7 @@ static POST(url, parameters, headers){}
 
 * **<mark><font color='#666666'>2. GET请求</font></mark>**
 
-* >
+* >​
 ~~~js
 static GET(url, parameters, headers){}
 ~~~
@@ -84,7 +84,7 @@ static GET(url, parameters, headers){}
 
 * **<mark><font color='#666666'>1. 获取首页数据</font></mark>**
 
-- > 
+- > ​
 ```js
 static setConfig(config){}
 ```
@@ -116,7 +116,7 @@ JNetworkConfig.setConfig({
 <font color='#999999'>
 
 * **<mark><font color='#666666'>2. 分页获取热门电影</font></mark>**
-* >
+* >​
   ~~~js
   static filmHotfilms(cityId = empty, page = empty){}
   ~~~
@@ -147,7 +147,7 @@ JNetworkFilm.filmHotfilms(2, 1).then((data) => {
 **************************************************************************************************
 
 * **<mark><font color='#666666'>3. 获取待映电影</font></mark>**
-* >
+* >​
   ~~~js
   static filmWaitfilmsWithPage(cityId, page = 1){}
   ~~~
@@ -177,7 +177,7 @@ JNetworkFilm.filmWaitfilmsWithPage(2, 1).then((data) => {
 **************************************************************************************************
 
 * **<mark><font color='#666666'>4. 获取影片详情</font><mark>**
-* >
+* >​
   ~~~js
   static filmDetail(filmId, platform = empty){}
   ~~~
@@ -207,7 +207,7 @@ JNetworkFilm.filmDetail('248700', 'maoyan').then((data) => {
 **************************************************************************************************
 
 * **<mark><font color='#666666'>5. 获取所有电影列表 (未实现)?</font></mark>**
-* >
+* >​
 ~~~js
 static filmList(cityId = empty){}
 ~~~
@@ -244,7 +244,7 @@ JNetworkFilm.filmList().then((data) => {
 <font color='#999999'>
 
 * **<mark><font color='#666666'>1. 获取影院详情 (暂时不可用)?</font></mark>**
-* >
+* >​
 ~~~js
 static cinemaDetail(cinemaId){}
 ~~~
@@ -272,7 +272,7 @@ JNetworkCinema.cinemaDetail('a123123123').then((data) => {
 
 **************************************************************************************************
 * **<mark><font color='#666666'>2. 比价影院的列表</font></mark>**
-* >
+* >​
 ~~~js
 static cinemaContrastListNeedLocation(filmId = empty, regionName, orderType){}
 ~~~
@@ -306,7 +306,7 @@ JNetworkCinema.cinemaContrastListNeedLocation('1a692bb163fa4609b59927055faab749'
 **************************************************************************************************
 
 * **<mark><font color='#666666'>3. 影院列表 </font></mark>**
-* >
+* >​
 ~~~js
 static cinemaListNeedLocation(filmId){}
 ~~~
@@ -337,9 +337,9 @@ JNetworkCinema.cinemaListNeedLocation('1a692bb163fa4609b59927055faab749').then((
 **************************************************************************************************
 
 * **<mark><font color='#666666'>4. 实时座位图?</font></mark>**
-* >
+* >​
 ~~~js
-static cinemaSeat(type, paras){}
+static cinemaSeats(type, paras){}
 ~~~
 
 * **请求参数**
@@ -356,7 +356,7 @@ static cinemaSeat(type, paras){}
 - **调用示例**
 >  
 ~~~js 
-JNetworkCinema.cinemaSeat('meituan', {}).then((data) => { 
+JNetworkCinema.cinemaSeats('meituan', {}).then((data) => { 
     console.log(data)
 }, error => {
      console.log(error);
@@ -366,7 +366,7 @@ JNetworkCinema.cinemaSeat('meituan', {}).then((data) => {
 **************************************************************************************************
 
 * **<mark><font color='#666666'>5. 收藏影院</font></mark>**
-* >
+* >​
 ~~~js
 static cinemaFavoriteCinemaNeedLogin(cinemaId, cinemaName){}
 ~~~
@@ -396,7 +396,7 @@ JNetworkCinema.cinemaFavoriteCinemaNeedLogin('800705', '上海鸿纳国际影城
 **************************************************************************************************
 
 * **<mark><font color='#666666'>6. 取消收藏影院</font></mark>**
-* >
+* >​
 ~~~js
 static cinemaCancelFavoriteCinemaNeedLogin(cinemaId){}
 ~~~
@@ -429,7 +429,7 @@ JNetworkCinema.cinemaCancelFavoriteCinemaNeedLogin('800705').then((data) => {
 <font color='#999999'>
 
 * **<mark><font color='#666666'>1. 指定影院的排片的电影列表及影院本身的信息(如影院电影排片和影院电话及地址)</font></mark>**
-* >
+* >​
 ~~~js
 static screeningFilmList(cinemaId){}
 ~~~
@@ -462,7 +462,7 @@ JNetworkFilmView.screeningFilmList('800705').then((data) => {
 **************************************************************************************************
 
 * **<mark><font color='#666666'>2. 获取指定影院排片日期安排</font></mark>**
-* >
+* >​
 ~~~js
 static screeningDateList(cinemaId, filmId){}
 ~~~
@@ -493,7 +493,7 @@ JNetworkFilmView.screeningDateList('800705', '1a692bb163fa4609b59927055faab749')
 **************************************************************************************************
 
 * **<mark><font color='#666666'>3. 获取指定影院排片放映厅安排</font></mark>**
-* >
+* >​
 ~~~js
 static screeningItems(cinemaId, filmId, date){}
 ~~~
@@ -529,7 +529,7 @@ JNetworkFilmView.screeningItems('800705', '1a692bb163fa4609b59927055faab749', '2
 <font color='#999999'>
 
 * **<mark><font color='#666666'>1. 锁座+</font></mark>**
-* >
+* >​
 ~~~js
 static tradeLockSeatNeedLogin(type, paras){}
 ~~~
@@ -559,7 +559,7 @@ JNetworkTrade.tradeLockSeatNeedLogin('maoyan', {}).then((data) => {
 **************************************************************************************************
 
 * **<mark><font color='#666666'>2. 取消锁座+</font></mark>**
-* >
+* >​
 ~~~js
 static cancelLockSeatNeedLogin(orderId){}
 ~~~
@@ -588,7 +588,7 @@ JNetworkTrade.cancelLockSeatNeedLogin('dd11111111').then((data) => {
 **************************************************************************************************
 
 * **<mark><font color='#666666'>3. 下订单+</font></mark>**
-* >
+* >​
 ~~~js
 static tradeConfirmOrderNeedLogin(type, paras){}
 ~~~
@@ -618,7 +618,7 @@ JNetworkTrade.tradeConfirmOrderNeedLogin('maoyan', {}).then((data) => {
 **************************************************************************************************
 
 * **<mark><font color='#666666'>4. 申请预订单+</font></mark>**
-* >
+* >​
 ~~~js
 static tradePrePayOrderNeedLogin(orderId, payType, prizeIds, redIds){}
 ~~~
@@ -654,7 +654,7 @@ JNetworkTrade.tradePrePayOrderNeedLogin('d123123', 'weixin', '', '').then((data)
 <font color='#999999'>
 
 * **<mark><font color='#666666'>n. 我的订单+</font></mark>**
-* >
+* >​
 ~~~js
 static mineOrderNeedLogin(){}
 ~~~
@@ -683,7 +683,7 @@ JNetworkMine.mineOrderNeedLogin().then((data) => {
 **************************************************************************************************
 
 * **<mark><font color='#666666'>2. 我的收藏+</font></mark>**
-* >
+* >​
 ~~~js
 static mineFavoriteNeedLogin(){}
 ~~~
@@ -716,7 +716,7 @@ JNetworkMine.mineFavoriteNeedLogin().then((data) => {
 <font color='#999999'>
 
 * **<mark><font color='#666666'>1. 获取城市列表(可以使用定位)</font></mark>**
-* >
+* >​
 ~~~js
 static cityListShouldLocation(){}
 ~~~
@@ -750,7 +750,7 @@ JNetworkCity.cityListShouldLocation().then((data) => {
 **************************************************************************************************
 
 * **<mark><font color='#666666'>2. 获取当前城市（需要定位）</font></mark>**
-* >
+* >​
 ~~~js
 static cityCurrentCityNeedLocation(location = empty){}
 ~~~
@@ -784,7 +784,7 @@ JNetworkCity.cityCurrentCityNeedLocation({longitude:121.458858, latitude:23.4845
 <font color='#999999'>
 
 * **<mark><font color='#666666'>1. 用户登录</font></mark>**
-* >
+* >​
 ~~~js
 static accountLogin(mobile, password){}
 ~~~
@@ -815,7 +815,7 @@ JNetworkAccount.accountLogin('13764730291', '123456').then((data) => {
 **************************************************************************************************
 
 * **<mark><font color='#666666'>2. 用户登出+</font></mark>**
-* >
+* >​
 ~~~js
 static accountLogout(sessionId){}
 ~~~
@@ -844,7 +844,7 @@ JNetworkAccount.accountLogout('').then((data) => {
 **************************************************************************************************
 
 * **<mark><font color='#666666'>3. 获取验证码</font></mark>**
-* >
+* >​
 ~~~js
 static accountVerifyCode(mobile, type){}
 ~~~
@@ -874,7 +874,7 @@ JNetworkAccount.accountVerifyCode('13764730291', 2).then((data) => {
 **************************************************************************************************
 
 * **<mark><font color='#666666'>4. 注册用户+</font></mark>**
-* >
+* >​
 ~~~js
 static accountRegister(mobile, verifyCode, password){}
 ~~~
@@ -906,7 +906,7 @@ JNetworkAccount.accountRegister('13764730291', '112525', '123456').then((data) =
 **************************************************************************************************
 
 * **<mark><font color='#666666'>5. 忘记密码并且找回密码</font></mark>**
-* >
+* >​
 ~~~js
 static accountUpdatepass(mobile, verifyCode, password){}
 ~~~
@@ -943,7 +943,7 @@ JNetworkAccount.accountUpdatepass('13764730291', '112525', '123456').then((data)
 <font color='#999999'>
 
 * **<mark><font color='#666666'>1. 搜索</font></mark>**
-* >
+* >​
 ~~~js
 static otherSearch(cityId = empty, key, lastKey = empty){}
 ~~~
@@ -978,7 +978,7 @@ JNetworkOther.otherSearch(null, '上海').then((data) => {
 
 * **<mark><font color='#666666'>2. 广告栏接口</font></mark>**
 * >
-~~~js
+​~~~js
 static otherBanners(cityId = empty){}
 ~~~
 
@@ -1012,7 +1012,7 @@ JNetworkOther.bannersNeedCItyIdNeedLocation().then((data) => {
 <font color='#999999'>
 
 * **<mark><font color='#666666'>1. 城市信息请求参数代理</font></mark>**
-* >
+* >​
 ~~~js
 static cityParas(){}
 ~~~
@@ -1039,7 +1039,7 @@ static cityParas(){}
 **************************************************************************************************
 
 * **<mark><font color='#666666'>2. 定位信息请求参数代理</font></mark>**
-* >
+* >​
 ~~~js
 static locationParas(){}
 ~~~
