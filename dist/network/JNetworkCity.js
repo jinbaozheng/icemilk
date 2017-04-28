@@ -31,22 +31,17 @@ var NetworkCityManager = function () {
   }
 
   (0, _createClass3.default)(NetworkCityManager, null, [{
-    key: 'cityListNeedLocation',
-    value: function cityListNeedLocation() {
-      return _JNetwork2.default.POST(_JUrlList.cityUrl.citypage, (0, _extends3.default)({}, _JNetwork2.default.locationParas()));
+    key: 'cityListShouldLocation',
+    value: function cityListShouldLocation() {
+      return _JNetwork2.default.POST(_JUrlList.cityUrl.jbzCities, (0, _extends3.default)({}, _JNetwork2.default.locationParas()));
     }
   }, {
     key: 'cityCurrentCityNeedLocation',
     value: function cityCurrentCityNeedLocation(location) {
       if (location) {
-        return _JNetwork2.default.POST(_JUrlList.cityUrl.refreshlocation, { longitude: location.longitude, latitude: location.latitude });
+        return _JNetwork2.default.POST(_JUrlList.cityUrl.jbzCurrentLocation, location);
       }
-      return _JNetwork2.default.POST(_JUrlList.cityUrl.refreshlocation, (0, _extends3.default)({}, _JNetwork2.default.locationParas()));
-    }
-  }, {
-    key: 'cityCities',
-    value: function cityCities() {
-      return _JNetwork2.default.POST(_JUrlList.cityUrl.cities, {});
+      return _JNetwork2.default.POST(_JUrlList.cityUrl.jbzCurrentLocation, (0, _extends3.default)({}, _JNetwork2.default.locationParas()));
     }
   }]);
   return NetworkCityManager;

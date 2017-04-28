@@ -44,6 +44,10 @@ class NetworkManager {
     };
   }
 
+  static inType(){
+    return this.delegate.inType();
+  }
+
   static failedAuthorizationNetwork(){
     return new Promise((resolve, reject) => {
       reject(new Error('authorization error'));

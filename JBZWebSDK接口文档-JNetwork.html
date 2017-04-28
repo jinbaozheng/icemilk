@@ -479,7 +479,7 @@ pre[class*="language-"] {
 <p><font color='#999999'></p>
 
 <ul>
-<li><strong><mark><font color='#666666'>1. POST请求</font></mark></strong></li>
+<li><p><strong><mark><font color='#666666'>1. POST请求</font></mark></strong></p></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static POST(url, parameters, headers){}</code></pre></div>
 </blockquote></li>
@@ -555,7 +555,7 @@ pre[class*="language-"] {
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>2. GET请求</font></mark></strong></li>
+<li><p><strong><mark><font color='#666666'>2. GET请求</font></mark></strong></p></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static GET(url, parameters, headers){}</code></pre></div>
 </blockquote></li>
@@ -634,13 +634,10 @@ pre[class*="language-"] {
 <p><font color='#999999'></p>
 
 <ul>
-<li><p><strong><font color='#666666'>1. 获取首页数据</font></strong></p></li>
+<li><p><strong><mark><font color='#666666'>1. 获取首页数据</font></mark></strong></p></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static setConfig(config){}</code></pre></div>
 </blockquote></li>
-</ul>
-
-<ul>
 <li><p><strong>请求参数</strong></p>
 
 <blockquote>
@@ -701,75 +698,9 @@ pre[class*="language-"] {
 <p><font color='#999999'></p>
 
 <ul>
-<li><p><strong><mark><font color='#666666' size='3'>1. 获取热门电影</font><mark></strong></p></li>
-<li><div><pre><code class="language-javascript">static filmHotfilms(){}</code></pre></div></li>
-</ul>
-
-<ul>
-<li><p><strong>请求参数</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">请求参数</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">-</td>
-<td style="text-align: left">-</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>返回数据</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">返回数据</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">hotFilms</td>
-<td style="text-align: left">Array</td>
-<td style="text-align: left">热门影片列表</td>
-</tr>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left"><a href="#FilmDetailModel">FilmDetailModel</a></td>
-<td style="text-align: left">热门影片</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>调用示例</strong></p>
-
-<blockquote>
-<div><pre><code class="language-javascript">JNetworkFilm.filmHotfilms().then((data) =&gt; {
- console.log(data)
-}, error =&gt; {
- console.log(error);
-});</code></pre></div>
-</blockquote></li>
-</ul>
-
-<hr>
-
-<ul>
-<li><strong><mark><font color='#666666' size='3'>2. 分页获取热门电影</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>2. 分页获取热门电影</font></mark></strong></li>
 <li><blockquote>
-<div><pre><code class="language-javascript">static filmHotfilmsWithPage(cityId, page = 1){}</code></pre></div>
+<div><pre><code class="language-javascript">static filmHotfilms(cityId = empty, page = empty){}</code></pre></div>
 </blockquote></li>
 <li><p><strong>请求参数</strong></p>
 
@@ -817,7 +748,7 @@ pre[class*="language-"] {
 </tr>
 <tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left"><a href="#BaseFilmModel">BaseFilmModel</a></td>
+<td style="text-align: left"><a href="#FilmDetailModel">FilmDetailModel</a></td>
 <td style="text-align: left">影片</td>
 </tr>
 </tbody>
@@ -826,7 +757,7 @@ pre[class*="language-"] {
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkFilm.filmHotfilmsWithPage(2, 1).then((data) =&gt; {
+<div><pre><code class="language-javascript">JNetworkFilm.filmHotfilms(2, 1).then((data) =&gt; {
  console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -837,7 +768,7 @@ pre[class*="language-"] {
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666' size='3'>3. 获取待映电影</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>3. 获取待映电影</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static filmWaitfilmsWithPage(cityId, page = 1){}</code></pre></div>
 </blockquote></li>
@@ -882,7 +813,7 @@ pre[class*="language-"] {
 <tbody>
 <tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left"><a href="#BaseFilmModel">BaseFilmModel</a></td>
+<td style="text-align: left"><a href="#FilmDetailModel">FilmDetailModel</a></td>
 <td style="text-align: left">影片</td>
 </tr>
 </tbody>
@@ -902,9 +833,9 @@ pre[class*="language-"] {
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666' size='3'>4. 获取影片详情 (交行使用的)?</font><mark></strong></li>
+<li><strong><mark><font color='#666666'>4. 获取影片详情</font><mark></strong></li>
 <li><blockquote>
-<div><pre><code class="language-javascript">static filmDetail(filmId, platform){}</code></pre></div>
+<div><pre><code class="language-javascript">static filmDetail(filmId, platform = empty){}</code></pre></div>
 </blockquote></li>
 <li><p><strong>请求参数</strong></p>
 
@@ -922,7 +853,7 @@ pre[class*="language-"] {
 <tr>
 <td style="text-align: left">filmId</td>
 <td style="text-align: left">string</td>
-<td style="text-align: left">影片ID</td>
+<td style="text-align: left">影片Id(如果platform为空, 则使用jbz的id,否则使用平台的Id)</td>
 </tr>
 <tr>
 <td style="text-align: left">platform</td>
@@ -967,9 +898,9 @@ pre[class*="language-"] {
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>5. 获取所有电影列表 (交行使用的)?</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>5. 获取所有电影列表 (未实现)?</font></mark></strong></li>
 <li><blockquote>
-<div><pre><code class="language-javascript">static filmList(){}</code></pre></div>
+<div><pre><code class="language-javascript">static filmList(cityId = empty){}</code></pre></div>
 </blockquote></li>
 <li><p><strong>请求参数</strong></p>
 
@@ -985,9 +916,9 @@ pre[class*="language-"] {
 
 <tbody>
 <tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">-</td>
-<td style="text-align: left">-</td>
+<td style="text-align: left">cityId</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">需要获取电影列表的城市</td>
 </tr>
 </tbody>
 </table>
@@ -1041,81 +972,6 @@ console.log(data)
 
 <hr>
 
-<ul>
-<li><strong><mark><font color='#666666'>6. 获取指定影片</font></mark></strong></li>
-<li><blockquote>
-<div><pre><code class="language-javascript">static filmWithFilmId(filmId){}</code></pre></div>
-</blockquote></li>
-<li><p><strong>请求参数</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">请求参数</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">filmId</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">影院Id</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>返回数据</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">返回数据</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">film</td>
-<td style="text-align: left">Array</td>
-<td style="text-align: left">影片列表</td>
-</tr>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left"><a href="#FilmDetailModel">FilmDetailModel</a></td>
-<td style="text-align: left">影片</td>
-</tr>
-<tr>
-<td style="text-align: left">hotComments</td>
-<td style="text-align: left">Array</td>
-<td style="text-align: left">热门评论</td>
-</tr>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left"><a href="#CommentModel">CommentModel</a></td>
-<td style="text-align: left">评论</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>调用示例</strong></p>
-
-<blockquote>
-<div><pre><code class="language-javascript">JNetworkFilm.filmWithFilmId(&#39;1a692bb163fa4609b59927055faab749&#39;).then((data) =&gt; { 
-console.log(data)
-}, error =&gt; {
- console.log(error);
-});</code></pre></div>
-</blockquote></li>
-</ul>
-
-<hr>
-
 <p></font></p>
 
 <h3 id="toc_5"><font color='#0099ff'>类：JNetworkCinema </font></h3>
@@ -1123,7 +979,7 @@ console.log(data)
 <p><font color='#999999'></p>
 
 <ul>
-<li><strong><mark><font color='#666666'>1. 获取影院详情 (暂时不可用)</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>1. 获取影院详情 (暂时不可用)?</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static cinemaDetail(cinemaId){}</code></pre></div>
 </blockquote></li>
@@ -1183,9 +1039,9 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>2. 根据影片Id获取影院的列表（比价）</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>2. 比价影院的列表</font></mark></strong></li>
 <li><blockquote>
-<div><pre><code class="language-javascript">static cinemaContrastNeedLocation(filmId, regionName, orderType){}</code></pre></div>
+<div><pre><code class="language-javascript">static cinemaContrastListNeedLocation(filmId = empty, regionName, orderType){}</code></pre></div>
 </blockquote></li>
 <li><p><strong>请求参数</strong></p>
 
@@ -1257,7 +1113,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.cinemaContrastNeedLocation(&#39;1a692bb163fa4609b59927055faab749&#39;, &#39;&#39;, 1).then((data) =&gt; { 
+<div><pre><code class="language-javascript">JNetworkCinema.cinemaContrastListNeedLocation(&#39;1a692bb163fa4609b59927055faab749&#39;, &#39;&#39;, 1).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1268,347 +1124,7 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>3. 获取影院的列表（比价，不需要影院Id）</font></mark></strong></li>
-<li><blockquote>
-<div><pre><code class="language-javascript">static cinemaContrastNoFilmNeedLocation(regionName, orderType){}</code></pre></div>
-</blockquote></li>
-<li><p><strong>请求参数</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">请求参数</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">regionName</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">地域名字</td>
-</tr>
-<tr>
-<td style="text-align: left">orderType</td>
-<td style="text-align: left">int</td>
-<td style="text-align: left">排序类型 1:距离 2:价格</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>返回数据</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">返回数据</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">cinemas</td>
-<td style="text-align: left">Array</td>
-<td style="text-align: left">影院列表</td>
-</tr>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left"><a href="#CinemaCompareModel">CinemaCompareModel</a></td>
-<td style="text-align: left">影院</td>
-</tr>
-<tr>
-<td style="text-align: left">regions</td>
-<td style="text-align: left">Array</td>
-<td style="text-align: left">行政区列表</td>
-</tr>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left"><a href="#RegionModel">RegionModel</a></td>
-<td style="text-align: left">行政区</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>调用示例</strong></p>
-
-<blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.cinemaContrastNoFilmNeedLocation(&#39;&#39;, 1).then((data) =&gt; { 
-console.log(data)
-}, error =&gt; {
- console.log(error);
-});</code></pre></div>
-</blockquote></li>
-</ul>
-
-<hr>
-
-<ul>
-<li><strong><mark><font color='#666666'>4. 指定影院的排片的电影列表及影院本身的信息(交行使用的)?</font></mark></strong></li>
-<li><blockquote>
-<div><pre><code class="language-javascript">static cinemaScreenings(cinemaId){}</code></pre></div>
-</blockquote></li>
-<li><p><strong>请求参数</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">请求参数</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">cinemaId</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">影院ID</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>返回数据</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">返回数据</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>调用示例</strong></p>
-
-<blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.cinemaScreenings(&#39;a123123123&#39;).then((data) =&gt; { 
-console.log(data)
-}, error =&gt; {
- console.log(error);
-});</code></pre></div>
-</blockquote></li>
-</ul>
-
-<hr>
-
-<ul>
-<li><strong><mark><font color='#666666'>5. 指定影院的排片的最近日期列表(交行使用的)?</font></mark></strong></li>
-<li><blockquote>
-<div><pre><code class="language-javascript">static cinemaScreeningsDate(cinemaId, filmId){}</code></pre></div>
-</blockquote></li>
-<li><p><strong>请求参数</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">请求参数</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">cinemaId</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">影院ID</td>
-</tr>
-<tr>
-<td style="text-align: left">filmId</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">影片ID</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>返回数据</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">返回数据</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>调用示例</strong></p>
-
-<blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.cinemaScreeningsDate(&#39;a123123&#39;, &#39;b123123&#39;).then((data) =&gt; { 
-console.log(data)
-}, error =&gt; {
- console.log(error);
-});</code></pre></div>
-</blockquote></li>
-</ul>
-
-<hr>
-
-<ul>
-<li><strong><mark><font color='#666666'>6. 指定影院的某个影片的某天的排片的详细信息(交行使用的)?</font></mark></strong></li>
-<li><blockquote>
-<div><pre><code class="language-javascript">static cinemaScreeningsItem(cinemaId, filmId, date){}</code></pre></div>
-</blockquote></li>
-<li><p><strong>请求参数</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">请求参数</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">cinemaId</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">影院ID</td>
-</tr>
-<tr>
-<td style="text-align: left">filmId</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">影片ID</td>
-</tr>
-<tr>
-<td style="text-align: left">date</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">日期</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>返回数据</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">返回数据</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>调用示例</strong></p>
-
-<blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.cinemaScreeningsItem(&#39;a123123123&#39;, &#39;b123123123&#39;, &#39;2017-04-18&#39;).then((data) =&gt; { 
-console.log(data)
-}, error =&gt; {
- console.log(error);
-});</code></pre></div>
-</blockquote></li>
-</ul>
-
-<hr>
-
-<ul>
-<li><strong><mark><font color='#666666'>7. 实时座位图(交行使用的)?</font></mark></strong></li>
-<li><blockquote>
-<div><pre><code class="language-javascript">static cinemaSeat(type, paras){}</code></pre></div>
-</blockquote></li>
-<li><p><strong>请求参数</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">请求参数</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">type</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">平台类型</td>
-</tr>
-<tr>
-<td style="text-align: left">paras</td>
-<td style="text-align: left">object</td>
-<td style="text-align: left">（根据不同平台变化）</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>返回数据</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">返回数据</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>调用示例</strong></p>
-
-<blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.cinemaSeat(&#39;meituan&#39;, {}).then((data) =&gt; { 
-console.log(data)
-}, error =&gt; {
- console.log(error);
-});</code></pre></div>
-</blockquote></li>
-</ul>
-
-<hr>
-
-<ul>
-<li><strong><mark><font color='#666666'>8. 影院列表 （已弃用）（临时使用了）</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>3. 影院列表 </font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static cinemaListNeedLocation(filmId){}</code></pre></div>
 </blockquote></li>
@@ -1678,9 +1194,9 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>9. 整合后的影院列表(交行使用的)?</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>4. 实时座位图?</font></mark></strong></li>
 <li><blockquote>
-<div><pre><code class="language-javascript">static newCinemaListNeedLocation(filmid, region, order, feature, inType, date){}</code></pre></div>
+<div><pre><code class="language-javascript">static cinemaSeat(type, paras){}</code></pre></div>
 </blockquote></li>
 <li><p><strong>请求参数</strong></p>
 
@@ -1696,34 +1212,14 @@ console.log(data)
 
 <tbody>
 <tr>
-<td style="text-align: left">filmid</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">影片Id</td>
+<td style="text-align: left">type</td>
+<td style="text-align: left"><a href="#EnumPlatform">EnumPlatform</a></td>
+<td style="text-align: left">平台类型</td>
 </tr>
 <tr>
-<td style="text-align: left">region</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">市区</td>
-</tr>
-<tr>
-<td style="text-align: left">order</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">排序</td>
-</tr>
-<tr>
-<td style="text-align: left">feature</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">特色</td>
-</tr>
-<tr>
-<td style="text-align: left">inType</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">后台为了判断请求的类型 （CinemaBuyList：2，CinemaListView：1）</td>
-</tr>
-<tr>
-<td style="text-align: left">date</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">日期</td>
+<td style="text-align: left">paras</td>
+<td style="text-align: left"><a href="#SeatParasModel">SeatParasModel</a></td>
+<td style="text-align: left">（根据不同平台变化）</td>
 </tr>
 </tbody>
 </table>
@@ -1742,7 +1238,7 @@ console.log(data)
 
 <tbody>
 <tr>
-<td style="text-align: left">-</td>
+<td style="text-align: left">Array</td>
 <td style="text-align: left">promise</td>
 <td style="text-align: left">异步请求封装</td>
 </tr>
@@ -1752,7 +1248,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.newCinemaListNeedLocation().then((data) =&gt; { 
+<div><pre><code class="language-javascript">JNetworkCinema.cinemaSeat(&#39;meituan&#39;, {}).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1763,7 +1259,7 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>10. 收藏影院</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>5. 收藏影院</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static cinemaFavoriteCinemaNeedLogin(cinemaId, cinemaName){}</code></pre></div>
 </blockquote></li>
@@ -1808,8 +1304,8 @@ console.log(data)
 <tbody>
 <tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left">-</td>
+<td style="text-align: left">-</td>
 </tr>
 </tbody>
 </table>
@@ -1817,7 +1313,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.cinemaFavoriteCinemaNeedLogin(&#39;a123123&#39;, &#39;上海电影院&#39;).then((data) =&gt; { 
+<div><pre><code class="language-javascript">JNetworkCinema.cinemaFavoriteCinemaNeedLogin(&#39;800705&#39;, &#39;上海鸿纳国际影城&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1828,7 +1324,7 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>11. 取消收藏影院</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>6. 取消收藏影院</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static cinemaCancelFavoriteCinemaNeedLogin(cinemaId){}</code></pre></div>
 </blockquote></li>
@@ -1868,8 +1364,8 @@ console.log(data)
 <tbody>
 <tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left">-</td>
+<td style="text-align: left">-</td>
 </tr>
 </tbody>
 </table>
@@ -1877,7 +1373,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCinema.cinemaCancelFavoriteCinemaNeedLogin(&#39;a123123&#39;).then((data) =&gt; { 
+<div><pre><code class="language-javascript">JNetworkCinema.cinemaCancelFavoriteCinemaNeedLogin(&#39;800705&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1889,14 +1385,14 @@ console.log(data)
 
 <p></font></p>
 
-<h3 id="toc_6"><font color='#0099ff'>类：JNetworkFilmView </font></h3>
+<h3 id="toc_6"><font color='#0099ff'>类：JNetworkScreening </font></h3>
 
 <p><font color='#999999'></p>
 
 <ul>
-<li><strong><mark><font color='#666666'>1. 获取指定影院基础数据(如影院电影排片和影院电话及地址)</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>1. 指定影院的排片的电影列表及影院本身的信息(如影院电影排片和影院电话及地址)</font></mark></strong></li>
 <li><blockquote>
-<div><pre><code class="language-javascript">static filmviewFilmview(cinemaId){}</code></pre></div>
+<div><pre><code class="language-javascript">static screeningFilmList(cinemaId){}</code></pre></div>
 </blockquote></li>
 <li><p><strong>请求参数</strong></p>
 
@@ -1933,9 +1429,29 @@ console.log(data)
 
 <tbody>
 <tr>
+<td style="text-align: left">cinema</td>
+<td style="text-align: left"><a href="#BaseCinemaModel">BaseCinemaModel</a></td>
+<td style="text-align: left">影院信息</td>
+</tr>
+<tr>
+<td style="text-align: left">cinemaMobile</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">影院电话</td>
+</tr>
+<tr>
+<td style="text-align: left">films</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">电影列表</td>
+</tr>
+<tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left"><a href="#FilmDetailModel">FilmDetailModel</a></td>
+<td style="text-align: left">电影</td>
+</tr>
+<tr>
+<td style="text-align: left">isCollected = empty</td>
+<td style="text-align: left">bool</td>
+<td style="text-align: left">是否收藏</td>
 </tr>
 </tbody>
 </table>
@@ -1943,7 +1459,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkFilmView.filmviewFilmview(&#39;a123123&#39;).then((data) =&gt; { 
+<div><pre><code class="language-javascript">JNetworkFilmView.screeningFilmList(&#39;800705&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -1956,7 +1472,7 @@ console.log(data)
 <ul>
 <li><strong><mark><font color='#666666'>2. 获取指定影院排片日期安排</font></mark></strong></li>
 <li><blockquote>
-<div><pre><code class="language-javascript">static filmviewDate(cinemaId, filmId){}</code></pre></div>
+<div><pre><code class="language-javascript">static screeningDateList(cinemaId, filmId){}</code></pre></div>
 </blockquote></li>
 <li><p><strong>请求参数</strong></p>
 
@@ -1998,9 +1514,14 @@ console.log(data)
 
 <tbody>
 <tr>
+<td style="text-align: left">dates</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">日期列表</td>
+</tr>
+<tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">日期 (格式: 2017-04-21)</td>
 </tr>
 </tbody>
 </table>
@@ -2008,7 +1529,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkFilmView.filmviewDate(&#39;a123123&#39;, &#39;b123123&#39;).then((data) =&gt; { 
+<div><pre><code class="language-javascript">JNetworkFilmView.screeningDateList(&#39;800705&#39;, &#39;1a692bb163fa4609b59927055faab749&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2021,7 +1542,7 @@ console.log(data)
 <ul>
 <li><strong><mark><font color='#666666'>3. 获取指定影院排片放映厅安排</font></mark></strong></li>
 <li><blockquote>
-<div><pre><code class="language-javascript">static filmviewItems(cinemaId, filmId, date){}</code></pre></div>
+<div><pre><code class="language-javascript">static screeningItems(cinemaId, filmId, date){}</code></pre></div>
 </blockquote></li>
 <li><p><strong>请求参数</strong></p>
 
@@ -2068,9 +1589,14 @@ console.log(data)
 
 <tbody>
 <tr>
+<td style="text-align: left">filmViews</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">所有的场次</td>
+</tr>
+<tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left"><a href="#ScreeningModel">ScreeningModel</a></td>
+<td style="text-align: left">场次信息</td>
 </tr>
 </tbody>
 </table>
@@ -2078,7 +1604,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkFilmView.filmviewItems(&#39;a123123&#39;, &#39;b123123&#39;, &#39;2017-04-18&#39;).then((data) =&gt; { 
+<div><pre><code class="language-javascript">JNetworkFilmView.screeningItems(&#39;800705&#39;, &#39;1a692bb163fa4609b59927055faab749&#39;, &#39;2017-04-21&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2095,7 +1621,7 @@ console.log(data)
 <p><font color='#999999'></p>
 
 <ul>
-<li><strong><mark><font color='#666666'>1. 锁座</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>1. 锁座+</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static tradeLockSeatNeedLogin(type, paras){}</code></pre></div>
 </blockquote></li>
@@ -2160,7 +1686,7 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>2. 取消锁座</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>2. 取消锁座+</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static cancelLockSeatNeedLogin(orderId){}</code></pre></div>
 </blockquote></li>
@@ -2220,7 +1746,7 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>3. 下订单</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>3. 下订单+</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static tradeConfirmOrderNeedLogin(type, paras){}</code></pre></div>
 </blockquote></li>
@@ -2285,7 +1811,7 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>4. 申请预订单</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>4. 申请预订单+</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static tradePrePayOrderNeedLogin(orderId, payType, prizeIds, redIds){}</code></pre></div>
 </blockquote></li>
@@ -2366,7 +1892,7 @@ console.log(data)
 <p><font color='#999999'></p>
 
 <ul>
-<li><strong><mark><font color='#666666'>n. 我的订单</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>n. 我的订单+</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static mineOrderNeedLogin(){}</code></pre></div>
 </blockquote></li>
@@ -2426,7 +1952,7 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>2. 我的收藏</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>2. 我的收藏+</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static mineFavoriteNeedLogin(){}</code></pre></div>
 </blockquote></li>
@@ -2492,9 +2018,9 @@ console.log(data)
 <p><font color='#999999'></p>
 
 <ul>
-<li><strong><mark><font color='#666666'>1. 获取城市列表（需要定位）</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>1. 获取城市列表(可以使用定位)</font></mark></strong></li>
 <li><blockquote>
-<div><pre><code class="language-javascript">static cityListNeedLocation(){}</code></pre></div>
+<div><pre><code class="language-javascript">static cityListShouldLocation(){}</code></pre></div>
 </blockquote></li>
 <li><p><strong>请求参数</strong></p>
 
@@ -2531,9 +2057,29 @@ console.log(data)
 
 <tbody>
 <tr>
+<td style="text-align: left">hotCities</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">热门城市列表</td>
+</tr>
+<tr>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left"><a href="#CityModel">CityModel</a></td>
+<td style="text-align: left">城市</td>
+</tr>
+<tr>
+<td style="text-align: left">cities</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">所有城市列表</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left"><a href="#CityModel">CityModel</a></td>
+<td style="text-align: left">城市</td>
+</tr>
+<tr>
+<td style="text-align: left">currentCity = empty</td>
+<td style="text-align: left"><a href="#CityModel">CityModel</a></td>
+<td style="text-align: left">当前城市</td>
 </tr>
 </tbody>
 </table>
@@ -2541,7 +2087,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCity.cityListNeedLocation().then((data) =&gt; { 
+<div><pre><code class="language-javascript">JNetworkCity.cityListShouldLocation().then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2554,7 +2100,7 @@ console.log(data)
 <ul>
 <li><strong><mark><font color='#666666'>2. 获取当前城市（需要定位）</font></mark></strong></li>
 <li><blockquote>
-<div><pre><code class="language-javascript">static cityListNeedLocation(location){}</code></pre></div>
+<div><pre><code class="language-javascript">static cityCurrentCityNeedLocation(location = empty){}</code></pre></div>
 </blockquote></li>
 <li><p><strong>请求参数</strong></p>
 
@@ -2571,8 +2117,8 @@ console.log(data)
 <tbody>
 <tr>
 <td style="text-align: left">location</td>
-<td style="text-align: left">object</td>
-<td style="text-align: left">定位信息<strong>（可空）</strong></td>
+<td style="text-align: left"><a href="#CoordinateModel">CoordinateModel</a></td>
+<td style="text-align: left">定位信息<strong>（可空, 为空则使用location回调）</strong></td>
 </tr>
 </tbody>
 </table>
@@ -2584,6 +2130,7 @@ console.log(data)
 <thead>
 <tr>
 <th style="text-align: left">返回数据</th>
+<th style="text-align: left">额外信息</th>
 <th style="text-align: left">数据类型</th>
 <th style="text-align: left">数据说明</th>
 </tr>
@@ -2591,9 +2138,16 @@ console.log(data)
 
 <tbody>
 <tr>
+<td style="text-align: left">currentCity</td>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left"><a href="#CityModel">CityModel</a></td>
+<td style="text-align: left">城市模型</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">formatAddress</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">详细地址， 放在currentCity中</td>
 </tr>
 </tbody>
 </table>
@@ -2601,67 +2155,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkCity.cityListNeedLocation({longitude:121.458858, latitude:23.484588}).then((data) =&gt; { 
-console.log(data)
-}, error =&gt; {
- console.log(error);
-});</code></pre></div>
-</blockquote></li>
-</ul>
-
-<hr>
-
-<ul>
-<li><strong><mark><font color='#666666'>3. 获取城市列表</font></mark></strong></li>
-<li><blockquote>
-<div><pre><code class="language-javascript">static cityCities(){}</code></pre></div>
-</blockquote></li>
-<li><p><strong>请求参数</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">请求参数</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">-</td>
-<td style="text-align: left">-</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>返回数据</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">返回数据</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>调用示例</strong></p>
-
-<blockquote>
-<div><pre><code class="language-javascript">JNetworkCity.cityCities().then((data) =&gt; { 
+<div><pre><code class="language-javascript">JNetworkCity.cityCurrentCityNeedLocation({longitude:121.458858, latitude:23.484588}).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2722,9 +2216,14 @@ console.log(data)
 
 <tbody>
 <tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left">jbzAccount</td>
+<td style="text-align: left"><a href="#AccountModel">AccountModel</a></td>
+<td style="text-align: left">用户模型</td>
+</tr>
+<tr>
+<td style="text-align: left">jbzSession</td>
+<td style="text-align: left"><a href="#SessionModel">SessionModel</a></td>
+<td style="text-align: left">登录模型</td>
 </tr>
 </tbody>
 </table>
@@ -2743,7 +2242,7 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>2. 用户登出</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>2. 用户登出+</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static accountLogout(sessionId){}</code></pre></div>
 </blockquote></li>
@@ -2805,7 +2304,7 @@ console.log(data)
 <ul>
 <li><strong><mark><font color='#666666'>3. 获取验证码</font></mark></strong></li>
 <li><blockquote>
-<div><pre><code class="language-javascript">static accountGetVerifyCode(mobile, type){}</code></pre></div>
+<div><pre><code class="language-javascript">static accountVerifyCode(mobile, type){}</code></pre></div>
 </blockquote></li>
 <li><p><strong>请求参数</strong></p>
 
@@ -2847,9 +2346,9 @@ console.log(data)
 
 <tbody>
 <tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left">!</td>
+<td style="text-align: left">message</td>
+<td style="text-align: left">目前这个接口返回数据不规范</td>
 </tr>
 </tbody>
 </table>
@@ -2857,7 +2356,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkAccount.accountGetVerifyCode(&#39;13764730291&#39;, 2).then((data) =&gt; { 
+<div><pre><code class="language-javascript">JNetworkAccount.accountVerifyCode(&#39;13764730291&#39;, 2).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -2868,7 +2367,7 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>4. 注册用户</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>4. 注册用户+</font></mark></strong></li>
 <li><blockquote>
 <div><pre><code class="language-javascript">static accountRegister(mobile, verifyCode, password){}</code></pre></div>
 </blockquote></li>
@@ -2917,9 +2416,14 @@ console.log(data)
 
 <tbody>
 <tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left">jbzAccount</td>
+<td style="text-align: left"><a href="#AccountModel">AccountModel</a></td>
+<td style="text-align: left">用户模型</td>
+</tr>
+<tr>
+<td style="text-align: left">jbzSession</td>
+<td style="text-align: left"><a href="#SessionModel">SessionModel</a></td>
+<td style="text-align: left">登录模型</td>
 </tr>
 </tbody>
 </table>
@@ -2987,9 +2491,14 @@ console.log(data)
 
 <tbody>
 <tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
+<td style="text-align: left">jbzAccount</td>
+<td style="text-align: left"><a href="#AccountModel">AccountModel</a></td>
+<td style="text-align: left">用户模型</td>
+</tr>
+<tr>
+<td style="text-align: left">jbzSession</td>
+<td style="text-align: left"><a href="#SessionModel">SessionModel</a></td>
+<td style="text-align: left">登录模型</td>
 </tr>
 </tbody>
 </table>
@@ -3016,72 +2525,7 @@ console.log(data)
 <ul>
 <li><strong><mark><font color='#666666'>1. 搜索</font></mark></strong></li>
 <li><blockquote>
-<div><pre><code class="language-javascript">static search(val, lastKey){}</code></pre></div>
-</blockquote></li>
-<li><p><strong>请求参数</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">请求参数</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">val</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">关键字</td>
-</tr>
-<tr>
-<td style="text-align: left">lastKey</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">目前无用</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>返回数据</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">返回数据</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>调用示例</strong></p>
-
-<blockquote>
-<div><pre><code class="language-javascript">JNetworkOther.search(&#39;上海&#39;).then((data) =&gt; { 
-console.log(data)
-}, error =&gt; {
- console.log(error);
-});</code></pre></div>
-</blockquote></li>
-</ul>
-
-<hr>
-
-<ul>
-<li><strong><mark><font color='#666666'>2. 按城市搜索</font></mark></strong></li>
-<li><blockquote>
-<div><pre><code class="language-javascript">static searchSearch(cityId, query, lastKey){}</code></pre></div>
+<div><pre><code class="language-javascript">static otherSearch(cityId = empty, key, lastKey = empty){}</code></pre></div>
 </blockquote></li>
 <li><p><strong>请求参数</strong></p>
 
@@ -3099,17 +2543,17 @@ console.log(data)
 <tr>
 <td style="text-align: left">cityId</td>
 <td style="text-align: left">string</td>
-<td style="text-align: left">城市Id</td>
+<td style="text-align: left">城市</td>
 </tr>
 <tr>
-<td style="text-align: left">query</td>
+<td style="text-align: left">key</td>
 <td style="text-align: left">string</td>
 <td style="text-align: left">关键字</td>
 </tr>
 <tr>
 <td style="text-align: left">lastKey</td>
 <td style="text-align: left">string</td>
-<td style="text-align: left">目前无用</td>
+<td style="text-align: left">下一页的句柄</td>
 </tr>
 </tbody>
 </table>
@@ -3128,9 +2572,29 @@ console.log(data)
 
 <tbody>
 <tr>
+<td style="text-align: left">cinemas</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">搜索到的影院列表</td>
+</tr>
+<tr>
+<td style="text-align: left">films</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">搜索到的影片列表</td>
+</tr>
+<tr>
+<td style="text-align: left">cinemaTotal</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">总共搜索到的影院条数</td>
+</tr>
+<tr>
+<td style="text-align: left">filmTotal</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">总共搜索到的影片条数</td>
+</tr>
+<tr>
+<td style="text-align: left">lastKey</td>
+<td style="text-align: left">string</td>
 <td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
 </tr>
 </tbody>
 </table>
@@ -3138,7 +2602,7 @@ console.log(data)
 <li><p><strong>调用示例</strong></p>
 
 <blockquote>
-<div><pre><code class="language-javascript">JNetworkOther.searchSearch().then((data) =&gt; { 
+<div><pre><code class="language-javascript">JNetworkOther.otherSearch(null, &#39;上海&#39;).then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -3149,9 +2613,9 @@ console.log(data)
 <hr>
 
 <ul>
-<li><strong><mark><font color='#666666'>3. 热搜词汇</font></mark></strong></li>
+<li><strong><mark><font color='#666666'>2. 广告栏接口</font></mark></strong></li>
 <li><blockquote>
-<div><pre><code class="language-javascript">static hotQuery(){}</code></pre></div>
+<div><pre><code class="language-javascript">static otherBanners(cityId = empty){}</code></pre></div>
 </blockquote></li>
 <li><p><strong>请求参数</strong></p>
 
@@ -3167,69 +2631,9 @@ console.log(data)
 
 <tbody>
 <tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">-</td>
-<td style="text-align: left">-</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>返回数据</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">返回数据</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>调用示例</strong></p>
-
-<blockquote>
-<div><pre><code class="language-javascript">JNetworkOther.hotQuery().then((data) =&gt; { 
-console.log(data)
-}, error =&gt; {
- console.log(error);
-});</code></pre></div>
-</blockquote></li>
-</ul>
-
-<hr>
-
-<ul>
-<li><strong><mark><font color='#666666'>4. 广告接口</font></mark></strong></li>
-<li><blockquote>
-<div><pre><code class="language-javascript">static bannersNeedCItyIdNeedLocation(){}</code></pre></div>
-</blockquote></li>
-<li><p><strong>请求参数</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">请求参数</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">-</td>
-<td style="text-align: left">-</td>
+<td style="text-align: left">cityId</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">城市Id</td>
 </tr>
 </tbody>
 </table>
@@ -3259,66 +2663,6 @@ console.log(data)
 
 <blockquote>
 <div><pre><code class="language-javascript">JNetworkOther.bannersNeedCItyIdNeedLocation().then((data) =&gt; { 
-console.log(data)
-}, error =&gt; {
- console.log(error);
-});</code></pre></div>
-</blockquote></li>
-</ul>
-
-<hr>
-
-<ul>
-<li><strong><mark><font color='#666666'>5. 广告栏</font></mark></strong></li>
-<li><blockquote>
-<div><pre><code class="language-javascript">static pageBanners(){}</code></pre></div>
-</blockquote></li>
-<li><p><strong>请求参数</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">请求参数</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">-</td>
-<td style="text-align: left">-</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>返回数据</strong></p>
-
-<blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left">返回数据</th>
-<th style="text-align: left">数据类型</th>
-<th style="text-align: left">数据说明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td style="text-align: left">-</td>
-<td style="text-align: left">promise</td>
-<td style="text-align: left">异步请求封装</td>
-</tr>
-</tbody>
-</table>
-</blockquote></li>
-<li><p><strong>调用示例</strong></p>
-
-<blockquote>
-<div><pre><code class="language-javascript">JNetworkOther.pageBanners().then((data) =&gt; { 
 console.log(data)
 }, error =&gt; {
  console.log(error);
@@ -3461,9 +2805,56 @@ console.log(data)
 
 <p><font color='#999999'></p>
 
+<ul>
+<li><p><strong>描述</strong></p>
+
+<blockquote>
+<p>城市模型</p>
+</blockquote></li>
+<li><p><strong>属性</strong></p>
+
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left">所属</th>
+<th style="text-align: left">参数</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
+<th style="text-align: left">数据示例</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">name</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">名称</td>
+<td style="text-align: left">上海</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">city_en</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">拼音</td>
+<td style="text-align: left">shanghai</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">id</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">标识</td>
+<td style="text-align: left">2</td>
+</tr>
+</tbody>
+</table>
+
 <hr>
 
 <p></font></p>
+</blockquote></li>
+</ul>
 
 <h3 id="toc_16"><font id='ConfigModel' color='#0099ff'>模型：ConfigModel </font></h3>
 
@@ -4190,7 +3581,102 @@ console.log(data)
 
 <hr>
 
-<h3 id="toc_24"><font id='RegionModel' color='#0099ff'>模型：RegionModel </font></h3>
+<h3 id="toc_24"><font id='ScreeningModel' color='#0099ff'>模型：ScreeningModel </font></h3>
+
+<p><font color='#999999'></p>
+
+<ul>
+<li><p><strong>描述</strong></p>
+
+<blockquote>
+<p>影院场次的模型</p>
+</blockquote></li>
+<li><p><strong>属性</strong></p>
+
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left">所属</th>
+<th style="text-align: left">参数</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
+<th style="text-align: left">数据示例</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">compareCount</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">比价平台个数</td>
+<td style="text-align: left">1</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">data</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: left">比价平台原始数据</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">dimensional</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">放映类型</td>
+<td style="text-align: left">3D</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">minJbzPrice</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">金保证最低价格</td>
+<td style="text-align: left">43</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">minPrice</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">最低价格</td>
+<td style="text-align: left">43</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">showTime</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">放映时间</td>
+<td style="text-align: left">15:00</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">endTime</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">结束时间</td>
+<td style="text-align: left">17:16</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">lg</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">语言</td>
+<td style="text-align: left">英语</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">hallName</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">放映厅名字</td>
+<td style="text-align: left">一号厅</td>
+</tr>
+</tbody>
+</table>
+</blockquote></li>
+</ul>
+
+<hr>
+
+<h3 id="toc_25"><font id='RegionModel' color='#0099ff'>模型：RegionModel </font></h3>
 
 <p><font color='#999999'></p>
 
@@ -4236,11 +3722,233 @@ console.log(data)
 
 <hr>
 
+<h3 id="toc_26"><font id='SeatParasModel' color='#0099ff'>模型：SeatParasModel </font></h3>
+
+<p><font color='#999999'></p>
+
+<ul>
+<li><p><strong>描述</strong></p>
+
+<blockquote>
+<p>座位图请求参数模型</p>
+</blockquote></li>
+<li><p><strong>属性</strong></p>
+
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left">所属</th>
+<th style="text-align: left">参数</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
+<th style="text-align: left">使用平台</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">cinemaId</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">影院Id</td>
+<td style="text-align: left">wangpiao | spider</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">showId</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">场次Id</td>
+<td style="text-align: left">wangpiao | spider | maizuo | danche | maoyan | meituan | dazhong | baidu</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">hallId</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">放映厅Id</td>
+<td style="text-align: left">spider</td>
+</tr>
+</tbody>
+</table>
+</blockquote></li>
+</ul>
+
+<hr>
+
+<h3 id="toc_27"><font id='AccountModel' color='#0099ff'>模型：AccountModel </font></h3>
+
+<p><font color='#999999'></p>
+
+<ul>
+<li><p><strong>描述</strong></p>
+
+<blockquote>
+<p>用户信息模型</p>
+</blockquote></li>
+<li><p><strong>属性</strong></p>
+
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left">所属</th>
+<th style="text-align: left">参数</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
+<th style="text-align: left">数据示例</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">password</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">密码</td>
+<td style="text-align: left">E10ADC3949BA59ABBE56E057F20F883E</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">openId</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">用户标识</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">nickName</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">昵称</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">mobile</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">手机号码</td>
+<td style="text-align: left">13764730291</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">createdTime</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">创建时间</td>
+<td style="text-align: left">2017-02-23 11:55:07</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">disabled</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">是否可用</td>
+<td style="text-align: left">0</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">id</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">标识</td>
+<td style="text-align: left">125</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">source</td>
+<td style="text-align: left">?</td>
+<td style="text-align: left">?</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">pufaCardNo</td>
+<td style="text-align: left">?</td>
+<td style="text-align: left">?</td>
+<td style="text-align: left">-</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">islogin</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">是否登录</td>
+<td style="text-align: left">0</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">lastUpdateTime</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">最后更新时间</td>
+<td style="text-align: left">2017-02-23 11:55:07</td>
+</tr>
+</tbody>
+</table>
+</blockquote></li>
+</ul>
+
+<hr>
+
+<h3 id="toc_28"><font id='SessionModel' color='#0099ff'>模型：SessionModel </font></h3>
+
+<p><font color='#999999'></p>
+
+<ul>
+<li><p><strong>描述</strong></p>
+
+<blockquote>
+<p>登录标识模型</p>
+</blockquote></li>
+<li><p><strong>属性</strong></p>
+
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left">所属</th>
+<th style="text-align: left">参数</th>
+<th style="text-align: left">数据类型</th>
+<th style="text-align: left">数据说明</th>
+<th style="text-align: left">数据示例</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">accountId</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">用户Id</td>
+<td style="text-align: left">125</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">disabled</td>
+<td style="text-align: left">int</td>
+<td style="text-align: left">是否可用</td>
+<td style="text-align: left">0</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">sessionId</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">登录标识</td>
+<td style="text-align: left">c00e5c6713ba45f693c55fb37c45cc06</td>
+</tr>
+<tr>
+<td style="text-align: left">-</td>
+<td style="text-align: left">inType</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">?</td>
+<td style="text-align: left"></td>
+</tr>
+</tbody>
+</table>
+</blockquote></li>
+</ul>
+
+<hr>
+
 <p></font></p>
 
-<h2 id="toc_25"><font color='#ff0000' size:>模块：JNetwork(Enum) </font></h2>
+<h2 id="toc_29"><font color='#ff0000' size:>模块：JNetwork(Enum) </font></h2>
 
-<h3 id="toc_26"><font id='EnumPlatform' color='#0099ff'>枚举：EnumPlatform </font></h3>
+<h3 id="toc_30"><font id='EnumPlatform' color='#0099ff'>枚举：EnumPlatform </font></h3>
 
 <p><font color='#999999'></p>
 

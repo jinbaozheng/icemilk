@@ -5,10 +5,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
 var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
@@ -31,21 +27,14 @@ var NetworkOtherManager = function () {
   }
 
   (0, _createClass3.default)(NetworkOtherManager, null, [{
-    key: 'search',
-    value: function search(val, lastKey) {
-      return _JNetwork2.default.POST(_JUrlList.otherUrl.search, (0, _extends3.default)({}, _JNetwork2.default.locationParas(), {
-        queryStr: val,
-        lastKey: lastKey
-      }));
-    }
-  }, {
-    key: 'searchSearch',
-    value: function searchSearch(cityId, query, lastKey) {
-      return _JNetwork2.default.POST(_JUrlList.otherUrl.search, {
-        cityId: cityId,
-        query: query,
-        lastKey: lastKey
-      });
+    key: 'otherSearch',
+    value: function otherSearch(cityId, key, lastKey) {
+      if (cityId) {} else {
+        return _JNetwork2.default.POST(_JUrlList.otherUrl.jbzSearch, {
+          queryStr: key,
+          lastKey: lastKey
+        });
+      }
     }
   }, {
     key: 'hotQuery',
@@ -53,16 +42,15 @@ var NetworkOtherManager = function () {
       return _JNetwork2.default.POST(_JUrlList.otherUrl.hotquery);
     }
   }, {
-    key: 'bannersNeedCItyIdNeedLocation',
-    value: function bannersNeedCItyIdNeedLocation() {
-      return _JNetwork2.default.POST(_JUrlList.otherUrl.banner, {
-        cityId: _JNetwork2.default.loginParas().cityId
-      });
-    }
-  }, {
-    key: 'pageBanners',
-    value: function pageBanners() {
-      return _JNetwork2.default.POST(_JUrlList.otherUrl.pagebanners, {});
+    key: 'otherBanners',
+    value: function otherBanners(cityId) {
+      if (cityId) {
+        return _JNetwork2.default.POST(_JUrlList.otherUrl.jbzBanners, {
+          cityId: cityId
+        });
+      } else {
+        return _JNetwork2.default.POST(_JUrlList.otherUrl.jbzBanners, {});
+      }
     }
   }]);
   return NetworkOtherManager;

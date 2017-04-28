@@ -7,26 +7,24 @@ var homeUrl = exports.homeUrl = {
   main: '/appapi/main' };
 
 var cinemaUrl = exports.cinemaUrl = {
-  detail: '/appapi/cinema/detail',
   comparepage: '/appapi/cinema/comparepage',
-  screenings: '/appapi/cinema/screenings',
-  screeningsdate: '/appapi/cinema/screeningsdate',
-  screeningsitem: '/appapi/cinema/screeningsitem',
-  realtimeseat: '/appapi/realtimeseats',
-  list: '/appapi/cinema/list',
 
-  cinemas: '/appapi/cinemas',
-  cinemasbyregion: '/appapi/cinemasbyregion',
-  cinemaspage: '/appapi/cinemaspage',
-  collectcinema: '/appapi/collectcinema',
-  cancelcollectcinema: '/appapi/cancelcollectcinema'
+  jbzList: '/appapi/cinema/list',
+
+  jbzCollectcinema: '/account/collectcinema',
+  jbzCancelcollectcinema: '/account/cancelcollectcinema',
+  jbzRealtimeSeat: '/main/realtimeseats',
+  jbzCinemas: '/main/cinemas',
+  jbzCinemaspage: '/main/cinemaspage',
+  jbzCinemasbyregion: '/main/cinemasbyregion',
+  jbzDetail: '/cinema/detail'
 };
 
 var cityUrl = exports.cityUrl = {
   citypage: '/appapi/main/citypage',
 
-  refreshlocation: '/appapi/refreshlocation',
-  cities: '/appapi/cities'
+  jbzCurrentLocation: '/main/refreshlocation',
+  jbzCities: '/main/cities'
 };
 
 var filmUrl = exports.filmUrl = {
@@ -34,14 +32,14 @@ var filmUrl = exports.filmUrl = {
   jbzHotFilmsPage: '/main/hotfilmspage',
   jbzWaitFilmsPage: '/main/waitfilmspage',
   jbzFilmDetail: '/main/waitfilmspage',
-  jbzFilm: '/appapi/film',
+  jbzFilm: '/main/film',
   jbzFilmList: ''
 };
 
-var filmViewUrl = exports.filmViewUrl = {
-  filmview: '/appapi/filmview',
-  foretelldates: '/appapi/foretelldates',
-  filmviewitems: '/appapi/filmviewitems'
+var screeningUrl = exports.screeningUrl = {
+  jbzFilmList: '/main/filmview',
+  jbzDateList: '/main/foretelldates',
+  jbzItems: '/main/filmviewitems'
 };
 
 var mineUrl = exports.mineUrl = {
@@ -57,34 +55,24 @@ var seatUrl = exports.seatUrl = {
 };
 
 var accountUrl = exports.accountUrl = {
-  login: '/appapi/login',
-  logout: '/appapi/logout',
-  verifycode: '/appapi/verifycode',
-  register: '/appapi/register',
-  updatepass: '/appapi/updatepass'
+  jbzLogin: '/account/login',
+  jbzLogout: '/account/logout',
+  jbzVerifycode: '/account/verifycode',
+  jbzRegister: '/account/register',
+  jbzUpdatepass: '/account/updatepass'
 };
 
 var tradeUrl = exports.tradeUrl = {
-  jbzLockSeat: '/appapi/lockseat',
-  applyticket: '/appapi/applyticket',
-  prepay: '/appapi/prepay',
-
-  wplockseat: '/appapi/wplockseat',
-  splockseat: '/appapi/splockseat',
-  mzlockseat: '/appapi/mzlockseat',
-  dclockseat: '/appapi/dclockseat',
-  wpapplyticket: '/appapi/wpapplyticket',
-  spapplyticket: '/appapi/spapplyticket',
-  mzapplyticket: '/appapi/mzapplyticket',
-  dcapplyticket: '/appapi/dcapplyticket',
-  cancelOrder: '/appapi/cancelOrder'
+  jbzLockSeat: '/main/lockseat',
+  jbzAppApplyTicket: '/appapi/applyticket',
+  jbzWepApplyTicket: '/webapi/applyticket',
+  jbzCancelOrder: '/main/cancelOrder',
+  jbzAppPrepay: '/webapi/prepay',
+  jbzWebPrepay: '/appapi/prepay'
 };
 
 var otherUrl = exports.otherUrl = {
   hotquery: '/appapi/main/hotquery',
-  banner: '/appapi/main/banner',
-  pagebanners: '/tip/banner',
-
-  wxMakePreOrder: '/appapi/wxMakePreOrder',
-  search: '/appapi/search'
+  jbzBanners: '/tip/banner',
+  jbzSearch: '/main/search'
 };

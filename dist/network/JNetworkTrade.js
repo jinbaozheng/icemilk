@@ -34,24 +34,43 @@ var NetworkTradeManager = function () {
     key: 'tradeLockSeatNeedLogin',
     value: function tradeLockSeatNeedLogin(type, paras) {
       var loginParas = _JNetwork2.default.loginParas();
-      return _JNetwork2.default.POST(_JUrlList.tradeUrl.lockseat, (0, _extends3.default)({ type: type }, paras), loginParas);
+      return _JNetwork2.default.POST(_JUrlList.tradeUrl.jbzLockSeat, (0, _extends3.default)({ type: type }, paras), loginParas);
     }
   }, {
     key: 'cancelLockSeatNeedLogin',
     value: function cancelLockSeatNeedLogin(orderId) {
-      return _JNetwork2.default.POST(_JUrlList.tradeUrl.cancelOrder, { orderId: orderId });
+      return _JNetwork2.default.POST(_JUrlList.tradeUrl.jbzCancelOrder, { orderId: orderId });
     }
   }, {
-    key: 'tradeConfirmOrderNeedLogin',
-    value: function tradeConfirmOrderNeedLogin(type, paras) {
+    key: 'tradeApplyOrderNeedLoginInType',
+    value: function tradeApplyOrderNeedLoginInType(type, paras) {
       var loginParas = _JNetwork2.default.loginParas();
-      return _JNetwork2.default.POST(_JUrlList.tradeUrl.applyticket, (0, _extends3.default)({ type: type }, paras), loginParas);
+      var inType = _JNetwork2.default.inType();
+      if (inType === 'DPIOS' || inType === 'DPANDROID') {
+        return _JNetwork2.default.POST(_JUrlList.tradeUrl.jbzAppApplyTicket, (0, _extends3.default)({ type: type }, paras), loginParas);
+      }
+
+      if (inType === 'DPWX' || inType === 'DPWEB' || inType === 'PC') {
+        return _JNetwork2.default.POST(_JUrlList.tradeUrl.jbzWepApplyTicket, (0, _extends3.default)({ type: type }, paras), loginParas);
+      }
+
+      return _JNetwork2.default.wrongInType();
     }
   }, {
-    key: 'tradePrePayOrderNeedLogin',
-    value: function tradePrePayOrderNeedLogin(orderId, payType, prizeIds, redIds) {
+    key: 'tradePrePayOrderNeedLoginInType',
+    value: function tradePrePayOrderNeedLoginInType(orderId, payType, prizeIds, redIds) {
       var loginParas = _JNetwork2.default.loginParas();
-      return _JNetwork2.default.POST(_JUrlList.tradeUrl.prepay, { orderId: orderId, payType: payType, prizeIds: prizeIds, redIds: redIds }, loginParas);
+      var inType = _JNetwork2.default.inType();
+
+      if (inType === 'DPIOS' || inType === 'DPANDROID') {
+        return _JNetwork2.default.POST(_JUrlList.tradeUrl.jbzAppPrepay, { orderId: orderId, payType: payType, prizeIds: prizeIds, redIds: redIds }, loginParas);
+      }
+
+      if (inType === 'DPWX' || inType === 'DPWEB' || inType === 'PC') {
+        return _JNetwork2.default.POST(_JUrlList.tradeUrl.jbzWebPrepay, { orderId: orderId, payType: payType, prizeIds: prizeIds, redIds: redIds }, loginParas);
+      }
+
+      return _JNetwork2.default.wrongInType();
     }
   }]);
   return NetworkTradeManager;

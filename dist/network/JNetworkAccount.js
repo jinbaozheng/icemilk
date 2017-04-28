@@ -29,7 +29,7 @@ var NetworkAccountManager = function () {
   (0, _createClass3.default)(NetworkAccountManager, null, [{
     key: 'accountLogin',
     value: function accountLogin(mobile, password) {
-      return _JNetwork2.default.POST(_JUrlList.accountUrl.login, {
+      return _JNetwork2.default.POST(_JUrlList.accountUrl.jbzLogin, {
         mobile: mobile,
         password: password
       });
@@ -37,12 +37,12 @@ var NetworkAccountManager = function () {
   }, {
     key: 'accountLogout',
     value: function accountLogout(sessionId) {
-      return _JNetwork2.default.POST(_JUrlList.accountUrl.logout, {}, sessionId);
+      return _JNetwork2.default.POST(_JUrlList.accountUrl.jbzLogout, {}, sessionId);
     }
   }, {
-    key: 'accountGetVerifyCode',
-    value: function accountGetVerifyCode(mobile, type) {
-      return _JNetwork2.default.POST(_JUrlList.accountUrl.verifycode, {
+    key: 'accountVerifyCode',
+    value: function accountVerifyCode(mobile, type) {
+      return _JNetwork2.default.POST(_JUrlList.accountUrl.jbzVerifycode, {
         mobile: mobile,
         codetype: type
       });
@@ -50,7 +50,7 @@ var NetworkAccountManager = function () {
   }, {
     key: 'accountRegister',
     value: function accountRegister(mobile, verifyCode, password) {
-      return _JNetwork2.default.POST(_JUrlList.accountUrl.register, {
+      return _JNetwork2.default.POST(_JUrlList.accountUrl.jbzRegister, {
         mobile: mobile,
         verifyCode: verifyCode,
         password: password
@@ -59,7 +59,7 @@ var NetworkAccountManager = function () {
   }, {
     key: 'accountUpdatepass',
     value: function accountUpdatepass(mobile, verfyCode, password) {
-      return _JNetwork2.default.POST(_JUrlList.accountUrl.updatepass, {
+      return _JNetwork2.default.POST(_JUrlList.accountUrl.jbzUpdatepass, {
         mobile: mobile,
         verifyCode: verfyCode,
         password: password

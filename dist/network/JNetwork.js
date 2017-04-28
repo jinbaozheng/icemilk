@@ -73,6 +73,11 @@ var NetworkManager = function () {
       };
     }
   }, {
+    key: 'inType',
+    value: function inType() {
+      return this.delegate.inType();
+    }
+  }, {
     key: 'failedAuthorizationNetwork',
     value: function failedAuthorizationNetwork() {
       return new _promise2.default(function (resolve, reject) {
@@ -84,6 +89,13 @@ var NetworkManager = function () {
     value: function unrealizedMethod() {
       return new _promise2.default(function (resolve, reject) {
         reject(new Error('unrealized method'));
+      });
+    }
+  }, {
+    key: 'wrongInType',
+    value: function wrongInType() {
+      return new _promise2.default(function (resolve, reject) {
+        reject(new Error('the inType is not exist, please check your inType Function in JBZNetwork\'s delegate'));
       });
     }
   }, {

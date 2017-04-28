@@ -32,7 +32,7 @@ export const filmUrl = {
   jbzHotFilmsPage: '/main/hotfilmspage',
   jbzWaitFilmsPage: '/main/waitfilmspage',
   jbzFilmDetail: '/main/waitfilmspage',
-  jbzFilm: '/appapi/film',
+  jbzFilm: '/main/film',
   jbzFilmList: ''
 };
 
