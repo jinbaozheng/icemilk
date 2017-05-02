@@ -59,12 +59,12 @@ var NetworkCinemaManager = function () {
       }));
     }
   }, {
-    key: 'cinemaSeat',
-    value: function cinemaSeat(type, paras) {
+    key: 'cinemaSeats',
+    value: function cinemaSeats(type, paras) {
       if (type === 'meituan' || type === 'dazhong') {
         type = 'maoyan';
       }
-      return _JNetwork2.default.POST(_JUrlList.cinemaUrl.jbzRealtimeSeat, (0, _extends3.default)({ type: type }, paras, { uuid: Math.random() }));
+      return _JNetwork2.default.POST(_JUrlList.cinemaUrl.jbzRealtimeSeat, (0, _extends3.default)({ type: type }, paras, { random: Math.random() }));
     }
   }, {
     key: 'newCinemaListNeedLocation',

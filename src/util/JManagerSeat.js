@@ -29,7 +29,13 @@ class SeatManager {
     return new SeatManager();
   }
 
-  static autoSelected(smartSeats, count) {
+  /**
+   * 智能选座
+   * @param smartSeats
+   * @param count
+   * @returns {Promise}
+   */
+  static smartAutoSelected(smartSeats, count) {
     return new Promise((reduce, reject) => {
       AutoSeatPicking.autoSelected(smartSeats, count, (data) => {
         reduce(data);
@@ -43,70 +49,84 @@ class SeatManager {
    * @param platform 平台数据
    * @returns {{平台需要的参数}}
    */
-  static seatParasFromPlatform(type, platform) {
+  static seatParasFromScreening(platform, screening) {
     var paras = {};
-    if (type === 'wangpiao') {
+    if (platform === 'wangpiao') {
       paras = {
-        cinemaId: platform.cinemaId,
-        showId: platform.showIndex
+        cinemaId: screening.cinemaId,
+        showId: screening.showIndex
       }
     }
 
-    if (type === 'spider') {
+    if (platform === 'spider') {
       paras = {
-        cinemaId: platform.cinemaId,
-        showId: platform.showId,
-        hallId: platform.hallId
+        cinemaId: screening.cinemaId,
+        showId: screening.showId,
+        hallId: screening.hallId
       }
     }
 
-    if (type === 'maizuo') {
+    if (platform === 'maizuo') {
       paras = {
-        showId: platform.foretellId
+        showId: screening.foretellId
       }
     }
 
-    if (type === 'danche') {
+    if (platform === 'danche') {
       paras = {
-        showId: platform.id
+        showId: screening.id
       }
     }
 
-    if (type === 'maoyan' || type === 'meituan' || type === 'dazhong') {
+    if (platform === 'maoyan' || platform === 'meituan' || platform === 'dazhong') {
       paras = {
-        showId: platform.showId
+        showId: screening.showId
       }
     }
 
-    if (type === 'baidu') {
+    if (platform === 'baidu') {
       paras = {
-        showId: platform.seqid
+        showId: screening.seqid
       }
     }
     return paras;
   }
 
   /**
-   * 获取经过智能转换的座位图
-   * @param type 平台类型
-   * @param paras 平台参数
-   * @param callback 回调(第一个参数为error   第二个参数为smartSeats  成功error为null 否则smartSeats为null)
+   * 对原始座位图进行智能转换
+   * @param seatData 座位图原始数据
    */
-  smartSeatsFromPlatform(type, paras, callback) {
-    NetworkCinemaManager.cinemaSeat(type, paras).then((data) => {
-      let seatList = this.unitySeatWithSeatData(type, data);
-      // 获取智能座位图
-      let smartSeats = this.smartSeatsWithSeats(type, seatList);
-      let seatContentData = this.seatContentDataFromSmartSeats(smartSeats);
-      let seatRowData = this.rowDataFromSmartSeats(smartSeats);
-      callback(null, {smartSeats, seatRowData, ...seatContentData});
-    }, (error) => {
-      console.log(error);
-      callback(error, null);
+  smartSeatsFromSeats(seatData) {
+    let seatList = this.unitySeatWithSeatData(type, seatData);
+    // 获取智能座位图
+    let smartSeats = this.smartSeatsWithSeats(type, seatList);
+    let seatRowData = this.rowDataFromSmartSeats(smartSeats);
+    let seatContentData = this.seatContentDataFromSmartSeats(smartSeats);
+    return {smartSeats, seatRowData, ...seatContentData};
+  }
+
+  /**
+   * 通过请求获取智能转换的座位图
+   * @param type
+   * @param paras
+   */
+  smartSeatsFromNetSeats(type, paras) {
+    new Promise((reduce, reject) => {
+      NetworkCinemaManager.cinemaSeats(type, paras).then((data) => {
+        let seatList = this.unitySeatWithSeatData(type, data);
+        // 获取智能座位图
+        let smartSeats = this.smartSeatsWithSeats(type, seatList);
+        let seatContentData = this.seatContentDataFromSmartSeats(smartSeats);
+        let seatRowData = this.rowDataFromSmartSeats(smartSeats);
+        reduce({smartSeats, seatRowData, ...seatContentData});
+      }, (error) => {
+        console.log(error);
+        reject(error);
+      });
     });
   }
 
-  /** ***********************  下面的方法为内部方法 ******************** **/
+  /** ***********************  下面的方法为内部方法  ******************** **/
 
   /**
    * 统一座位格式
