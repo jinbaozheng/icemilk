@@ -15,6 +15,18 @@ class NetworkCinemaManager {
     return NetworkManager.POST(cinemaUrl.jbzDetail, {cinemaId});
   }
 
+  static cinemaList() {
+    return new Promise((resolve, reject) => {
+      NetworkManager.POST(cinemaUrl.jbzList, {
+        cityId: 2, latitude: 31.23037, longitude: 121.4737
+      }).then(data => {
+        resolve(data);
+      }, error => {
+        reject(error);
+      });
+    });
+  }
+
   /**
    * 根据影片Id获取影院的列表（比价）
    * @param filmId  影片Id
@@ -22,8 +34,8 @@ class NetworkCinemaManager {
    * @param orderType 排序类型
    * @returns {*} 返回影院列表
    */
-  static cinemaContrastListNeedLocation(filmId, regionName, orderType){
-    if (filmId){
+  static cinemaContrastListNeedLocation(filmId, regionName, orderType) {
+    if (filmId) {
       return NetworkManager.POST(cinemaUrl.jbzCinemasbyregion, {
         ...NetworkManager.locationParas(),
         filmId,

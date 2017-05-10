@@ -3,7 +3,10 @@
  */
 
 export const cinemaUrl = {
-  jbzList: '/appapi/cinema/list',
+  jbzList: '/cinema/cinemas',
+
+
+  // jbzList: '/appapi/cinema/list',
   jbzCollectcinema: '/account/collectcinema',
   jbzCancelcollectcinema: '/account/cancelcollectcinema',
   jbzRealtimeSeat: '/main/realtimeseats',
@@ -28,12 +31,14 @@ export const cityUrl = {
 };
 
 export const filmUrl = {
-  jbzHotFilms: '/main/hotfilms',
-  jbzHotFilmsPage: '/main/hotfilmspage',
-  jbzWaitFilmsPage: '/main/waitfilmspage',
-  jbzFilmDetail: '/main/waitfilmspage',
-  jbzFilm: '/main/film',
-  jbzFilmList: ''
+  jbzHotFilms: '/film/hotFilms',
+  jbzHotFilmsPage: '/film/hotFilmsPage',
+  jbzHotFilmsSimple: '/film/hotFilmsSimple',
+  jbzWaitFilms: '/film/upcomingFilms',
+  jbzWaitFilmsPage: '/film/upcomingFilmsPage',
+  jbzFilmDetailByPartner: '/film/filmByPartner',
+  jbzFilmDetail: '/film/film',
+  jbzFilmDate: '/film/filmDate'
 };
 
 export const screeningUrl = {

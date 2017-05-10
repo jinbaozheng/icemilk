@@ -6,6 +6,17 @@ import NumberTool from './JToolNumber.js';
 
 class DateTool {
 
+  static timeIntervalFromDate(dateString){
+    var stringTime = dateString;
+    var timestamp2 = Date.parse(new Date(stringTime));
+    timestamp2 = timestamp2 / 1000;
+    return timestamp2;
+  }
+
+  static dateFromTimeInterval(timeInterval, format){
+    return DateTool.formatDateToString(new Date(timeInterval*1000), format);
+  }
+
     static chineseTimeFromTime(time, unit){
         if (unit === 'm'){
             let originSeconds = parseInt(time*60);

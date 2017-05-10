@@ -350,3 +350,21 @@
   > | -    | seatCellHeight    | Number                                   | 座位高度     | -    |
   > | -    | seatContentWidth  | Number                                   | 座位图宽度    | -    |
   > | -    | seatContentHeight | Number                                   | 座位图高度    | -    |
+
+*****
+
+模型： PageModel
+
+- 描述
+
+  > 分页模型
+
+
+- 属性
+
+  > | 所属   | 参数    | 数据类型   | 数据说明 | 数据示例 |
+  > | ---- | ----- | ------ | ---- | ---- |
+  > | -    | index | number | 页号索引 | 1    |
+  > | -    | size  | number | 每页尺寸 | 5    |
+
+### 

@@ -115,85 +115,111 @@
 **************************************************************************************************
 ###类：JNetworkFilm 
 
-##### 1.分页获取热门电影
+##### 1.获取热门电影
 
 * 方法
 
   > ```java
-  > static filmHotfilms(cityId = empty, page = empty){}
+  > static filmHotfilms(page = empty){}
   > ```
 
 * 请求参数
 
-  > | 请求参数   | 数据类型 | 数据说明 |
-  > | :----- | :--- | :--- |
-  > | cityId | int  | 城市Id |
-  > | page   | int  | 页号   |
+  > | 请求参数 | 数据类型                    | 数据说明 |
+  > | :--- | :---------------------- | :--- |
+  > | page | [PageModel](#PageModel) | 分页模型 |
 - 返回数据
 
-  > | 返回数据  | 数据类型                                | 数据说明     |
-  > | :---- | :---------------------------------- | :------- |
-  > | films | Array                               | 获取到的影片列表 |
-  > | -     | [FilmDetailModel](#FilmDetailModel) | 影片       |
+  > | 返回数据 | 数据类型                                     | 数据说明     |
+  > | :--- | :--------------------------------------- | :------- |
+  > | -    | Array<[FilmDetailModel](#FilmDetailModel)> | 获取到的影片列表 |
 
 
 - 调用示例
 
   > ```javascript
-  > JNetworkFilm.filmHotfilms(2, 1).then((data) => {
-  >      console.log(data)
+  > JNetworkFilm.filmHotfilms({index: 1, size: 5}).then((list) => {
+  >      console.log(list)
+  > }, error => {
+  >      console.log(error);
+  > });
+  > ```
+**************************************************************************************************
+##### 2.获取热门电影(基础数据)
+
+* 方法
+
+  > ```java
+  > static filmHotfilmsSimple(){}
+  > ```
+
+
+* 请求参数
+
+  > | 请求参数 | 数据类型 | 数据说明 |
+  > | :--- | :--- | :--- |
+  > | -    | -    | -    |
+- 返回数据
+
+  > | 返回数据 | 数据类型                                     | 数据说明     |
+  > | :--- | :--------------------------------------- | :------- |
+  > | -    | Array<[FilmDetailModel](#FilmDetailModel)> | 获取到的影片列表 |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkFilm.filmList().then((list) => { 
+  >     console.log(list)
+  > }, error => {
+  >      console.log(error);
+  > });
+  > ```
+##### 3.获取待映电影
+
+* 方法
+
+  > ```java
+  > static filmWaitfilms(page = empty){}
+  > ```
+
+* 请求参数
+
+  > | 请求参数 | 数据类型                    | 数据说明 |
+  > | :--- | :---------------------- | :--- |
+  > | page | [PageModel](#PageModel) | 分页模型 |
+- 返回数据
+
+  > | 返回数据 | 数据类型                                     | 数据说明     |
+  > | :--- | :--------------------------------------- | :------- |
+  > | -    | Array<[FilmDetailModel](#FilmDetailModel)> | 获取到的影片列表 |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkFilm.filmWaitfilms({index: 1, size: 5}).then((list) => {
+  >      console.log(list)
   > }, error => {
   >      console.log(error);
   > });
   > ```
 **************************************************************************************************
 
-##### 2.获取待映电影
-
-* 方法
-
-  > ```java
-  > static filmWaitfilmsWithPage(cityId, page = 1){}
-  > ```
-
-* 请求参数
-
-  > | 请求参数   | 数据类型   | 数据说明 |
-  > | :----- | :----- | :--- |
-  > | cityId | string | 城市Id |
-  > | page   | int    | 页号   |
-- 返回数据
-
-  > | 返回数据 | 数据类型                                | 数据说明 |
-  > | :--- | :---------------------------------- | :--- |
-  > | -    | [FilmDetailModel](#FilmDetailModel) | 影片   |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkFilm.filmWaitfilmsWithPage(2, 1).then((data) => {
-  >      console.log(data)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-
-##### 3.获取影片详情
+##### 4.获取影片详情
 
 * 方法
 
   > ```javascript
-  > static filmDetail(filmId, platform = empty){}
+  > static filmDetail(filmId, platform = jbz){}
   > ```
 
 * 请求参数
 
-  > | 请求参数     | 数据类型                          | 数据说明                                    |
-  > | :------- | :---------------------------- | :-------------------------------------- |
-  > | filmId   | string                        | 影片Id(如果platform为空, 则使用jbz的id,否则使用平台的Id) |
-  > | platform | [EnumPlatform](#EnumPlatform) | 平台类型                                    |
+  > | 请求参数     | 数据类型                          | 数据说明            |
+  > | :------- | :---------------------------- | :-------------- |
+  > | filmId   | string                        | 影片Id            |
+  > | platform | [EnumPlatform](#EnumPlatform) | 平台类型(默认使用jbz平台) |
 - 返回数据
 
   > | 返回数据 | 数据类型                                | 数据说明 |
@@ -204,36 +230,33 @@
 - 调用示例
 
   > ```javascript
-  > JNetworkFilm.filmDetail('248700', 'maoyan').then((data) => {
-  >      console.log(data)
+  > JNetworkFilm.filmDetail('248700', 'maoyan').then((film) => {
+  >      console.log(film)
   > }, error => {
   >      console.log(error);
   > });
   > ```
 **************************************************************************************************
 
-##### 4.获取所有电影列表 (未实现)?
+##### 5.获取热门电影
 
 * 方法
 
   > ```java
-  > static filmList(cityId = empty){}
+  > static filmHotfilmsSimple(){}
   > ```
 
 
 * 请求参数
 
-  > | 请求参数   | 数据类型 | 数据说明        |
-  > | :----- | :--- | :---------- |
-  > | cityId | int  | 需要获取电影列表的城市 |
+  > | 请求参数 | 数据类型 | 数据说明 |
+  > | :--- | :--- | :--- |
+  > | -    | -    | -    |
 - 返回数据
 
-  > | 返回数据           | 数据类型                                | 数据说明   |
-  > | :------------- | :---------------------------------- | :----- |
-  > | upcommingFilms | Array                               | 待映影片列表 |
-  > | -              | [FilmDetailModel](#FilmDetailModel) | 影片     |
-  > | hotFilms       | Array                               | 热映影片列表 |
-  > | -              | [FilmDetailModel](#FilmDetailModel) | 影片     |
+  > | 返回数据 | 数据类型  | 数据说明   |
+  > | :--- | :---- | :----- |
+  > | -    | Array | 待映影片列表 |
 
 
 - 调用示例
@@ -242,9 +265,48 @@
   > JNetworkFilm.filmList().then((data) => { 
   >     console.log(data)
   > }, error => {
-  >      console.log(error);
+  >     console.log(error);
   > });
   > ```
+**************************************************************************************************
+
+##### 6.获取影片排片日期列表
+
+- 方法
+
+  > ```java
+  > static filmDateList(filmId, cityId){}
+  > static filmDateListNeedLocation(filmId){}
+  > ```
+
+- 请求参数
+
+  > | 请求参数   | 数据类型   | 数据说明 |
+  > | ------ | ------ | ---- |
+  > | filmId | string | 影片Id |
+  > | cityId | string | 城市Id |
+
+- 返回数据
+
+  > | 返回数据 | 数据类型          | 数据说明        |
+  > | ---- | ------------- | ----------- |
+  > | -    | Array<number> | 返回日期的时间戳的列表 |
+
+- 调用实例
+
+  > ```javascript
+  > JNetworkFilm.filmDateList('f1af9c0f14c6442592f93f421dbf56e3', 2).then(list => {
+  >     console.log(list);
+  > }, error => {
+  >     console.log(error);
+  > });
+  > JNetworkFilm.filmDateListNeedLocation('f1af9c0f14c6442592f93f421dbf56e3').then(list => {
+  >     console.log(list);
+  > }, error => {
+  >     console.log(error);
+  > });
+  > ```
+
 **************************************************************************************************
 
 ###类：JNetworkCinema 
