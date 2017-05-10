@@ -1,49 +1,48 @@
 {
+  "version": "1.0.54",
   "name": "jbzwebsdk",
-  "version": "1.0.51",
-  "description": "Shanghai jinbaozheng easy network technology Co.,Ltd sdk",
-  "main": "dist/index.js",
-  "engines": {
-    "node": ">= 0.6"
+  "repository": {
+    "url": "git@git.oschina.net:cuppi/jbzwebsdk.git",
+    "type": "git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel --plugins transform-runtime src -d dist",
-    "prepublish": "npm run build",
-    "cp-publish": "npm_use_registry --default && npm publish && npm_use_registry --inland"
+    "cp-publish": "npm_use_registry --default && ./cp_publish.pl && npm_use_registry --inland",
+    "build": "babel --plugins transform-runtime src -d dist"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@git.oschina.net:cuppi/jbzwebsdk.git"
-  },
+  "license": "MIT",
   "keywords": [
     "jbz",
     "jinbaozheng",
     "jbzweb",
     "jbzwebsdk"
   ],
-  "homepage": "https://git.oschina.net/cuppi/jbzwebsdk#readme",
-  "bugs": {
-    "url": "https://git.oschina.net/cuppi/jbzwebsdk/issues"
+  "dependencies": {
+    "babel-cli": "^6.0.0",
+    "babel-runtime": "^6.23.0",
+    "axios": "*",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-preset-es2015": "*",
+    "babel-preset-stage-2": "^6.24.1"
   },
   "author": {
     "name": "cuppi",
     "email": "cuppi413@163.com",
     "url": "https://github.com/cuppi"
   },
-  "dependencies": {
-    "axios": "*",
-    "babel-cli": "^6.0.0",
-    "babel-preset-es2015": "*",
-    "babel-plugin-transform-runtime": "^6.22.0",
-    "babel-preset-stage-2": "^6.24.1",
-    "babel-runtime": "^6.23.0"
+  "engines": {
+    "node": ">= 0.6"
   },
+  "bugs": {
+    "url": "https://git.oschina.net/cuppi/jbzwebsdk/issues"
+  },
+  "homepage": "https://git.oschina.net/cuppi/jbzwebsdk#readme",
+  "main": "dist/index.js",
   "babel": {
     "presets": [
       "es2015",
       "react"
     ]
   },
-  "license": "MIT"
+  "description": "Shanghai jinbaozheng easy network technology Co.,Ltd sdk"
 }

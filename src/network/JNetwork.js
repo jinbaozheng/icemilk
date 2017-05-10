@@ -9,6 +9,7 @@ class NetworkManager {
   static baseUrl = '';
   static timeout = 10 * 1000;
   static delegate = null;
+  static inType = '';
 
   /**
    *  需要定位的请求的公共参数
@@ -44,9 +45,17 @@ class NetworkManager {
     };
   }
 
-  static inType(){
-    return this.delegate.inType();
-  }
+  // static inType(){
+  //   return this.delegate.inType();
+  // }
+
+  // static inType() {
+  //   let intype = '';
+  //   // if (Platform.OS === 'android'){
+  //   //     intype = 'DPANDROID';
+  //   // }
+  //   return intype;
+  // }
 
   static failedAuthorizationNetwork(){
     return new Promise((resolve, reject) => {
@@ -62,7 +71,7 @@ class NetworkManager {
 
   static wrongInType(){
     return new Promise((resolve, reject) => {
-      reject(new Error('the inType is not exist, please check your inType Function in JBZNetwork\'s delegate'));
+      reject(new Error('the inType is not exist, please check your inType property in JBZConfig'));
     });
   }
 
@@ -95,14 +104,6 @@ class NetworkManager {
     };
   }
 
-  static inType() {
-    let intype = '';
-    // if (Platform.OS === 'android'){
-    //     intype = 'DPANDROID';
-    // }
-    return intype;
-  }
-
   /**
    * post请求
    * @param url 相对地址
@@ -126,7 +127,7 @@ class NetworkManager {
         method: 'post',
         baseURL: this.baseUrl,
         headers: iHeaders,
-        params: {...parameters, inType: this.inType()}
+        params: {...parameters, inType: this.inType}
       }).then((response) => {
         isOk = response.status === 200;
         return response.data;
@@ -178,7 +179,7 @@ class NetworkManager {
         method: 'get',
         baseURL: this.baseUrl,
         headers: iHeaders,
-        params: {...parameters, inType: this.inType()}
+        params: {...parameters, inType: this.inType}
       }).then((response) => {
         isOk = response.status === 200;
         return response.data;

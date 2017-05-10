@@ -23,8 +23,8 @@ class TradeManager {
 
   /**
    * 获取交易商务参数（与座位无关的）
-   * @param type 平台类型
-   * @param platform 平台数据
+   * @param platform 平台类型
+   * @param platformData 平台数据
    * @param filmId 电影Id
    * @param filmName 电影名称
    * @param cinemaId 影院Id

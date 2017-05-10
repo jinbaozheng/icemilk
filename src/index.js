@@ -42,4 +42,6 @@ export {
   ManagerTrade as JManagerTrade
 };
 
+export * from './network/JNetworkFunc';
+
 

@@ -1,6 +1,6 @@
 [TOC]
 
-# 斗票WebSDK接口文档#
+# 斗票WebSDK接口文档(v1.0.55)#
 ## 模块：JNetwork(Class) 
 ###类：JNetwork
 
@@ -82,7 +82,7 @@
 **************************************************************************************************
 ###类：JNetworkConfig
 
-##### 1.获取首页数据
+##### 1.网络请求配置
 
 - 方法
 
@@ -477,7 +477,7 @@
 - 调用示例
 
   > ```javascript
-  > JNetworkFilmView.screeningFilmList('800705').then((data) => { 
+  > JNetworkScreening.screeningFilmList('800705').then((data) => { 
   >     console.log(data)
   > }, error => {
   >      console.log(error);
@@ -511,7 +511,7 @@
 - 调用示例
 
   > ```javascript
-  > JNetworkFilmView.screeningDateList('800705', '1a692bb163fa4609b59927055faab749').then((data) => { 
+  > JNetworkScreening.screeningDateList('800705', '1a692bb163fa4609b59927055faab749').then((data) => { 
   >     console.log(data)
   > }, error => {
   >      console.log(error);
@@ -546,7 +546,7 @@
 - 调用示例
 
   > ```javascript
-  > JNetworkFilmView.screeningItems('800705', '1a692bb163fa4609b59927055faab749', '2017-04-21').then((data) => { 
+  > JNetworkScreening.screeningItems('800705', '1a692bb163fa4609b59927055faab749', '2017-04-21').then((data) => { 
   >     console.log(data)
   > }, error => {
   >      console.log(error);
@@ -752,73 +752,212 @@
   > ```
 **************************************************************************************************
 ###类：JNetworkCity 
-##### 1.获取城市列表(可以使用定位)
+##### 1.获取城市列表
 
 * 方法
 
   > ```java
-  > static cityListShouldLocation(){}
-  > ```
-
-
-* 请求参数请求参数
-
-
-- 返回数据
-
-  > | 返回数据                | 数据类型                    | 数据说明   |
-  > | :------------------ | :---------------------- | :----- |
-  > | hotCities           | Array                   | 热门城市列表 |
-  > | -                   | [CityModel](#CityModel) | 城市     |
-  > | cities              | Array                   | 所有城市列表 |
-  > | -                   | [CityModel](#CityModel) | 城市     |
-  > | currentCity = empty | [CityModel](#CityModel) | 当前城市   |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkCity.cityListShouldLocation().then((data) => { 
-  >     console.log(data)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-
-##### 2.获取当前城市（需要定位）
-
-* 方法
-
-  > ```java
-  > static cityCurrentCityNeedLocation(location = empty){}
+  > static cityList(){}
   > ```
 
 
 * 请求参数
 
-  > | 请求参数     | 数据类型                                | 数据说明                          |
-  > | :------- | :---------------------------------- | :---------------------------- |
-  > | location | [CoordinateModel](#CoordinateModel) | 定位信息**（可空, 为空则使用location回调）** |
+  > | 请求参数 | 数据类型 | 数据说明 |
+  > | ---- | ---- | ---- |
+  > | -    | -    | -    |
+
+
 - 返回数据
 
-  > | 返回数据        | 额外信息          | 数据类型                    | 数据说明                 |
-  > | :---------- | :------------ | :---------------------- | :------------------- |
-  > | currentCity | -             | [CityModel](#CityModel) | 城市模型                 |
-  > | -           | formatAddress | string                  | 详细地址， 放在currentCity中 |
+  > | 返回数据 | 数据类型                           | 数据说明 |
+  > | :--- | :----------------------------- | :--- |
+  > | -    | Array<[CityModel](#CityModel)> | 城市列表 |
 
 
 - 调用示例
 
   > ```javascript
-  > JNetworkCity.cityCurrentCityNeedLocation({longitude:121.458858, latitude:23.484588}).then((data) => { 
+  > JNetworkCity.cityList().then((list) => { 
+  >     console.log(list)
+  > }, error => {
+  >      console.log(error);
+  > });
+  > ```
+**************************************************************************************************
+
+##### 2.通过经纬度获取城市
+
+* 方法
+
+  > ```java
+  > static cityByCoordinate(coordinate){}
+  > ```
+
+
+* 请求参数
+
+  > | 请求参数       | 数据类型                                | 数据说明 |
+  > | :--------- | :---------------------------------- | :--- |
+  > | coordinate | [CoordinateModel](#CoordinateModel) | 定位信息 |
+- 返回数据
+
+  > | 返回数据    | 数据类型                    | 数据说明 |
+  > | :------ | :---------------------- | :--- |
+  > | city    | [CityModel](#CityModel) | 城市模型 |
+  > | address | string                  | 详细地址 |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkCity.cityByCoordinate({longitude:121.458858, latitude:23.484588}).then((data) => { 
   >     console.log(data)
   > }, error => {
   >      console.log(error);
   > });
   > ```
 **************************************************************************************************
+
+##### 3.通过经纬度获取城市（通过代理传递）
+
+- 方法
+
+  > ```java
+  > static cityNeedCoordinate(){}
+  > ```
+
+
+- 请求参数
+
+  > | 请求参数 | 数据类型 | 数据说明 |
+  > | ---- | ---- | ---- |
+  > | -    | -    | -    |
+
+- 返回数据
+
+  > | 返回数据    | 数据类型                    | 数据说明 |
+  > | ------- | ----------------------- | ---- |
+  > | city    | [CityModel](#CityModel) | 城市模型 |
+  > | address | string                  | 详细地址 |
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkCity.cityNeedCoordinate().then((data) => { 
+  >     console.log(data.city);
+  >     console.log(data.address);
+  > }, error => {
+  >     console.log(error);
+  > });
+  > ```
+
+*******
+
+##### 4.通过城市id获取城市
+
+- 方法
+
+  > ```java
+  > static cityById(cityId){}
+  > ```
+
+
+- 请求参数
+
+  > | 请求参数   | 数据类型   | 数据说明 |
+  > | ------ | ------ | ---- |
+  > | cityId | string | 城市id |
+
+- 返回数据
+
+  > | 返回数据 | 数据类型                    | 数据说明 |
+  > | ---- | ----------------------- | ---- |
+  > | -    | [CityModel](#CityModel) | 城市模型 |
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkCity.cityById(2).then((city) => {
+  > 	console.log(city)
+  > }, error => {
+  >     console.log(error);
+  > });
+  > ```
+
+*******
+
+##### 5.获取地区列表
+
+- 方法
+
+  > ```java
+  > static cityDistrictList(cityId){}
+  > ```
+
+
+- 请求参数
+
+  > | 请求参数   | 数据类型   | 数据说明 |
+  > | ------ | ------ | ---- |
+  > | cityId | string | 城市id |
+
+- 返回数据
+
+  > | 返回数据 | 数据类型                                   | 数据说明  |
+  > | ---- | -------------------------------------- | ----- |
+  > | -    | Array<[DistrictModel](#DistrictModel)> | 行政区列表 |
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkCity.cityDistrictList(2).then((list) => {
+  >   list.forEach(district => {
+  >     console.log(district)
+  >   });
+  > }, error => {
+  >   console.log(error);
+  > });
+  > ```
+
+*******
+
+##### 6.获取热门城市列表
+
+- 方法
+
+  > ```java
+  > static cityHotList(){}
+  > ```
+
+
+- 请求参数
+
+  > | 请求参数 | 数据类型 | 数据说明 |
+  > | ---- | ---- | ---- |
+  > | -    | -    | -    |
+
+- 返回数据
+
+  > | 返回数据 | 数据类型                           | 数据说明   |
+  > | ---- | ------------------------------ | ------ |
+  > | -    | Array<[CityModel](#CityModel)> | 热门城市列表 |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkCity.cityHotList(2).then((list) => {
+  >     console.log(list)
+  > }, error => {
+  >   console.log(error);
+  > });
+  > ```
+
+*******
+
 ###类：JNetworkAccount 
+
 ##### 1.用户登录
 
 * 方法
@@ -1122,11 +1261,13 @@
 **************************************************************************************************
 ## 模块：JNetwork(Enum)  
 
-###枚举：EnumPlatform 
-* **描述**
-> 平台枚举
+####枚举：EnumPlatform 
+* 描述
 
-* 属性
+  > 平台类型
+
+
+* ##### 属性
 
   > | 类型     | 枚举       | 说明   |
   > | :----- | :------- | :--- |
@@ -1137,6 +1278,23 @@
   > | \*     | maoyan   | 猫眼   |
   > | \*     | dazhong  | 大众   |
   > | \*     | meituan  | 美团   |
+**************************************************************************************************
+
+#### 枚举：EnumInType
+
+- 描述
+
+  > 请求类型
+
+
+- 属性
+
+  > | 类型     | 枚举      | 说明    |
+  > | ------ | ------- | ----- |
+  > | string | android | 安卓app |
+  > | *      | iOS     | ios   |
+  > | *      | web     | web端  |
+
 **************************************************************************************************
 
 

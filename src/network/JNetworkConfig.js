@@ -5,6 +5,7 @@ import NetworkManager from './JNetwork';
 class NetworkConfig {
   static setConfig(config){
     NetworkManager.baseUrl = config.baseUrl;
+    NetworkManager.inType = config.inType;
     NetworkManager.delegate = config.delegate;
   }
 }
