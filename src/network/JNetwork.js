@@ -18,11 +18,11 @@ class NetworkManager {
   static locationParas() {
     if (this.delegate) {
       let cityParas = this.delegate.cityParas();
-      let locationParas = this.delegate.locationParas();
+      let coordinateParas = this.delegate.coordinateParas();
       return {
         cityId: cityParas.id,
-        longitude: locationParas.longitude,
-        latitude: locationParas.latitude
+        longitude: coordinateParas.longitude,
+        latitude: coordinateParas.latitude
       };
     }
     return {};
@@ -31,7 +31,7 @@ class NetworkManager {
   static loginParas() {
     if (this.delegate) {
       let loginParas = this.delegate.loginParas();
-      if (loginParas) {
+      if (loginParas && loginParas.hasAccount) {
         return {
           sessionId: loginParas.sessionId,
           openId: loginParas.mobile,

@@ -4,6 +4,9 @@
 'use strict';
 import NetworkManager from './JNetwork.js';
 import {cinemaUrl} from '../constant/JUrlList';
+import ObjectTool from '../tool/JToolObject';
+import DateTool from '../tool/JToolDate';
+import SeatManager from '../util/JManagerSeat';
 
 class NetworkCinemaManager {
   /**
@@ -12,15 +15,36 @@ class NetworkCinemaManager {
    * @returns {*}
    */
   static cinemaDetail(cinemaId) {
-    return NetworkManager.POST(cinemaUrl.jbzDetail, {cinemaId});
+    return new Promise((resolve, reject) => {
+      NetworkManager.POST(cinemaUrl.jbzDetail, {cinemaId}).then(data => {
+        data.cinema.phone = data.phone;
+        ObjectTool.deleteProperty(data.cinema, 'tails');
+        resolve(data.cinema);
+      }, error => {
+        reject(error);
+      });
+    });
   }
 
-  static cinemaList() {
+
+  /**
+   * 影院列表
+   * @param location
+   * @param cinemaFilter
+   * @returns {Promise}
+   */
+  static cinemaList(location, cinemaFilter) {
     return new Promise((resolve, reject) => {
+      let {filmId, feature, region, sort, limit} = cinemaFilter ? cinemaFilter : {};
       NetworkManager.POST(cinemaUrl.jbzList, {
-        cityId: 2, latitude: 31.23037, longitude: 121.4737
+        ...location,
+        filmId,
+        feature,
+        regionName: region,
+        orderType: sort,
+        limit
       }).then(data => {
-        resolve(data);
+        resolve(data.cinemalist);
       }, error => {
         reject(error);
       });
@@ -28,40 +52,75 @@ class NetworkCinemaManager {
   }
 
   /**
-   * 根据影片Id获取影院的列表（比价）
-   * @param filmId  影片Id
-   * @param regionName 地域名字
-   * @param orderType 排序类型
-   * @returns {*} 返回影院列表
+   * 影院列表
+   * @param cinemaFilter 影片筛选条件
+   * @returns {{terminate, then}|*}
    */
-  static cinemaContrastListNeedLocation(filmId, regionName, orderType) {
-    if (filmId) {
-      return NetworkManager.POST(cinemaUrl.jbzCinemasbyregion, {
-        ...NetworkManager.locationParas(),
-        filmId,
-        regionName,
-        orderType
-      });
-    } else {
-      return NetworkManager.POST(cinemaUrl.jbzCinemaspage, {
-        ...NetworkManager.locationParas(),
-        regionName,
-        orderType
-      });
-    }
+  static cinemaListNeedLocation(cinemaFilter) {
+    let location = NetworkManager.locationParas();
+    return NetworkCinemaManager.cinemaList(location, cinemaFilter)
   }
 
   /**
-   * 影院列表 （已弃用）（临时使用了）
-   * @param filmId 影片id
+   * 获取指定影院排片
+   * @param cinemaId 影院Id
    * @returns {{terminate, then}|*}
    */
-  static cinemaListNeedLocation(filmId) {
-    return NetworkManager.POST(cinemaUrl.jbzCinemas, {
-      ...NetworkManager.locationParas(),
-      filmId
+  static cinemaScreeningFilmList(cinemaId) {
+    let loginParas = NetworkManager.loginParas();
+    let account = {};
+    if (loginParas.hasAccount) {
+      account = {openId: loginParas.openId, sessionId: loginParas.sessionId};
+    }
+    return new Promise((resolve, reject) => {
+      return NetworkManager.POST(cinemaUrl.jbzScreeningFilmList, {
+        cinemaId
+      }, account).then(data => {
+        resolve(data.films.map(film => {
+          ObjectTool.deleteProperty(film, 'tails');
+          return film;
+        }));
+      }, error => {
+        reject(error);
+      });
     });
   }
+
+  /**
+   * 获取指定影院排片日期安排
+   * @param cinemaId 影院Id
+   * @param filmId 影片Id
+   * @returns {{terminate, then}|*}
+   */
+  static cinemaScreeningDateList(cinemaId, filmId) {
+    return new Promise((resolve, reject) => {
+      NetworkManager.POST(cinemaUrl.jbzScreeningDateList, {cinemaId, filmId}).then(data => {
+        resolve(data.filmShowDates.map(date => {
+          return DateTool.timeIntervalFromDate(date);
+        }));
+      }, error => {
+        reject(error);
+      });
+    });
+  }
+
+  /**
+   * 获取指定影院排片放映厅安排
+   * @param cinemaId 影院Id
+   * @param filmId 影片Id
+   * @param date 日期（时间戳标示）
+   * @returns {{terminate, then}|*}
+   */
+  static cinemaScreeningItems(cinemaId, filmId, date) {
+    return new Promise((resolve, reject) => {
+      date = DateTool.dateFromTimeInterval(date, 'yyyy-MM-dd');
+      NetworkManager.POST(cinemaUrl.jbzScreeningItems, {cinemaId, filmId, date}).then(data => {
+        resolve(data.filmShows);
+      }, error => {
+        reject(error);
+      });
+    });
+  };
 
   /**
    * 实时座位图
@@ -73,30 +132,33 @@ class NetworkCinemaManager {
     if (type === 'meituan' || type === 'dazhong') {
       type = 'maoyan';
     }
-    return NetworkManager.POST(cinemaUrl.jbzRealtimeSeat, {type, ...paras, random: Math.random()});
+    return new Promise((resolve, reject) => {
+      NetworkManager.POST(cinemaUrl.jbzRealtimeSeat, {type, ...paras}).then(data => {
+        resolve(data.realTimeSeats);
+      }, error => {
+        reject(error);
+      });
+    });
   }
 
   /**
-   * 整合后的影院列表
-   * @param filmid 影片Id
-   * @param region 市区
-   * @param order 排序
-   * @param feature 特色
-   * @param inType 后台为了判断请求的类型 （CinemaBuyList：2，CinemaListView：1）
-   * @param date 日期
-   * @returns {{terminate, then}|*}
+   * 智能实时座位图
+   * @param type 平台类型 （必须）
+   * @param paras （根据不同平台变化）
+   * @returns {*}
    */
-  static newCinemaListNeedLocation(filmid, region, order, feature, inType, date) {
-    return NetworkManager.POST(cinemaUrl.jbzList,
-      {
-        ...NetworkManager.locationParas(),
-        filmId: filmid,
-        regionName: region,
-        orderType: order,
-        feature: feature,
-        inType: inType,
-        date: date
-      })
+  static cinemaSmartSeats(type, paras) {
+    if (type === 'meituan' || type === 'dazhong') {
+      type = 'maoyan';
+    }
+    return new Promise((resolve, reject) => {
+      NetworkManager.POST(cinemaUrl.jbzRealtimeSeat, {type, ...paras}).then(data => {
+        let smartSeatList = SeatManager.defaultManager().smartSeatsFromSeats(type, data.realTimeSeats);
+        resolve(smartSeatList);
+      }, error => {
+        reject(error);
+      });
+    });
   }
 
   /**

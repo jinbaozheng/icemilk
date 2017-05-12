@@ -3,6 +3,8 @@ use Encode;
 use JSON;
 my $json = new JSON;
 my $js;
+
+system("npm_use_registry --default");
 ##############################################  处理package.json
 #  读取原始package.json
 if (open(DATA, "<package.json") or die "package.json 文件无法打开, $!"){
@@ -38,7 +40,8 @@ $result = system("npm publish");
 #  发布成功
 if ($result == 0){
   print "发布成功\n";
-  return;
+  system("npm_use_registry --inland");
+  exit 0;
 }
 
 #  发布失败
@@ -48,4 +51,6 @@ if (open(DATA, ">package.json") or die "package.json 文件无法打开, $!"){
   print DATA $js;
 }
 close(MYFILE);
+system("npm_use_registry --inland");
+exit 0;
 

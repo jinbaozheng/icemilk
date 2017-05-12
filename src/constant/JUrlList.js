@@ -4,16 +4,19 @@
 
 export const cinemaUrl = {
   jbzList: '/cinema/cinemas',
+  jbzDetail: '/cinema/cinemaDetail',
+  jbzRealtimeSeat: '/cinema/realtimeseats',
 
+  jbzScreeningFilmList: '/cinema/films',
+  jbzScreeningDateList: '/cinema/filmshowdates',
+  jbzScreeningItems: '/cinema/filmshows',
 
   // jbzList: '/appapi/cinema/list',
   jbzCollectcinema: '/account/collectcinema',
   jbzCancelcollectcinema: '/account/cancelcollectcinema',
-  jbzRealtimeSeat: '/main/realtimeseats',
   jbzCinemas: '/main/cinemas',
   jbzCinemaspage: '/main/cinemaspage',
-  jbzCinemasbyregion: '/main/cinemasbyregion',
-  jbzDetail: '/cinema/detail'
+  jbzCinemasbyregion: '/main/cinemasbyregion'
 };
 
 
@@ -51,13 +54,6 @@ export const mineUrl = {
   // userorders: '/appapi/userorders',
   // collectedcinemalist: '/appapi/collectedcinemalist'
 };
-
-// export const seatUrl = {
-//   wprealtimeseats: '/appapi/wprealtimeseats',
-//   sprealtimeseats: '/appapi/sprealtimeseats',
-//   mzrealtimeseats: '/appapi/mzrealtimeseats',
-//   dcrealtimeseats: '/appapi/dcrealtimeseats'
-// };
 
 export const accountUrl = {
   jbzLogin: '/account/login',

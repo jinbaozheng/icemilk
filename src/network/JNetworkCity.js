@@ -34,7 +34,7 @@ class NetworkCityManager {
       NetworkManager.POST(cityUrl.jbzCityByCoordinate, coordinate).then(data => {
         let address = data.city.formatAddress;
         ObjectTool.deleteProperty(data.city, 'formatAddress');
-        resolve({city: data.city.map(NetworkCityManager._netCityToCity), address});
+        resolve({city: NetworkCityManager._netCityToCity(data.city), address});
       }, error => {
         reject(error);
       });

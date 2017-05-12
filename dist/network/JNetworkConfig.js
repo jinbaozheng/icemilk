@@ -27,6 +27,7 @@ var NetworkConfig = function () {
     key: 'setConfig',
     value: function setConfig(config) {
       _JNetwork2.default.baseUrl = config.baseUrl;
+      _JNetwork2.default.inType = config.inType;
       _JNetwork2.default.delegate = config.delegate;
     }
   }]);

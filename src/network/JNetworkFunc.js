@@ -38,12 +38,16 @@ class Jtask {
   do(paras) {
     paras = paras ? paras : this._parasPicker();
     this._task(...this.paraItems(paras)).then(data => {
-      let nextPara = this._resolve(data);
+      let nextPara = this._resolve(data, ...this.paraItems(paras));
       if (this._nextTask) {
         this._nextTask.do(nextPara);
       }
     }, error => {
-      console.log(error);
+      if (this._reject){
+        this._reject(error, ...this.paraItems(paras))
+      } else {
+        console.log('ERROR: Don\'t find the error handler for task (' + this._task.name  + ')');
+      }
     });
   }
 
@@ -115,50 +119,50 @@ class Jlink {
     }
   }
 }
-
-/**
- * 任务组合类
- */
-class Jcombine {
-  constructor(...tasks) {
-    this._tasks = [];
-    for (var task of tasks) {
-      this._tasks.push(task);
-    }
-    this._taskIndex = 0;
-  }
-
-  para(para) {
-    this._headTaskPara = para;
-    return this;
-  }
-
-  paras(...paras) {
-    this._allTaskPara = paras;
-    return this;
-  }
-
-  re(resolve, reject) {
-    if (this._taskIndex >= this._tasks.length) {
-      return this;
-    }
-    let nextTask = new Jtask(this._tasks[this._taskIndex], this._parasPicker(this._taskIndex), resolve, reject);
-    this._taskIndex++;
-    if (this._nextTask) {
-      this._nextTask.setNextTask(nextTask);
-    } else {
-      this._headTask = nextTask;
-    }
-    this._nextTask = nextTask;
-    return this;
-  }
-
-  run() {
-    this._headTask.do(this._parasPicker(0)());
-    return this;
-  }
-
-}
+//
+// /**
+//  * 任务组合类
+//  */
+// class Jcombine {
+//   constructor(...tasks) {
+//     this._tasks = [];
+//     for (var task of tasks) {
+//       this._tasks.push(task);
+//     }
+//     this._taskIndex = 0;
+//   }
+//
+//   para(para) {
+//     this._headTaskPara = para;
+//     return this;
+//   }
+//
+//   paras(...paras) {
+//     this._allTaskPara = paras;
+//     return this;
+//   }
+//
+//   next(resolve, reject) {
+//     if (this._taskIndex >= this._tasks.length) {
+//       return this;
+//     }
+//     let nextTask = new Jtask(this._tasks[this._taskIndex], this._parasPicker(this._taskIndex), resolve, reject);
+//     this._taskIndex++;
+//     if (this._nextTask) {
+//       this._nextTask.setNextTask(nextTask);
+//     } else {
+//       this._headTask = nextTask;
+//     }
+//     this._nextTask = nextTask;
+//     return this;
+//   }
+//
+//   run() {
+//     this._headTask.do(this._parasPicker(0)());
+//     return this;
+//   }
+//
+// }
 
 function jlink(...tasks) {
   return new Jlink(...tasks);

@@ -113,706 +113,7 @@
   >       });
   > ```
 **************************************************************************************************
-###类：JNetworkFilm 
 
-##### 1.获取热门电影
-
-* 方法
-
-  > ```java
-  > static filmHotfilms(page = empty){}
-  > ```
-
-* 请求参数
-
-  > | 请求参数 | 数据类型                    | 数据说明 |
-  > | :--- | :---------------------- | :--- |
-  > | page | [PageModel](#PageModel) | 分页模型 |
-- 返回数据
-
-  > | 返回数据 | 数据类型                                     | 数据说明     |
-  > | :--- | :--------------------------------------- | :------- |
-  > | -    | Array<[FilmDetailModel](#FilmDetailModel)> | 获取到的影片列表 |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkFilm.filmHotfilms({index: 1, size: 5}).then((list) => {
-  >      console.log(list)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-##### 2.获取热门电影(基础数据)
-
-* 方法
-
-  > ```java
-  > static filmHotfilmsSimple(){}
-  > ```
-
-
-* 请求参数
-
-  > | 请求参数 | 数据类型 | 数据说明 |
-  > | :--- | :--- | :--- |
-  > | -    | -    | -    |
-- 返回数据
-
-  > | 返回数据 | 数据类型                                     | 数据说明     |
-  > | :--- | :--------------------------------------- | :------- |
-  > | -    | Array<[FilmDetailModel](#FilmDetailModel)> | 获取到的影片列表 |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkFilm.filmList().then((list) => { 
-  >     console.log(list)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-##### 3.获取待映电影
-
-* 方法
-
-  > ```java
-  > static filmWaitfilms(page = empty){}
-  > ```
-
-* 请求参数
-
-  > | 请求参数 | 数据类型                    | 数据说明 |
-  > | :--- | :---------------------- | :--- |
-  > | page | [PageModel](#PageModel) | 分页模型 |
-- 返回数据
-
-  > | 返回数据 | 数据类型                                     | 数据说明     |
-  > | :--- | :--------------------------------------- | :------- |
-  > | -    | Array<[FilmDetailModel](#FilmDetailModel)> | 获取到的影片列表 |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkFilm.filmWaitfilms({index: 1, size: 5}).then((list) => {
-  >      console.log(list)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-
-##### 4.获取影片详情
-
-* 方法
-
-  > ```javascript
-  > static filmDetail(filmId, platform = jbz){}
-  > ```
-
-* 请求参数
-
-  > | 请求参数     | 数据类型                          | 数据说明            |
-  > | :------- | :---------------------------- | :-------------- |
-  > | filmId   | string                        | 影片Id            |
-  > | platform | [EnumPlatform](#EnumPlatform) | 平台类型(默认使用jbz平台) |
-- 返回数据
-
-  > | 返回数据 | 数据类型                                | 数据说明 |
-  > | :--- | :---------------------------------- | :--- |
-  > | -    | [FilmDetailModel](#FilmDetailModel) | 影片详情 |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkFilm.filmDetail('248700', 'maoyan').then((film) => {
-  >      console.log(film)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-
-##### 5.获取热门电影
-
-* 方法
-
-  > ```java
-  > static filmHotfilmsSimple(){}
-  > ```
-
-
-* 请求参数
-
-  > | 请求参数 | 数据类型 | 数据说明 |
-  > | :--- | :--- | :--- |
-  > | -    | -    | -    |
-- 返回数据
-
-  > | 返回数据 | 数据类型  | 数据说明   |
-  > | :--- | :---- | :----- |
-  > | -    | Array | 待映影片列表 |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkFilm.filmList().then((data) => { 
-  >     console.log(data)
-  > }, error => {
-  >     console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-
-##### 6.获取影片排片日期列表
-
-- 方法
-
-  > ```java
-  > static filmDateList(filmId, cityId){}
-  > static filmDateListNeedLocation(filmId){}
-  > ```
-
-- 请求参数
-
-  > | 请求参数   | 数据类型   | 数据说明 |
-  > | ------ | ------ | ---- |
-  > | filmId | string | 影片Id |
-  > | cityId | string | 城市Id |
-
-- 返回数据
-
-  > | 返回数据 | 数据类型          | 数据说明        |
-  > | ---- | ------------- | ----------- |
-  > | -    | Array<number> | 返回日期的时间戳的列表 |
-
-- 调用实例
-
-  > ```javascript
-  > JNetworkFilm.filmDateList('f1af9c0f14c6442592f93f421dbf56e3', 2).then(list => {
-  >     console.log(list);
-  > }, error => {
-  >     console.log(error);
-  > });
-  > JNetworkFilm.filmDateListNeedLocation('f1af9c0f14c6442592f93f421dbf56e3').then(list => {
-  >     console.log(list);
-  > }, error => {
-  >     console.log(error);
-  > });
-  > ```
-
-**************************************************************************************************
-
-###类：JNetworkCinema 
-##### 1.获取影院详情 (暂时不可用)?
-
-* 方法
-
-  > ```java
-  > static cinemaDetail(cinemaId){}
-  > ```
-
-
-* 请求参数
-
-  > | 请求参数     | 数据类型   | 数据说明 |
-  > | :------- | :----- | :--- |
-  > | cinemaId | string | 影院ID |
-- 返回数据
-
-  > | 返回数据 | 数据类型 | 数据说明 |
-  > | :--- | :--- | :--- |
-  > | -    | -    | -    |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkCinema.cinemaDetail('a123123123').then((data) => { 
-  >     console.log(data)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-
-##### 2.比价影院的列表
-
-* 方法
-
-  > ```java
-  > static cinemaContrastListNeedLocation(filmId = empty, regionName, orderType){}
-  > ```
-
-
-* 请求参数
-
-  > | 请求参数       | 数据类型   | 数据说明           |
-  > | :--------- | :----- | :------------- |
-  > | filmId     | string | 影片Id           |
-  > | regionName | string | 地域名字           |
-  > | orderType  | int    | 排序类型 1:距离 2:价格 |
-- 返回数据
-
-  > | 返回数据    | 数据类型                                     | 数据说明  |
-  > | :------ | :--------------------------------------- | :---- |
-  > | cinemas | Array                                    | 影院列表  |
-  > | -       | [CinemaCompareModel](#CinemaCompareModel) | 影院    |
-  > | regions | Array                                    | 行政区列表 |
-  > | -       | [RegionModel](#RegionModel)              | 行政区   |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkCinema.cinemaContrastListNeedLocation('1a692bb163fa4609b59927055faab749', '', 1).then((data) => { 
-  >     console.log(data)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-
-##### 3.影院列表 
-
-* 方法
-
-  > ```javascript
-  > static cinemaListNeedLocation(filmId){}
-  > ```
-
-
-* 请求参数
-
-  > | 请求参数   | 数据类型   | 数据说明 |
-  > | :----- | :----- | :--- |
-  > | filmId | string | 影片id |
-- 返回数据
-
-  > | 返回数据            | 数据类型                        | 数据说明 |
-  > | :-------------- | :-------------------------- | :--- |
-  > | cinemas         | Array                       | 影院列表 |
-  > | -               | [CinemaModel](#CinemaModel) | 影院   |
-  > | recommandCinema | Array                       | 推荐影院 |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkCinema.cinemaListNeedLocation('1a692bb163fa4609b59927055faab749').then((data) => { 
-  >     console.log(data)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-
-##### 4.实时座位图?
-
-* 方法
-
-  > ```java
-  > static cinemaSeats(type, paras){}
-  > ```
-
-
-* 请求参数
-
-  > | 请求参数  | 数据类型                              | 数据说明       |
-  > | :---- | :-------------------------------- | :--------- |
-  > | type  | [EnumPlatform](#EnumPlatform)     | 平台类型       |
-  > | paras | [SeatParasModel](#SeatParasModel) | （根据不同平台变化） |
-- 返回数据
-
-  > | 返回数据  | 数据类型    | 数据说明   |
-  > | :---- | :------ | :----- |
-  > | Array | promise | 异步请求封装 |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkCinema.cinemaSeats('meituan', {}).then((data) => { 
-  >     console.log(data)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-
-##### 5.收藏影院
-
-* 方法
-
-  > ```java
-  > static cinemaFavoriteCinemaNeedLogin(cinemaId, cinemaName){}
-  > ```
-
-
-* 请求参数
-
-  > | 请求参数       | 数据类型   | 数据说明 |
-  > | :--------- | :----- | :--- |
-  > | cinemaId   | string | 影院Id |
-  > | cinemaName | string | 影院名字 |
-- 返回数据
-
-  > | 返回数据 | 数据类型 | 数据说明 |
-  > | :--- | :--- | :--- |
-  > | -    | -    | -    |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkCinema.cinemaFavoriteCinemaNeedLogin('800705', '上海鸿纳国际影城').then((data) => { 
-  >     console.log(data)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-
-##### 6.取消收藏影院
-
-* 方法
-
-  > ```java
-  > static cinemaCancelFavoriteCinemaNeedLogin(cinemaId){}
-  > ```
-
-
-* 请求参数
-
-  > | 请求参数     | 数据类型   | 数据说明 |
-  > | :------- | :----- | :--- |
-  > | cinemaId | string | 影院Id |
-- 返回数据
-
-  > | 返回数据 | 数据类型 | 数据说明 |
-  > | :--- | :--- | :--- |
-  > | -    | -    | -    |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkCinema.cinemaCancelFavoriteCinemaNeedLogin('800705').then((data) => { 
-  >     console.log(data)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-###类：JNetworkScreening 
-##### 1.指定影院的排片的电影列表及影院本身的信息(如影院电影排片和影院电话及地址)
-
-* 方法
-
-  > ```java
-  > static screeningFilmList(cinemaId){}
-  > ```
-
-
-* 请求参数
-
-  > | 请求参数     | 数据类型   | 数据说明 |
-  > | :------- | :----- | :--- |
-  > | cinemaId | string | 影院Id |
-- 返回数据
-
-  > | 返回数据                | 数据类型                                | 数据说明 |
-  > | :------------------ | :---------------------------------- | :--- |
-  > | cinema              | [BaseCinemaModel](#BaseCinemaModel) | 影院信息 |
-  > | cinemaMobile        | string                              | 影院电话 |
-  > | films               | Array                               | 电影列表 |
-  > | -                   | [FilmDetailModel](#FilmDetailModel) | 电影   |
-  > | isCollected = empty | bool                                | 是否收藏 |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkScreening.screeningFilmList('800705').then((data) => { 
-  >     console.log(data)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-
-##### 2.获取指定影院排片日期安排
-
-* 方法
-
-  > ```java
-  > static screeningDateList(cinemaId, filmId){}
-  > ```
-
-
-* 请求参数
-
-  > | 请求参数     | 数据类型   | 数据说明 |
-  > | :------- | :----- | :--- |
-  > | cinemaId | string | 影院Id |
-  > | filmId   | string | 影片Id |
-- 返回数据
-
-  > | 返回数据  | 数据类型   | 数据说明                |
-  > | :---- | :----- | :------------------ |
-  > | dates | Array  | 日期列表                |
-  > | -     | string | 日期 (格式: 2017-04-21) |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkScreening.screeningDateList('800705', '1a692bb163fa4609b59927055faab749').then((data) => { 
-  >     console.log(data)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-
-##### 3.获取指定影院排片放映厅安排
-
-* 方法
-
-  > ```java
-  > static screeningItems(cinemaId, filmId, date){}
-  > ```
-
-
-* 请求参数
-
-  > | 请求参数     | 数据类型   | 数据说明 |
-  > | :------- | :----- | :--- |
-  > | cinemaId | string | 影院Id |
-  > | filmId   | string | 影片Id |
-  > | date     | string | 日期   |
-- 返回数据
-
-  > | 返回数据      | 数据类型                              | 数据说明  |
-  > | :-------- | :-------------------------------- | :---- |
-  > | filmViews | Array                             | 所有的场次 |
-  > | -         | [ScreeningModel](#ScreeningModel) | 场次信息  |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkScreening.screeningItems('800705', '1a692bb163fa4609b59927055faab749', '2017-04-21').then((data) => { 
-  >     console.log(data)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-
-###类：JNetworkTrade 
-##### 1.锁座+
-
-* 方法
-
-  > ```java
-  > static tradeLockSeatNeedLogin(type, paras){}
-  > ```
-
-
-* 请求参数
-
-  > | 请求参数  | 数据类型   | 数据说明 |
-  > | :---- | :----- | :--- |
-  > | type  | string | 平台类型 |
-  > | paras | object | 锁座参数 |
-- 返回数据
-
-  > | 返回数据 | 数据类型    | 数据说明   |
-  > | :--- | :------ | :----- |
-  > | -    | promise | 异步请求封装 |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkTrade.tradeLockSeatNeedLogin('maoyan', {}).then((data) => { 
-  >     console.log(data)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-
-##### 2.取消锁座+
-
-* 方法
-
-  > ```java
-  > static cancelLockSeatNeedLogin(orderId){}
-  > ```
-
-
-* 请求参数
-
-  > | 请求参数    | 数据类型   | 数据说明 |
-  > | :------ | :----- | :--- |
-  > | orderId | string | 订单Id |
-- 返回数据
-
-  > | 返回数据 | 数据类型    | 数据说明   |
-  > | :--- | :------ | :----- |
-  > | -    | promise | 异步请求封装 |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkTrade.cancelLockSeatNeedLogin('dd11111111').then((data) => { 
-  >     console.log(data)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-
-##### 3.下订单+
-
-* 方法
-
-  > ```java
-  > static tradeConfirmOrderNeedLogin(type, paras){}
-  > ```
-
-
-* 请求参数
-
-  > | 请求参数  | 数据类型   | 数据说明  |
-  > | :---- | :----- | :---- |
-  > | type  | string | 平台类型  |
-  > | paras | object | 下订单参数 |
-- 返回数据
-
-  > | 返回数据 | 数据类型    | 数据说明   |
-  > | :--- | :------ | :----- |
-  > | -    | promise | 异步请求封装 |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkTrade.tradeConfirmOrderNeedLogin('maoyan', {}).then((data) => { 
-  >     console.log(data)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-
-##### 4.申请预订单+
-
-* 方法
-
-  > ```java
-  > static tradePrePayOrderNeedLogin(orderId, payType, prizeIds, redIds){}
-  > ```
-
-
-* 请求参数
-
-  > | 请求参数     | 数据类型   | 数据说明 |
-  > | :------- | :----- | :--- |
-  > | orderId  | string | 订单Id |
-  > | payType  | string | 支付类型 |
-  > | prizeIds | string | 待定   |
-  > | redIds   | string | 待定   |
-- 返回数据
-
-  > | 返回数据 | 数据类型    | 数据说明   |
-  > | :--- | :------ | :----- |
-  > | -    | promise | 异步请求封装 |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkTrade.tradePrePayOrderNeedLogin('d123123', 'weixin', '', '').then((data) => { 
-  >     console.log(data)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-###类：JNetworkMine 
-##### 1.我的订单+
-
-* 方法
-
-  > ```java
-  > static mineOrderNeedLogin(){}
-  > ```
-
-
-* 请求参数
-
-  > | 请求参数 | 数据类型 | 数据说明 |
-  > | :--- | :--- | :--- |
-  > | -    | -    | -    |
-- 返回数据
-
-  > | 返回数据 | 数据类型    | 数据说明   |
-  > | :--- | :------ | :----- |
-  > | -    | promise | 异步请求封装 |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkMine.mineOrderNeedLogin().then((data) => { 
-  >     console.log(data)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
-
-##### 2.我的收藏+
-
-* 方法
-
-  > ```java
-  > static mineFavoriteNeedLogin(){}
-  > ```
-
-
-* 请求参数
-
-  > | 请求参数 | 数据类型 | 数据说明 |
-  > | :--- | :--- | :--- |
-  > | -    | -    | -    |
-- 返回数据
-
-  > | 返回数据 | 数据类型    | 数据说明   |
-  > | :--- | :------ | :----- |
-  > | -    | promise | 异步请求封装 |
-
-
-- 调用示例
-
-  > ```javascript
-  > JNetworkMine.mineFavoriteNeedLogin().then((data) => { 
-  >     console.log(data)
-  > }, error => {
-  >      console.log(error);
-  > });
-  > ```
-**************************************************************************************************
 ###类：JNetworkCity 
 ##### 1.获取城市列表
 
@@ -1017,6 +318,673 @@
   > ```
 
 *******
+
+###类：JNetworkFilm 
+
+##### 1.获取热门电影
+
+* 方法
+
+  > ```java
+  > static filmHotfilms(page = empty){}
+  > ```
+
+* 请求参数
+
+  > | 请求参数 | 数据类型                    | 数据说明 |
+  > | :--- | :---------------------- | :--- |
+  > | page | [PageModel](#PageModel) | 分页模型 |
+- 返回数据
+
+  > | 返回数据 | 数据类型                                     | 数据说明     |
+  > | :--- | :--------------------------------------- | :------- |
+  > | -    | Array<[FilmDetailModel](#FilmDetailModel)> | 获取到的影片列表 |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkFilm.filmHotfilms({index: 1, size: 5}).then((list) => {
+  >      console.log(list)
+  > }, error => {
+  >      console.log(error);
+  > });
+  > ```
+**************************************************************************************************
+##### 2.获取热门电影(基础数据)
+
+* 方法
+
+  > ```java
+  > static filmHotfilmsSimple(){}
+  > ```
+
+
+* 请求参数
+
+  > | 请求参数 | 数据类型 | 数据说明 |
+  > | :--- | :--- | :--- |
+  > | -    | -    | -    |
+- 返回数据
+
+  > | 返回数据 | 数据类型                                     | 数据说明     |
+  > | :--- | :--------------------------------------- | :------- |
+  > | -    | Array<[FilmDetailModel](#FilmDetailModel)> | 获取到的影片列表 |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkFilm.filmList().then((list) => { 
+  >     console.log(list)
+  > }, error => {
+  >      console.log(error);
+  > });
+  > ```
+##### 3.获取待映电影
+
+* 方法
+
+  > ```java
+  > static filmWaitfilms(page = empty){}
+  > ```
+
+* 请求参数
+
+  > | 请求参数 | 数据类型                    | 数据说明 |
+  > | :--- | :---------------------- | :--- |
+  > | page | [PageModel](#PageModel) | 分页模型 |
+- 返回数据
+
+  > | 返回数据 | 数据类型                                     | 数据说明     |
+  > | :--- | :--------------------------------------- | :------- |
+  > | -    | Array<[FilmDetailModel](#FilmDetailModel)> | 获取到的影片列表 |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkFilm.filmWaitfilms({index: 1, size: 5}).then((list) => {
+  >      console.log(list)
+  > }, error => {
+  >      console.log(error);
+  > });
+  > ```
+**************************************************************************************************
+
+##### 4.获取影片详情
+
+* 方法
+
+  > ```javascript
+  > static filmDetail(filmId, platform = jbz){}
+  > ```
+
+* 请求参数
+
+  > | 请求参数     | 数据类型                          | 数据说明            |
+  > | :------- | :---------------------------- | :-------------- |
+  > | filmId   | string                        | 影片Id            |
+  > | platform | [EnumPlatform](#EnumPlatform) | 平台类型(默认使用jbz平台) |
+- 返回数据
+
+  > | 返回数据 | 数据类型                                | 数据说明 |
+  > | :--- | :---------------------------------- | :--- |
+  > | -    | [FilmDetailModel](#FilmDetailModel) | 影片详情 |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkFilm.filmDetail('248700', 'maoyan').then((film) => {
+  >      console.log(film)
+  > }, error => {
+  >      console.log(error);
+  > });
+  > ```
+**************************************************************************************************
+
+##### 5.获取热门电影
+
+* 方法
+
+  > ```java
+  > static filmHotfilmsSimple(){}
+  > ```
+
+
+* 请求参数
+
+  > | 请求参数 | 数据类型 | 数据说明 |
+  > | :--- | :--- | :--- |
+  > | -    | -    | -    |
+- 返回数据
+
+  > | 返回数据 | 数据类型  | 数据说明   |
+  > | :--- | :---- | :----- |
+  > | -    | Array | 待映影片列表 |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkFilm.filmList().then((data) => { 
+  >     console.log(data)
+  > }, error => {
+  >     console.log(error);
+  > });
+  > ```
+**************************************************************************************************
+
+##### 6.获取影片排片日期列表
+
+- 方法
+
+  > ```java
+  > static filmDateList(filmId, cityId){}
+  > static filmDateListNeedCity(filmId){}
+  > ```
+
+- 请求参数
+
+  > | 请求参数   | 数据类型   | 数据说明 |
+  > | ------ | ------ | ---- |
+  > | filmId | string | 影片Id |
+  > | cityId | string | 城市Id |
+
+- 返回数据
+
+  > | 返回数据 | 数据类型          | 数据说明        |
+  > | ---- | ------------- | ----------- |
+  > | -    | Array<number> | 返回日期的时间戳的列表 |
+
+- 调用实例
+
+  > ```javascript
+  > JNetworkFilm.filmDateList('f1af9c0f14c6442592f93f421dbf56e3', 2).then(list => {
+  >     console.log(list);
+  > }, error => {
+  >     console.log(error);
+  > });
+  > JNetworkFilm.filmDateListNeedCity('f1af9c0f14c6442592f93f421dbf56e3').then(list => {
+  >     console.log(list);
+  > }, error => {
+  >     console.log(error);
+  > });
+  > ```
+
+**************************************************************************************************
+
+###类：JNetworkCinema 
+##### 1.获取影院详情
+
+* 方法
+
+  > ```java
+  > static cinemaDetail(cinemaId){}
+  > ```
+
+
+* 请求参数
+
+  > | 请求参数     | 数据类型   | 数据说明 |
+  > | :------- | :----- | :--- |
+  > | cinemaId | string | 影院ID |
+- 返回数据
+
+  > | 返回数据 | 数据类型                                | 数据说明 |
+  > | :--- | :---------------------------------- | :--- |
+  > | -    | [BaseCinemaModel](#BaseCinemaModel) | 影院信息 |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkCinema.cinemaDetail('a123123123').then((data) => { 
+  >     console.log(data)
+  > }, error => {
+  >      console.log(error);
+  > });
+  > ```
+**************************************************************************************************
+
+##### 2.影院的列表
+
+* 方法
+
+  > ```java
+  > static cinemaList(location, cinemaFilter = empty){}
+  > static cinemaListNeedLocation(cinemaFilter = empty){}
+  > ```
+
+
+* 请求参数
+
+  > | 请求参数         | 数据类型                                    | 数据说明   |
+  > | :----------- | :-------------------------------------- | :----- |
+  > | location     | [LocationModel](#LocationModel)         | 位置信息   |
+  > | cinemaFilter | [CinemaFilterModel](#CinemaFilterModel) | 影院筛选条件 |
+- 返回数据
+
+  > | 返回数据    | 数据类型                                     | 数据说明 |
+  > | :------ | :--------------------------------------- | :--- |
+  > | cinemas | Array<[CinemaCompareModel](#CinemaCompareModel)> | 影院列表 |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkCinema.cinemaListNeedLocation({
+  >   filmId: 'c28429848bc448b98164d6ad6c2db1d7',
+  >   sort: 2
+  > }).then(list => {
+  >   console.log(list);
+  > }, error => {
+  >   console.log(error);
+  > });
+  > ```
+**************************************************************************************************
+
+##### 3.获取指定影院排片
+
+- 方法
+
+  > ```java
+  > static cinemaScreeningFilmList(cinemaId)
+  > ```
+
+
+- 请求参数
+
+  > | 请求参数     | 数据类型   | 数据说明 |
+  > | -------- | ------ | ---- |
+  > | cinemaId | string | 影院Id |
+
+
+- 返回数据
+
+  > | 返回数据 | 数据类型                                     | 数据说明 |
+  > | ---- | ---------------------------------------- | ---- |
+  > | -    | Array<[FilmDetailModel](#FilmDetailModel)> | 影片列表 |
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkCinema.cinemaScreeningFilmList('800633').then(list => {
+  >   console.log(list);
+  > }, error => {
+  >   console.log(error);
+  > });
+  > ```
+
+**************************************************************************************************
+
+##### 4.获取指定影院排片日期安排
+
+
+- 方法
+
+  > ```java
+  > static cinemaScreeningDateList(cinemaId, filmId){}
+  > ```
+
+- 请求参数
+
+  > | 请求参数     | 数据类型   | 数据说明 |
+  > | -------- | ------ | ---- |
+  > | cinemaId | string | 影院Id |
+  > | filmId   | string | 影片id |
+
+- 返回数据
+
+  > | 返回数据 | 数据类型          | 数据说明        |
+  > | ---- | ------------- | ----------- |
+  > | -    | Array<number> | 返回日期的时间戳的列表 |
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkCinema.cinemaScreeningDateList('800633', 'c49285494f66425abc8ab6756167cdbc').then(list => {
+  >   console.log(list);
+  > }, error => {
+  >   console.log(error);
+  > });
+  > ```
+
+**************************************************************************************************
+
+##### 5.获取指定影院排片放映厅安排
+
+- 方法
+
+  > ```java
+  > static cinemaScreeningItems(cinemaId, filmId, date) 
+  > ```
+
+- 请求参数
+
+  > | 请求参数     | 数据类型   | 数据说明      |
+  > | -------- | ------ | --------- |
+  > | cinemaId | string | 影院Id      |
+  > | filmId   | string | 影片Id      |
+  > | date     | number | 日期（时间戳标示） |
+
+- 返回数据
+
+  > | 返回数据 | 数据类型                                     | 数据说明   |
+  > | ---- | ---------------------------------------- | ------ |
+  > | -    | Array<[ScreeningModel](#ScreeningModel)> | 放映模型列表 |
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkCinema.cinemaScreeningItems('800633', 'c49285494f66425abc8ab6756167cdbc', 1494547200).then(list => {
+  >   console.log(list);
+  > }, error => {
+  >   console.log(error);
+  > });
+  > ```
+
+**************************************************************************************************
+
+##### 6.实时座位图
+
+* 方法
+
+  > ```java
+  > static cinemaSmartSeats(type, paras){}
+  > ```
+
+
+* 请求参数
+
+  > | 请求参数  | 数据类型                              | 数据说明       |
+  > | :---- | :-------------------------------- | :--------- |
+  > | type  | [EnumPlatform](#EnumPlatform)     | 平台类型       |
+  > | paras | [SeatParasModel](#SeatParasModel) | （根据不同平台变化） |
+- 返回数据
+
+  > | 返回数据 | 数据类型             | 数据说明   |
+  > | :--- | :--------------- | :----- |
+  > | -    | Array<[Smart]()> | 异步请求封装 |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkCinema.cinemaSeats('maoyan', {
+  >   cinemaId: '117',
+  >   showId: '201705110132895'
+  > }).then(list => {
+  >   console.log(list);
+  > }, error => {
+  >   console.log(error);
+  > });
+  > ```
+**************************************************************************************************
+
+##### 7.收藏影院
+
+* 方法
+
+  > ```java
+  > static cinemaFavoriteCinemaNeedLogin(cinemaId, cinemaName){}
+  > ```
+
+
+* 请求参数
+
+  > | 请求参数       | 数据类型   | 数据说明 |
+  > | :--------- | :----- | :--- |
+  > | cinemaId   | string | 影院Id |
+  > | cinemaName | string | 影院名字 |
+- 返回数据
+
+  > | 返回数据 | 数据类型 | 数据说明 |
+  > | :--- | :--- | :--- |
+  > | -    | -    | -    |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkCinema.cinemaFavoriteCinemaNeedLogin('800705', '上海鸿纳国际影城').then((data) => { 
+  >     console.log(data)
+  > }, error => {
+  >      console.log(error);
+  > });
+  > ```
+**************************************************************************************************
+
+##### 8.取消收藏影院
+
+* 方法
+
+  > ```java
+  > static cinemaCancelFavoriteCinemaNeedLogin(cinemaId){}
+  > ```
+
+
+* 请求参数
+
+  > | 请求参数     | 数据类型   | 数据说明 |
+  > | :------- | :----- | :--- |
+  > | cinemaId | string | 影院Id |
+- 返回数据
+
+  > | 返回数据 | 数据类型 | 数据说明 |
+  > | :--- | :--- | :--- |
+  > | -    | -    | -    |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkCinema.cinemaCancelFavoriteCinemaNeedLogin('800705').then((data) => { 
+  >     console.log(data)
+  > }, error => {
+  >      console.log(error);
+  > });
+  > ```
+**************************************************************************************************
+
+###类：JNetworkTrade 
+##### 1.锁座+
+
+* 方法
+
+  > ```java
+  > static tradeLockSeatNeedLogin(type, paras){}
+  > ```
+
+
+* 请求参数
+
+  > | 请求参数  | 数据类型   | 数据说明 |
+  > | :---- | :----- | :--- |
+  > | type  | string | 平台类型 |
+  > | paras | object | 锁座参数 |
+- 返回数据
+
+  > | 返回数据 | 数据类型    | 数据说明   |
+  > | :--- | :------ | :----- |
+  > | -    | promise | 异步请求封装 |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkTrade.tradeLockSeatNeedLogin('maoyan', {}).then((data) => { 
+  >     console.log(data)
+  > }, error => {
+  >      console.log(error);
+  > });
+  > ```
+**************************************************************************************************
+
+##### 2.取消锁座+
+
+* 方法
+
+  > ```java
+  > static cancelLockSeatNeedLogin(orderId){}
+  > ```
+
+
+* 请求参数
+
+  > | 请求参数    | 数据类型   | 数据说明 |
+  > | :------ | :----- | :--- |
+  > | orderId | string | 订单Id |
+- 返回数据
+
+  > | 返回数据 | 数据类型    | 数据说明   |
+  > | :--- | :------ | :----- |
+  > | -    | promise | 异步请求封装 |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkTrade.cancelLockSeatNeedLogin('dd11111111').then((data) => { 
+  >     console.log(data)
+  > }, error => {
+  >      console.log(error);
+  > });
+  > ```
+**************************************************************************************************
+
+##### 3.下订单+
+
+* 方法
+
+  > ```java
+  > static tradeConfirmOrderNeedLogin(type, paras){}
+  > ```
+
+
+* 请求参数
+
+  > | 请求参数  | 数据类型   | 数据说明  |
+  > | :---- | :----- | :---- |
+  > | type  | string | 平台类型  |
+  > | paras | object | 下订单参数 |
+- 返回数据
+
+  > | 返回数据 | 数据类型    | 数据说明   |
+  > | :--- | :------ | :----- |
+  > | -    | promise | 异步请求封装 |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkTrade.tradeConfirmOrderNeedLogin('maoyan', {}).then((data) => { 
+  >     console.log(data)
+  > }, error => {
+  >      console.log(error);
+  > });
+  > ```
+**************************************************************************************************
+
+##### 4.申请预订单+
+
+* 方法
+
+  > ```java
+  > static tradePrePayOrderNeedLogin(orderId, payType, prizeIds, redIds){}
+  > ```
+
+
+* 请求参数
+
+  > | 请求参数     | 数据类型   | 数据说明 |
+  > | :------- | :----- | :--- |
+  > | orderId  | string | 订单Id |
+  > | payType  | string | 支付类型 |
+  > | prizeIds | string | 待定   |
+  > | redIds   | string | 待定   |
+- 返回数据
+
+  > | 返回数据 | 数据类型    | 数据说明   |
+  > | :--- | :------ | :----- |
+  > | -    | promise | 异步请求封装 |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkTrade.tradePrePayOrderNeedLogin('d123123', 'weixin', '', '').then((data) => { 
+  >     console.log(data)
+  > }, error => {
+  >      console.log(error);
+  > });
+  > ```
+**************************************************************************************************
+###类：JNetworkMine 
+##### 1.我的订单+
+
+* 方法
+
+  > ```java
+  > static mineOrderNeedLogin(){}
+  > ```
+
+
+* 请求参数
+
+  > | 请求参数 | 数据类型 | 数据说明 |
+  > | :--- | :--- | :--- |
+  > | -    | -    | -    |
+- 返回数据
+
+  > | 返回数据 | 数据类型    | 数据说明   |
+  > | :--- | :------ | :----- |
+  > | -    | promise | 异步请求封装 |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkMine.mineOrderNeedLogin().then((data) => { 
+  >     console.log(data)
+  > }, error => {
+  >      console.log(error);
+  > });
+  > ```
+**************************************************************************************************
+
+##### 2.我的收藏+
+
+* 方法
+
+  > ```java
+  > static mineFavoriteNeedLogin(){}
+  > ```
+
+
+* 请求参数
+
+  > | 请求参数 | 数据类型 | 数据说明 |
+  > | :--- | :--- | :--- |
+  > | -    | -    | -    |
+- 返回数据
+
+  > | 返回数据 | 数据类型    | 数据说明   |
+  > | :--- | :------ | :----- |
+  > | -    | promise | 异步请求封装 |
+
+
+- 调用示例
+
+  > ```javascript
+  > JNetworkMine.mineFavoriteNeedLogin().then((data) => { 
+  >     console.log(data)
+  > }, error => {
+  >      console.log(error);
+  > });
+  > ```
+**************************************************************************************************
 
 ###类：JNetworkAccount 
 
@@ -1296,7 +1264,7 @@
 * 方法
 
   > ```java
-  > static locationParas(){}
+  > static coordinateParas(){}
   > ```
 
 
@@ -1315,7 +1283,7 @@
 - 调用示例
 
   > ```javascript
-  >  locationParas() {
+  >  coordinateParas() {
   >          return {latitude: 41.816804:, 
   >                  longitude: 123.426065};
   >  }

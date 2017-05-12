@@ -6,7 +6,6 @@ import NetworkAccount from './network/JNetworkAccount';
 import NetworkCinema from './network/JNetworkCinema';
 import NetworkCity from './network/JNetworkCity';
 import NetworkFilm from './network/JNetworkFilm';
-import NetworkScreening from './network/JNetworkScreening';
 import NetworkMine from './network/JNetworkMine';
 import NetworkOther from './network/JNetworkOther';
 import NetworkTrade from './network/JNetworkTrade';
@@ -17,7 +16,6 @@ export {
   NetworkCinema as JNetworkCinema,
   NetworkCity as JNetworkCity,
   NetworkFilm as JNetworkFilm,
-  NetworkScreening as JNetworkScreening,
   NetworkMine as JNetworkMine,
   NetworkOther as JNetworkOther,
   NetworkTrade as JNetworkTrade,
@@ -42,6 +40,8 @@ export {
   ManagerTrade as JManagerTrade
 };
 
-export * from './network/JNetworkFunc';
+import {jlink, jpara} from './network/JNetworkFunc';
+
+export {jlink, jpara};
 
 

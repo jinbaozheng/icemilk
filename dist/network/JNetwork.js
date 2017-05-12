@@ -45,11 +45,11 @@ var NetworkManager = function () {
     value: function locationParas() {
       if (this.delegate) {
         var cityParas = this.delegate.cityParas();
-        var locationParas = this.delegate.locationParas();
+        var coordinateParas = this.delegate.coordinateParas();
         return {
           cityId: cityParas.id,
-          longitude: locationParas.longitude,
-          latitude: locationParas.latitude
+          longitude: coordinateParas.longitude,
+          latitude: coordinateParas.latitude
         };
       }
       return {};
@@ -59,7 +59,7 @@ var NetworkManager = function () {
     value: function loginParas() {
       if (this.delegate) {
         var loginParas = this.delegate.loginParas();
-        if (loginParas) {
+        if (loginParas && loginParas.hasAccount) {
           return {
             sessionId: loginParas.sessionId,
             openId: loginParas.mobile,
@@ -71,11 +71,6 @@ var NetworkManager = function () {
       return {
         hasAccount: false
       };
-    }
-  }, {
-    key: 'inType',
-    value: function inType() {
-      return this.delegate.inType();
     }
   }, {
     key: 'failedAuthorizationNetwork',
@@ -95,7 +90,7 @@ var NetworkManager = function () {
     key: 'wrongInType',
     value: function wrongInType() {
       return new _promise2.default(function (resolve, reject) {
-        reject(new Error('the inType is not exist, please check your inType Function in JBZNetwork\'s delegate'));
+        reject(new Error('the inType is not exist, please check your inType property in JBZConfig'));
       });
     }
   }, {
@@ -120,13 +115,6 @@ var NetworkManager = function () {
       };
     }
   }, {
-    key: 'inType',
-    value: function inType() {
-      var intype = '';
-
-      return intype;
-    }
-  }, {
     key: 'POST',
     value: function POST(url, parameters, headers) {
       var _this = this;
@@ -144,7 +132,7 @@ var NetworkManager = function () {
           method: 'post',
           baseURL: _this.baseUrl,
           headers: iHeaders,
-          params: (0, _extends3.default)({}, parameters, { inType: _this.inType() })
+          params: (0, _extends3.default)({}, parameters, { inType: _this.inType })
         }).then(function (response) {
           isOk = response.status === 200;
           return response.data;
@@ -189,7 +177,7 @@ var NetworkManager = function () {
           method: 'get',
           baseURL: _this2.baseUrl,
           headers: iHeaders,
-          params: (0, _extends3.default)({}, parameters, { inType: _this2.inType() })
+          params: (0, _extends3.default)({}, parameters, { inType: _this2.inType })
         }).then(function (response) {
           isOk = response.status === 200;
           return response.data;
@@ -223,4 +211,5 @@ var NetworkManager = function () {
 NetworkManager.baseUrl = '';
 NetworkManager.timeout = 10 * 1000;
 NetworkManager.delegate = null;
+NetworkManager.inType = '';
 exports.default = NetworkManager;

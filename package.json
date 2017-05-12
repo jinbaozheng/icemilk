@@ -1,48 +1,50 @@
 {
-  "version": "1.0.54",
-  "name": "jbzwebsdk",
-  "repository": {
-    "url": "git@git.oschina.net:cuppi/jbzwebsdk.git",
-    "type": "git"
-  },
   "scripts": {
+    "build": "babel --plugins transform-runtime src -d dist",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cp-publish": "npm_use_registry --default && ./cp_publish.pl && npm_use_registry --inland",
-    "build": "babel --plugins transform-runtime src -d dist"
-  },
-  "license": "MIT",
-  "keywords": [
-    "jbz",
-    "jinbaozheng",
-    "jbzweb",
-    "jbzwebsdk"
-  ],
-  "dependencies": {
-    "babel-cli": "^6.0.0",
-    "babel-runtime": "^6.23.0",
-    "axios": "*",
-    "babel-plugin-transform-runtime": "^6.22.0",
-    "babel-preset-es2015": "*",
-    "babel-preset-stage-2": "^6.24.1"
-  },
-  "author": {
-    "name": "cuppi",
-    "email": "cuppi413@163.com",
-    "url": "https://github.com/cuppi"
+    "cp-publish": "./cp_publish.pl"
   },
   "engines": {
     "node": ">= 0.6"
   },
-  "bugs": {
-    "url": "https://git.oschina.net/cuppi/jbzwebsdk/issues"
-  },
-  "homepage": "https://git.oschina.net/cuppi/jbzwebsdk#readme",
-  "main": "dist/index.js",
+  "license": "MIT",
   "babel": {
     "presets": [
       "es2015",
       "react"
     ]
   },
+  "devDependencies": {
+    "babel-preset-es2015": "*",
+    "babel-runtime": "^6.23.0",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-cli": "^6.0.0"
+  },
+  "dependencies": {
+    "axios": "*"
+  },
+  "bugs": {
+    "url": "https://git.oschina.net/cuppi/jbzwebsdk/issues"
+  },
+  "name": "jbzwebsdk",
+  "keywords": [
+    "jbz",
+    "jinbaozheng",
+    "jbzweb",
+    "jbzwebsdk"
+  ],
+  "main": "dist/index.js",
+  "repository": {
+    "url": "git@git.oschina.net:cuppi/jbzwebsdk.git",
+    "type": "git"
+  },
+  "author": {
+    "email": "cuppi413@163.com",
+    "url": "https://github.com/cuppi",
+    "name": "cuppi"
+  },
+  "version": "1.0.60",
+  "homepage": "https://git.oschina.net/cuppi/jbzwebsdk#readme",
   "description": "Shanghai jinbaozheng easy network technology Co.,Ltd sdk"
 }

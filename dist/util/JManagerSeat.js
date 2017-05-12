@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
 var _map = require('babel-runtime/core-js/map');
 
 var _map2 = _interopRequireDefault(_map);
@@ -15,10 +19,6 @@ var _parseInt2 = _interopRequireDefault(_parseInt);
 var _getIterator2 = require('babel-runtime/core-js/get-iterator');
 
 var _getIterator3 = _interopRequireDefault(_getIterator2);
-
-var _promise = require('babel-runtime/core-js/promise');
-
-var _promise2 = _interopRequireDefault(_promise);
 
 var _extends2 = require('babel-runtime/helpers/extends');
 
@@ -61,8 +61,8 @@ var SeatManager = function () {
   }
 
   (0, _createClass3.default)(SeatManager, [{
-    key: 'smartSeatsFromSeats',
-    value: function smartSeatsFromSeats(seatData) {
+    key: 'smartSeatDataFromSeats',
+    value: function smartSeatDataFromSeats(type, seatData) {
       var seatList = this.unitySeatWithSeatData(type, seatData);
 
       var smartSeats = this.smartSeatsWithSeats(type, seatList);
@@ -71,23 +71,12 @@ var SeatManager = function () {
       return (0, _extends3.default)({ smartSeats: smartSeats, seatRowData: seatRowData }, seatContentData);
     }
   }, {
-    key: 'smartSeatsFromNetSeats',
-    value: function smartSeatsFromNetSeats(type, paras) {
-      var _this = this;
+    key: 'smartSeatsFromSeats',
+    value: function smartSeatsFromSeats(type, seatData) {
+      var seatList = this.unitySeatWithSeatData(type, seatData);
 
-      new _promise2.default(function (reduce, reject) {
-        _JNetworkCinema2.default.cinemaSeats(type, paras).then(function (data) {
-          var seatList = _this.unitySeatWithSeatData(type, data);
-
-          var smartSeats = _this.smartSeatsWithSeats(type, seatList);
-          var seatContentData = _this.seatContentDataFromSmartSeats(smartSeats);
-          var seatRowData = _this.rowDataFromSmartSeats(smartSeats);
-          reduce((0, _extends3.default)({ smartSeats: smartSeats, seatRowData: seatRowData }, seatContentData));
-        }, function (error) {
-          console.log(error);
-          reject(error);
-        });
-      });
+      var smartSeats = this.smartSeatsWithSeats(type, seatList);
+      return smartSeats;
     }
   }, {
     key: 'unitySeatWithSeatData',
@@ -218,7 +207,7 @@ var SeatManager = function () {
       }).map(function (bridgeModel) {
         var seatRowModel = bridgeModel.seatModel;
         return (0, _extends3.default)({}, bridgeModel, {
-          status: seatRowModel.Status,
+          status: seatRowModel.Status === 'Y' ? 0 : 1,
           rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
           colLocation: bridgeModel.col * (_cellSize + _cellSpace),
           loveIndex: (0, _parseInt2.default)(seatRowModel.LoveFlag)
@@ -243,7 +232,7 @@ var SeatManager = function () {
       }).map(function (bridgeModel) {
         var seatRowModel = bridgeModel.seatModel;
         return (0, _extends3.default)({}, bridgeModel, {
-          status: seatRowModel.isLock ? 'N' : 'Y',
+          status: seatRowModel.isLock ? 1 : 0,
           rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
           colLocation: bridgeModel.col * (_cellSize + _cellSpace),
           loveIndex: (0, _parseInt2.default)(seatRowModel.loveIndex)
@@ -269,7 +258,7 @@ var SeatManager = function () {
       }).map(function (bridgeModel) {
         var seatRowModel = bridgeModel.seatModel;
         return (0, _extends3.default)({}, bridgeModel, {
-          status: seatRowModel.isLock === '1' ? 'N' : 'Y',
+          status: seatRowModel.isLock === '1' ? 1 : 0,
           rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
           colLocation: bridgeModel.col * (_cellSize + _cellSpace),
           loveIndex: (0, _parseInt2.default)(seatRowModel.loveIndex)
@@ -295,7 +284,7 @@ var SeatManager = function () {
         var seatRowModel = bridgeModel.seatModel;
         console.log(seatRowModel.loveIndex);
         return (0, _extends3.default)({}, bridgeModel, {
-          status: seatRowModel.isLock ? 'N' : 'Y',
+          status: seatRowModel.isLock ? 1 : 0,
           rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
           colLocation: bridgeModel.col * (_cellSize + _cellSpace),
           loveIndex: (0, _parseInt2.default)(seatRowModel.loveIndex)
@@ -326,7 +315,7 @@ var SeatManager = function () {
           loveIndex = 2;
         }
         return (0, _extends3.default)({}, bridgeModel, {
-          status: seatRowModel.status === 'LK' ? 'N' : 'Y',
+          status: seatRowModel.status === 'LK' ? 1 : 0,
           rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
           colLocation: bridgeModel.col * (_cellSize + _cellSpace),
           loveIndex: loveIndex
@@ -351,7 +340,7 @@ var SeatManager = function () {
       }).map(function (bridgeModel) {
         var seatRowModel = bridgeModel.seatModel;
         return (0, _extends3.default)({}, bridgeModel, {
-          status: seatRowModel.status === '2' ? 'N' : 'Y',
+          status: seatRowModel.status === '2' ? 1 : 0,
           rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
           colLocation: bridgeModel.col * (_cellSize + _cellSpace),
           loveIndex: (0, _parseInt2.default)(seatRowModel.isLove)

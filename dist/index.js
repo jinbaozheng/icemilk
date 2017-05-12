@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.JManagerTrade = exports.JManagerSeat = exports.JSDK = exports.JToolUrl = exports.JToolNumber = exports.JToolDate = exports.JNetworkConfig = exports.JNetworkTrade = exports.JNetworkOther = exports.JNetworkMine = exports.JNetworkScreening = exports.JNetworkFilm = exports.JNetworkCity = exports.JNetworkCinema = exports.JNetworkAccount = exports.JNetwork = undefined;
+exports.jpara = exports.jlink = exports.JManagerTrade = exports.JManagerSeat = exports.JSDK = exports.JToolUrl = exports.JToolNumber = exports.JToolDate = exports.JNetworkConfig = exports.JNetworkTrade = exports.JNetworkOther = exports.JNetworkMine = exports.JNetworkFilm = exports.JNetworkCity = exports.JNetworkCinema = exports.JNetworkAccount = exports.JNetwork = undefined;
 
 var _JNetwork = require('./network/JNetwork');
 
@@ -24,10 +24,6 @@ var _JNetworkCity2 = _interopRequireDefault(_JNetworkCity);
 var _JNetworkFilm = require('./network/JNetworkFilm');
 
 var _JNetworkFilm2 = _interopRequireDefault(_JNetworkFilm);
-
-var _JNetworkScreening = require('./network/JNetworkScreening');
-
-var _JNetworkScreening2 = _interopRequireDefault(_JNetworkScreening);
 
 var _JNetworkMine = require('./network/JNetworkMine');
 
@@ -69,6 +65,8 @@ var _JManagerTrade = require('./util/JManagerTrade');
 
 var _JManagerTrade2 = _interopRequireDefault(_JManagerTrade);
 
+var _JNetworkFunc = require('./network/JNetworkFunc');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.JNetwork = _JNetwork2.default;
@@ -76,7 +74,6 @@ exports.JNetworkAccount = _JNetworkAccount2.default;
 exports.JNetworkCinema = _JNetworkCinema2.default;
 exports.JNetworkCity = _JNetworkCity2.default;
 exports.JNetworkFilm = _JNetworkFilm2.default;
-exports.JNetworkScreening = _JNetworkScreening2.default;
 exports.JNetworkMine = _JNetworkMine2.default;
 exports.JNetworkOther = _JNetworkOther2.default;
 exports.JNetworkTrade = _JNetworkTrade2.default;
@@ -87,3 +84,5 @@ exports.JToolUrl = _JToolUrl2.default;
 exports.JSDK = _JSDK2.default;
 exports.JManagerSeat = _JManagerSeat2.default;
 exports.JManagerTrade = _JManagerTrade2.default;
+exports.jlink = _JNetworkFunc.jlink;
+exports.jpara = _JNetworkFunc.jpara;

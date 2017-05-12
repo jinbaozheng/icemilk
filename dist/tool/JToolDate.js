@@ -24,6 +24,19 @@ var DateTool = function () {
     }
 
     (0, _createClass3.default)(DateTool, null, [{
+        key: 'timeIntervalFromDate',
+        value: function timeIntervalFromDate(dateString) {
+            var stringTime = dateString;
+            var timestamp2 = Date.parse(new Date(stringTime));
+            timestamp2 = timestamp2 / 1000;
+            return timestamp2;
+        }
+    }, {
+        key: 'dateFromTimeInterval',
+        value: function dateFromTimeInterval(timeInterval, format) {
+            return DateTool.formatDateToString(new Date(timeInterval * 1000), format);
+        }
+    }, {
         key: 'chineseTimeFromTime',
         value: function chineseTimeFromTime(time, unit) {
             if (unit === 'm') {

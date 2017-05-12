@@ -94,9 +94,11 @@ class SeatManager {
 
   /**
    * 对原始座位图进行智能转换
+   * @param type 平台类型
    * @param seatData 座位图原始数据
+   * @returns {{smartSeats: Array, seatRowData: Array.<*>}} 智能座位图详细信息
    */
-  smartSeatsFromSeats(seatData) {
+  smartSeatDataFromSeats(type, seatData) {
     let seatList = this.unitySeatWithSeatData(type, seatData);
     // 获取智能座位图
     let smartSeats = this.smartSeatsWithSeats(type, seatList);
@@ -106,24 +108,16 @@ class SeatManager {
   }
 
   /**
-   * 通过请求获取智能转换的座位图
-   * @param type
-   * @param paras
+   * 对原始座位图进行智能转换
+   * @param type 平台类型
+   * @param seatData 座位图原始数据
+   * @returns {Array} 智能座位图列表
    */
-  smartSeatsFromNetSeats(type, paras) {
-    new Promise((reduce, reject) => {
-      NetworkCinemaManager.cinemaSeats(type, paras).then((data) => {
-        let seatList = this.unitySeatWithSeatData(type, data);
-        // 获取智能座位图
-        let smartSeats = this.smartSeatsWithSeats(type, seatList);
-        let seatContentData = this.seatContentDataFromSmartSeats(smartSeats);
-        let seatRowData = this.rowDataFromSmartSeats(smartSeats);
-        reduce({smartSeats, seatRowData, ...seatContentData});
-      }, (error) => {
-        console.log(error);
-        reject(error);
-      });
-    });
+  smartSeatsFromSeats(type, seatData){
+    let seatList = this.unitySeatWithSeatData(type, seatData);
+    // 获取智能座位图
+    let smartSeats = this.smartSeatsWithSeats(type, seatList);
+    return smartSeats;
   }
 
   /** ***********************  下面的方法为内部方法  ******************** **/
@@ -251,7 +245,8 @@ class SeatManager {
       let seatRowModel = bridgeModel.seatModel;
       return {
         ...bridgeModel,
-        status: seatRowModel.Status,
+        // N:lock  Y:unLock
+        status: seatRowModel.Status === 'Y' ? 0 : 1,
         rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
         colLocation: bridgeModel.col * (_cellSize + _cellSpace),
         loveIndex: Number.parseInt(seatRowModel.LoveFlag)
@@ -282,8 +277,8 @@ class SeatManager {
       return {
         ...bridgeModel,
         status: seatRowModel.isLock
-          ? 'N'
-          : 'Y',
+          ? 1
+          : 0,
         rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
         colLocation: bridgeModel.col * (_cellSize + _cellSpace),
         loveIndex: Number.parseInt(seatRowModel.loveIndex)
@@ -315,8 +310,8 @@ class SeatManager {
       return {
         ...bridgeModel,
         status: seatRowModel.isLock === '1'
-          ? 'N'
-          : 'Y',
+          ? 1
+          : 0,
         rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
         colLocation: bridgeModel.col * (_cellSize + _cellSpace),
         loveIndex: Number.parseInt(seatRowModel.loveIndex)
@@ -348,8 +343,8 @@ class SeatManager {
       return {
         ...bridgeModel,
         status: seatRowModel.isLock
-          ? 'N'
-          : 'Y',
+          ? 1
+          : 0,
         rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
         colLocation: bridgeModel.col * (_cellSize + _cellSpace),
         loveIndex: Number.parseInt(seatRowModel.loveIndex)
@@ -386,8 +381,8 @@ class SeatManager {
       return {
         ...bridgeModel,
         status: seatRowModel.status === 'LK'
-          ? 'N'
-          : 'Y',
+          ? 1
+          : 0,
         rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
         colLocation: bridgeModel.col * (_cellSize + _cellSpace),
         loveIndex: loveIndex
@@ -418,8 +413,8 @@ class SeatManager {
       return {
         ...bridgeModel,
         status: seatRowModel.status === '2'
-          ? 'N'
-          : 'Y',
+          ? 1
+          : 0,
         rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
         colLocation: bridgeModel.col * (_cellSize + _cellSpace),
         loveIndex: Number.parseInt(seatRowModel.isLove)

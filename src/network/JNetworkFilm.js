@@ -122,7 +122,7 @@ class NetworkFilmManager {
     })
   }
 
-  static filmDateListNeedLocation(filmId){
+  static filmDateListNeedCity(filmId){
     console.log(NetworkManager.locationParas().cityId);
    return JNetworkFilm.filmDateList(filmId, NetworkManager.locationParas().cityId)
   }

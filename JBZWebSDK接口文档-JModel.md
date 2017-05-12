@@ -58,7 +58,7 @@
 
 - **描述**
 
-  > 定位模型
+  > 经纬度模型
 
 
 - 属性
@@ -67,6 +67,23 @@
   > | ---- | --------- | ------ | ---- | ------------- |
   > | -    | latitude  | double | 纬度   | 122.024831358 |
   > | -    | longitude | double | 经度   | 37.3380080241 |
+
+******
+
+### 模型：LocationModel
+
+- 描述
+
+  > 位置模型
+
+
+- 属性
+
+  > | 所属   | 参数        | 数据类型   | 数据说明 | 数据示例          |
+  > | ---- | --------- | ------ | ---- | ------------- |
+  > | -    | latitude  | double | 纬度   | 122.024831358 |
+  > | -    | longitude | double | 经度   | 37.3380080241 |
+  > | -    | cityId    | number | 城市id | 2             |
 
 ******
 
@@ -131,19 +148,19 @@
 
 - 属性
 
-  > | 所属   | 参数         | 数据类型   | 数据说明 | 数据示例                                     |
-  > | :--- | :--------- | :----- | :--- | :--------------------------------------- |
-  > | -    | nick       | string | 类型   | cuppi                                    |
-  > | -    | insertTime | string | 插入时间 | 2017-04-19 01:50:26                      |
-  > | -    | score      | string | 评分   | 5                                        |
-  > | -    | sureViewed | string | ?    | 1                                        |
-  > | -    | approve    | int    | 点赞   | 709                                      |
-  > | -    | filmId     | int    | ?    | 248700                                   |
-  > | -    | oppose     | int    | ?    | 0                                        |
-  > | -    | spoiler    | int    | ?    | 0                                        |
-  > | -    | id         | int    | ?    | 102450041                                |
-  > | -    | time       | string | 评论时间 | 2017-04-14 02:57                         |
-  > | -    | content    | string | 内容   | 从2001年的速1一直追到2017年的速8，从不会飙车的毛头小子，到独挡一面团队领袖。保罗的离去让 |
+  > | 所属   | 参数         | 数据类型   | 数据说明 | 数据示例                  |
+  > | :--- | :--------- | :----- | :--- | :-------------------- |
+  > | -    | nick       | string | 类型   | cuppi                 |
+  > | -    | insertTime | string | 插入时间 | 2017-04-19 01:50:26   |
+  > | -    | score      | string | 评分   | 5                     |
+  > | -    | sureViewed | string | ?    | 1                     |
+  > | -    | approve    | int    | 点赞   | 709                   |
+  > | -    | filmId     | int    | ?    | 248700                |
+  > | -    | oppose     | int    | ?    | 0                     |
+  > | -    | spoiler    | int    | ?    | 0                     |
+  > | -    | id         | int    | ?    | 102450041             |
+  > | -    | time       | string | 评论时间 | 2017-04-14 02:57      |
+  > | -    | content    | string | 内容   | 从2001年的速1一直追到2017年的速8 |
 
 ******
 
@@ -156,18 +173,19 @@
 
 - 属性
 
-  | 所属   | 参数           | 数据类型                                    | 数据说明   | 数据示例                 |
-  | :--- | :----------- | :-------------------------------------- | :----- | :------------------- |
-  | -    | name         | string                                  | 名称     | 大地影院罗宾森店             |
-  | -    | address      | string                                  | 地址     | 上海市嘉定区城中路138号罗宾森广场4楼 |
-  | -    | distance     | int                                     | 距离     | 12351.6              |
-  | -    | compareCount | int                                     | 平台数量   | 4                    |
-  | -    | cinemaNames  | Array \<[EnumPlatform](#EnumPlatform)\> | 平台名字列表 | ["dazhong","baidu"]  |
-  | -    | showTime     | string                                  | ?      | 2017-04-19 18:15     |
-  | -    | id           | string                                  | 金保证Id  | 802965               |
-  | -    | minJbzPrice  | int                                     | 金保证价格  | 33                   |
-  | -    | price        | int                                     | 价格     | 33                   |
-  | -    | minPrice     | int                                     | 最低价格   | 33                   |
+  | 所属   | 参数           | 数据类型                                    | 数据说明     | 数据示例                 |
+  | :--- | :----------- | :-------------------------------------- | :------- | :------------------- |
+  | -    | name         | string                                  | 名称       | 大地影院罗宾森店             |
+  | -    | address      | string                                  | 地址       | 上海市嘉定区城中路138号罗宾森广场4楼 |
+  | -    | distance     | int                                     | 距离       | 12351.6              |
+  | -    | compareCount | int                                     | 平台数量     | 4                    |
+  | -    | cinemaNames  | Array \<[EnumPlatform](#EnumPlatform)\> | 平台名字列表   | ["dazhong","baidu"]  |
+  | -    | showTime     | string                                  | ?        | 2017-04-19 18:15     |
+  | -    | id           | string                                  | 金保证Id    | 802965               |
+  | -    | minJbzPrice  | int                                     | 金保证价格    | 33                   |
+  | -    | price        | int                                     | 价格       | 33                   |
+  | -    | minPrice     | int                                     | 最低价格     | 33                   |
+  | -    | phone        | string                                  | 影院电话（可空） | 021-12345678         |
 
 *****
 
@@ -229,13 +247,13 @@
   | 所属   | 参数           | 数据类型   | 数据说明     | 数据示例  |
   | :--- | :----------- | :----- | :------- | :---- |
   | -    | compareCount | int    | 比价平台个数   | 1     |
-  | -    | data         | Array  | 比价平台原始数据 | -     |
+  | -    | showItems    | Array  | 比价平台原始数据 | -     |
   | -    | dimensional  | string | 放映类型     | 3D    |
   | -    | minJbzPrice  | int    | 金保证最低价格  | 43    |
   | -    | minPrice     | int    | 最低价格     | 43    |
   | -    | showTime     | string | 放映时间     | 15:00 |
   | -    | endTime      | string | 结束时间     | 17:16 |
-  | -    | lg           | string | 语言       | 英语    |
+  | -    | language     | string | 语言       | 英语    |
   | -    | hallName     | string | 放映厅名字    | 一号厅   |
 
 ******
@@ -316,6 +334,23 @@
 
 ***
 
+### 模型：LoginModel
+
+- 描述
+
+  > 登录请求模型
+
+
+- 属性
+
+  > | 所属   | 参数   | 数据类型 | 数据说明 | 数据示例 |
+  > | ---- | ---- | ---- | ---- | ---- |
+  > | -    |      |      |      |      |
+  > | -    |      |      |      |      |
+  > | -    |      |      |      |      |
+
+***
+
 ### 模型：SmartRowModel
 
 - 描述
@@ -353,7 +388,30 @@
 
 *****
 
-模型： PageModel
+### 模型：SmartSeatModel
+
+- 描述
+
+  > 智能座位模型
+
+
+- 属性
+
+  > | 所属   | 参数          | 数据类型                                    | 数据说明   | 数据示例 |
+  > | ---- | ----------- | --------------------------------------- | ------ | ---- |
+  > | -    | col         | number                                  | 抽象列坐标  | 1    |
+  > | -    | row         | number                                  | 抽象行坐标  | 1    |
+  > | -    | colNumber   | number                                  | 列号     | 1    |
+  > | -    | rowNumber   | number                                  | 行号     | 1    |
+  > | -    | colLocation | number                                  | 列坐标    | 38   |
+  > | -    | rowLocation | number                                  | 行坐标    | 38   |
+  > | -    | loveIndex   | [EnumSeatLoveIndex](#EnumSeatLoveIndex) | 情侣座标识  | 0    |
+  > | -    | status      | [EnumSeatStatus](#EnumSeatStatus)       | 座位状态标识 | 1    |
+  > | -    | seatModel   | number                                  | 原生座位模型 | -    |
+
+*****
+
+### 模型：PageModel
 
 - 描述
 
@@ -367,4 +425,55 @@
   > | -    | index | number | 页号索引 | 1    |
   > | -    | size  | number | 每页尺寸 | 5    |
 
-### 
+*******
+
+### 模型：CinemaFilterModel
+
+- 描述
+
+  > 影院筛选条件
+
+
+- 属性
+
+  > | 所属   | 参数      | 数据类型   | 数据说明    | 数据示例                             |
+  > | ---- | ------- | ------ | ------- | -------------------------------- |
+  > | -    | filmId  | string | 金保证影片id | c28429848bc448b98164d6ad6c2db1d7 |
+  > | -    | feature | string | 特色      | 3D                               |
+  > | -    | region  | string | 地区名字    | 徐汇区                              |
+  > | -    | sort    | number | 排序方式    | 1                                |
+  > | -    | limit   | string | 查询数量    | 10                               |
+
+******
+
+## 模块：JNetwork(Enum)
+
+### 枚举：EnumSeatLoveIndex
+
+- 描述
+
+  > 情侣座标识
+
+
+- 属性
+
+  | 类型     | 枚举   | 说明     |
+  | ------ | ---- | ------ |
+  | number | 0    | 非情侣座   |
+  | *      | 1    | 情侣座（左） |
+  | *      | 2    | 情侣座（右） |
+
+*******
+
+### 枚举：EnumSeatStatus
+
+- 描述
+
+  > 座位状态标识
+
+- 属性
+
+  > | 类型     | 枚举   | 说明      |
+  > | ------ | ---- | ------- |
+  > | number | 0    | 座位可以选定  |
+  > | *      | 1    | 座位已经被选定 |
