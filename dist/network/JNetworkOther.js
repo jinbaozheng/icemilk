@@ -5,6 +5,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
 var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
@@ -17,7 +21,11 @@ var _JNetwork = require('./JNetwork.js');
 
 var _JNetwork2 = _interopRequireDefault(_JNetwork);
 
-var _JUrlList = require('../constant/JUrlList');
+var _JUrlList = require('../unify/JUrlList');
+
+var _JDataUnify = require('../unify/JDataUnify');
+
+var _JDataUnify2 = _interopRequireDefault(_JDataUnify);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43,14 +51,16 @@ var NetworkOtherManager = function () {
     }
   }, {
     key: 'otherBanners',
-    value: function otherBanners(cityId) {
-      if (cityId) {
+    value: function otherBanners(location, cityId) {
+      return new _promise2.default(function (resolve, reject) {
         return _JNetwork2.default.POST(_JUrlList.otherUrl.jbzBanners, {
-          cityId: cityId
+          location: location, cityId: cityId
+        }).then(function (data) {
+          resolve((0, _JDataUnify2.default)('otherUrl.jbzBanners', data));
+        }, function (error) {
+          reject(error);
         });
-      } else {
-        return _JNetwork2.default.POST(_JUrlList.otherUrl.jbzBanners, {});
-      }
+      });
     }
   }]);
   return NetworkOtherManager;

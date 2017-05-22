@@ -17,7 +17,7 @@ var _JNetwork = require('./JNetwork.js');
 
 var _JNetwork2 = _interopRequireDefault(_JNetwork);
 
-var _JUrlList = require('../constant/JUrlList');
+var _JUrlList = require('../unify/JUrlList');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

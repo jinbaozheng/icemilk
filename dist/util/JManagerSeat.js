@@ -61,22 +61,24 @@ var SeatManager = function () {
   }
 
   (0, _createClass3.default)(SeatManager, [{
-    key: 'smartSeatDataFromSeats',
-    value: function smartSeatDataFromSeats(type, seatData) {
+    key: 'smartSeatsFromSeats',
+    value: function smartSeatsFromSeats(type, seatData) {
       var seatList = this.unitySeatWithSeatData(type, seatData);
 
-      var smartSeats = this.smartSeatsWithSeats(type, seatList);
+      return this.smartSeatsWithSeats(type, seatList);
+    }
+  }, {
+    key: 'smartSeatDataFromSmartSeats',
+    value: function smartSeatDataFromSmartSeats(type, smartSeats) {
       var seatRowData = this.rowDataFromSmartSeats(smartSeats);
       var seatContentData = this.seatContentDataFromSmartSeats(smartSeats);
       return (0, _extends3.default)({ smartSeats: smartSeats, seatRowData: seatRowData }, seatContentData);
     }
   }, {
-    key: 'smartSeatsFromSeats',
-    value: function smartSeatsFromSeats(type, seatData) {
-      var seatList = this.unitySeatWithSeatData(type, seatData);
-
-      var smartSeats = this.smartSeatsWithSeats(type, seatList);
-      return smartSeats;
+    key: 'smartSeatDataFromSeats',
+    value: function smartSeatDataFromSeats(type, seatData) {
+      var smartSeats = this.smartSeatsFromSeats(type, seatData);
+      return this.smartSeatDataFromSmartSeats(type, smartSeats);
     }
   }, {
     key: 'unitySeatWithSeatData',
@@ -483,7 +485,7 @@ var SeatManager = function () {
       if (platform === 'wangpiao') {
         paras = {
           cinemaId: screening.cinemaId,
-          showId: screening.showIndex
+          showId: screening.showId
         };
       }
 
@@ -497,13 +499,13 @@ var SeatManager = function () {
 
       if (platform === 'maizuo') {
         paras = {
-          showId: screening.foretellId
+          showId: screening.showId
         };
       }
 
       if (platform === 'danche') {
         paras = {
-          showId: screening.id
+          showId: screening.showId
         };
       }
 
@@ -515,7 +517,7 @@ var SeatManager = function () {
 
       if (platform === 'baidu') {
         paras = {
-          showId: screening.seqid
+          showId: screening.showId
         };
       }
       return paras;

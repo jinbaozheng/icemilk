@@ -25,15 +25,15 @@ var _JNetwork = require('./JNetwork.js');
 
 var _JNetwork2 = _interopRequireDefault(_JNetwork);
 
-var _JUrlList = require('../constant/JUrlList');
-
-var _JToolObject = require('../tool/JToolObject');
-
-var _JToolObject2 = _interopRequireDefault(_JToolObject);
+var _JUrlList = require('../unify/JUrlList');
 
 var _JToolDate = require('../tool/JToolDate');
 
 var _JToolDate2 = _interopRequireDefault(_JToolDate);
+
+var _JDataUnify = require('../unify/JDataUnify');
+
+var _JDataUnify2 = _interopRequireDefault(_JDataUnify);
 
 var _JManagerSeat = require('../util/JManagerSeat');
 
@@ -51,9 +51,7 @@ var NetworkCinemaManager = function () {
     value: function cinemaDetail(cinemaId) {
       return new _promise2.default(function (resolve, reject) {
         _JNetwork2.default.POST(_JUrlList.cinemaUrl.jbzDetail, { cinemaId: cinemaId }).then(function (data) {
-          data.cinema.phone = data.phone;
-          _JToolObject2.default.deleteProperty(data.cinema, 'tails');
-          resolve(data.cinema);
+          resolve((0, _JDataUnify2.default)('cinemaUrl.jbzDetail', data));
         }, function (error) {
           reject(error);
         });
@@ -77,7 +75,7 @@ var NetworkCinemaManager = function () {
           orderType: sort,
           limit: limit
         })).then(function (data) {
-          resolve(data.cinemalist);
+          resolve((0, _JDataUnify2.default)('cinemaUrl.jbzList', data));
         }, function (error) {
           reject(error);
         });
@@ -101,10 +99,7 @@ var NetworkCinemaManager = function () {
         return _JNetwork2.default.POST(_JUrlList.cinemaUrl.jbzScreeningFilmList, {
           cinemaId: cinemaId
         }, account).then(function (data) {
-          resolve(data.films.map(function (film) {
-            _JToolObject2.default.deleteProperty(film, 'tails');
-            return film;
-          }));
+          resolve((0, _JDataUnify2.default)('cinemaUrl.jbzScreeningFilmList', data));
         }, function (error) {
           reject(error);
         });
@@ -115,9 +110,7 @@ var NetworkCinemaManager = function () {
     value: function cinemaScreeningDateList(cinemaId, filmId) {
       return new _promise2.default(function (resolve, reject) {
         _JNetwork2.default.POST(_JUrlList.cinemaUrl.jbzScreeningDateList, { cinemaId: cinemaId, filmId: filmId }).then(function (data) {
-          resolve(data.filmShowDates.map(function (date) {
-            return _JToolDate2.default.timeIntervalFromDate(date);
-          }));
+          resolve((0, _JDataUnify2.default)('cinemaUrl.jbzScreeningDateList', data));
         }, function (error) {
           reject(error);
         });
@@ -129,7 +122,7 @@ var NetworkCinemaManager = function () {
       return new _promise2.default(function (resolve, reject) {
         date = _JToolDate2.default.dateFromTimeInterval(date, 'yyyy-MM-dd');
         _JNetwork2.default.POST(_JUrlList.cinemaUrl.jbzScreeningItems, { cinemaId: cinemaId, filmId: filmId, date: date }).then(function (data) {
-          resolve(data.filmShows);
+          resolve((0, _JDataUnify2.default)('cinemaUrl.jbzScreeningItems', data));
         }, function (error) {
           reject(error);
         });
@@ -143,7 +136,7 @@ var NetworkCinemaManager = function () {
       }
       return new _promise2.default(function (resolve, reject) {
         _JNetwork2.default.POST(_JUrlList.cinemaUrl.jbzRealtimeSeat, (0, _extends3.default)({ type: type }, paras)).then(function (data) {
-          resolve(data.realTimeSeats);
+          resolve((0, _JDataUnify2.default)('cinemaUrl.jbzRealtimeSeat', data));
         }, function (error) {
           reject(error);
         });
@@ -157,8 +150,7 @@ var NetworkCinemaManager = function () {
       }
       return new _promise2.default(function (resolve, reject) {
         _JNetwork2.default.POST(_JUrlList.cinemaUrl.jbzRealtimeSeat, (0, _extends3.default)({ type: type }, paras)).then(function (data) {
-          var smartSeatList = _JManagerSeat2.default.defaultManager().smartSeatsFromSeats(type, data.realTimeSeats);
-          resolve(smartSeatList);
+          resolve(_JManagerSeat2.default.defaultManager().smartSeatsFromSeats(type, (0, _JDataUnify2.default)('cinemaUrl.jbzRealtimeSmartSeat', data)));
         }, function (error) {
           reject(error);
         });

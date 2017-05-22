@@ -3,9 +3,8 @@
  */
 'use strict';
 import NetworkManager from './JNetwork.js';
-import {filmUrl} from '../constant/JUrlList';
-import ObjectTool from '../tool/JToolObject';
-import DateTool from '../tool/JToolDate';
+import {filmUrl} from '../unify/JUrlList';
+import _ from '../unify/JDataUnify';
 
 class NetworkFilmManager {
 
@@ -18,7 +17,7 @@ class NetworkFilmManager {
     if (!page) {
       return new Promise((resolve, reject) => {
         NetworkManager.POST(filmUrl.jbzHotFilms).then(data => {
-          resolve(data.hotFilms);
+          resolve(_('filmUrl.jbzHotFilms', data));
         }, error => {
           reject(error);
         });
@@ -26,7 +25,7 @@ class NetworkFilmManager {
     } else {
       return new Promise((resolve, reject) => {
         NetworkManager.POST(filmUrl.jbzHotFilmsPage, {page: page.index, size: page.size}).then(data => {
-          resolve(data.hotFilms);
+          resolve(_('filmUrl.jbzHotFilmsPage', data));
         }, error => {
           reject(error);
         });
@@ -41,10 +40,7 @@ class NetworkFilmManager {
   static filmHotfilmsSimple() {
     return new Promise((resolve, reject) => {
       NetworkManager.POST(filmUrl.jbzHotFilmsSimple).then(data => {
-        resolve(data.hotFilms.map(film => {
-          ObjectTool.deleteProperty(film, 'tails');
-          return film;
-        }));
+        resolve(_('filmUrl.jbzHotFilmsSimple', data));
       }, error => {
         reject(error);
       });
@@ -60,7 +56,7 @@ class NetworkFilmManager {
     if (!page) {
       return new Promise((resolve, reject) => {
         NetworkManager.POST(filmUrl.jbzWaitFilms).then(data => {
-          resolve(data.filmsList);
+          resolve(_('filmUrl.jbzWaitFilms', data));
         }, error => {
           reject(error);
         });
@@ -68,7 +64,7 @@ class NetworkFilmManager {
     } else {
       return new Promise((resolve, reject) => {
         NetworkManager.POST(filmUrl.jbzWaitFilmsPage, {page: page.index, size: page.size}).then(data => {
-          resolve(data.filmsList);
+          resolve(_('filmUrl.jbzWaitFilmsPage', data));
         }, error => {
           reject(error);
         });
@@ -86,8 +82,7 @@ class NetworkFilmManager {
     if (platform && platform !== 'jbz') {
       return new Promise((resolve, reject) => {
         NetworkManager.POST(filmUrl.jbzFilmDetailByPartner, {platformFilmId: filmId, platform}).then(data => {
-          ObjectTool.deleteProperty(data.film, 'tails');
-          resolve(data.film);
+          resolve(_('filmUrl.jbzFilmDetailByPartner', data));
         }, error => {
           reject(error);
         });
@@ -95,8 +90,7 @@ class NetworkFilmManager {
     } else {
       return new Promise((resolve, reject) => {
         NetworkManager.POST(filmUrl.jbzFilmDetail, {filmId}).then(data => {
-          ObjectTool.deleteProperty(data.film, 'tails');
-          resolve(data.film);
+          resolve(_('filmUrl.jbzFilmDetail', data));
         }, error => {
           reject(error);
         });
@@ -113,18 +107,16 @@ class NetworkFilmManager {
   static filmDateList(filmId, cityId) {
     return new Promise((resolve, reject) => {
       NetworkManager.POST(filmUrl.jbzFilmDate, {filmId, cityId}).then(data => {
-        resolve(data.filmDate.map(dateString => {
-          return DateTool.timeIntervalFromDate(dateString);
-        }));
+        resolve(_('filmUrl.jbzFilmDate', data));
       }, error => {
         reject(error);
       })
     })
   }
 
-  static filmDateListNeedCity(filmId){
+  static filmDateListNeedCity(filmId) {
     console.log(NetworkManager.locationParas().cityId);
-   return JNetworkFilm.filmDateList(filmId, NetworkManager.locationParas().cityId)
+    return JNetworkFilm.filmDateList(filmId, NetworkManager.locationParas().cityId)
   }
 
 }

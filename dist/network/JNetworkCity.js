@@ -25,11 +25,11 @@ var _JNetwork = require('./JNetwork');
 
 var _JNetwork2 = _interopRequireDefault(_JNetwork);
 
-var _JUrlList = require('../constant/JUrlList');
+var _JUrlList = require('../unify/JUrlList');
 
-var _JToolObject = require('../tool/JToolObject');
+var _JDataUnify = require('../unify/JDataUnify');
 
-var _JToolObject2 = _interopRequireDefault(_JToolObject);
+var _JDataUnify2 = _interopRequireDefault(_JDataUnify);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -39,16 +39,11 @@ var NetworkCityManager = function () {
   }
 
   (0, _createClass3.default)(NetworkCityManager, null, [{
-    key: '_netCityToCity',
-    value: function _netCityToCity(city) {
-      return { id: city.id, name: city.city_name, latin: city.city_en };
-    }
-  }, {
     key: 'cityList',
     value: function cityList() {
       return new _promise2.default(function (resolve, reject) {
         _JNetwork2.default.POST(_JUrlList.cityUrl.jbzCities).then(function (data) {
-          resolve(data.cities.map(NetworkCityManager._netCityToCity));
+          resolve((0, _JDataUnify2.default)('cityUrl.jbzCities', data));
         }, function (error) {
           reject(error);
         });
@@ -59,9 +54,7 @@ var NetworkCityManager = function () {
     value: function cityByCoordinate(coordinate) {
       return new _promise2.default(function (resolve, reject) {
         _JNetwork2.default.POST(_JUrlList.cityUrl.jbzCityByCoordinate, coordinate).then(function (data) {
-          var address = data.city.formatAddress;
-          _JToolObject2.default.deleteProperty(data.city, 'formatAddress');
-          resolve({ city: NetworkCityManager._netCityToCity(data.city), address: address });
+          resolve((0, _JDataUnify2.default)('cityUrl.jbzCityByCoordinate', data));
         }, function (error) {
           reject(error);
         });
@@ -72,9 +65,7 @@ var NetworkCityManager = function () {
     value: function cityNeedCoordinate() {
       return new _promise2.default(function (resolve, reject) {
         _JNetwork2.default.POST(_JUrlList.cityUrl.jbzCityByCoordinate, (0, _extends3.default)({}, _JNetwork2.default.locationParas())).then(function (data) {
-          var address = data.city.formatAddress;
-          _JToolObject2.default.deleteProperty(data.city, 'formatAddress');
-          resolve({ city: NetworkCityManager._netCityToCity(data.city), address: address });
+          resolve((0, _JDataUnify2.default)('cityUrl.jbzCityByCoordinate', data));
         }, function (error) {
           reject(error);
         });
@@ -85,7 +76,7 @@ var NetworkCityManager = function () {
     value: function cityById(cityId) {
       return new _promise2.default(function (resolve, reject) {
         _JNetwork2.default.POST(_JUrlList.cityUrl.jbzCityById, { cityId: cityId }).then(function (data) {
-          resolve(NetworkCityManager._netCityToCity(data.city));
+          resolve((0, _JDataUnify2.default)('cityUrl.jbzCityById', data));
         }, function (error) {
           reject(error);
         });
@@ -96,9 +87,7 @@ var NetworkCityManager = function () {
     value: function cityDistrictList(cityId) {
       return new _promise2.default(function (resolve, reject) {
         _JNetwork2.default.POST(_JUrlList.cityUrl.jbzDistricts, { cityId: cityId }).then(function (data) {
-          resolve(data.districts.map(function (district) {
-            return { id: district.id, name: district.tails.Name };
-          }));
+          resolve((0, _JDataUnify2.default)('cityUrl.jbzDistricts', data));
         }, function (error) {
           reject(error);
         });
@@ -109,7 +98,7 @@ var NetworkCityManager = function () {
     value: function cityHotList() {
       return new _promise2.default(function (resolve, reject) {
         _JNetwork2.default.POST(_JUrlList.cityUrl.jbzHotCities).then(function (data) {
-          resolve(data.hotCities.map(NetworkCityManager._netCityToCity));
+          resolve((0, _JDataUnify2.default)('cityUrl.jbzHotCities', data));
         }, function (error) {
           reject(error);
         });

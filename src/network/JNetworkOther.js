@@ -3,7 +3,8 @@
  */
 'use strict';
 import NetworkManager from './JNetwork.js';
-import {otherUrl} from '../constant/JUrlList';
+import {otherUrl} from '../unify/JUrlList';
+import _ from '../unify/JDataUnify';
 
 class NetworkOtherManager {
   /**
@@ -14,7 +15,7 @@ class NetworkOtherManager {
    * @returns {{terminate, then}|*}
    */
   static otherSearch(cityId, key, lastKey) {
-    if (cityId){
+    if (cityId) {
       // return NetworkManager.POST(otherUrl.jbzSearch, {
       //   cityId,
       //   queryStr: key,
@@ -26,7 +27,6 @@ class NetworkOtherManager {
         lastKey: lastKey
       });
     }
-
   }
 
   /**
@@ -41,14 +41,16 @@ class NetworkOtherManager {
    * 广告接口
    * @returns {{terminate, then}|*}
    */
-  static otherBanners(cityId) {
-    if (cityId){
+  static otherBanners(location, cityId) {
+    return new Promise((resolve, reject) => {
       return NetworkManager.POST(otherUrl.jbzBanners, {
-        cityId: cityId
+        location, cityId
+      }).then(data => {
+        resolve(_('otherUrl.jbzBanners', data));
+      }, error => {
+        reject(error);
       });
-    } else {
-      return NetworkManager.POST(otherUrl.jbzBanners, {})
-    }
+    })
   }
 }
 

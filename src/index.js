@@ -25,10 +25,14 @@ export {
 import ToolDate from './tool/JToolDate';
 import ToolNumber from './tool/JToolNumber';
 import ToolUrl from './tool/JToolUrl';
+import ToolString from './tool/JToolString';
+import ToolArray from './tool/JToolArray';
 export {
   ToolDate as JToolDate,
   ToolNumber as JToolNumber,
-  ToolUrl as JToolUrl
+  ToolUrl as JToolUrl,
+  ToolString as JToolString,
+  ToolArray as JToolArray
 };
 
 import JSDK from './util/JSDK';

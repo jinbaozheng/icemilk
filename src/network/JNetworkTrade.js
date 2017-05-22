@@ -3,7 +3,8 @@
  */
 'use strict';
 import NetworkManager from './JNetwork.js';
-import {tradeUrl} from '../constant/JUrlList';
+import {tradeUrl} from '../unify/JUrlList';
+import _ from '../unify/JDataUnify';
 
 class NetworkTradeManager {
   /**
@@ -14,7 +15,13 @@ class NetworkTradeManager {
    */
   static tradeLockSeatNeedLogin(type, paras) {
     let loginParas = NetworkManager.loginParas();
-    return NetworkManager.POST(tradeUrl.jbzLockSeat, {type, ...paras}, loginParas);
+    return new Promise((resolve, reject) => {
+      NetworkManager.POST(tradeUrl.jbzLockSeat, {type, ...paras}).then(data => {
+        resolve(_('tradeUrl.jbzLockSeat', data));
+      }, error => {
+        reject(error);
+      });
+    });
   }
 
   /**
@@ -32,16 +39,27 @@ class NetworkTradeManager {
    * @param paras 下订单参数
    * @returns {{terminate, then}|*}
    */
-  static tradeApplyOrderNeedLoginInType(type, paras) {
+  static tradeApplyOrderNeedLogin(type, paras) {
     let loginParas = NetworkManager.loginParas();
-    let inType = NetworkManager.inType();
-    if (inType === 'DPIOS' || inType === 'DPANDROID') {
-      return NetworkManager.POST(tradeUrl.jbzAppApplyTicket, {type, ...paras}, loginParas);
+    let inType = NetworkManager.inType;
+
+    if (inType === 'ICBC-APP' || inType === 'SHANGHAI-APP') {
+      return new Promise((resolve, reject) => {
+        NetworkManager.POST(tradeUrl.jbzWebAtAppApplyTicket, {type, ...paras}).then(data => {
+          resolve(_('tradeUrl.jbzWebAtAppApplyTicket', data));
+        }, error => {
+          reject(error);
+        });
+      });
     }
 
-    if (inType === 'DPWX' || inType === 'DPWEB' || inType === 'PC') {
-      return NetworkManager.POST(tradeUrl.jbzWepApplyTicket, {type, ...paras}, loginParas);
-    }
+    // if (inType === 'DPIOS' || inType === 'DPANDROID') {
+    //   return NetworkManager.POST(tradeUrl.jbzAppApplyTicket, {type, ...paras}, loginParas);
+    // }
+    //
+    // if (inType === 'DPWX' || inType === 'DPWEB' || inType === 'PC') {
+    //   return NetworkManager.POST(tradeUrl.jbzWepApplyTicket, {type, ...paras}, loginParas);
+    // }
 
     return NetworkManager.wrongInType();
   }
@@ -56,7 +74,7 @@ class NetworkTradeManager {
    */
   static tradePrePayOrderNeedLoginInType(orderId, payType, prizeIds, redIds) {
     let loginParas = NetworkManager.loginParas();
-    let inType = NetworkManager.inType();
+    let inType = NetworkManager.inType;
 
     if (inType === 'DPIOS' || inType === 'DPANDROID') {
       return NetworkManager.POST(tradeUrl.jbzAppPrepay, {orderId, payType, prizeIds, redIds}, loginParas);

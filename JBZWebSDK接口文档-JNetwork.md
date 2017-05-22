@@ -1,6 +1,6 @@
 [TOC]
 
-# 斗票WebSDK接口文档(v1.0.55)#
+# 斗票WebSDK接口文档(v1.0.61)#
 ## 模块：JNetwork(Class) 
 ###类：JNetwork
 
@@ -345,7 +345,8 @@
 
   > ```javascript
   > JNetworkFilm.filmHotfilms({index: 1, size: 5}).then((list) => {
-  >      console.log(list)
+  >      console.log(list)311614
+  >      
   > }, error => {
   >      console.log(error);
   > });
@@ -704,9 +705,9 @@
   > | paras | [SeatParasModel](#SeatParasModel) | （根据不同平台变化） |
 - 返回数据
 
-  > | 返回数据 | 数据类型             | 数据说明   |
-  > | :--- | :--------------- | :----- |
-  > | -    | Array<[Smart]()> | 异步请求封装 |
+  > | 返回数据 | 数据类型                                     | 数据说明 |
+  > | :--- | :--------------------------------------- | :--- |
+  > | -    | Array<[SmartSeatModel](#SmartSeatModel)> | 座位列表 |
 
 
 - 调用示例
@@ -1196,33 +1197,34 @@
   > ```
 *****
 
-##### 2.广告栏接口
+##### 2.广告列表
 
 - 方法
 
   > ```java
-  > static otherBanners(cityId = empty){}
+  > static otherBanners(field, cityId = empty){}
   > ```
 
 * 请求参数
 
-  > | 请求参数   | 数据类型 | 数据说明 |
-  > | :----- | :--- | :--- |
-  > | cityId | int  | 城市Id |
+  > | 请求参数   | 数据类型   | 数据说明                  |
+  > | :----- | :----- | :-------------------- |
+  > | field  | string | 广告应用位置( 01首页,02影院列表页) |
+  > | cityId | int    | 城市Id                  |
 - 返回数据
 
-  > | 返回数据 | 数据类型    | 数据说明   |
-  > | :--- | :------ | :----- |
-  > | -    | promise | 异步请求封装 |
+  > | 返回数据 | 数据类型                               | 数据说明 |
+  > | :--- | :--------------------------------- | :--- |
+  > | -    | Array<[BannerModel](#BannerModel)> | 广告列表 |
 
 
 - 调用示例
 
   > ```javascript
-  > JNetworkOther.bannersNeedCItyIdNeedLocation().then((data) => { 
-  >     console.log(data)
+  > JNetworkOther.otherBanners().then(list => {
+  >     console.log(list);
   > }, error => {
-  >      console.log(error);
+  >     console.log(error);
   > });
   > ```
 **************************************************************************************************

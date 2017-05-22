@@ -3,7 +3,7 @@
  */
 'use strict';
 import NetworkManager from './JNetwork.js';
-import {mineUrl} from '../constant/JUrlList';
+import {mineUrl} from '../unify/JUrlList';
 
 class NetworkMineManager {
 

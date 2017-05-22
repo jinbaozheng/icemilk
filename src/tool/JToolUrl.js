@@ -30,9 +30,18 @@ class UrlTool {
     return iUrl;
   }
 
-  /**
-   * 获取参数
-   */
+  static getUrlQuery(name) {
+    let reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`);
+    let result = window.location.search.substr(1).match(reg);
+    let inType = result ? decodeURIComponent(result[2]) : null;
+    return inType;
+  }
+
+  static getNowUrl() {
+    let nowUrl = window.location.href;
+    nowUrl = nowUrl.substring(0, nowUrl.indexOf('#/'));
+    return nowUrl
+  }
 }
 
 export default UrlTool;

@@ -3,9 +3,9 @@
  */
 'use strict';
 import NetworkManager from './JNetwork.js';
-import {cinemaUrl} from '../constant/JUrlList';
-import ObjectTool from '../tool/JToolObject';
+import {cinemaUrl} from '../unify/JUrlList';
 import DateTool from '../tool/JToolDate';
+import _ from '../unify/JDataUnify';
 import SeatManager from '../util/JManagerSeat';
 
 class NetworkCinemaManager {
@@ -17,9 +17,7 @@ class NetworkCinemaManager {
   static cinemaDetail(cinemaId) {
     return new Promise((resolve, reject) => {
       NetworkManager.POST(cinemaUrl.jbzDetail, {cinemaId}).then(data => {
-        data.cinema.phone = data.phone;
-        ObjectTool.deleteProperty(data.cinema, 'tails');
-        resolve(data.cinema);
+        resolve(_('cinemaUrl.jbzDetail', data));
       }, error => {
         reject(error);
       });
@@ -44,7 +42,7 @@ class NetworkCinemaManager {
         orderType: sort,
         limit
       }).then(data => {
-        resolve(data.cinemalist);
+        resolve(_('cinemaUrl.jbzList', data));
       }, error => {
         reject(error);
       });
@@ -76,10 +74,7 @@ class NetworkCinemaManager {
       return NetworkManager.POST(cinemaUrl.jbzScreeningFilmList, {
         cinemaId
       }, account).then(data => {
-        resolve(data.films.map(film => {
-          ObjectTool.deleteProperty(film, 'tails');
-          return film;
-        }));
+        resolve(_('cinemaUrl.jbzScreeningFilmList', data));
       }, error => {
         reject(error);
       });
@@ -95,9 +90,7 @@ class NetworkCinemaManager {
   static cinemaScreeningDateList(cinemaId, filmId) {
     return new Promise((resolve, reject) => {
       NetworkManager.POST(cinemaUrl.jbzScreeningDateList, {cinemaId, filmId}).then(data => {
-        resolve(data.filmShowDates.map(date => {
-          return DateTool.timeIntervalFromDate(date);
-        }));
+        resolve(_('cinemaUrl.jbzScreeningDateList', data));
       }, error => {
         reject(error);
       });
@@ -115,7 +108,7 @@ class NetworkCinemaManager {
     return new Promise((resolve, reject) => {
       date = DateTool.dateFromTimeInterval(date, 'yyyy-MM-dd');
       NetworkManager.POST(cinemaUrl.jbzScreeningItems, {cinemaId, filmId, date}).then(data => {
-        resolve(data.filmShows);
+        resolve(_('cinemaUrl.jbzScreeningItems', data));
       }, error => {
         reject(error);
       });
@@ -134,7 +127,7 @@ class NetworkCinemaManager {
     }
     return new Promise((resolve, reject) => {
       NetworkManager.POST(cinemaUrl.jbzRealtimeSeat, {type, ...paras}).then(data => {
-        resolve(data.realTimeSeats);
+        resolve(_('cinemaUrl.jbzRealtimeSeat', data));
       }, error => {
         reject(error);
       });
@@ -153,8 +146,7 @@ class NetworkCinemaManager {
     }
     return new Promise((resolve, reject) => {
       NetworkManager.POST(cinemaUrl.jbzRealtimeSeat, {type, ...paras}).then(data => {
-        let smartSeatList = SeatManager.defaultManager().smartSeatsFromSeats(type, data.realTimeSeats);
-        resolve(smartSeatList);
+        resolve(SeatManager.defaultManager().smartSeatsFromSeats(type, _('cinemaUrl.jbzRealtimeSmartSeat', data)));
       }, error => {
         reject(error);
       });

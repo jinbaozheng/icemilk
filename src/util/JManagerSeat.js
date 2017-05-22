@@ -54,7 +54,7 @@ class SeatManager {
     if (platform === 'wangpiao') {
       paras = {
         cinemaId: screening.cinemaId,
-        showId: screening.showIndex
+        showId: screening.showId
       }
     }
 
@@ -68,13 +68,13 @@ class SeatManager {
 
     if (platform === 'maizuo') {
       paras = {
-        showId: screening.foretellId
+        showId: screening.showId
       }
     }
 
     if (platform === 'danche') {
       paras = {
-        showId: screening.id
+        showId: screening.showId
       }
     }
 
@@ -86,25 +86,10 @@ class SeatManager {
 
     if (platform === 'baidu') {
       paras = {
-        showId: screening.seqid
+        showId: screening.showId
       }
     }
     return paras;
-  }
-
-  /**
-   * 对原始座位图进行智能转换
-   * @param type 平台类型
-   * @param seatData 座位图原始数据
-   * @returns {{smartSeats: Array, seatRowData: Array.<*>}} 智能座位图详细信息
-   */
-  smartSeatDataFromSeats(type, seatData) {
-    let seatList = this.unitySeatWithSeatData(type, seatData);
-    // 获取智能座位图
-    let smartSeats = this.smartSeatsWithSeats(type, seatList);
-    let seatRowData = this.rowDataFromSmartSeats(smartSeats);
-    let seatContentData = this.seatContentDataFromSmartSeats(smartSeats);
-    return {smartSeats, seatRowData, ...seatContentData};
   }
 
   /**
@@ -116,9 +101,33 @@ class SeatManager {
   smartSeatsFromSeats(type, seatData){
     let seatList = this.unitySeatWithSeatData(type, seatData);
     // 获取智能座位图
-    let smartSeats = this.smartSeatsWithSeats(type, seatList);
-    return smartSeats;
+    return this.smartSeatsWithSeats(type, seatList);
   }
+
+  /**
+   * 获取智能座位图元数据
+   * @param type 平台类型
+   * @param smartSeats 智能座位图
+   * @returns {{smartSeats: Array, seatRowData: Array.<*>}} 智能座位图详细信息
+   */
+  smartSeatDataFromSmartSeats(type, smartSeats) {
+    let seatRowData = this.rowDataFromSmartSeats(smartSeats);
+    let seatContentData = this.seatContentDataFromSmartSeats(smartSeats);
+    return {smartSeats, seatRowData, ...seatContentData};
+  }
+
+  /**
+   * 对原始座位图进行智能转换
+   * @param type 平台类型
+   * @param seatData 座位图原始数据
+   * @returns {{smartSeats: Array, seatRowData: Array.<*>}} 智能座位图详细信息
+   */
+  smartSeatDataFromSeats(type, seatData) {
+    // 获取智能座位图
+    let smartSeats = this.smartSeatsFromSeats(type, seatData);
+    return this.smartSeatDataFromSmartSeats(type, smartSeats);
+  }
+
 
   /** ***********************  下面的方法为内部方法  ******************** **/
 

@@ -3,7 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var cityUrl = exports.cityUrl = {
+
+
+var cityUrl = {
   jbzCities: '/location/cities',
   jbzCityByCoordinate: '/location/city',
   jbzCityById: '/location/citybyid',
@@ -11,7 +13,7 @@ var cityUrl = exports.cityUrl = {
   jbzHotCities: '/location/hotcities'
 };
 
-var cinemaUrl = exports.cinemaUrl = {
+var cinemaUrl = {
   jbzList: '/cinema/cinemas',
   jbzDetail: '/cinema/cinemaDetail',
   jbzScreeningFilmList: '/cinema/films',
@@ -20,7 +22,7 @@ var cinemaUrl = exports.cinemaUrl = {
   jbzRealtimeSeat: '/cinema/realtimeseats'
 };
 
-var filmUrl = exports.filmUrl = {
+var filmUrl = {
   jbzHotFilms: '/film/hotFilms',
   jbzHotFilmsPage: '/film/hotFilmsPage',
   jbzHotFilmsSimple: '/film/hotFilmsSimple',
@@ -31,9 +33,7 @@ var filmUrl = exports.filmUrl = {
   jbzFilmDate: '/film/filmDate'
 };
 
-var mineUrl = exports.mineUrl = {};
-
-var accountUrl = exports.accountUrl = {
+var accountUrl = {
   jbzLogin: '/account/login',
   jbzLogout: '/account/logout',
   jbzVerifycode: '/account/verifycode',
@@ -41,16 +41,15 @@ var accountUrl = exports.accountUrl = {
   jbzUpdatepass: '/account/updatepass'
 };
 
-var tradeUrl = exports.tradeUrl = {
-  jbzLockSeat: '/main/lockseat',
-  jbzAppApplyTicket: '/appapi/applyticket',
-  jbzWepApplyTicket: '/webapi/applyticket',
-  jbzCancelOrder: '/main/cancelOrder',
-  jbzAppPrepay: '/webapi/prepay',
-  jbzWebPrepay: '/appapi/prepay'
+var tradeUrl = {
+  jbzLockSeat: '/order/lockseat',
+
+  jbzWebAtAppApplyTicket: '/order/applyticket'
 };
 
-var otherUrl = exports.otherUrl = {
+var otherUrl = {
   jbzBanners: '/banner/banner',
   jbzSearch: '/main/search'
 };
+
+exports.default = { cityUrl: cityUrl, cinemaUrl: cinemaUrl, filmUrl: filmUrl, accountUrl: accountUrl, tradeUrl: tradeUrl, otherUrl: otherUrl };

@@ -3,7 +3,7 @@
  */
 'use strict';
 import NetworkManager from './JNetwork.js';
-import {accountUrl} from '../constant/JUrlList';
+import {accountUrl} from '../unify/JUrlList';
 
 class NetworkAccountManager {
   /**

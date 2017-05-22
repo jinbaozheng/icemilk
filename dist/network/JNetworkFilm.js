@@ -21,15 +21,11 @@ var _JNetwork = require('./JNetwork.js');
 
 var _JNetwork2 = _interopRequireDefault(_JNetwork);
 
-var _JUrlList = require('../constant/JUrlList');
+var _JUrlList = require('../unify/JUrlList');
 
-var _JToolObject = require('../tool/JToolObject');
+var _JDataUnify = require('../unify/JDataUnify');
 
-var _JToolObject2 = _interopRequireDefault(_JToolObject);
-
-var _JToolDate = require('../tool/JToolDate');
-
-var _JToolDate2 = _interopRequireDefault(_JToolDate);
+var _JDataUnify2 = _interopRequireDefault(_JDataUnify);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -44,7 +40,7 @@ var NetworkFilmManager = function () {
       if (!page) {
         return new _promise2.default(function (resolve, reject) {
           _JNetwork2.default.POST(_JUrlList.filmUrl.jbzHotFilms).then(function (data) {
-            resolve(data.hotFilms);
+            resolve((0, _JDataUnify2.default)('filmUrl.jbzHotFilms', data));
           }, function (error) {
             reject(error);
           });
@@ -52,7 +48,7 @@ var NetworkFilmManager = function () {
       } else {
         return new _promise2.default(function (resolve, reject) {
           _JNetwork2.default.POST(_JUrlList.filmUrl.jbzHotFilmsPage, { page: page.index, size: page.size }).then(function (data) {
-            resolve(data.hotFilms);
+            resolve((0, _JDataUnify2.default)('filmUrl.jbzHotFilmsPage', data));
           }, function (error) {
             reject(error);
           });
@@ -64,10 +60,7 @@ var NetworkFilmManager = function () {
     value: function filmHotfilmsSimple() {
       return new _promise2.default(function (resolve, reject) {
         _JNetwork2.default.POST(_JUrlList.filmUrl.jbzHotFilmsSimple).then(function (data) {
-          resolve(data.hotFilms.map(function (film) {
-            _JToolObject2.default.deleteProperty(film, 'tails');
-            return film;
-          }));
+          resolve((0, _JDataUnify2.default)('filmUrl.jbzHotFilmsSimple', data));
         }, function (error) {
           reject(error);
         });
@@ -79,7 +72,7 @@ var NetworkFilmManager = function () {
       if (!page) {
         return new _promise2.default(function (resolve, reject) {
           _JNetwork2.default.POST(_JUrlList.filmUrl.jbzWaitFilms).then(function (data) {
-            resolve(data.filmsList);
+            resolve((0, _JDataUnify2.default)('filmUrl.jbzWaitFilms', data));
           }, function (error) {
             reject(error);
           });
@@ -87,7 +80,7 @@ var NetworkFilmManager = function () {
       } else {
         return new _promise2.default(function (resolve, reject) {
           _JNetwork2.default.POST(_JUrlList.filmUrl.jbzWaitFilmsPage, { page: page.index, size: page.size }).then(function (data) {
-            resolve(data.filmsList);
+            resolve((0, _JDataUnify2.default)('filmUrl.jbzWaitFilmsPage', data));
           }, function (error) {
             reject(error);
           });
@@ -102,8 +95,7 @@ var NetworkFilmManager = function () {
       if (platform && platform !== 'jbz') {
         return new _promise2.default(function (resolve, reject) {
           _JNetwork2.default.POST(_JUrlList.filmUrl.jbzFilmDetailByPartner, { platformFilmId: filmId, platform: platform }).then(function (data) {
-            _JToolObject2.default.deleteProperty(data.film, 'tails');
-            resolve(data.film);
+            resolve((0, _JDataUnify2.default)('filmUrl.jbzFilmDetailByPartner', data));
           }, function (error) {
             reject(error);
           });
@@ -111,8 +103,7 @@ var NetworkFilmManager = function () {
       } else {
         return new _promise2.default(function (resolve, reject) {
           _JNetwork2.default.POST(_JUrlList.filmUrl.jbzFilmDetail, { filmId: filmId }).then(function (data) {
-            _JToolObject2.default.deleteProperty(data.film, 'tails');
-            resolve(data.film);
+            resolve((0, _JDataUnify2.default)('filmUrl.jbzFilmDetail', data));
           }, function (error) {
             reject(error);
           });
@@ -124,9 +115,7 @@ var NetworkFilmManager = function () {
     value: function filmDateList(filmId, cityId) {
       return new _promise2.default(function (resolve, reject) {
         _JNetwork2.default.POST(_JUrlList.filmUrl.jbzFilmDate, { filmId: filmId, cityId: cityId }).then(function (data) {
-          resolve(data.filmDate.map(function (dateString) {
-            return _JToolDate2.default.timeIntervalFromDate(dateString);
-          }));
+          resolve((0, _JDataUnify2.default)('filmUrl.jbzFilmDate', data));
         }, function (error) {
           reject(error);
         });

@@ -3,13 +3,10 @@
  */
 'use strict';
 import NetworkManager from './JNetwork';
-import {cityUrl} from '../constant/JUrlList';
-import ObjectTool from '../tool/JToolObject';
+import {cityUrl} from '../unify/JUrlList';
+import _ from '../unify/JDataUnify';
 
 class NetworkCityManager {
-  static _netCityToCity(city){
-    return {id: city.id, name: city.city_name, latin: city.city_en};
-  }
   /**
    *  获取城市列表
    * @returns {*}
@@ -17,7 +14,7 @@ class NetworkCityManager {
   static cityList() {
     return new Promise((resolve, reject) => {
       NetworkManager.POST(cityUrl.jbzCities).then(data => {
-        resolve(data.cities.map(NetworkCityManager._netCityToCity));
+        resolve(_('cityUrl.jbzCities', data));
       }, error => {
         reject(error);
       });
@@ -32,9 +29,7 @@ class NetworkCityManager {
   static cityByCoordinate(coordinate) {
     return new Promise((resolve, reject) => {
       NetworkManager.POST(cityUrl.jbzCityByCoordinate, coordinate).then(data => {
-        let address = data.city.formatAddress;
-        ObjectTool.deleteProperty(data.city, 'formatAddress');
-        resolve({city: NetworkCityManager._netCityToCity(data.city), address});
+        resolve(_('cityUrl.jbzCityByCoordinate', data));
       }, error => {
         reject(error);
       });
@@ -48,9 +43,7 @@ class NetworkCityManager {
   static cityNeedCoordinate() {
     return new Promise((resolve, reject) => {
       NetworkManager.POST(cityUrl.jbzCityByCoordinate, {...NetworkManager.locationParas()}).then(data => {
-        let address = data.city.formatAddress;
-        ObjectTool.deleteProperty(data.city, 'formatAddress');
-        resolve({city: NetworkCityManager._netCityToCity(data.city), address});
+        resolve(_('cityUrl.jbzCityByCoordinate', data));
       }, error => {
         reject(error);
       });
@@ -65,7 +58,7 @@ class NetworkCityManager {
   static cityById(cityId) {
     return new Promise((resolve, reject) => {
       NetworkManager.POST(cityUrl.jbzCityById, {cityId}).then(data => {
-        resolve(NetworkCityManager._netCityToCity(data.city));
+        resolve(_('cityUrl.jbzCityById', data));
       }, error => {
         reject(error);
       });
@@ -80,9 +73,7 @@ class NetworkCityManager {
   static cityDistrictList(cityId) {
     return new Promise((resolve, reject) => {
       NetworkManager.POST(cityUrl.jbzDistricts, {cityId}).then(data => {
-        resolve(data.districts.map(district => {
-          return {id: district.id, name: district.tails.Name};
-        }));
+        resolve(_('cityUrl.jbzDistricts', data));
       }, error => {
         reject(error);
       });
@@ -95,11 +86,11 @@ class NetworkCityManager {
    */
   static cityHotList() {
     return new Promise((resolve, reject) => {
-       NetworkManager.POST(cityUrl.jbzHotCities).then(data => {
-         resolve(data.hotCities.map(NetworkCityManager._netCityToCity));
-       }, error => {
-         reject(error);
-       });
+      NetworkManager.POST(cityUrl.jbzHotCities).then(data => {
+        resolve(_('cityUrl.jbzHotCities', data));
+      }, error => {
+        reject(error);
+      });
     });
   }
 }

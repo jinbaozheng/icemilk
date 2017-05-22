@@ -1,6 +1,6 @@
 [TOC]
 
-# 斗票WebSDK接口文档
+# 斗票WebSDK接口文档（v1.0.61）
 
 ## 模块：JModel(Class)
 
@@ -443,6 +443,37 @@
   > | -    | region  | string | 地区名字    | 徐汇区                              |
   > | -    | sort    | number | 排序方式    | 1                                |
   > | -    | limit   | string | 查询数量    | 10                               |
+
+******
+
+### 模型：BannerModel
+
+- 描述
+
+  > 广告模型
+
+- 属性
+
+  > | 所属   | 参数          | 数据类型   | 数据说明 | 数据示例                |
+  > | ---- | :---------- | ------ | ---- | ------------------- |
+  > | -    | bannerName  | string | 名字   | 金刚骷髅岛               |
+  > | -    | createdTime | number | 创建时间 | 1490603900000       |
+  > | -    | createdUser | string | 创建人  | liuli               |
+  > | -    | description | string | 描述   | 十几个                 |
+  > | -    | endTime     | number | 结束时间 | 1490949492000       |
+  > | -    | field       | ?      | ？    | null                |
+  > | -    | filmId      | string | 影片Id | 26592               |
+  > | -    | filmName    | string | 影院名称 | 金刚骷髅岛               |
+  > | -    | id          | number | id   | 48                  |
+  > | -    | imgUrl      | string | 图片地址 | http://t.cn/RaXlplV |
+  > | -    | isDelete    | string | 是否删除 | N                   |
+  > | -    | location    | ?      | 定位   | null                |
+  > | -    | priority    | number | 优先级  | 1                   |
+  > | -    | startTime   | number | 开始时间 | 1490603886000       |
+  > | -    | status      | string | 状态   | Y                   |
+  > | -    | type        | string | 平台类型 | wangpiao            |
+  > | -    | updateTime  | number | 更新时间 | 1490603900000       |
+  > | -    | updateUser  | string | 更新人  | liuli               |
 
 ******
 

@@ -16,6 +16,10 @@ var _JNetwork = require('./JNetwork');
 
 var _JNetwork2 = _interopRequireDefault(_JNetwork);
 
+var _JUrlList = require('../unify/JUrlList');
+
+var _JDataUnify = require('../unify/JDataUnify');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var NetworkConfig = function () {
@@ -29,6 +33,12 @@ var NetworkConfig = function () {
       _JNetwork2.default.baseUrl = config.baseUrl;
       _JNetwork2.default.inType = config.inType;
       _JNetwork2.default.delegate = config.delegate;
+      if (config.inType) {
+        (0, _JUrlList.UseConfig)(config.inType);
+        (0, _JDataUnify.UseConfig)(config.inType);
+      } else {
+        console.log('Didn\'t find out the inType value, do you forget the inType at config ?');
+      }
     }
   }]);
   return NetworkConfig;
