@@ -21,12 +21,12 @@ var _JUrlList = require('../unify/JUrlList');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var NetworkMineManager = function () {
-  function NetworkMineManager() {
-    (0, _classCallCheck3.default)(this, NetworkMineManager);
+var JNetworkMine = function () {
+  function JNetworkMine() {
+    (0, _classCallCheck3.default)(this, JNetworkMine);
   }
 
-  (0, _createClass3.default)(NetworkMineManager, null, [{
+  (0, _createClass3.default)(JNetworkMine, null, [{
     key: 'mineOrderNeedLogin',
     value: function mineOrderNeedLogin() {
       var loginParas = _JNetwork2.default.loginParas();
@@ -59,7 +59,7 @@ var NetworkMineManager = function () {
       });
     }
   }]);
-  return NetworkMineManager;
+  return JNetworkMine;
 }();
 
-exports.default = NetworkMineManager;
+exports.default = JNetworkMine;

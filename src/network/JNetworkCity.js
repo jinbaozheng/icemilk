@@ -6,7 +6,11 @@ import NetworkManager from './JNetwork';
 import {cityUrl} from '../unify/JUrlList';
 import _ from '../unify/JDataUnify';
 
-class NetworkCityManager {
+/**
+ * 城市及定位接口
+ * @alias network/JNetworkCity
+ */
+class JNetworkCity {
   /**
    *  获取城市列表
    * @returns {*}
@@ -95,4 +99,4 @@ class NetworkCityManager {
   }
 }
 
-export default NetworkCityManager;
+export default JNetworkCity;

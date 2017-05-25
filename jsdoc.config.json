@@ -1,0 +1,42 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc","closure"]
+  },
+  "source": {
+    "includePattern": ".+\\.js(doc|x)?$",
+    "excludePattern": "(node_modules/|docs)"
+  },
+  "plugins": ["node_modules/jsdoc-babel"],
+  "babel": {
+    "extensions": ["js", "es6", "jsx"],
+    "presets": [
+      "stage-2"
+    ],
+    "comments": true,
+    "babelrc": false
+  },
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false,
+    "systemName"            : "JBZWebSDK",
+    "footer"                : "",
+    "copyright"             :  "Shanghai jinbaozheng easy network technology Co.,Ltd sdk copyright",
+    "includeDate"           : true,
+    "navType"               : "{vertical}",
+    "theme"                 : "superhero",
+    "linenums"              : false,
+    "collapseSymbols"       : true,
+//    "analytics"             : true,
+//    "inverseNav"            : "{boolean}",
+    "outputSourceFiles"     : true,
+    "outputSourcePath"      : true,
+    "dateFormat"            : false,
+    "syntaxTheme"           : "default",
+//    "sort"					: "{boolean|string}",
+    "search"                : true
+  },
+  "opts": {
+//    "template": "node_modules/minami"
+  }
+}

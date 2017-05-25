@@ -24,22 +24,36 @@ var DateTool = function () {
   }
 
   (0, _createClass3.default)(DateTool, null, [{
+    key: 'timeIntervalFromDateString',
+    value: function timeIntervalFromDateString(dateString) {
+      return DateTool.timeIntervalFromDate(new Date(dateString));
+    }
+  }, {
     key: 'timeIntervalFromDate',
-    value: function timeIntervalFromDate(dateString) {
-      var stringTime = dateString;
-      var timestamp2 = Date.parse(new Date(stringTime));
-      timestamp2 = timestamp2 / 1000;
-      return timestamp2;
+    value: function timeIntervalFromDate(date) {
+      return Date.parse(date) / 1000;
+    }
+  }, {
+    key: 'dateStringFromTimeInterval',
+    value: function dateStringFromTimeInterval(timeInterval, format) {
+      if (format) {
+        return DateTool.dateStringFromDate(new Date(timeInterval * 1000), format);
+      } else {
+        return DateTool.dateStringFromDate(new Date(timeInterval * 1000), 'yyyy-MM-dd hh:mm:ss');
+      }
     }
   }, {
     key: 'dateFromTimeInterval',
-    value: function dateFromTimeInterval(timeInterval, format) {
-      return DateTool.formatDateToString(new Date(timeInterval * 1000), format);
+    value: function dateFromTimeInterval(timeInterval) {
+      return new Date(timeInterval * 1000);
     }
   }, {
     key: 'distanceBetweenTimeInterval',
-    value: function distanceBetweenTimeInterval(leftTimeInterval, rightTimeInterval) {
-      var distance = rightTimeInterval - leftTimeInterval;
+    value: function distanceBetweenTimeInterval(startTimeInterval, endTimeInterval, justSeconds) {
+      var distance = endTimeInterval - startTimeInterval;
+      if (justSeconds) {
+        return [distance, 0, 0, 0, 0];
+      }
       var sec = distance % 60;
       distance = parseInt(distance / 60);
       var min = distance % 60;
@@ -48,36 +62,21 @@ var DateTool = function () {
       distance = parseInt(distance / 24);
       var day = distance % 30;
       var mou = parseInt(distance / 30);
-      var result = [mou, day, hour, min, sec];
-      result.reverse();
-      return result;
+      return [sec, min, hour, day, mou];
     }
   }, {
-    key: 'chineseTimeFromTime',
-    value: function chineseTimeFromTime(time, unit) {
-      if (unit === 'm') {
-        var originSeconds = parseInt(time * 60);
-        var seconds = parseInt(originSeconds % 60);
-        var originMinutes = parseInt(originSeconds / 60);
-        var minutes = parseInt(originMinutes % 60);
-        var originHours = parseInt(originMinutes / 60);
-        var hours = parseInt(originHours % 25);
-        return hours + '小时' + minutes + '分钟';
-      }
+    key: 'distanceBetweenDate',
+    value: function distanceBetweenDate(startDate, endDate, justSeconds) {
+      return DateTool.distanceBetweenTimeInterval(DateTool.timeIntervalFromDate(startDate), DateTool.timeIntervalFromDate(endDate), justSeconds);
     }
   }, {
-    key: 'currentDate',
-    value: function currentDate() {
-      return new Date();
+    key: 'distanceBetweenDateString',
+    value: function distanceBetweenDateString(startDateString, endDateString, justSeconds) {
+      return DateTool.distanceBetweenTimeInterval(DateTool.timeIntervalFromDateString(startDateString), DateTool.timeIntervalFromDateString(endDateString), justSeconds);
     }
   }, {
-    key: 'currentTime',
-    value: function currentTime() {
-      return new Date();
-    }
-  }, {
-    key: 'formatDateToString',
-    value: function formatDateToString(date, format) {
+    key: 'dateStringFromDate',
+    value: function dateStringFromDate(date, format) {
       var paddNum = function paddNum(num) {
         num += '';
         return num.replace(/^(\d)$/, '0$1');
@@ -99,98 +98,86 @@ var DateTool = function () {
       });
     }
   }, {
-    key: 'formatDateToChineseDate',
-    value: function formatDateToChineseDate(date, separator, nozero) {
-      var _date = date.split(separator);
-      var location = 0;
-      var unitList = ['日', '月', '年'];
-      var result = '';
-      while (_date.length > 0 && location < unitList.length) {
-        var num = _date.pop();
-        if (nozero) {
-          result = +num + unitList[location] + result;
-        } else {
-          result = _JToolNumber2.default.prefixInteger(num, 2) + unitList[location] + result;
-        }
-        location++;
+    key: 'dateFromDateString',
+    value: function dateFromDateString(dateString, format) {
+      return new Date(dateString);
+    }
+  }, {
+    key: 'currentDate',
+    value: function currentDate() {
+      return new Date();
+    }
+  }, {
+    key: 'currentDateString',
+    value: function currentDateString(format) {
+      if (format) {
+        return DateTool.dateFromTimeInterval(DateTool.currentTimeInterval(), format);
       }
-      return result;
+      return DateTool.dateFromTimeInterval(DateTool.currentTimeInterval());
     }
   }, {
-    key: 'formatStringToDate',
-    value: function formatStringToDate(date, separator) {
-      var _date = date.split(separator);
-
-      return new Date(_date[0], parseInt(_date[1]) - 1, _date[2]);
+    key: 'currentTimeInterval',
+    value: function currentTimeInterval() {
+      return parseInt(Date.now() / 1000);
     }
   }, {
-    key: 'formatDateStringToDateString',
-    value: function formatDateStringToDateString(date, separator, toSeparator) {
-      return date.split(separator).join(toSeparator);
-    }
-  }, {
-    key: 'partFromDate',
-    value: function partFromDate(date, separator, part) {
-      if (date === '' || date === '暂无' || date === undefined) {
-        return '';
-      } else {
-        var _date = date.split(separator);
-        _date.reverse();
-        var _result = [];
-        var i = 0;
-        while (part !== 0) {
-          if (part & 1) {
-            if (i >= _date.length) {
-              break;
-            }
-            _result.push(_date[i]);
-          }
-          part = part >> 1;
-          i++;
-        }
-        _result.reverse();
-        return _result.join(separator);
-      }
-    }
-  }, {
-    key: 'weekDay',
-    value: function weekDay(date) {
-      return date.getDay();
+    key: 'transformDateStringByFormat',
+    value: function transformDateStringByFormat(dateString, fromFormat, toFormat) {
+      var timeInterval = DateTool.timeIntervalFromDateString(dateString, fromFormat);
+      return DateTool.dateStringFromTimeInterval(timeInterval, toFormat);
     }
   }, {
     key: 'weekDayFromDate',
     value: function weekDayFromDate(date) {
-      return DateTool.weekDay(DateTool.formatStringToDate(date, '-'));
+      return date.getDay();
     }
   }, {
-    key: 'getDateByAddDay',
-    value: function getDateByAddDay(date, addDay) {
-      var dd = new Date();
-      dd.setDate(dd.getDate() + addDay);
-      var y = dd.getFullYear();
+    key: 'weekDayFromDateString',
+    value: function weekDayFromDateString(dateString) {
+      return DateTool.weekDayFromDate(DateTool.dateFromDateString(dateString, format));
+    }
+  }, {
+    key: 'dateSeveralDaysLater',
+    value: function dateSeveralDaysLater(beganDate, days) {
+      var endDate = new Date();
+      endDate.setDate(beganDate.getDate() + days);
+      var y = endDate.getFullYear();
       var m = void 0;
       var d = void 0;
-      if (dd.getMonth() > 8) {
-        m = dd.getMonth() + 1;
+
+      if (endDate.getMonth() > 8) {
+        m = endDate.getMonth() + 1;
       } else {
-        m = '0' + (dd.getMonth() + 1);
+        m = '0' + (endDate.getMonth() + 1);
       }
-      if (dd.getDate() > 9) {
-        d = dd.getDate();
+      if (endDate.getDate() > 9) {
+        d = endDate.getDate();
       } else {
-        d = '0' + dd.getDate();
+        d = '0' + endDate.getDate();
       }
       return y + '-' + m + '-' + d;
     }
   }, {
-    key: 'getAddDayFromDateToDate',
-    value: function getAddDayFromDateToDate(fromDate, toDate, separator) {
-      try {
-        var addDay = DateTool.formatStringToDate(toDate, separator) - DateTool.formatStringToDate(fromDate, separator);
-        return addDay / 1000 / 60 / 60 / 24;
-      } catch (e) {
-        throw e;
+    key: 'dateStringSeveralDaysLater',
+    value: function dateStringSeveralDaysLater(beganDateString, days) {
+      var beganDate = DateTool.dateFromDateString(beganDateString);
+      var endDate = new Date(beganDate);
+      endDate.setDate(beganDate.getDate() + days);
+      var y = endDate.getFullYear();
+      var m = void 0;
+      var d = void 0;
+
+      if (endDate.getMonth() > 8) {
+        m = endDate.getMonth() + 1;
+      } else {
+        m = '0' + (endDate.getMonth() + 1);
       }
+      if (endDate.getDate() > 9) {
+        d = endDate.getDate();
+      } else {
+        d = '0' + endDate.getDate();
+      }
+      return y + '-' + m + '-' + d;
     }
   }]);
   return DateTool;

@@ -6,7 +6,11 @@ import NetworkManager from './JNetwork.js';
 import {tradeUrl} from '../unify/JUrlList';
 import _ from '../unify/JDataUnify';
 
-class NetworkTradeManager {
+/**
+ * 交易接口
+ * @alias network/JNetworkTrade
+ */
+class JNetworkTrade {
   /**
    * 锁座
    * @param type 平台类型
@@ -89,4 +93,4 @@ class NetworkTradeManager {
   }
 }
 
-export default NetworkTradeManager;
+export default JNetworkTrade;

@@ -33,12 +33,12 @@ var _JDataUnify2 = _interopRequireDefault(_JDataUnify);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var NetworkTradeManager = function () {
-  function NetworkTradeManager() {
-    (0, _classCallCheck3.default)(this, NetworkTradeManager);
+var JNetworkTrade = function () {
+  function JNetworkTrade() {
+    (0, _classCallCheck3.default)(this, JNetworkTrade);
   }
 
-  (0, _createClass3.default)(NetworkTradeManager, null, [{
+  (0, _createClass3.default)(JNetworkTrade, null, [{
     key: 'tradeLockSeatNeedLogin',
     value: function tradeLockSeatNeedLogin(type, paras) {
       var loginParas = _JNetwork2.default.loginParas();
@@ -90,7 +90,7 @@ var NetworkTradeManager = function () {
       return _JNetwork2.default.wrongInType();
     }
   }]);
-  return NetworkTradeManager;
+  return JNetworkTrade;
 }();
 
-exports.default = NetworkTradeManager;
+exports.default = JNetworkTrade;

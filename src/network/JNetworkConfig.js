@@ -4,7 +4,12 @@
 import NetworkManager from './JNetwork';
 import {UseConfig as UrlUseConfig} from '../unify/JUrlList'
 import {UseConfig as DataUseConfig} from '../unify/JDataUnify'
-class NetworkConfig {
+
+/**
+ * 请求配置类
+ * @alias network/JNetworkConfig
+ */
+class JNetworkConfig {
   static setConfig(config){
     NetworkManager.baseUrl = config.baseUrl;
     NetworkManager.inType = config.inType;
@@ -18,4 +23,4 @@ class NetworkConfig {
   }
 }
 
-export default NetworkConfig;
+export default JNetworkConfig;

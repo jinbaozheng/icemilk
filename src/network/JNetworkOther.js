@@ -6,7 +6,11 @@ import NetworkManager from './JNetwork.js';
 import {otherUrl} from '../unify/JUrlList';
 import _ from '../unify/JDataUnify';
 
-class NetworkOtherManager {
+/**
+ * 其他接口
+ * @alias network/JNetworkOther
+ */
+class JNetworkOther {
   /**
    * 搜索
    * @param cityId 城市Id
@@ -54,4 +58,4 @@ class NetworkOtherManager {
   }
 }
 
-export default NetworkOtherManager;
+export default JNetworkOther;

@@ -9,6 +9,11 @@ import AutoSeatPicking from '../arithmetic/AutoSeatPicking';
 const _cellSize = 30;
 const _cellSpace = 8;
 let instance = null;
+
+/**
+ * 座位图管理类
+ * @alias util/JManagerSeat
+ */
 class SeatManager {
   /**
    * 构造器
@@ -37,7 +42,7 @@ class SeatManager {
    */
   static smartAutoSelected(smartSeats, count) {
     return new Promise((reduce, reject) => {
-      AutoSeatPicking.autoSelected(smartSeats, count, (data) => {
+      AutoSeatPicking.defaultManager().autoSelected(smartSeats, count, (data) => {
         reduce(data);
       });
     });
@@ -45,9 +50,9 @@ class SeatManager {
 
   /**
    * 获取座位图时需要的参数
-   * @param type 平台类型
-   * @param platform 平台数据
-   * @returns {{平台需要的参数}}
+   * @param platform 平台类型
+   * @param screening 平台数据
+   * @returns {Object} 平台需要的参数
    */
   static seatParasFromScreening(platform, screening) {
     var paras = {};
@@ -133,6 +138,7 @@ class SeatManager {
 
   /**
    * 统一座位格式
+   * @private
    * @param type
    * @param seatData
    * @returns {Array}
@@ -207,6 +213,7 @@ class SeatManager {
 
   /**
    * 获取智能座位图通用方法
+   * @private
    * @param type 平台类型
    * @param seatList 基本座位图
    * @returns {Array} 智能座位图
@@ -234,6 +241,7 @@ class SeatManager {
 
   /**
    * 获取网票智能座位图
+   * @private
    * @param seatList
    * @returns {Array}
    */
@@ -241,8 +249,8 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.key.split(':').shift());
       let col = Number.parseInt(seatModel.key.split(':').pop());
-      let rowNumber = StringTool.numberIfAZ(seatModel.Name.split(':').shift());
-      let colNumber = StringTool.numberIfAZ(seatModel.Name.split(':').pop());
+      let rowNumber = StringTool.numberFromString(seatModel.Name.split(':').shift());
+      let colNumber = StringTool.numberFromString(seatModel.Name.split(':').pop());
       return {
         row: row,
         col: col,
@@ -265,6 +273,7 @@ class SeatManager {
 
   /**
    * 获取蜘蛛智能座位图
+   * @private
    * @param seatList
    * @returns {Array}
    */
@@ -272,8 +281,8 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowNum);
       let col = Number.parseInt(seatModel.columnNum);
-      let rowNumber = Number.parseInt(StringTool.numberIfAZ(seatModel.rowId));
-      let colNumber = Number.parseInt(StringTool.numberIfAZ(seatModel.columnId));
+      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowId));
+      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnId));
       return {
         row: row,
         col: col,
@@ -297,6 +306,7 @@ class SeatManager {
 
   /**
    * 获取卖座智能座位图
+   * @private
    * @param seatList
    * @returns {Array}
    */
@@ -304,8 +314,8 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowNum);
       let col = Number.parseInt(seatModel.columnNum);
-      let rowNumber = Number.parseInt(StringTool.numberIfAZ(seatModel.rowId));
-      let colNumber = Number.parseInt(StringTool.numberIfAZ(seatModel.columnId));
+      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowId));
+      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnId));
       // 上海百美汇影城
       return {
         row: row,
@@ -330,6 +340,7 @@ class SeatManager {
 
   /**
    * 获取单车智能座位图
+   * @private
    * @param seatList
    * @returns {Array}
    */
@@ -337,8 +348,8 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowNum);
       let col = Number.parseInt(seatModel.columnNum);
-      let rowNumber = Number.parseInt(StringTool.numberIfAZ(seatModel.rowId));
-      let colNumber = Number.parseInt(StringTool.numberIfAZ(seatModel.columnId));
+      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowId));
+      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnId));
       return {
         row: row,
         col: col,
@@ -363,6 +374,7 @@ class SeatManager {
 
   /**
    * 获取猫眼智能座位图
+   * @private
    * @param seatList
    * @returns {Array}
    */
@@ -370,8 +382,8 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowNo);
       let col = Number.parseInt(seatModel.columnNo);
-      let rowNumber = Number.parseInt(StringTool.numberIfAZ(seatModel.rowId));
-      let colNumber = Number.parseInt(StringTool.numberIfAZ(seatModel.columnId));
+      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowId));
+      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnId));
       return {
         row: row,
         col: col,
@@ -401,6 +413,7 @@ class SeatManager {
 
   /**
    * 获取百度智能座位图
+   * @private
    * @param seatList
    * @returns {Array}
    */
@@ -408,8 +421,8 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowId);
       let col = Number.parseInt(seatModel.columnId);
-      let rowNumber = Number.parseInt(StringTool.numberIfAZ(seatModel.rowNo));
-      let colNumber = Number.parseInt(StringTool.numberIfAZ(seatModel.columnNo));
+      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowNo));
+      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnNo));
       return {
         row: row,
         col: col,
@@ -426,13 +439,15 @@ class SeatManager {
           : 0,
         rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
         colLocation: bridgeModel.col * (_cellSize + _cellSpace),
-        loveIndex: Number.parseInt(seatRowModel.isLove)
+        loveIndex: Number.parseInt(seatRowModel.isLove),
+        areaInfo: seatRowModel.area
       };
     });
   }
 
   /**
    * 获取座位图尺寸
+   * @private
    * @param smartSeats 智能座位图
    * @returns {{width: *, height: *}} 座位图尺寸
    */
@@ -455,6 +470,7 @@ class SeatManager {
 
   /**
    * 获取座位图元数据
+   * @private
    * @param smartSeats 智能座位图
    * @returns {{seatCellWidth: number, seatCellHeight: number, seatContentWidth, seatContentHeight}}
    */
@@ -471,6 +487,7 @@ class SeatManager {
 
   /**
    * 获取行号数据
+   * @private
    * @param smartSeats 智能座位图
    * @returns {Array.<*>} 返回行号数据 {rowNumber, colLocation}
    */

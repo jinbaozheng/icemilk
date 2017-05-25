@@ -29,12 +29,12 @@ var _JDataUnify2 = _interopRequireDefault(_JDataUnify);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var NetworkFilmManager = function () {
-  function NetworkFilmManager() {
-    (0, _classCallCheck3.default)(this, NetworkFilmManager);
+var JNetworkFilm = function () {
+  function JNetworkFilm() {
+    (0, _classCallCheck3.default)(this, JNetworkFilm);
   }
 
-  (0, _createClass3.default)(NetworkFilmManager, null, [{
+  (0, _createClass3.default)(JNetworkFilm, null, [{
     key: 'filmHotfilms',
     value: function filmHotfilms(page) {
       if (!page) {
@@ -128,7 +128,7 @@ var NetworkFilmManager = function () {
       return JNetworkFilm.filmDateList(filmId, _JNetwork2.default.locationParas().cityId);
     }
   }]);
-  return NetworkFilmManager;
+  return JNetworkFilm;
 }();
 
-exports.default = NetworkFilmManager;
+exports.default = JNetworkFilm;

@@ -2,6 +2,9 @@
  * Created by cuppi on 2017/5/9.
  */
 
+/**
+ * @private
+ */
 class Jpara {
   constructor(...paras) {
     this._paras = [];
@@ -22,6 +25,7 @@ class Jpara {
 
 /**
  * 辅助任务类
+ * @private
  */
 class Jtask {
   constructor(task, parasPicker, resolve, reject) {
@@ -60,8 +64,9 @@ class Jtask {
 }
 
 /**
+ *
  * 任务连接类
- * return
+ * @private
  */
 class Jlink {
   constructor(...tasks) {
@@ -119,60 +124,75 @@ class Jlink {
     }
   }
 }
-//
-// /**
-//  * 任务组合类
-//  */
-// class Jcombine {
-//   constructor(...tasks) {
-//     this._tasks = [];
-//     for (var task of tasks) {
-//       this._tasks.push(task);
-//     }
-//     this._taskIndex = 0;
-//   }
-//
-//   para(para) {
-//     this._headTaskPara = para;
-//     return this;
-//   }
-//
-//   paras(...paras) {
-//     this._allTaskPara = paras;
-//     return this;
-//   }
-//
-//   next(resolve, reject) {
-//     if (this._taskIndex >= this._tasks.length) {
-//       return this;
-//     }
-//     let nextTask = new Jtask(this._tasks[this._taskIndex], this._parasPicker(this._taskIndex), resolve, reject);
-//     this._taskIndex++;
-//     if (this._nextTask) {
-//       this._nextTask.setNextTask(nextTask);
-//     } else {
-//       this._headTask = nextTask;
-//     }
-//     this._nextTask = nextTask;
-//     return this;
-//   }
-//
-//   run() {
-//     this._headTask.do(this._parasPicker(0)());
-//     return this;
-//   }
-//
-// }
 
+/**
+ * 任务组合类
+ * @private
+ */
+class Jcombine {
+  constructor(...tasks) {
+    this._tasks = [];
+    for (var task of tasks) {
+      this._tasks.push(task);
+    }
+    this._taskIndex = 0;
+  }
+
+  para(para) {
+    this._headTaskPara = para;
+    return this;
+  }
+
+  paras(...paras) {
+    this._allTaskPara = paras;
+    return this;
+  }
+
+  next(resolve, reject) {
+    if (this._taskIndex >= this._tasks.length) {
+      return this;
+    }
+    let nextTask = new Jtask(this._tasks[this._taskIndex], this._parasPicker(this._taskIndex), resolve, reject);
+    this._taskIndex++;
+    if (this._nextTask) {
+      this._nextTask.setNextTask(nextTask);
+    } else {
+      this._headTask = nextTask;
+    }
+    this._nextTask = nextTask;
+    return this;
+  }
+
+  run() {
+    this._headTask.do(this._parasPicker(0)());
+    return this;
+  }
+}
+
+/**
+ * 任务连接类
+ * @alias other/jlink
+ * @param tasks
+ * @returns {Jlink}
+ */
 function jlink(...tasks) {
   return new Jlink(...tasks);
 }
 
-
+/**
+ * @private
+ * @param paras
+ * @returns {Jpara}
+ */
 function jpara(...paras) {
   return new Jpara(...paras);
 }
 
+/**
+ * @alias other/jcombine
+ * @param tasks
+ * @returns {Jcombine}
+ */
 function jcombine(...tasks) {
   return new Jcombine(...tasks);
 }

@@ -216,25 +216,105 @@ var Jlink = function () {
   return Jlink;
 }();
 
+var Jcombine = function () {
+  function Jcombine() {
+    (0, _classCallCheck3.default)(this, Jcombine);
+
+    this._tasks = [];
+
+    for (var _len4 = arguments.length, tasks = Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+      tasks[_key4] = arguments[_key4];
+    }
+
+    var _iteratorNormalCompletion3 = true;
+    var _didIteratorError3 = false;
+    var _iteratorError3 = undefined;
+
+    try {
+      for (var _iterator3 = (0, _getIterator3.default)(tasks), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+        var task = _step3.value;
+
+        this._tasks.push(task);
+      }
+    } catch (err) {
+      _didIteratorError3 = true;
+      _iteratorError3 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion3 && _iterator3.return) {
+          _iterator3.return();
+        }
+      } finally {
+        if (_didIteratorError3) {
+          throw _iteratorError3;
+        }
+      }
+    }
+
+    this._taskIndex = 0;
+  }
+
+  (0, _createClass3.default)(Jcombine, [{
+    key: 'para',
+    value: function para(_para2) {
+      this._headTaskPara = _para2;
+      return this;
+    }
+  }, {
+    key: 'paras',
+    value: function paras() {
+      for (var _len5 = arguments.length, _paras2 = Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+        _paras2[_key5] = arguments[_key5];
+      }
+
+      this._allTaskPara = _paras2;
+      return this;
+    }
+  }, {
+    key: 'next',
+    value: function next(resolve, reject) {
+      if (this._taskIndex >= this._tasks.length) {
+        return this;
+      }
+      var nextTask = new Jtask(this._tasks[this._taskIndex], this._parasPicker(this._taskIndex), resolve, reject);
+      this._taskIndex++;
+      if (this._nextTask) {
+        this._nextTask.setNextTask(nextTask);
+      } else {
+        this._headTask = nextTask;
+      }
+      this._nextTask = nextTask;
+      return this;
+    }
+  }, {
+    key: 'run',
+    value: function run() {
+      this._headTask.do(this._parasPicker(0)());
+      return this;
+    }
+  }]);
+  return Jcombine;
+}();
+
 function jlink() {
-  for (var _len4 = arguments.length, tasks = Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
-    tasks[_key4] = arguments[_key4];
+  for (var _len6 = arguments.length, tasks = Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
+    tasks[_key6] = arguments[_key6];
   }
 
   return new (Function.prototype.bind.apply(Jlink, [null].concat(tasks)))();
 }
 
 function jpara() {
-  for (var _len5 = arguments.length, paras = Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
-    paras[_key5] = arguments[_key5];
+  for (var _len7 = arguments.length, paras = Array(_len7), _key7 = 0; _key7 < _len7; _key7++) {
+    paras[_key7] = arguments[_key7];
   }
 
   return new (Function.prototype.bind.apply(Jpara, [null].concat(paras)))();
 }
 
 function jcombine() {
-  for (var _len6 = arguments.length, tasks = Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
-    tasks[_key6] = arguments[_key6];
+  for (var _len8 = arguments.length, tasks = Array(_len8), _key8 = 0; _key8 < _len8; _key8++) {
+    tasks[_key8] = arguments[_key8];
   }
 
   return new (Function.prototype.bind.apply(Jcombine, [null].concat(tasks)))();

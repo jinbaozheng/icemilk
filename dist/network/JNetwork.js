@@ -35,12 +35,12 @@ var _JToolUrl2 = _interopRequireDefault(_JToolUrl);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var NetworkManager = function () {
-  function NetworkManager() {
-    (0, _classCallCheck3.default)(this, NetworkManager);
+var JNetwork = function () {
+  function JNetwork() {
+    (0, _classCallCheck3.default)(this, JNetwork);
   }
 
-  (0, _createClass3.default)(NetworkManager, null, [{
+  (0, _createClass3.default)(JNetwork, null, [{
     key: 'locationParas',
     value: function locationParas() {
       if (this.delegate) {
@@ -205,11 +205,11 @@ var NetworkManager = function () {
       }));
     }
   }]);
-  return NetworkManager;
+  return JNetwork;
 }();
 
-NetworkManager.baseUrl = '';
-NetworkManager.timeout = 10 * 1000;
-NetworkManager.delegate = null;
-NetworkManager.inType = '';
-exports.default = NetworkManager;
+JNetwork.baseUrl = '';
+JNetwork.timeout = 10 * 1000;
+JNetwork.delegate = null;
+JNetwork.inType = '';
+exports.default = JNetwork;

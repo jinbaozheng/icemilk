@@ -5,15 +5,20 @@
 import axios from 'axios';
 import UrlTool from '../tool/JToolUrl.js';
 
-class NetworkManager {
+/**
+ * 网络请求类
+ * @alias network/JNetwork
+ */
+class JNetwork {
+
   static baseUrl = '';
   static timeout = 10 * 1000;
   static delegate = null;
   static inType = '';
 
   /**
-   *  需要定位的请求的公共参数
-   * @returns {{cityId: number, longitude: number, latitude: number}} 公共参数
+   * 需要定位的请求的公共参数
+   * @returns {*}
    */
   static locationParas() {
     if (this.delegate) {
@@ -28,6 +33,10 @@ class NetworkManager {
     return {};
   }
 
+  /**
+   * 需要登录的请求的公共参数
+   * @returns {*}
+   */
   static loginParas() {
     if (this.delegate) {
       let loginParas = this.delegate.loginParas();
@@ -158,10 +167,10 @@ class NetworkManager {
 
   /**
    * get请求
-   * @param url 相对地址
-   * @param parameters 地址参数
-   * @param headers 头参数
-   * @returns {{terminate, then}|*} 异步请求块
+   * @param {string} url 相对地址
+   * @param {string} parameters 地址参数
+   * @param {string} headers 头参数
+   * @returns {Promise} 异步请求块
    */
   static GET(url, parameters, headers) {
     let isOk;
@@ -209,4 +218,4 @@ class NetworkManager {
   }
 }
 
-export default NetworkManager;
+export default JNetwork;

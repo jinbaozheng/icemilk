@@ -197,8 +197,8 @@ var SeatManager = function () {
       return seatList.map(function (seatModel) {
         var row = (0, _parseInt2.default)(seatModel.key.split(':').shift());
         var col = (0, _parseInt2.default)(seatModel.key.split(':').pop());
-        var rowNumber = _JToolString2.default.numberIfAZ(seatModel.Name.split(':').shift());
-        var colNumber = _JToolString2.default.numberIfAZ(seatModel.Name.split(':').pop());
+        var rowNumber = _JToolString2.default.numberFromString(seatModel.Name.split(':').shift());
+        var colNumber = _JToolString2.default.numberFromString(seatModel.Name.split(':').pop());
         return {
           row: row,
           col: col,
@@ -222,8 +222,8 @@ var SeatManager = function () {
       return seatList.map(function (seatModel) {
         var row = (0, _parseInt2.default)(seatModel.rowNum);
         var col = (0, _parseInt2.default)(seatModel.columnNum);
-        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberIfAZ(seatModel.rowId));
-        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberIfAZ(seatModel.columnId));
+        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowId));
+        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnId));
         return {
           row: row,
           col: col,
@@ -247,8 +247,8 @@ var SeatManager = function () {
       return seatList.map(function (seatModel) {
         var row = (0, _parseInt2.default)(seatModel.rowNum);
         var col = (0, _parseInt2.default)(seatModel.columnNum);
-        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberIfAZ(seatModel.rowId));
-        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberIfAZ(seatModel.columnId));
+        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowId));
+        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnId));
 
         return {
           row: row,
@@ -273,8 +273,8 @@ var SeatManager = function () {
       return seatList.map(function (seatModel) {
         var row = (0, _parseInt2.default)(seatModel.rowNum);
         var col = (0, _parseInt2.default)(seatModel.columnNum);
-        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberIfAZ(seatModel.rowId));
-        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberIfAZ(seatModel.columnId));
+        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowId));
+        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnId));
         return {
           row: row,
           col: col,
@@ -299,8 +299,8 @@ var SeatManager = function () {
       return seatList.map(function (seatModel) {
         var row = (0, _parseInt2.default)(seatModel.rowNo);
         var col = (0, _parseInt2.default)(seatModel.columnNo);
-        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberIfAZ(seatModel.rowId));
-        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberIfAZ(seatModel.columnId));
+        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowId));
+        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnId));
         return {
           row: row,
           col: col,
@@ -330,8 +330,8 @@ var SeatManager = function () {
       return seatList.map(function (seatModel) {
         var row = (0, _parseInt2.default)(seatModel.rowId);
         var col = (0, _parseInt2.default)(seatModel.columnId);
-        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberIfAZ(seatModel.rowNo));
-        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberIfAZ(seatModel.columnNo));
+        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowNo));
+        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnNo));
         return {
           row: row,
           col: col,
@@ -345,7 +345,8 @@ var SeatManager = function () {
           status: seatRowModel.status === '2' ? 1 : 0,
           rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
           colLocation: bridgeModel.col * (_cellSize + _cellSpace),
-          loveIndex: (0, _parseInt2.default)(seatRowModel.isLove)
+          loveIndex: (0, _parseInt2.default)(seatRowModel.isLove),
+          areaInfo: seatRowModel.area
         });
       });
     }
@@ -473,7 +474,7 @@ var SeatManager = function () {
     key: 'smartAutoSelected',
     value: function smartAutoSelected(smartSeats, count) {
       return new _promise2.default(function (reduce, reject) {
-        _AutoSeatPicking2.default.autoSelected(smartSeats, count, function (data) {
+        _AutoSeatPicking2.default.defaultManager().autoSelected(smartSeats, count, function (data) {
           reduce(data);
         });
       });

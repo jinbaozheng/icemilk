@@ -41,12 +41,12 @@ var _JManagerSeat2 = _interopRequireDefault(_JManagerSeat);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var NetworkCinemaManager = function () {
-  function NetworkCinemaManager() {
-    (0, _classCallCheck3.default)(this, NetworkCinemaManager);
+var JNetworkCinema = function () {
+  function JNetworkCinema() {
+    (0, _classCallCheck3.default)(this, JNetworkCinema);
   }
 
-  (0, _createClass3.default)(NetworkCinemaManager, null, [{
+  (0, _createClass3.default)(JNetworkCinema, null, [{
     key: 'cinemaDetail',
     value: function cinemaDetail(cinemaId) {
       return new _promise2.default(function (resolve, reject) {
@@ -120,7 +120,7 @@ var NetworkCinemaManager = function () {
     key: 'cinemaScreeningItems',
     value: function cinemaScreeningItems(cinemaId, filmId, date) {
       return new _promise2.default(function (resolve, reject) {
-        date = _JToolDate2.default.dateFromTimeInterval(date, 'yyyy-MM-dd');
+        date = _JToolDate2.default.dateStringFromTimeInterval(date, 'yyyy-MM-dd');
         _JNetwork2.default.POST(_JUrlList.cinemaUrl.jbzScreeningItems, { cinemaId: cinemaId, filmId: filmId, date: date }).then(function (data) {
           resolve((0, _JDataUnify2.default)('cinemaUrl.jbzScreeningItems', data));
         }, function (error) {
@@ -186,7 +186,7 @@ var NetworkCinemaManager = function () {
       });
     }
   }]);
-  return NetworkCinemaManager;
+  return JNetworkCinema;
 }();
 
-exports.default = NetworkCinemaManager;
+exports.default = JNetworkCinema;

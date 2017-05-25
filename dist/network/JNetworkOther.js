@@ -29,12 +29,12 @@ var _JDataUnify2 = _interopRequireDefault(_JDataUnify);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var NetworkOtherManager = function () {
-  function NetworkOtherManager() {
-    (0, _classCallCheck3.default)(this, NetworkOtherManager);
+var JNetworkOther = function () {
+  function JNetworkOther() {
+    (0, _classCallCheck3.default)(this, JNetworkOther);
   }
 
-  (0, _createClass3.default)(NetworkOtherManager, null, [{
+  (0, _createClass3.default)(JNetworkOther, null, [{
     key: 'otherSearch',
     value: function otherSearch(cityId, key, lastKey) {
       if (cityId) {} else {
@@ -63,7 +63,7 @@ var NetworkOtherManager = function () {
       });
     }
   }]);
-  return NetworkOtherManager;
+  return JNetworkOther;
 }();
 
-exports.default = NetworkOtherManager;
+exports.default = JNetworkOther;

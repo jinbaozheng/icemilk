@@ -57,7 +57,7 @@ class AutoSeatPicking {
 
     for (let seat of smartSeats) {
       this.seatModelMap[seat.row][seat.col] = seat;
-      if (seat.status === 'Y' && (seat.loveIndex === 0 || isNaN(seat.loveIndex))) {
+      if (seat.status === 0 && (seat.loveIndex === 0 || isNaN(seat.loveIndex))) {
         this.seatMap[seat.row][seat.col] = '0';
       } else {
         this.seatMap[seat.row][seat.col] = '1';
@@ -139,7 +139,7 @@ class AutoSeatPicking {
             resultCol < 0 ||
             resultRow >= this.rowCount ||
             resultCol >= this.colCount) {
-            console.log('内存溢出');
+            // console.log('内存溢出');
             return false;
           }
           if (this.seatMap[resultRow][resultCol] === '0') {

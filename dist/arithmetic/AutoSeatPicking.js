@@ -95,7 +95,7 @@ var AutoSeatPicking = function () {
           var _seat = _step2.value;
 
           this.seatModelMap[_seat.row][_seat.col] = _seat;
-          if (_seat.status === 'Y' && (_seat.loveIndex === 0 || isNaN(_seat.loveIndex))) {
+          if (_seat.status === 0 && (_seat.loveIndex === 0 || isNaN(_seat.loveIndex))) {
             this.seatMap[_seat.row][_seat.col] = '0';
           } else {
             this.seatMap[_seat.row][_seat.col] = '1';
@@ -172,7 +172,6 @@ var AutoSeatPicking = function () {
             var resultRow = row + rowOffset;
             var resultCol = col + colOffset;
             if (resultRow < 0 || resultCol < 0 || resultRow >= this.rowCount || resultCol >= this.colCount) {
-              console.log('内存溢出');
               return false;
             }
             if (this.seatMap[resultRow][resultCol] === '0') {

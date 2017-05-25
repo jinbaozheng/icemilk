@@ -33,12 +33,12 @@ var _JDataUnify2 = _interopRequireDefault(_JDataUnify);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var NetworkCityManager = function () {
-  function NetworkCityManager() {
-    (0, _classCallCheck3.default)(this, NetworkCityManager);
+var JNetworkCity = function () {
+  function JNetworkCity() {
+    (0, _classCallCheck3.default)(this, JNetworkCity);
   }
 
-  (0, _createClass3.default)(NetworkCityManager, null, [{
+  (0, _createClass3.default)(JNetworkCity, null, [{
     key: 'cityList',
     value: function cityList() {
       return new _promise2.default(function (resolve, reject) {
@@ -105,7 +105,7 @@ var NetworkCityManager = function () {
       });
     }
   }]);
-  return NetworkCityManager;
+  return JNetworkCity;
 }();
 
-exports.default = NetworkCityManager;
+exports.default = JNetworkCity;

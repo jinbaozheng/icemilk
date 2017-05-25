@@ -5,7 +5,11 @@
 import NetworkManager from './JNetwork.js';
 import {accountUrl} from '../unify/JUrlList';
 
-class NetworkAccountManager {
+/**
+ * 账户接口
+ * @alias network/JNetworkAccount
+ */
+class JNetworkAccount{
   /**
    * 用户登录
    * @param mobile 登录需要的手机号码
@@ -72,4 +76,4 @@ class NetworkAccountManager {
   }
 }
 
-export default NetworkAccountManager;
+export default JNetworkAccount;

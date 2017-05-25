@@ -4,6 +4,11 @@
 'use strict'
 import NetworkTrade from '../network/JNetworkTrade.js';
 let instance = null;
+
+/**
+ * 交易管理类
+ * @alias util/TradeManager
+ */
 class TradeManager {
   constructor() {
     if (!instance) {

@@ -2,13 +2,17 @@
  * Created by cuppi on 2016/12/14.
  */
 
+/**
+ * 网络地址工具类
+ * @alias tool/JToolUrl
+ */
 class UrlTool {
   /**
    * 合成URL完整地址
    * @param baseUrl 基础地址
    * @param subUrl 相对地址
    * @param parameters 参数
-   * @returns {*}
+   * @returns {*} 返回拼接后的地址
    */
   static urlFromPortion(baseUrl, subUrl, parameters) {
     if (!parameters) {
@@ -30,18 +34,25 @@ class UrlTool {
     return iUrl;
   }
 
-  static getUrlQuery(name) {
-    let reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`);
-    let result = window.location.search.substr(1).match(reg);
-    let inType = result ? decodeURIComponent(result[2]) : null;
-    return inType;
-  }
 
-  static getNowUrl() {
-    let nowUrl = window.location.href;
-    nowUrl = nowUrl.substring(0, nowUrl.indexOf('#/'));
-    return nowUrl
-  }
+  /***********  待完善接口  **************/
+  /**
+   *
+   * @param name
+   * @returns {*}
+   */
+  // static getUrlQuery(name) {
+  //   let reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`);
+  //   let result = window.location.search.substr(1).match(reg);
+  //   let inType = result ? decodeURIComponent(result[2]) : null;
+  //   return inType;
+  // }
+
+  // static getNowUrl() {
+  //   let nowUrl = window.location.href;
+  //   nowUrl = nowUrl.substring(0, nowUrl.indexOf('#/'));
+  //   return nowUrl
+  // }
 }
 
 export default UrlTool;

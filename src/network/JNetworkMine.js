@@ -5,7 +5,11 @@
 import NetworkManager from './JNetwork.js';
 import {mineUrl} from '../unify/JUrlList';
 
-class NetworkMineManager {
+/**
+ * 个人中心接口
+ * @alias network/JNetworkMine
+ */
+class JNetworkMine {
 
   /**
    * 我的订单
@@ -42,4 +46,4 @@ class NetworkMineManager {
   }
 }
 
-export default NetworkMineManager;
+export default JNetworkMine;

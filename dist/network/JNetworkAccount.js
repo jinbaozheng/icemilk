@@ -21,12 +21,12 @@ var _JUrlList = require('../unify/JUrlList');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var NetworkAccountManager = function () {
-  function NetworkAccountManager() {
-    (0, _classCallCheck3.default)(this, NetworkAccountManager);
+var JNetworkAccount = function () {
+  function JNetworkAccount() {
+    (0, _classCallCheck3.default)(this, JNetworkAccount);
   }
 
-  (0, _createClass3.default)(NetworkAccountManager, null, [{
+  (0, _createClass3.default)(JNetworkAccount, null, [{
     key: 'accountLogin',
     value: function accountLogin(mobile, password) {
       return _JNetwork2.default.POST(_JUrlList.accountUrl.jbzLogin, {
@@ -66,7 +66,7 @@ var NetworkAccountManager = function () {
       });
     }
   }]);
-  return NetworkAccountManager;
+  return JNetworkAccount;
 }();
 
-exports.default = NetworkAccountManager;
+exports.default = JNetworkAccount;

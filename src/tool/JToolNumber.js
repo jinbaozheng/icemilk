@@ -1,37 +1,42 @@
 'use strict';
+import leftPad from 'left-pad';
 
+/**
+ * 数字工具类
+ * @alias tool/JToolNumber
+ */
 class NumberTool {
   /**
    * 整数补0
    * @param number 整数
-   * @param length 需要补0后整数的长度
+   * @param length 最终的长度
    * @returns {*|Blob|string|ArrayBuffer|Array.<T>}  整数字符串
    */
-  static prefixInteger(number, length) {
-    return (Array(length).join(0) + number).slice(-length);
+  static zeroPad(number, length) {
+    return leftPad(number, length);
   }
 
   /**
    * 小数部分有效数字保留
    * @param number 数字
-   * @param fixed 小数保留位数
+   * @param digits 小数保留位数
    * @returns {string} 数字的字符串
    */
-  static fixNumberTo(number, fixed) {
-    return Number(number).toFixed(fixed);
+  static fixDigits(number, digits) {
+    return Number(number).toFixed(digits);
   }
 
   /**
-   *
-   * @param number
-   * @param text
+   * 返回正整数的字符串（非正整数返回指定字符串或空字符串）
+   * @param number 数字
+   * @param text 非正整数的返回（可空）
    * @returns {*}
    */
-  static zeroToText(number, text) {
+  static positiveText(number, text) {
     if (number <= 0) {
-      return text;
+      return text ? text : '';
     } else {
-      return number;
+      return number + '';
     }
   }
 }

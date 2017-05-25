@@ -8,7 +8,11 @@ import DateTool from '../tool/JToolDate';
 import _ from '../unify/JDataUnify';
 import SeatManager from '../util/JManagerSeat';
 
-class NetworkCinemaManager {
+/**
+ * 影院接口
+ * @alias network/JNetworkCinema
+ */
+class JNetworkCinema {
   /**
    * 获取影院详情
    * @param cinemaId 影院ID
@@ -106,7 +110,7 @@ class NetworkCinemaManager {
    */
   static cinemaScreeningItems(cinemaId, filmId, date) {
     return new Promise((resolve, reject) => {
-      date = DateTool.dateFromTimeInterval(date, 'yyyy-MM-dd');
+      date = DateTool.dateStringFromTimeInterval(date, 'yyyy-MM-dd');
       NetworkManager.POST(cinemaUrl.jbzScreeningItems, {cinemaId, filmId, date}).then(data => {
         resolve(_('cinemaUrl.jbzScreeningItems', data));
       }, error => {
@@ -192,4 +196,4 @@ class NetworkCinemaManager {
   }
 }
 
-export default NetworkCinemaManager;
+export default JNetworkCinema;

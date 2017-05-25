@@ -6,7 +6,11 @@ import NetworkManager from './JNetwork.js';
 import {filmUrl} from '../unify/JUrlList';
 import _ from '../unify/JDataUnify';
 
-class NetworkFilmManager {
+/**
+ * 影片接口
+ * @alias network/JNetworkFilm
+ */
+class JNetworkFilm {
 
   /**
    * 获取热门电影
@@ -121,4 +125,4 @@ class NetworkFilmManager {
 
 }
 
-export default NetworkFilmManager;
+export default JNetworkFilm;

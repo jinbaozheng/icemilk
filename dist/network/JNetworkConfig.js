@@ -22,12 +22,12 @@ var _JDataUnify = require('../unify/JDataUnify');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var NetworkConfig = function () {
-  function NetworkConfig() {
-    (0, _classCallCheck3.default)(this, NetworkConfig);
+var JNetworkConfig = function () {
+  function JNetworkConfig() {
+    (0, _classCallCheck3.default)(this, JNetworkConfig);
   }
 
-  (0, _createClass3.default)(NetworkConfig, null, [{
+  (0, _createClass3.default)(JNetworkConfig, null, [{
     key: 'setConfig',
     value: function setConfig(config) {
       _JNetwork2.default.baseUrl = config.baseUrl;
@@ -41,7 +41,7 @@ var NetworkConfig = function () {
       }
     }
   }]);
-  return NetworkConfig;
+  return JNetworkConfig;
 }();
 
-exports.default = NetworkConfig;
+exports.default = JNetworkConfig;
