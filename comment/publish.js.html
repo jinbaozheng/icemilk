@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Source: src/network/JNetworkFilm.js</title>
+	<title>JBZWebSDK Source: publish.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,140 +72,36 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: src/network/JNetworkFilm.js</h1>
+		<h1 class="page-title">Source: publish.js</h1>
     
 <section>
     <article>
         <pre
             class="sunlight-highlight-javascript ">/**
- * Created by cuppi on 2016/11/22.
+ * Created by cuppi on 2017/5/26.
  */
-'use strict';
-import JNetwork from './JNetwork.js';
-import {filmUrl} from '../unify/JUrlList';
-import _ from '../unify/JDataUnify';
 
-/**
- * 影片接口
- * @alias network/JNetworkFilm
- */
-class JNetworkFilm {
+var Client = require('/usr/local/lib/node_modules/ssh2').Client;
+var conn = new Client();
 
-  /**
-   * 获取热门电影
-   * @param page 分页模型
-   * @returns {Promise}
-   */
-  static filmHotfilms(page) {
-    if (!page) {
-      return new Promise((resolve, reject) => {
-        JNetwork.POST(filmUrl.jbzHotFilms).then(data => {
-          resolve(_('filmUrl.jbzHotFilms', data));
-        }, error => {
-          reject(error);
+conn.on('ready', function () {
+    console.log('Client :: ready');
+    conn.exec('cd /opt/project/NodeWorld/jbzweb-sdk &amp;&amp; node ./publish.js', function (err, stream) {
+        if (err) throw err;
+        stream.on('close', function (code, signal) {
+            // console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
+            // conn.end();
+        }).on('data', function (data) {
+            console.log('更新文档成功');
+        }).stderr.on('data', function (data) {
+            console.log('STDERR: ' + data);
         });
-      })
-    } else {
-      return new Promise((resolve, reject) => {
-        JNetwork.POST(filmUrl.jbzHotFilmsPage, {page: page.index, size: page.size}).then(data => {
-          resolve(_('filmUrl.jbzHotFilmsPage', data));
-        }, error => {
-          reject(error);
-        });
-      });
-    }
-  }
-
-  /**
-   * 获取热门电影
-   * @returns {{terminate, then}|*}
-   */
-  static filmHotfilmsSimple() {
-    return new Promise((resolve, reject) => {
-      JNetwork.POST(filmUrl.jbzHotFilmsSimple).then(data => {
-        resolve(_('filmUrl.jbzHotFilmsSimple', data));
-      }, error => {
-        reject(error);
-      });
-    })
-  }
-
-  /**
-   * 获取待映电影
-   * @param page 页号
-   * @returns {Promise}
-   */
-  static filmWaitfilms(page) {
-    if (!page) {
-      return new Promise((resolve, reject) => {
-        JNetwork.POST(filmUrl.jbzWaitFilms).then(data => {
-          resolve(_('filmUrl.jbzWaitFilms', data));
-        }, error => {
-          reject(error);
-        });
-      })
-    } else {
-      return new Promise((resolve, reject) => {
-        JNetwork.POST(filmUrl.jbzWaitFilmsPage, {page: page.index, size: page.size}).then(data => {
-          resolve(_('filmUrl.jbzWaitFilmsPage', data));
-        }, error => {
-          reject(error);
-        });
-      });
-    }
-  }
-
-  /**
-   * 获取影片详情
-   * @param filmId 影片Id
-   * @param platform 平台类型(默认使用jbz平台)
-   * @returns {Promise}
-   */
-  static filmDetail(filmId, platform = null) {
-    if (platform &amp;&amp; platform !== 'jbz') {
-      return new Promise((resolve, reject) => {
-        JNetwork.POST(filmUrl.jbzFilmDetailByPartner, {platformFilmId: filmId, platform}).then(data => {
-          resolve(_('filmUrl.jbzFilmDetailByPartner', data));
-        }, error => {
-          reject(error);
-        });
-      });
-    } else {
-      return new Promise((resolve, reject) => {
-        JNetwork.POST(filmUrl.jbzFilmDetail, {filmId}).then(data => {
-          resolve(_('filmUrl.jbzFilmDetail', data));
-        }, error => {
-          reject(error);
-        });
-      });
-    }
-  }
-
-  /**
-   * 获取影片排片日期列表
-   * @param filmId 影片Id
-   * @param cityId 城市Id
-   * @returns {Promise}
-   */
-  static filmDateList(filmId, cityId) {
-    return new Promise((resolve, reject) => {
-      JNetwork.POST(filmUrl.jbzFilmDate, {filmId, cityId}).then(data => {
-        resolve(_('filmUrl.jbzFilmDate', data));
-      }, error => {
-        reject(error);
-      })
-    })
-  }
-
-  static filmDateListNeedCity(filmId) {
-    console.log(JNetwork.locationParas().cityId);
-    return JNetworkFilm.filmDateList(filmId, JNetwork.locationParas().cityId)
-  }
-
-}
-
-export default JNetworkFilm;
-</pre>
+    });
+}).connect({
+    host: '10.1.1.61',
+    username: 'root',
+    password: 'JBZ321*88'
+});</pre>
     </article>
 </section>
 
