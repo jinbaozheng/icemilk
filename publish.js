@@ -17,6 +17,7 @@ exec('npm run generate-docs', {cwd: comment}, (error, stdout, stderr) => {
   commitDoc();
 });
 
+
 function commitDoc() {
   exec('git commit', (error, stdout, stderr) => {
     updateDoc();
