@@ -2,7 +2,7 @@
  * Created by cuppi on 2017/3/6.
  */
 'use strict';
-import NetworkManager from './JNetwork.js';
+import JNetwork from './JNetwork.js';
 import {accountUrl} from '../unify/JUrlList';
 
 /**
@@ -17,7 +17,7 @@ class JNetworkAccount{
    * @returns {{terminate, then}|*}
    */
   static accountLogin(mobile, password) {
-    return NetworkManager.POST(accountUrl.jbzLogin, {
+    return JNetwork.POST(accountUrl.jbzLogin, {
       mobile: mobile,
       password: password
     });
@@ -29,7 +29,7 @@ class JNetworkAccount{
    * @returns {{terminate, then}|*}
    */
   static accountLogout(sessionId) {
-    return NetworkManager.POST(accountUrl.jbzLogout, {}, sessionId);
+    return JNetwork.POST(accountUrl.jbzLogout, {}, sessionId);
   }
 
   /**
@@ -39,7 +39,7 @@ class JNetworkAccount{
    * @returns {{terminate, then}|*}
    */
   static accountVerifyCode(mobile, type) {
-    return NetworkManager.POST(accountUrl.jbzVerifycode, {
+    return JNetwork.POST(accountUrl.jbzVerifycode, {
       mobile: mobile,
       codetype: type
     });
@@ -53,7 +53,7 @@ class JNetworkAccount{
    * @returns {{terminate, then}|*}
    */
   static accountRegister(mobile, verifyCode, password) {
-    return NetworkManager.POST(accountUrl.jbzRegister, {
+    return JNetwork.POST(accountUrl.jbzRegister, {
       mobile: mobile,
       verifyCode: verifyCode,
       password: password
@@ -68,7 +68,7 @@ class JNetworkAccount{
    * @returns {{terminate, then}|*}
    */
   static accountUpdatepass(mobile, verfyCode, password) {
-    return NetworkManager.POST(accountUrl.jbzUpdatepass, {
+    return JNetwork.POST(accountUrl.jbzUpdatepass, {
       mobile: mobile,
       verifyCode: verfyCode,
       password: password

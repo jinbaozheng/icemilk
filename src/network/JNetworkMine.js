@@ -2,7 +2,7 @@
  * Created by cuppi on 2017/3/6.
  */
 'use strict';
-import NetworkManager from './JNetwork.js';
+import JNetwork from './JNetwork.js';
 import {mineUrl} from '../unify/JUrlList';
 
 /**
@@ -16,12 +16,12 @@ class JNetworkMine {
    * @returns {*}
    */
   static mineOrderNeedLogin() {
-    let loginParas = NetworkManager.loginParas();
+    let loginParas = JNetwork.loginParas();
     if (!loginParas.hasAccount) {
-      return NetworkManager.failedAuthorizationNetwork();
+      return JNetwork.failedAuthorizationNetwork();
     }
     let {openId, sessionId} = loginParas;
-    return NetworkManager.POST(mineUrl.userorders, {
+    return JNetwork.POST(mineUrl.userorders, {
       openId
     }, {
       openId, sessionId
@@ -33,12 +33,12 @@ class JNetworkMine {
    * @returns {*}
    */
   static mineFavoriteNeedLogin() {
-    let loginParas = NetworkManager.loginParas();
+    let loginParas = JNetwork.loginParas();
     if (!loginParas.hasAccount) {
-      return NetworkManager.failedAuthorizationNetwork();
+      return JNetwork.failedAuthorizationNetwork();
     }
     let {openId, sessionId} = loginParas;
-    return NetworkManager.POST(mineUrl.collectedcinemalist, {
+    return JNetwork.POST(mineUrl.collectedcinemalist, {
       openId: openId
     }, {
       openId: openId, sessionId

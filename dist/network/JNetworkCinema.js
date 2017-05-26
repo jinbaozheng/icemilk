@@ -85,7 +85,7 @@ var JNetworkCinema = function () {
     key: 'cinemaListNeedLocation',
     value: function cinemaListNeedLocation(cinemaFilter) {
       var location = _JNetwork2.default.locationParas();
-      return NetworkCinemaManager.cinemaList(location, cinemaFilter);
+      return JNetworkCinema.cinemaList(location, cinemaFilter);
     }
   }, {
     key: 'cinemaScreeningFilmList',

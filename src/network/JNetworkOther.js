@@ -2,7 +2,7 @@
  * Created by cuppi on 2016/12/1.
  */
 'use strict';
-import NetworkManager from './JNetwork.js';
+import JNetwork from './JNetwork.js';
 import {otherUrl} from '../unify/JUrlList';
 import _ from '../unify/JDataUnify';
 
@@ -20,13 +20,13 @@ class JNetworkOther {
    */
   static otherSearch(cityId, key, lastKey) {
     if (cityId) {
-      // return NetworkManager.POST(otherUrl.jbzSearch, {
+      // return JNetwork.POST(otherUrl.jbzSearch, {
       //   cityId,
       //   queryStr: key,
       //   lastKey: lastKey
       // });
     } else {
-      return NetworkManager.POST(otherUrl.jbzSearch, {
+      return JNetwork.POST(otherUrl.jbzSearch, {
         queryStr: key,
         lastKey: lastKey
       });
@@ -38,7 +38,7 @@ class JNetworkOther {
    * @returns {{terminate, then}|*}
    */
   static hotQuery() {
-    return NetworkManager.POST(otherUrl.hotquery);
+    return JNetwork.POST(otherUrl.hotquery);
   }
 
   /**
@@ -47,7 +47,7 @@ class JNetworkOther {
    */
   static otherBanners(location, cityId) {
     return new Promise((resolve, reject) => {
-      return NetworkManager.POST(otherUrl.jbzBanners, {
+      return JNetwork.POST(otherUrl.jbzBanners, {
         location, cityId
       }).then(data => {
         resolve(_('otherUrl.jbzBanners', data));

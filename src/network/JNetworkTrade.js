@@ -2,7 +2,7 @@
  * Created by cuppi on 2016/12/7.
  */
 'use strict';
-import NetworkManager from './JNetwork.js';
+import JNetwork from './JNetwork.js';
 import {tradeUrl} from '../unify/JUrlList';
 import _ from '../unify/JDataUnify';
 
@@ -18,9 +18,9 @@ class JNetworkTrade {
    * @returns {{terminate, then}|*}
    */
   static tradeLockSeatNeedLogin(type, paras) {
-    let loginParas = NetworkManager.loginParas();
+    let loginParas = JNetwork.loginParas();
     return new Promise((resolve, reject) => {
-      NetworkManager.POST(tradeUrl.jbzLockSeat, {type, ...paras}).then(data => {
+      JNetwork.POST(tradeUrl.jbzLockSeat, {type, ...paras}).then(data => {
         resolve(_('tradeUrl.jbzLockSeat', data));
       }, error => {
         reject(error);
@@ -34,7 +34,7 @@ class JNetworkTrade {
    * @returns {{terminate, then}|*}
    */
   static cancelLockSeatNeedLogin(orderId) {
-    return NetworkManager.POST(tradeUrl.jbzCancelOrder, {orderId})
+    return JNetwork.POST(tradeUrl.jbzCancelOrder, {orderId})
   }
 
   /**
@@ -44,12 +44,12 @@ class JNetworkTrade {
    * @returns {{terminate, then}|*}
    */
   static tradeApplyOrderNeedLogin(type, paras) {
-    let loginParas = NetworkManager.loginParas();
-    let inType = NetworkManager.inType;
+    let loginParas = JNetwork.loginParas();
+    let inType = JNetwork.inType;
 
     if (inType === 'ICBC-APP' || inType === 'SHANGHAI-APP') {
       return new Promise((resolve, reject) => {
-        NetworkManager.POST(tradeUrl.jbzWebAtAppApplyTicket, {type, ...paras}).then(data => {
+        JNetwork.POST(tradeUrl.jbzWebAtAppApplyTicket, {type, ...paras}).then(data => {
           resolve(_('tradeUrl.jbzWebAtAppApplyTicket', data));
         }, error => {
           reject(error);
@@ -58,14 +58,14 @@ class JNetworkTrade {
     }
 
     // if (inType === 'DPIOS' || inType === 'DPANDROID') {
-    //   return NetworkManager.POST(tradeUrl.jbzAppApplyTicket, {type, ...paras}, loginParas);
+    //   return JNetwork.POST(tradeUrl.jbzAppApplyTicket, {type, ...paras}, loginParas);
     // }
     //
     // if (inType === 'DPWX' || inType === 'DPWEB' || inType === 'PC') {
-    //   return NetworkManager.POST(tradeUrl.jbzWepApplyTicket, {type, ...paras}, loginParas);
+    //   return JNetwork.POST(tradeUrl.jbzWepApplyTicket, {type, ...paras}, loginParas);
     // }
 
-    return NetworkManager.wrongInType();
+    return JNetwork.wrongInType();
   }
 
   /**
@@ -77,19 +77,19 @@ class JNetworkTrade {
    * @returns {{terminate, then}|*}
    */
   static tradePrePayOrderNeedLoginInType(orderId, payType, prizeIds, redIds) {
-    let loginParas = NetworkManager.loginParas();
-    let inType = NetworkManager.inType;
+    let loginParas = JNetwork.loginParas();
+    let inType = JNetwork.inType;
 
     if (inType === 'DPIOS' || inType === 'DPANDROID') {
-      return NetworkManager.POST(tradeUrl.jbzAppPrepay, {orderId, payType, prizeIds, redIds}, loginParas);
+      return JNetwork.POST(tradeUrl.jbzAppPrepay, {orderId, payType, prizeIds, redIds}, loginParas);
     }
 
 
     if (inType === 'DPWX' || inType === 'DPWEB' || inType === 'PC') {
-      return NetworkManager.POST(tradeUrl.jbzWebPrepay, {orderId, payType, prizeIds, redIds}, loginParas);
+      return JNetwork.POST(tradeUrl.jbzWebPrepay, {orderId, payType, prizeIds, redIds}, loginParas);
     }
 
-    return NetworkManager.wrongInType();
+    return JNetwork.wrongInType();
   }
 }
 

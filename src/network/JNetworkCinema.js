@@ -2,7 +2,7 @@
  * Created by cuppi on 2016/11/29.
  */
 'use strict';
-import NetworkManager from './JNetwork.js';
+import JNetwork from './JNetwork.js';
 import {cinemaUrl} from '../unify/JUrlList';
 import DateTool from '../tool/JToolDate';
 import _ from '../unify/JDataUnify';
@@ -20,7 +20,7 @@ class JNetworkCinema {
    */
   static cinemaDetail(cinemaId) {
     return new Promise((resolve, reject) => {
-      NetworkManager.POST(cinemaUrl.jbzDetail, {cinemaId}).then(data => {
+      JNetwork.POST(cinemaUrl.jbzDetail, {cinemaId}).then(data => {
         resolve(_('cinemaUrl.jbzDetail', data));
       }, error => {
         reject(error);
@@ -38,7 +38,7 @@ class JNetworkCinema {
   static cinemaList(location, cinemaFilter) {
     return new Promise((resolve, reject) => {
       let {filmId, feature, region, sort, limit} = cinemaFilter ? cinemaFilter : {};
-      NetworkManager.POST(cinemaUrl.jbzList, {
+      JNetwork.POST(cinemaUrl.jbzList, {
         ...location,
         filmId,
         feature,
@@ -59,8 +59,8 @@ class JNetworkCinema {
    * @returns {{terminate, then}|*}
    */
   static cinemaListNeedLocation(cinemaFilter) {
-    let location = NetworkManager.locationParas();
-    return NetworkCinemaManager.cinemaList(location, cinemaFilter)
+    let location = JNetwork.locationParas();
+    return JNetworkCinema.cinemaList(location, cinemaFilter)
   }
 
   /**
@@ -69,13 +69,13 @@ class JNetworkCinema {
    * @returns {{terminate, then}|*}
    */
   static cinemaScreeningFilmList(cinemaId) {
-    let loginParas = NetworkManager.loginParas();
+    let loginParas = JNetwork.loginParas();
     let account = {};
     if (loginParas.hasAccount) {
       account = {openId: loginParas.openId, sessionId: loginParas.sessionId};
     }
     return new Promise((resolve, reject) => {
-      return NetworkManager.POST(cinemaUrl.jbzScreeningFilmList, {
+      return JNetwork.POST(cinemaUrl.jbzScreeningFilmList, {
         cinemaId
       }, account).then(data => {
         resolve(_('cinemaUrl.jbzScreeningFilmList', data));
@@ -93,7 +93,7 @@ class JNetworkCinema {
    */
   static cinemaScreeningDateList(cinemaId, filmId) {
     return new Promise((resolve, reject) => {
-      NetworkManager.POST(cinemaUrl.jbzScreeningDateList, {cinemaId, filmId}).then(data => {
+      JNetwork.POST(cinemaUrl.jbzScreeningDateList, {cinemaId, filmId}).then(data => {
         resolve(_('cinemaUrl.jbzScreeningDateList', data));
       }, error => {
         reject(error);
@@ -111,7 +111,7 @@ class JNetworkCinema {
   static cinemaScreeningItems(cinemaId, filmId, date) {
     return new Promise((resolve, reject) => {
       date = DateTool.dateStringFromTimeInterval(date, 'yyyy-MM-dd');
-      NetworkManager.POST(cinemaUrl.jbzScreeningItems, {cinemaId, filmId, date}).then(data => {
+      JNetwork.POST(cinemaUrl.jbzScreeningItems, {cinemaId, filmId, date}).then(data => {
         resolve(_('cinemaUrl.jbzScreeningItems', data));
       }, error => {
         reject(error);
@@ -130,7 +130,7 @@ class JNetworkCinema {
       type = 'maoyan';
     }
     return new Promise((resolve, reject) => {
-      NetworkManager.POST(cinemaUrl.jbzRealtimeSeat, {type, ...paras}).then(data => {
+      JNetwork.POST(cinemaUrl.jbzRealtimeSeat, {type, ...paras}).then(data => {
         resolve(_('cinemaUrl.jbzRealtimeSeat', data));
       }, error => {
         reject(error);
@@ -149,7 +149,7 @@ class JNetworkCinema {
       type = 'maoyan';
     }
     return new Promise((resolve, reject) => {
-      NetworkManager.POST(cinemaUrl.jbzRealtimeSeat, {type, ...paras}).then(data => {
+      JNetwork.POST(cinemaUrl.jbzRealtimeSeat, {type, ...paras}).then(data => {
         resolve(SeatManager.defaultManager().smartSeatsFromSeats(type, _('cinemaUrl.jbzRealtimeSmartSeat', data)));
       }, error => {
         reject(error);
@@ -164,11 +164,11 @@ class JNetworkCinema {
    * @returns {{terminate, then}|*}
    */
   static cinemaFavoriteCinemaNeedLogin(cinemaId, cinemaName) {
-    let loginParas = NetworkManager.loginParas();
+    let loginParas = JNetwork.loginParas();
     if (!loginParas.hasAccount) {
-      return NetworkManager.failedAuthorizationNetwork();
+      return JNetwork.failedAuthorizationNetwork();
     }
-    return NetworkManager.POST(cinemaUrl.jbzCollectcinema, {
+    return JNetwork.POST(cinemaUrl.jbzCollectcinema, {
       openId: loginParas.openId,
       cinemaId: cinemaId,
       cinemaName: cinemaName
@@ -183,11 +183,11 @@ class JNetworkCinema {
    * @returns {{terminate, then}|*}
    */
   static cinemaCancelFavoriteCinemaNeedLogin(cinemaId) {
-    let loginParas = NetworkManager.loginParas();
+    let loginParas = JNetwork.loginParas();
     if (!loginParas.hasAccount) {
-      return NetworkManager.failedAuthorizationNetwork();
+      return JNetwork.failedAuthorizationNetwork();
     }
-    return NetworkManager.POST(cinemaUrl.jbzCancelcollectcinema, {
+    return JNetwork.POST(cinemaUrl.jbzCancelcollectcinema, {
       openId: loginParas.openId,
       cinemaId: cinemaId
     }, {

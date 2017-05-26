@@ -18,6 +18,7 @@ class JNetwork {
 
   /**
    * 需要定位的请求的公共参数
+   * @private
    * @returns {*}
    */
   static locationParas() {
@@ -35,6 +36,7 @@ class JNetwork {
 
   /**
    * 需要登录的请求的公共参数
+   * @private
    * @returns {*}
    */
   static loginParas() {
@@ -86,6 +88,7 @@ class JNetwork {
 
   /**
    * 包裹可取消的请求 （使用fetch请求时使用，目前通过axios请求，无需使用）
+   * @private
    * @param promise 异步请求块
    * @returns {*} 被包裹后的异步请求块
    */

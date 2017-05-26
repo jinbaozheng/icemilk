@@ -2,7 +2,7 @@
  * Created by cuppi on 2016/11/30.
  */
 'use strict';
-import NetworkManager from './JNetwork';
+import JNetwork from './JNetwork';
 import {cityUrl} from '../unify/JUrlList';
 import _ from '../unify/JDataUnify';
 
@@ -17,7 +17,7 @@ class JNetworkCity {
    */
   static cityList() {
     return new Promise((resolve, reject) => {
-      NetworkManager.POST(cityUrl.jbzCities).then(data => {
+      JNetwork.POST(cityUrl.jbzCities).then(data => {
         resolve(_('cityUrl.jbzCities', data));
       }, error => {
         reject(error);
@@ -32,7 +32,7 @@ class JNetworkCity {
    */
   static cityByCoordinate(coordinate) {
     return new Promise((resolve, reject) => {
-      NetworkManager.POST(cityUrl.jbzCityByCoordinate, coordinate).then(data => {
+      JNetwork.POST(cityUrl.jbzCityByCoordinate, coordinate).then(data => {
         resolve(_('cityUrl.jbzCityByCoordinate', data));
       }, error => {
         reject(error);
@@ -46,7 +46,7 @@ class JNetworkCity {
    */
   static cityNeedCoordinate() {
     return new Promise((resolve, reject) => {
-      NetworkManager.POST(cityUrl.jbzCityByCoordinate, {...NetworkManager.locationParas()}).then(data => {
+      JNetwork.POST(cityUrl.jbzCityByCoordinate, {...JNetwork.locationParas()}).then(data => {
         resolve(_('cityUrl.jbzCityByCoordinate', data));
       }, error => {
         reject(error);
@@ -61,7 +61,7 @@ class JNetworkCity {
    */
   static cityById(cityId) {
     return new Promise((resolve, reject) => {
-      NetworkManager.POST(cityUrl.jbzCityById, {cityId}).then(data => {
+      JNetwork.POST(cityUrl.jbzCityById, {cityId}).then(data => {
         resolve(_('cityUrl.jbzCityById', data));
       }, error => {
         reject(error);
@@ -76,7 +76,7 @@ class JNetworkCity {
    */
   static cityDistrictList(cityId) {
     return new Promise((resolve, reject) => {
-      NetworkManager.POST(cityUrl.jbzDistricts, {cityId}).then(data => {
+      JNetwork.POST(cityUrl.jbzDistricts, {cityId}).then(data => {
         resolve(_('cityUrl.jbzDistricts', data));
       }, error => {
         reject(error);
@@ -90,7 +90,7 @@ class JNetworkCity {
    */
   static cityHotList() {
     return new Promise((resolve, reject) => {
-      NetworkManager.POST(cityUrl.jbzHotCities).then(data => {
+      JNetwork.POST(cityUrl.jbzHotCities).then(data => {
         resolve(_('cityUrl.jbzHotCities', data));
       }, error => {
         reject(error);
