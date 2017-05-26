@@ -36,7 +36,7 @@
     "cp-publish": "./cp_publish.pl",
     "generate-docs": "./generate_docs.pl",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "update-docs": "node ./publish.sh"
+    "update-docs": "node ./publish.js"
   },
   "main": "dist/index.js",
   "babel": {
