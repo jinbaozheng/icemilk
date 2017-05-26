@@ -2,20 +2,28 @@
  * Created by cuppi on 2017/5/26.
  */
 
-var Client = require('/usr/local/lib/node_modules/ssh2').Client;
-var conn = new Client();
+const Client = require('/usr/local/lib/node_modules/ssh2').Client;
+const conn = new Client();
+const path = require('path');
 
 const exec = require('child_process').exec;
+const comment = path.resolve(__dirname, './comment')
 
-exec('npm run generate-docs', (error, stdout, stderr) => {
+exec('npm run generate-docs', {cwd: comment}, (error, stdout, stderr) => {
   if (error) {
     console.error(`exec error: ${error}`);
     return;
   }
-  update();
+  commitDoc();
 });
 
-function update() {
+function commitDoc() {
+  exec('git commit', (error, stdout, stderr) => {
+    updateDoc();
+  });
+}
+
+function updateDoc() {
   conn.on('ready', function () {
     // console.log('Client :: ready');
     conn.exec('cd /opt/project/NodeWorld/jbzweb-sdk && node ./publish.js', function (err, stream) {
