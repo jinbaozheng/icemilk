@@ -27,7 +27,7 @@ function commitDoc() {
         updateDoc();
         return;
       }
-      exec('git push origin master', (error, stdout, stderr) => {
+      exec('git push origin jbz/master:master', (error, stdout, stderr) => {
         if (error) {
           console.log('推送远程库失败');
           console.error(`exec error: ${error}`);
