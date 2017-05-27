@@ -276,6 +276,10 @@
     <h5>Returns:</h5>
     
             
+<div class="param-desc">
+    当前日期对象
+</div>
+
 
 
 <dl>
@@ -301,7 +305,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".currentDateString"><span class="type-signature">&lt;static> </span>currentDateString()</h4>
+    <h4 class="name" id=".currentDateString"><span class="type-signature">&lt;static> </span>currentDateString(format)</h4>
     
     
 </dt>
@@ -318,6 +322,56 @@
     
 
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>format</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">字符串格式</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -383,6 +437,10 @@
     <h5>Returns:</h5>
     
             
+<div class="param-desc">
+    当前日期字符串
+</div>
+
 
 
 <dl>
@@ -391,7 +449,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Date</span>
+<span class="param-type">string</span>
 
 
 
@@ -490,6 +548,10 @@
     <h5>Returns:</h5>
     
             
+<div class="param-desc">
+    当前时间戳
+</div>
+
 
 
 <dl>
@@ -515,7 +577,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".dateFromDateString"><span class="type-signature">&lt;static> </span>dateFromDateString(dateString, format)</h4>
+    <h4 class="name" id=".dateAfterDaysLater"><span class="type-signature">&lt;static> </span>dateAfterDaysLater(beganDate, days)</h4>
     
     
 </dt>
@@ -523,7 +585,7 @@
 
     
     <div class="description">
-        获取字符串的指定格式的日期 （待开发）
+        获取(多态)日期某天后的日期()
     </div>
     
 
@@ -558,10 +620,22 @@
 
         <tr>
             
-                <td class="name"><code>dateString</code></td>
+                <td class="name"><code>beganDate</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">Date</span>
+|
+
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
             
             </td>
 
@@ -569,17 +643,23 @@
 
             
 
-            <td class="description last">日期字符串</td>
+            <td class="description last"></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>format</code></td>
+                <td class="name"><code>days</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
             
             </td>
 
@@ -587,7 +667,7 @@
 
             
 
-            <td class="description last">日期格式</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -659,6 +739,202 @@
     <h5>Returns:</h5>
     
             
+<div class="param-desc">
+    目的日期
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Date</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".dateFromDateString"><span class="type-signature">&lt;static> </span>dateFromDateString(dateString, format)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        日期字符串转换日期 （待开发）
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>dateString</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">日期字符串</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>format</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">日期格式</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>~1.1.*</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="src_tool_JToolDate.js.html">src/tool/JToolDate.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    日期
+</div>
+
 
 
 <dl>
@@ -731,6 +1007,12 @@
             
 
             <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
             
             </td>
 
@@ -839,7 +1121,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".dateSeveralDaysLater"><span class="type-signature">&lt;static> </span>dateSeveralDaysLater(beganDate, days)</h4>
+    <h4 class="name" id=".dateStringAfterDaysLater"><span class="type-signature">&lt;static> </span>dateStringAfterDaysLater(beganDate, days)</h4>
     
     
 </dt>
@@ -847,7 +1129,7 @@
 
     
     <div class="description">
-        指定日期的某天后
+        获取(多态)日期某天后的日期字符串
     </div>
     
 
@@ -887,13 +1169,25 @@
 
             <td class="type">
             
+                
+<span class="param-type">Date</span>
+|
+
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
 
             
 
-            <td class="description last"></td>
+            <td class="description last">开始日期</td>
         </tr>
 
     
@@ -905,13 +1199,19 @@
 
             <td class="type">
             
+                
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
 
             
 
-            <td class="description last"></td>
+            <td class="description last">天数</td>
         </tr>
 
     
@@ -983,6 +1283,10 @@
     <h5>Returns:</h5>
     
             
+<div class="param-desc">
+    目的日期字符串
+</div>
+
 
 
 <dl>
@@ -1016,7 +1320,7 @@
 
     
     <div class="description">
-        获取日期的指定格式的字符串
+        日期转换日期字符串
     </div>
     
 
@@ -1056,6 +1360,12 @@
 
             <td class="type">
             
+                
+<span class="param-type">Date</span>
+
+
+
+            
             </td>
 
             
@@ -1073,6 +1383,12 @@
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -1149,6 +1465,30 @@
     
 
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    日期字符串
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -1205,6 +1545,12 @@
 
             <td class="type">
             
+                
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
@@ -1222,6 +1568,12 @@
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -1301,193 +1653,10 @@
     <h5>Returns:</h5>
     
             
+<div class="param-desc">
+    日期字符串
+</div>
 
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">*</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".dateStringSeveralDaysLater"><span class="type-signature">&lt;static> </span>dateStringSeveralDaysLater(beganDateString, days, format)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        指定日期字符串的某天后
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>beganDateString</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">标准日期字符串</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>days</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">天数</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>format</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">日期格式化</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_tool_JToolDate.js.html">src/tool/JToolDate.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
 <dl>
@@ -1521,7 +1690,7 @@
 
     
     <div class="description">
-        时间戳的距离
+        获取(多态)日期的距离
     </div>
     
 
@@ -1561,6 +1730,18 @@
 
             <td class="type">
             
+                
+<span class="param-type">Date</span>
+|
+
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
@@ -1578,6 +1759,18 @@
             
 
             <td class="type">
+            
+                
+<span class="param-type">Date</span>
+|
+
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
             
             </td>
 
@@ -1597,387 +1790,11 @@
 
             <td class="type">
             
-            </td>
+                
+<span class="param-type">bool</span>
 
-            
 
-            
 
-            <td class="description last">只需要秒的总数</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_tool_JToolDate.js.html">src/tool/JToolDate.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    [秒，分，小时，天，月, 年]
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".distanceBetweenDateString"><span class="type-signature">&lt;static> </span>distanceBetweenDateString(startDateString, endDateString, justSeconds)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        时间戳的距离
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>startDateString</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">起始日期字符串</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>endDateString</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">结束日期字符串</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>justSeconds</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">只需要秒的总数</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_tool_JToolDate.js.html">src/tool/JToolDate.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    [秒，分，小时，天，月, 年]
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".distanceBetweenTimeInterval"><span class="type-signature">&lt;static> </span>distanceBetweenTimeInterval(startTimeInterval, endTimeInterval, justSeconds)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        时间戳的距离
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>startTimeInterval</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">起始时间戳</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>endTimeInterval</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">结束时间戳</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>justSeconds</code></td>
-            
-
-            <td class="type">
             
             </td>
 
@@ -2134,6 +1951,12 @@
 
             <td class="type">
             
+                
+<span class="param-type">Date</span>
+
+
+
+            
             </td>
 
             
@@ -2212,6 +2035,10 @@
     <h5>Returns:</h5>
     
             
+<div class="param-desc">
+    时间戳
+</div>
+
 
 
 <dl>
@@ -2287,6 +2114,12 @@
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+
+
+
+            
             </td>
 
             
@@ -2365,6 +2198,10 @@
     <h5>Returns:</h5>
     
             
+<div class="param-desc">
+    时间戳
+</div>
+
 
 
 <dl>
@@ -2438,6 +2275,12 @@
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+
+
+
+            
             </td>
 
             
@@ -2456,6 +2299,12 @@
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+
+
+
+            
             </td>
 
             
@@ -2473,6 +2322,12 @@
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -2496,156 +2351,12 @@
 	
 
 	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
 		<ul class="dummy">
-			<li>
-				<a href="src_tool_JToolDate.js.html">src/tool/JToolDate.js</a>
-			</li>
+			<li>~1.1.*</li>
 		</ul>
 	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">*</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".weekDayFromDate"><span class="type-signature">&lt;static> </span>weekDayFromDate(date)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        获取指定日期为星期几
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">日期对象</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
 	
 
 	
@@ -2704,7 +2415,7 @@
     
             
 <div class="param-desc">
-    0~6  星期一~星期日
+    字符串
 </div>
 
 
@@ -2715,7 +2426,7 @@
     </dt>
     <dd>
         
-<span class="param-type">number</span>
+<span class="param-type">string</span>
 
 
 
@@ -2732,7 +2443,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".weekDayFromDateString"><span class="type-signature">&lt;static> </span>weekDayFromDateString(dateString, format)</h4>
+    <h4 class="name" id=".weekDayFromDate"><span class="type-signature">&lt;static> </span>weekDayFromDate(date)</h4>
     
     
 </dt>
@@ -2740,7 +2451,7 @@
 
     
     <div class="description">
-        获取指定日期字符串为星期几
+        获取指定(多态)日期为星期几
     </div>
     
 
@@ -2775,10 +2486,22 @@
 
         <tr>
             
-                <td class="name"><code>dateString</code></td>
+                <td class="name"><code>date</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">Date</span>
+|
+
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
             
             </td>
 
@@ -2786,25 +2509,7 @@
 
             
 
-            <td class="description last">标准日期字符串</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>format</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">日期格式</td>
+            <td class="description last">日期</td>
         </tr>
 
     
@@ -2957,7 +2662,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
 	
-		on 2017-05-26T19:58:07+08:00
+		on 2017-05-27T14:16:19+08:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
