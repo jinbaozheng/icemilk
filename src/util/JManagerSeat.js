@@ -249,8 +249,8 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.key.split(':').shift());
       let col = Number.parseInt(seatModel.key.split(':').pop());
-      let rowNumber = StringTool.numberFromString(seatModel.Name.split(':').shift());
-      let colNumber = StringTool.numberFromString(seatModel.Name.split(':').pop());
+      let rowNumber = StringTool.numberFromString(seatModel.Name.split(':').shift(), true, 1);
+      let colNumber = StringTool.numberFromString(seatModel.Name.split(':').pop(), true, 1);
       return {
         row: row,
         col: col,
@@ -281,8 +281,8 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowNum);
       let col = Number.parseInt(seatModel.columnNum);
-      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowId));
-      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnId));
+      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowId, true, 1));
+      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnId, true, 1));
       return {
         row: row,
         col: col,
@@ -314,8 +314,8 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowNum);
       let col = Number.parseInt(seatModel.columnNum);
-      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowId));
-      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnId));
+      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowId, true, 1));
+      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnId, true, 1));
       // 上海百美汇影城
       return {
         row: row,
@@ -348,8 +348,8 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowNum);
       let col = Number.parseInt(seatModel.columnNum);
-      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowId));
-      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnId));
+      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowId, true, 1));
+      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnId, true, 1));
       return {
         row: row,
         col: col,
@@ -382,8 +382,8 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowNo);
       let col = Number.parseInt(seatModel.columnNo);
-      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowId));
-      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnId));
+      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowId, true, 1));
+      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnId, true, 1));
       return {
         row: row,
         col: col,
@@ -421,8 +421,8 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowId);
       let col = Number.parseInt(seatModel.columnId);
-      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowNo));
-      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnNo));
+      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowNo, true, 1));
+      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnNo, true, 1));
       return {
         row: row,
         col: col,

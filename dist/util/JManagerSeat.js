@@ -197,8 +197,8 @@ var SeatManager = function () {
       return seatList.map(function (seatModel) {
         var row = (0, _parseInt2.default)(seatModel.key.split(':').shift());
         var col = (0, _parseInt2.default)(seatModel.key.split(':').pop());
-        var rowNumber = _JToolString2.default.numberFromString(seatModel.Name.split(':').shift());
-        var colNumber = _JToolString2.default.numberFromString(seatModel.Name.split(':').pop());
+        var rowNumber = _JToolString2.default.numberFromString(seatModel.Name.split(':').shift(), true, 1);
+        var colNumber = _JToolString2.default.numberFromString(seatModel.Name.split(':').pop(), true, 1);
         return {
           row: row,
           col: col,
@@ -222,8 +222,8 @@ var SeatManager = function () {
       return seatList.map(function (seatModel) {
         var row = (0, _parseInt2.default)(seatModel.rowNum);
         var col = (0, _parseInt2.default)(seatModel.columnNum);
-        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowId));
-        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnId));
+        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowId, true, 1));
+        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnId, true, 1));
         return {
           row: row,
           col: col,
@@ -247,8 +247,8 @@ var SeatManager = function () {
       return seatList.map(function (seatModel) {
         var row = (0, _parseInt2.default)(seatModel.rowNum);
         var col = (0, _parseInt2.default)(seatModel.columnNum);
-        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowId));
-        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnId));
+        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowId, true, 1));
+        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnId, true, 1));
 
         return {
           row: row,
@@ -273,8 +273,8 @@ var SeatManager = function () {
       return seatList.map(function (seatModel) {
         var row = (0, _parseInt2.default)(seatModel.rowNum);
         var col = (0, _parseInt2.default)(seatModel.columnNum);
-        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowId));
-        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnId));
+        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowId, true, 1));
+        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnId, true, 1));
         return {
           row: row,
           col: col,
@@ -299,8 +299,8 @@ var SeatManager = function () {
       return seatList.map(function (seatModel) {
         var row = (0, _parseInt2.default)(seatModel.rowNo);
         var col = (0, _parseInt2.default)(seatModel.columnNo);
-        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowId));
-        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnId));
+        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowId, true, 1));
+        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnId, true, 1));
         return {
           row: row,
           col: col,
@@ -330,8 +330,8 @@ var SeatManager = function () {
       return seatList.map(function (seatModel) {
         var row = (0, _parseInt2.default)(seatModel.rowId);
         var col = (0, _parseInt2.default)(seatModel.columnId);
-        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowNo));
-        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnNo));
+        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowNo, true, 1));
+        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnNo, true, 1));
         return {
           row: row,
           col: col,

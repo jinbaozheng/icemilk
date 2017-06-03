@@ -12,8 +12,8 @@ import {accountUrl} from '../unify/JUrlList';
 class JNetworkAccount{
   /**
    * 用户登录
-   * @param mobile 登录需要的手机号码
-   * @param password 登录需要的密码
+   * @param {string} mobile 登录需要的手机号码
+   * @param {string} password 登录需要的密码
    * @returns {{terminate, then}|*}
    */
   static accountLogin(mobile, password) {

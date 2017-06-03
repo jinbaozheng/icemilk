@@ -15,8 +15,8 @@ import SeatManager from '../util/JManagerSeat';
 class JNetworkCinema {
   /**
    * 获取影院详情
-   * @param cinemaId 影院ID
-   * @returns {*}
+   * @param {string} cinemaId 影院ID
+   * @returns {Promise} promise
    */
   static cinemaDetail(cinemaId) {
     return new Promise((resolve, reject) => {

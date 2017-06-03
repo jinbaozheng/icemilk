@@ -78,11 +78,11 @@ var StringTool = function () {
     }
   }, {
     key: 'numberFromString',
-    value: function numberFromString(string, force) {
+    value: function numberFromString(string, force, offset) {
       if (/^[0-9]*$/.test(string)) {
         return (0, _parseInt2.default)(string);
       }
-      var sum = 0;
+      var sum = offset ? offset : 0;
       if (force) {
         for (var i = string.length - 1, radix = 1; i >= 0; i--, radix = radix * 26) {
           sum += StringTool.numberFromASC(string[i]) * radix;

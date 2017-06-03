@@ -9,10 +9,10 @@
 class UrlTool {
   /**
    * 合成URL完整地址
-   * @param baseUrl 基础地址
-   * @param subUrl 相对地址
-   * @param parameters 参数
-   * @returns {*} 返回拼接后的地址
+   * @param {string} baseUrl 基础地址
+   * @param {string} subUrl 相对地址
+   * @param {string} parameters 参数
+   * @returns {string} 返回拼接后的地址
    */
   static urlFromPortion(baseUrl, subUrl, parameters) {
     if (!parameters) {
