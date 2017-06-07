@@ -18,7 +18,7 @@ export function UseConfig(inType) {
   _inType = inType;
 }
 
-export default function (path, data) {
+export default function (path, data, mark, otherHandle) {
   if (!data){
     return;
   }
@@ -27,7 +27,7 @@ export default function (path, data) {
       console.log('Can not find data unify for path:' + path + ', please contact the Author => cuppi');
       return {};
     }
-    return IcbcUnify[path](data);
+    return IcbcUnify[path](data, mark, otherHandle);
   }
 
   if (_inType === 'SHANGHAI-APP') {
@@ -35,7 +35,7 @@ export default function (path, data) {
       console.log('Can not find data unify for path:' + path + ', please contact the Author => cuppi');
       return {};
     }
-    return ShangHaiUnify[path](data);
+    return ShangHaiUnify[path](data, mark, otherHandle);
   }
   return {};
 }

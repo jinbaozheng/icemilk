@@ -44,8 +44,15 @@ export default {
   }),
 
 
-  'cinemaUrl.jbzDetail': data => {
-    data.cinema.phone = data.phone;
+  'cinemaUrl.jbzDetail': (data, mark) => {
+    let optional = {};
+    if (mark === 0) {
+      optional = {phone: data.phone};
+    }
+    if (mark === 1) {
+      optional = {phone: data.phone, isCollected: data.isCollected};
+    }
+    data.cinema.optional = optional;
     ObjectTool.deleteProperty(data.cinema, 'tails');
     return data.cinema;
   },

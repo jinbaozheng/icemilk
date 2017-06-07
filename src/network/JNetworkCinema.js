@@ -21,7 +21,23 @@ class JNetworkCinema {
   static cinemaDetail(cinemaId) {
     return new Promise((resolve, reject) => {
       JNetwork.POST(cinemaUrl.jbzDetail, {cinemaId}).then(data => {
-        resolve(_('cinemaUrl.jbzDetail', data));
+        resolve(_('cinemaUrl.jbzDetail', data, 0));
+      }, error => {
+        reject(error);
+      });
+    });
+  }
+
+  /**
+   * 获取影院详情(使用登录属性判断是否影院被收藏)
+   * @param {string} cinemaId 影院ID
+   * @returns {Promise} promise
+   */
+  static cinemaDetailCanLogin(cinemaId) {
+    let loginParas = JNetwork.loginParas();
+    return new Promise((resolve, reject) => {
+      JNetwork.POST(cinemaUrl.jbzDetail, {cinemaId, ...loginParas}).then(data => {
+        resolve(_('cinemaUrl.jbzDetail', data, 1));
       }, error => {
         reject(error);
       });
