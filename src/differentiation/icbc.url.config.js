@@ -47,9 +47,13 @@ const tradeUrl = {
   // jbzWebPrepay: '/appapi/prepay',
 };
 
+const mineUrl = {
+  jbzMineCinema: '/mine/cinemacollectionlist'
+};
+
 const otherUrl = {
   jbzBanners: '/banner/banner',
   jbzSearch: '/main/search'
 };
 
-export default {cityUrl, cinemaUrl, filmUrl, accountUrl, tradeUrl, otherUrl};
+export default {cityUrl, cinemaUrl, filmUrl, accountUrl, tradeUrl, mineUrl, otherUrl};

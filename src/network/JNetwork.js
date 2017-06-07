@@ -40,47 +40,40 @@ class JNetwork {
    * @returns {*}
    */
   static loginParas() {
-    if (this.delegate) {
-      let loginParas = this.delegate.loginParas();
-      if (loginParas && loginParas.hasAccount) {
-        return {
-          sessionId: loginParas.sessionId,
-          openId: loginParas.mobile,
-          mobile: loginParas.mobile,
-          hasAccount: true
-        };
-      }
+    if (this.delegate && this.delegate.loginParas) {
+      return this.delegate.loginParas();
     }
-    return {
-      hasAccount: false
-    };
+    return {};
   }
 
-  // static inType(){
-  //   return this.delegate.inType();
-  // }
-
-  // static inType() {
-  //   let intype = '';
-  //   // if (Platform.OS === 'android'){
-  //   //     intype = 'DPANDROID';
-  //   // }
-  //   return intype;
-  // }
-
-  static failedAuthorizationNetwork(){
+  /**
+   * 验证失败
+   * @private
+   * @returns {Promise}
+   */
+  static failedAuthorizationNetwork() {
     return new Promise((resolve, reject) => {
       reject(new Error('authorization error'));
     });
   }
 
-  static unrealizedMethod(){
+  /**
+   * 不存在的方法
+   * @private
+   * @returns {Promise}
+   */
+  static unrealizedMethod() {
     return new Promise((resolve, reject) => {
       reject(new Error('unrealized method'));
     });
   }
 
-  static wrongInType(){
+  /**
+   * 错误类型
+   * @private
+   * @returns {Promise}
+   */
+  static wrongInType() {
     return new Promise((resolve, reject) => {
       reject(new Error('the inType is not exist, please check your inType property in JBZConfig'));
     });
@@ -90,7 +83,7 @@ class JNetwork {
    * 包裹可取消的请求 （使用fetch请求时使用，目前通过axios请求，无需使用）
    * @private
    * @param promise 异步请求块
-   * @returns {*} 被包裹后的异步请求块
+   * @returns {Promise} 被包裹后的异步请求块
    */
   static wrapCancelablePromise(promise) {
     let hasCanceled_ = false;
@@ -116,14 +109,26 @@ class JNetwork {
     };
   }
 
+  /***
+   * 检查是否配置SDK
+   * @private
+   */
+  static checkConfigBaseUrl() {
+    if (!this.baseUrl || this.baseUrl === '') {
+      console.log('please check if you have config baseUrl for SDK');
+      throw Error('Not Config');
+    }
+  }
+
   /**
    * post请求
-   * @param url 相对地址
-   * @param parameters 地址参数
-   * @param headers 头参数
-   * @returns {{terminate, then}|*} 异步请求块
+   * @param {string} url 相对地址
+   * @param {object} parameters 地址参数
+   * @param {object} headers 头参数
+   * @returns {Promise} 异步请求块
    */
   static POST(url, parameters, headers) {
+    this.checkConfigBaseUrl();
     let isOk;
     return this.wrapCancelablePromise(new Promise((resolve, reject) => {
       let iHeaders = Object.assign({
@@ -148,6 +153,7 @@ class JNetwork {
           if (!responseJson.errorCode) {
             resolve(responseJson.data);
           } else {
+            let errorCode = responseJson.errorCode;
             if (responseJson.errorCode === 10022) {
               reject(new Error('NotLogin'));
             } else {
@@ -176,6 +182,7 @@ class JNetwork {
    * @returns {Promise} 异步请求块
    */
   static GET(url, parameters, headers) {
+    this.checkConfigBaseUrl();
     let isOk;
     return this.wrapCancelablePromise(new Promise((resolve, reject) => {
       let iHeaders = Object.assign({

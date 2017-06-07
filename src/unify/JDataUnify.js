@@ -23,10 +23,18 @@ export default function (path, data) {
     return;
   }
   if (_inType === 'ICBC-APP') {
+    if (!IcbcUnify.hasOwnProperty(path)){
+      console.log('Can not find data unify for path:' + path + ', please contact the Author => cuppi');
+      return {};
+    }
     return IcbcUnify[path](data);
   }
 
   if (_inType === 'SHANGHAI-APP') {
+    if (!ShangHaiUnify.hasOwnProperty(path)){
+      console.log('Can not find data unify for path:' + path + ', please contact the Author => cuppi');
+      return {};
+    }
     return ShangHaiUnify[path](data);
   }
   return {};

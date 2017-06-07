@@ -31,8 +31,8 @@ class JNetworkCinema {
 
   /**
    * 影院列表
-   * @param location
-   * @param cinemaFilter
+   * @param {CoordinateModel} location
+   * @param {} cinemaFilter
    * @returns {Promise}
    */
   static cinemaList(location, cinemaFilter) {

@@ -1,1 +1,55 @@
-{"devDependencies":{"jsdoc-babel":"^0.3.0","babel-plugin-transform-runtime":"^6.22.0","ink-docstrap":"^1.3.0","babel-preset-es2015":"*","babel-runtime":"^6.23.0","babel-preset-stage-2":"^6.24.1","babel-cli":"^6.0.0"},"repository":{"url":"git@git.oschina.net:cuppi/jbzwebsdk.git","type":"git"},"dependencies":{"axios":"*","left-pad":"*"},"version":"1.0.82","homepage":"https://git.oschina.net/cuppi/jbzwebsdk#readme","name":"jbzwebsdk","license":"MIT","keywords":["jbz","jinbaozheng","jbzweb","jbzwebsdk"],"author":{"email":"cuppi413@163.com","name":"cuppi","url":"https://github.com/cuppi"},"main":"dist/index.js","bugs":{"url":"https://git.oschina.net/cuppi/jbzwebsdk/issues"},"description":"Shanghai jinbaozheng easy network technology Co.,Ltd sdk","engines":{"node":">= 0.6"},"babel":{"presets":["es2015","react"]},"scripts":{"build":"babel --plugins transform-runtime src -d dist","test":"echo \"Error: no test specified\" && exit 1","generate-docs":"./generate_docs.pl","update-docs":"node ./publish.js","cp-publish":"./cp_publish.pl"}}
+{
+  "devDependencies": {
+    "jsdoc-babel": "^0.3.0",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "ink-docstrap": "^1.3.0",
+    "babel-preset-es2015": "*",
+    "babel-runtime": "^6.23.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-cli": "^6.0.0"
+  },
+  "repository": {
+    "url": "git@git.oschina.net:cuppi/jbzwebsdk.git",
+    "type": "git"
+  },
+  "dependencies": {
+    "axios": "*",
+    "left-pad": "*"
+  },
+  "version": "1.0.82",
+  "homepage": "https://git.oschina.net/cuppi/jbzwebsdk#readme",
+  "name": "jbzwebsdk",
+  "license": "MIT",
+  "keywords": [
+    "jbz",
+    "jinbaozheng",
+    "jbzweb",
+    "jbzwebsdk"
+  ],
+  "author": {
+    "email": "cuppi413@163.com",
+    "name": "cuppi",
+    "url": "https://github.com/cuppi"
+  },
+  "main": "dist/index.js",
+  "bugs": {
+    "url": "https://git.oschina.net/cuppi/jbzwebsdk/issues"
+  },
+  "description": "Shanghai jinbaozheng easy network technology Co.,Ltd sdk",
+  "engines": {
+    "node": ">= 0.6"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  },
+  "scripts": {
+    "build": "babel --plugins transform-runtime src -d dist",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate-docs": "./generate_docs.pl",
+    "update-docs": "node ./publish.js",
+    "cp-publish": "./cp_publish.pl"
+  }
+}

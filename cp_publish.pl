@@ -7,9 +7,9 @@ my $json = new JSON;
 my $js;
 
 my $registry_end = `npm_use_registry --default`;
-print "ssss";
+# 让代理设置完成
+sleep(1);
 print $registry_end;
-print "aaaa";
 ##############################################  处理package.json
 #  读取原始package.json
 if (open(DATA, "<package.json") or die "package.json 文件无法打开, $!"){

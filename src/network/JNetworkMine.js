@@ -2,6 +2,7 @@
  * Created by cuppi on 2017/3/6.
  */
 'use strict';
+import _ from '../unify/JDataUnify';
 import JNetwork from './JNetwork.js';
 import {mineUrl} from '../unify/JUrlList';
 
@@ -13,6 +14,7 @@ class JNetworkMine {
 
   /**
    * 我的订单
+   * @private
    * @returns {*}
    */
   static mineOrderNeedLogin() {
@@ -28,8 +30,23 @@ class JNetworkMine {
     });
   }
 
+  /***
+   * 我的收藏(影院)
+   */
+  static mineFavoriteCinemaNeedLogin() {
+     let loginParas = JNetwork.loginParas();
+     return new Promise((resolve, reject) => {
+       JNetwork.POST(mineUrl.jbzMineCinema, {...loginParas}).then(data => {
+         resolve(_('mineUrl.jbzMineCinema', data));
+       }, error => {
+         reject(error);
+       });
+     })
+  }
+
   /**
    * 我的收藏
+   * @private
    * @returns {*}
    */
   static mineFavoriteNeedLogin() {

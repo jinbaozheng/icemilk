@@ -11,7 +11,7 @@ export var mineUrl = {};
 export var accountUrl = {};
 export var tradeUrl = {};
 export var otherUrl = {};
-
+// SDK 用到的所有的网络请求请求都在这里
 let sdkApi = {
   cityUrl: {
     jbzCities: '',
@@ -40,7 +40,9 @@ let sdkApi = {
     jbzFilmDate: ''
 
   },
-  mineUrl: {},
+  mineUrl: {
+    jbzMineCinema: '',
+  },
   accountUrl: {
     jbzLogin: '',
     jbzLogout: '',
@@ -103,7 +105,7 @@ function _(chunk, title) {
   if (UseUrl && UseUrl.hasOwnProperty(chunk) && UseUrl[chunk].hasOwnProperty(title)) {
     return UseUrl[chunk][title];
   } else {
-    console.log('Didn\'t find the method at ( ' + chunk + ',' + title + ' ), please contact the Author , cuppi');
+    console.log('Didn\'t find the method at ( ' + chunk + ',' + title + ' ), please contact the Author => cuppi');
   }
   return '';
 }

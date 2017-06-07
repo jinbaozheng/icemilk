@@ -66,6 +66,8 @@ export default {
   'tradeUrl.jbzLockSeat': data => data.orderId,
   'tradeUrl.jbzWebAtAppApplyTicket': data => data.order,
 
+  'mineUrl.jbzMineCinema': data => data.collection,
+
   'otherUrl.jbzBanners': data => data.banner.map(banner => {
     ObjectTool.deleteProperty(banner, 'tails');
     return banner;
