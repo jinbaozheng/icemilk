@@ -131,9 +131,10 @@ var AutoSeatPicking = function () {
       var colLength = this.colCount - this.minCol;
       for (var i = 0; i <= Math.max(parseInt(this.rowCount / 2), parseInt(this.colCount / 2)); i++) {
         if (this.targetFromRowColTier(parseInt(rowLength / 2) + this.minRow, parseInt(colLength / 2) + this.minCol, i)) {
-          break;
+          return;
         }
       }
+      resultCallback(new _map2.default());
     }
   }, {
     key: 'targetFromRowColTier',

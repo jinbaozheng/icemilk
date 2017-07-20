@@ -52,7 +52,9 @@ var sdkApi = {
     jbzFilmDate: ''
 
   },
-  mineUrl: {},
+  mineUrl: {
+    jbzMineCinema: ''
+  },
   accountUrl: {
     jbzLogin: '',
     jbzLogout: '',
@@ -112,7 +114,7 @@ function _(chunk, title) {
   if (UseUrl && UseUrl.hasOwnProperty(chunk) && UseUrl[chunk].hasOwnProperty(title)) {
     return UseUrl[chunk][title];
   } else {
-    console.log('Didn\'t find the method at ( ' + chunk + ',' + title + ' ), please contact the Author , cuppi');
+    console.log('Didn\'t find the method at ( ' + chunk + ',' + title + ' ), please contact the Author => cuppi');
   }
   return '';
 }

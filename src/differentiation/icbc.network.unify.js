@@ -21,8 +21,6 @@ export default {
     return {id: district.id, name: district.tails.Name};
   }),
   'cityUrl.jbzHotCities': data => data.hotCities.map(_netCityToCity),
-
-
   'filmUrl.jbzHotFilms': data => data.hotFilms,
   'filmUrl.jbzHotFilmsPage': data => data.hotFilms,
   'filmUrl.jbzHotFilmsSimple': data => data.hotFilms.map(film => {
@@ -42,8 +40,6 @@ export default {
   'filmUrl.jbzFilmDate': data => data.filmDate.map(dateString => {
     return DateTool.timeIntervalFromDate(dateString);
   }),
-
-
   'cinemaUrl.jbzDetail': (data, mark) => {
     let optional = {};
     if (mark === 0) {
@@ -52,7 +48,7 @@ export default {
     if (mark === 1) {
       optional = {phone: data.phone, isCollected: data.isCollected};
     }
-    data.cinema.optional = optional;
+    data.cinema = {...data.cinema, optional}
     ObjectTool.deleteProperty(data.cinema, 'tails');
     return data.cinema;
   },
@@ -69,12 +65,9 @@ export default {
   'cinemaUrl.jbzRealtimeSmartSeat': data => {
     return data.realTimeSeats;
   },
-
   'tradeUrl.jbzLockSeat': data => data.orderId,
   'tradeUrl.jbzWebAtAppApplyTicket': data => data.order,
-
   'mineUrl.jbzMineCinema': data => data.collection,
-
   'otherUrl.jbzBanners': data => data.banner.map(banner => {
     ObjectTool.deleteProperty(banner, 'tails');
     return banner;

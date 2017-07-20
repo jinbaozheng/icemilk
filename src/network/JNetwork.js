@@ -121,13 +121,15 @@ class JNetwork {
   }
 
   /**
-   * post请求
+   * 高自由度POST方法
+   * @param {string} baseUrl 基地址
    * @param {string} url 相对地址
    * @param {object} parameters 地址参数
    * @param {object} headers 头参数
+   * @param {object} otherObject 其他可用配置
    * @returns {Promise} 异步请求块
    */
-  static POST(url, parameters, headers) {
+  static freedomPOST(baseUrl, url, parameters, headers, otherObject) {
     this.checkConfigBaseUrl();
     let isOk;
     return this.wrapCancelablePromise(new Promise((resolve, reject) => {
@@ -138,13 +140,13 @@ class JNetwork {
       if (headers) {
         // console.log(iHeaders)
       }
-      console.log('POST ' + UrlTool.urlFromPortion(this.baseUrl, url, parameters));
+      console.log('POST ' + UrlTool.urlFromPortion(baseUrl, url, parameters));
       axios(url, {
-        timeout: this.timeout,
+        timeout: otherObject.timeout,
         method: 'post',
-        baseURL: this.baseUrl,
+        baseURL: baseUrl,
         headers: iHeaders,
-        params: {...parameters, inType: this.inType}
+        params: parameters
       }).then((response) => {
         isOk = response.status === 200;
         return response.data;
@@ -155,7 +157,7 @@ class JNetwork {
           } else {
             let errorCode = responseJson.errorCode;
             if (responseJson.errorCode === 10022) {
-              reject(new Error('NotLogin'));
+              reject(JNetwork.notLoginError(100022));
             } else {
               reject(new Error(responseJson.message));
             }
@@ -172,6 +174,18 @@ class JNetwork {
         }
       });
     }));
+  }
+
+  /**
+   * post请求
+   * @param {string} url 相对地址
+   * @param {object} parameters 地址参数
+   * @param {object} headers 头参数(可空)
+   * @param {object} otherObject 其他参数(可空)
+   * @returns {Promise} 异步请求块
+   */
+  static POST(url, parameters, headers, otherObject) {
+    return this.freedomPOST(this.baseUrl, url, {...parameters, inType: this.inType}, headers, {timeout: this.timeout, ...otherObject})
   }
 
   /**
@@ -208,7 +222,7 @@ class JNetwork {
             resolve(responseJson.data);
           } else {
             if (responseJson.errorCode === 10022) {
-              reject(new Error('NotLogin'));
+              reject(JNetwork.notLoginError(100022));
             } else {
               reject(new Error(responseJson.message));
             }
@@ -226,6 +240,13 @@ class JNetwork {
       });
     }));
   }
+
+  static notLoginError(code){
+    let error = new Error('NotLogin');
+    error.errorCode = code;
+    return error;
+  }
+
 }
 
 export default JNetwork;

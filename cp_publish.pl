@@ -8,7 +8,7 @@ my $js;
 
 my $registry_end = `npm_use_registry --default`;
 # 让代理设置完成
-sleep(1);
+sleep(3);
 print $registry_end;
 ##############################################  处理package.json
 #  读取原始package.json

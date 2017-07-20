@@ -15,7 +15,7 @@ var cityUrl = {
 
 var cinemaUrl = {
   jbzList: '/cinema/cinemas',
-  jbzDetail: '/cinema/cinemaDetail',
+  jbzDetail: '/cinema/cinemadetail',
   jbzScreeningFilmList: '/cinema/films',
   jbzScreeningDateList: '/cinema/filmshowdates',
   jbzScreeningItems: '/cinema/filmshows',
@@ -23,14 +23,14 @@ var cinemaUrl = {
 };
 
 var filmUrl = {
-  jbzHotFilms: '/film/hotFilms',
-  jbzHotFilmsPage: '/film/hotFilmsPage',
-  jbzHotFilmsSimple: '/film/hotFilmsSimple',
-  jbzWaitFilms: '/film/upcomingFilms',
-  jbzWaitFilmsPage: '/film/upcomingFilmsPage',
-  jbzFilmDetailByPartner: '/film/filmByPartner',
+  jbzHotFilms: '/film/hotfilms',
+  jbzHotFilmsPage: '/film/hotfilmspage',
+  jbzHotFilmsSimple: '/film/hotfilmssimple',
+  jbzWaitFilms: '/film/upcomingfilms',
+  jbzWaitFilmsPage: '/film/upcomingfilmspage',
+  jbzFilmDetailByPartner: '/film/filmbypartner',
   jbzFilmDetail: '/film/film',
-  jbzFilmDate: '/film/filmDate'
+  jbzFilmDate: '/film/filmdate'
 };
 
 var accountUrl = {
@@ -44,16 +44,12 @@ var accountUrl = {
 var tradeUrl = {
   jbzLockSeat: '/order/lockseat',
 
-  jbzWebAtAppApplyTicket: '/order/applyticket'
-};
-
-var mineUrl = {
-  jbzMineCinema: '/mine/cinemacollectionlist'
+  jbzWebAtAppApplyTicket: '/order/confirmorder'
 };
 
 var otherUrl = {
-  jbzBanners: '/banner/banner',
+  jbzBanners: '/banner/banners',
   jbzSearch: '/main/search'
 };
 
-exports.default = { cityUrl: cityUrl, cinemaUrl: cinemaUrl, filmUrl: filmUrl, accountUrl: accountUrl, tradeUrl: tradeUrl, mineUrl: mineUrl, otherUrl: otherUrl };
+exports.default = { cityUrl: cityUrl, cinemaUrl: cinemaUrl, filmUrl: filmUrl, accountUrl: accountUrl, tradeUrl: tradeUrl, otherUrl: otherUrl };

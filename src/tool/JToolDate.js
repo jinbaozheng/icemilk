@@ -217,8 +217,8 @@ class DateTool {
    * @param {Date | string | number} date 日期
    * @returns {number} 0~6  星期一~星期日
    */
-  static weekDayFromDate(date) {
-    return DateTool.wantDate(date).getDay();
+  static weekDay(date) {
+    return (DateTool.wantDate(date).getDay() + 6) % 7;
   }
 
   /**

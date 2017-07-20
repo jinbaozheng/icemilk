@@ -20,7 +20,7 @@ class JNetworkTrade {
   static tradeLockSeatNeedLogin(type, paras) {
     let loginParas = JNetwork.loginParas();
     return new Promise((resolve, reject) => {
-      JNetwork.POST(tradeUrl.jbzLockSeat, {type, ...paras}).then(data => {
+      JNetwork.POST(tradeUrl.jbzLockSeat, {type, ...loginParas, ...paras}).then(data => {
         resolve(_('tradeUrl.jbzLockSeat', data));
       }, error => {
         reject(error);
@@ -49,7 +49,7 @@ class JNetworkTrade {
 
     if (inType === 'ICBC-APP' || inType === 'SHANGHAI-APP') {
       return new Promise((resolve, reject) => {
-        JNetwork.POST(tradeUrl.jbzWebAtAppApplyTicket, {type, ...paras}).then(data => {
+        JNetwork.POST(tradeUrl.jbzWebAtAppApplyTicket, {type, ...loginParas, ...paras}).then(data => {
           resolve(_('tradeUrl.jbzWebAtAppApplyTicket', data));
         }, error => {
           reject(error);

@@ -57,20 +57,10 @@ var JNetwork = function () {
   }, {
     key: 'loginParas',
     value: function loginParas() {
-      if (this.delegate) {
-        var loginParas = this.delegate.loginParas();
-        if (loginParas && loginParas.hasAccount) {
-          return {
-            sessionId: loginParas.sessionId,
-            openId: loginParas.mobile,
-            mobile: loginParas.mobile,
-            hasAccount: true
-          };
-        }
+      if (this.delegate && this.delegate.loginParas) {
+        return this.delegate.loginParas();
       }
-      return {
-        hasAccount: false
-      };
+      return {};
     }
   }, {
     key: 'failedAuthorizationNetwork',
@@ -115,10 +105,17 @@ var JNetwork = function () {
       };
     }
   }, {
-    key: 'POST',
-    value: function POST(url, parameters, headers) {
-      var _this = this;
-
+    key: 'checkConfigBaseUrl',
+    value: function checkConfigBaseUrl() {
+      if (!this.baseUrl || this.baseUrl === '') {
+        console.log('please check if you have config baseUrl for SDK');
+        throw Error('Not Config');
+      }
+    }
+  }, {
+    key: 'freedomPOST',
+    value: function freedomPOST(baseUrl, url, parameters, headers, otherObject) {
+      this.checkConfigBaseUrl();
       var isOk = void 0;
       return this.wrapCancelablePromise(new _promise2.default(function (resolve, reject) {
         var iHeaders = (0, _assign2.default)({
@@ -126,13 +123,13 @@ var JNetwork = function () {
           'Content-Type': 'application/json'
         }, headers);
         if (headers) {}
-        console.log('POST ' + _JToolUrl2.default.urlFromPortion(_this.baseUrl, url, parameters));
+        console.log('POST ' + _JToolUrl2.default.urlFromPortion(baseUrl, url, parameters));
         (0, _axios2.default)(url, {
-          timeout: _this.timeout,
+          timeout: otherObject.timeout,
           method: 'post',
-          baseURL: _this.baseUrl,
+          baseURL: baseUrl,
           headers: iHeaders,
-          params: (0, _extends3.default)({}, parameters, { inType: _this.inType })
+          params: parameters
         }).then(function (response) {
           isOk = response.status === 200;
           return response.data;
@@ -141,8 +138,9 @@ var JNetwork = function () {
             if (!responseJson.errorCode) {
               resolve(responseJson.data);
             } else {
+              var errorCode = responseJson.errorCode;
               if (responseJson.errorCode === 10022) {
-                reject(new Error('NotLogin'));
+                reject(JNetwork.notLoginError(100022));
               } else {
                 reject(new Error(responseJson.message));
               }
@@ -160,10 +158,16 @@ var JNetwork = function () {
       }));
     }
   }, {
+    key: 'POST',
+    value: function POST(url, parameters, headers, otherObject) {
+      return this.freedomPOST(this.baseUrl, url, (0, _extends3.default)({}, parameters, { inType: this.inType }), headers, (0, _extends3.default)({ timeout: this.timeout }, otherObject));
+    }
+  }, {
     key: 'GET',
     value: function GET(url, parameters, headers) {
-      var _this2 = this;
+      var _this = this;
 
+      this.checkConfigBaseUrl();
       var isOk = void 0;
       return this.wrapCancelablePromise(new _promise2.default(function (resolve, reject) {
         var iHeaders = (0, _assign2.default)({
@@ -171,13 +175,13 @@ var JNetwork = function () {
           'Content-Type': 'application/json'
         }, headers);
         if (headers) {}
-        console.log('GET ' + _JToolUrl2.default.urlFromPortion(_this2.baseUrl, url, parameters));
+        console.log('GET ' + _JToolUrl2.default.urlFromPortion(_this.baseUrl, url, parameters));
         (0, _axios2.default)(url, {
-          timeout: _this2.timeout,
+          timeout: _this.timeout,
           method: 'get',
-          baseURL: _this2.baseUrl,
+          baseURL: _this.baseUrl,
           headers: iHeaders,
-          params: (0, _extends3.default)({}, parameters, { inType: _this2.inType })
+          params: (0, _extends3.default)({}, parameters, { inType: _this.inType })
         }).then(function (response) {
           isOk = response.status === 200;
           return response.data;
@@ -187,7 +191,7 @@ var JNetwork = function () {
               resolve(responseJson.data);
             } else {
               if (responseJson.errorCode === 10022) {
-                reject(new Error('NotLogin'));
+                reject(JNetwork.notLoginError(100022));
               } else {
                 reject(new Error(responseJson.message));
               }
@@ -203,6 +207,13 @@ var JNetwork = function () {
           }
         });
       }));
+    }
+  }, {
+    key: 'notLoginError',
+    value: function notLoginError(code) {
+      var error = new Error('NotLogin');
+      error.errorCode = code;
+      return error;
     }
   }]);
   return JNetwork;

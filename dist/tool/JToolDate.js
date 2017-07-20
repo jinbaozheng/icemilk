@@ -175,9 +175,9 @@ var DateTool = function () {
       return DateTool.dateStringFromTimeInterval(timeInterval, toFormat);
     }
   }, {
-    key: 'weekDayFromDate',
-    value: function weekDayFromDate(date) {
-      return DateTool.wantDate(date).getDay();
+    key: 'weekDay',
+    value: function weekDay(date) {
+      return (DateTool.wantDate(date).getDay() + 6) % 7;
     }
   }, {
     key: 'dateAfterDaysLater',

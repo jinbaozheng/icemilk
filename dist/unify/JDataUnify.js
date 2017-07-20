@@ -5,16 +5,24 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.UseConfig = UseConfig;
 
-exports.default = function (path, data) {
+exports.default = function (path, data, mark, otherHandle) {
   if (!data) {
     return;
   }
   if (_inType === 'ICBC-APP') {
-    return _icbcNetwork2.default[path](data);
+    if (!_icbcNetwork2.default.hasOwnProperty(path)) {
+      console.log('Can not find data unify for path:' + path + ', please contact the Author => cuppi');
+      return {};
+    }
+    return _icbcNetwork2.default[path](data, mark, otherHandle);
   }
 
   if (_inType === 'SHANGHAI-APP') {
-    return _shanghaiNetwork2.default[path](data);
+    if (!_shanghaiNetwork2.default.hasOwnProperty(path)) {
+      console.log('Can not find data unify for path:' + path + ', please contact the Author => cuppi');
+      return {};
+    }
+    return _shanghaiNetwork2.default[path](data, mark, otherHandle);
   }
   return {};
 };

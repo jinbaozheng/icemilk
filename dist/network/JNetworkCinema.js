@@ -51,7 +51,19 @@ var JNetworkCinema = function () {
     value: function cinemaDetail(cinemaId) {
       return new _promise2.default(function (resolve, reject) {
         _JNetwork2.default.POST(_JUrlList.cinemaUrl.jbzDetail, { cinemaId: cinemaId }).then(function (data) {
-          resolve((0, _JDataUnify2.default)('cinemaUrl.jbzDetail', data));
+          resolve((0, _JDataUnify2.default)('cinemaUrl.jbzDetail', data, 0));
+        }, function (error) {
+          reject(error);
+        });
+      });
+    }
+  }, {
+    key: 'cinemaDetailCanLogin',
+    value: function cinemaDetailCanLogin(cinemaId) {
+      var loginParas = _JNetwork2.default.loginParas();
+      return new _promise2.default(function (resolve, reject) {
+        _JNetwork2.default.POST(_JUrlList.cinemaUrl.jbzDetail, (0, _extends3.default)({ cinemaId: cinemaId }, loginParas)).then(function (data) {
+          resolve((0, _JDataUnify2.default)('cinemaUrl.jbzDetail', data, 1));
         }, function (error) {
           reject(error);
         });

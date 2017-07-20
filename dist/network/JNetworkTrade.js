@@ -43,7 +43,7 @@ var JNetworkTrade = function () {
     value: function tradeLockSeatNeedLogin(type, paras) {
       var loginParas = _JNetwork2.default.loginParas();
       return new _promise2.default(function (resolve, reject) {
-        _JNetwork2.default.POST(_JUrlList.tradeUrl.jbzLockSeat, (0, _extends3.default)({ type: type }, paras)).then(function (data) {
+        _JNetwork2.default.POST(_JUrlList.tradeUrl.jbzLockSeat, (0, _extends3.default)({ type: type }, loginParas, paras)).then(function (data) {
           resolve((0, _JDataUnify2.default)('tradeUrl.jbzLockSeat', data));
         }, function (error) {
           reject(error);
@@ -63,7 +63,7 @@ var JNetworkTrade = function () {
 
       if (inType === 'ICBC-APP' || inType === 'SHANGHAI-APP') {
         return new _promise2.default(function (resolve, reject) {
-          _JNetwork2.default.POST(_JUrlList.tradeUrl.jbzWebAtAppApplyTicket, (0, _extends3.default)({ type: type }, paras)).then(function (data) {
+          _JNetwork2.default.POST(_JUrlList.tradeUrl.jbzWebAtAppApplyTicket, (0, _extends3.default)({ type: type }, loginParas, paras)).then(function (data) {
             resolve((0, _JDataUnify2.default)('tradeUrl.jbzWebAtAppApplyTicket', data));
           }, function (error) {
             reject(error);
