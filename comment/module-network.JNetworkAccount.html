@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Class: JNetworkFilm</title>
+	<title>JBZWebSDK Class: JNetworkAccount</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="CoordinateModel.html">CoordinateModel</a></li><li><a href="module-network-JNetwork.html">network~JNetwork</a></li><li><a href="module-network-JNetworkAccount.html">network~JNetworkAccount</a></li><li><a href="module-network-JNetworkCinema.html">network~JNetworkCinema</a></li><li><a href="module-network-JNetworkCity.html">network~JNetworkCity</a></li><li><a href="module-network-JNetworkConfig.html">network~JNetworkConfig</a></li><li><a href="module-network-JNetworkFilm.html">network~JNetworkFilm</a></li><li><a href="module-network-JNetworkMine.html">network~JNetworkMine</a></li><li><a href="module-network-JNetworkOther.html">network~JNetworkOther</a></li><li><a href="module-network-JNetworkTrade.html">network~JNetworkTrade</a></li><li><a href="PageModel.html">PageModel</a></li><li><a href="SeatParasModel.html">SeatParasModel</a></li><li><a href="tool_JToolArray.html">tool/JToolArray</a></li><li><a href="tool_JToolDate.html">tool/JToolDate</a></li><li><a href="tool_JToolNumber.html">tool/JToolNumber</a></li><li><a href="tool_JToolObject.html">tool/JToolObject</a></li><li><a href="tool_JToolString.html">tool/JToolString</a></li><li><a href="tool_JToolUrl.html">tool/JToolUrl</a></li><li><a href="util_JManagerSeat.html">util/JManagerSeat</a></li><li><a href="util_TradeManager.html">util/TradeManager</a></li>
+					<li><a href="CoordinateModel.html">CoordinateModel</a></li><li><a href="module-network.JNetworkAccount.html">network.JNetworkAccount</a></li><li><a href="module-network.JNetworkCinema.html">network.JNetworkCinema</a></li><li><a href="module-network.JNetworkCity.html">network.JNetworkCity</a></li><li><a href="module-network.JNetworkConfig.html">network.JNetworkConfig</a></li><li><a href="module-network.JNetworkFilm.html">network.JNetworkFilm</a></li><li><a href="module-network.JNetworkMine.html">network.JNetworkMine</a></li><li><a href="module-network.JNetworkOther.html">network.JNetworkOther</a></li><li><a href="module-network.JNetworkTrade.html">network.JNetworkTrade</a></li><li><a href="module-network-JNetwork.html">network~JNetwork</a></li><li><a href="PageModel.html">PageModel</a></li><li><a href="SeatParasModel.html">SeatParasModel</a></li><li><a href="tool_JToolArray.html">tool/JToolArray</a></li><li><a href="tool_JToolDate.html">tool/JToolDate</a></li><li><a href="tool_JToolNumber.html">tool/JToolNumber</a></li><li><a href="tool_JToolObject.html">tool/JToolObject</a></li><li><a href="tool_JToolString.html">tool/JToolString</a></li><li><a href="tool_JToolUrl.html">tool/JToolUrl</a></li><li><a href="util_JManagerSeat.html">util/JManagerSeat</a></li><li><a href="util_TradeManager.html">util/TradeManager</a></li>
 				</ul>
 			</li>
 			
@@ -79,18 +79,18 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: JNetworkFilm</h1>
+	<h1 class="page-title">Class: JNetworkAccount</h1>
 <section>
 
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-network.html">network</a>~</span>
+            <span class="ancestors"><a href="module-network.html">network</a>.</span>
         
-        JNetworkFilm
+        JNetworkAccount
         </h2>
         
-            <div class="class-description">影片接口</div>
+            <div class="class-description">账户接口</div>
         
     
 </header>
@@ -102,7 +102,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="JNetworkFilm"><span class="type-signature"></span>new JNetworkFilm()</h4>
+    <h4 class="name" id="JNetworkAccount"><span class="type-signature"></span>new JNetworkAccount()</h4>
     
     
 </dt>
@@ -147,15 +147,6 @@
 
 
 
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_network_JNetworkFilm.js.html">src/network/JNetworkFilm.js</a>
-			</li>
-		</ul>
-	</dd>
 	
 
 	
@@ -203,7 +194,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".filmDateList"><span class="type-signature">&lt;static> </span>filmDateList(filmId, cityId)</h4>
+    <h4 class="name" id=".accountLogin"><span class="type-signature">&lt;static> </span>accountLogin(mobile, password)</h4>
     
     
 </dt>
@@ -211,7 +202,7 @@
 
     
     <div class="description">
-        获取影片排片日期列表
+        用户登录
     </div>
     
 
@@ -246,10 +237,16 @@
 
         <tr>
             
-                <td class="name"><code>filmId</code></td>
+                <td class="name"><code>mobile</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -257,17 +254,23 @@
 
             
 
-            <td class="description last">影片Id</td>
+            <td class="description last">登录需要的手机号码</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>cityId</code></td>
+                <td class="name"><code>password</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -275,7 +278,7 @@
 
             
 
-            <td class="description last">城市Id</td>
+            <td class="description last">登录需要的密码</td>
         </tr>
 
     
@@ -314,454 +317,6 @@
 
 
 
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_network_JNetworkFilm.js.html">src/network/JNetworkFilm.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".filmDetail"><span class="type-signature">&lt;static> </span>filmDetail(filmId, platform)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        获取影片详情
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>filmId</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">影片Id</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>platform</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    null
-                
-                </td>
-            
-
-            <td class="description last">平台类型(默认使用jbz平台)</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_network_JNetworkFilm.js.html">src/network/JNetworkFilm.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".filmHotfilms"><span class="type-signature">&lt;static> </span>filmHotfilms(page)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        获取热门电影
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>page</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">PageModel 分页模型</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_network_JNetworkFilm.js.html">src/network/JNetworkFilm.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".filmHotfilmsSimple"><span class="type-signature">&lt;static> </span>filmHotfilmsSimple()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        获取热门电影
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_network_JNetworkFilm.js.html">src/network/JNetworkFilm.js</a>
-			</li>
-		</ul>
-	</dd>
 	
 
 	
@@ -814,7 +369,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".filmWaitfilms"><span class="type-signature">&lt;static> </span>filmWaitfilms(page)</h4>
+    <h4 class="name" id=".accountLogout"><span class="type-signature">&lt;static> </span>accountLogout(sessionId)</h4>
     
     
 </dt>
@@ -822,7 +377,7 @@
 
     
     <div class="description">
-        获取待映电影
+        用户登出
     </div>
     
 
@@ -857,7 +412,7 @@
 
         <tr>
             
-                <td class="name"><code>page</code></td>
+                <td class="name"><code>sessionId</code></td>
             
 
             <td class="type">
@@ -868,7 +423,7 @@
 
             
 
-            <td class="description last">页号</td>
+            <td class="description last">用户登录标识</td>
         </tr>
 
     
@@ -908,14 +463,186 @@
 
 
 	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_network_JNetworkFilm.js.html">src/network/JNetworkFilm.js</a>
-			</li>
-		</ul>
-	</dd>
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".accountRegister"><span class="type-signature">&lt;static> </span>accountRegister(mobile, verifyCode, password)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        注册用户
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mobile</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">用户的手机号码</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>verifyCode</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">验证码</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">密码</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
 	
 
 	
@@ -948,7 +675,354 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise</span>
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".accountUpdatepass"><span class="type-signature">&lt;static> </span>accountUpdatepass(mobile, verfyCode, password)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        忘记密码并且找回密码
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mobile</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">手机号码</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>verfyCode</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">验证码</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">新密码</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".accountVerifyCode"><span class="type-signature">&lt;static> </span>accountVerifyCode(mobile, type)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        获取验证码
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mobile</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">接收验证码的手机号码</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">验证码类型 （1：注册使用 2：忘记密码使用）</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
 
 
 
@@ -1017,7 +1091,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a>
 	
-		on 2017-07-21T16:13:36+08:00
+		on 2017-07-21T16:56:51+08:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

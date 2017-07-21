@@ -1,6 +1,5 @@
 /**
  * Created by cuppi on 2016/12/1.
- * @module network
  */
 'use strict';
 import JNetwork from './JNetwork.js';
@@ -9,6 +8,7 @@ import _ from '../unify/JDataUnify';
 
 /**
  * 其他接口
+ * @memberOf module:network
  */
 class JNetworkOther {
   /**

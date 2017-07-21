@@ -1,6 +1,5 @@
 /**
  * Created by cuppi on 2017/3/6.
- * @module network
  */
 'use strict';
 import JNetwork from './JNetwork.js';
@@ -8,6 +7,7 @@ import {accountUrl} from '../unify/JUrlList';
 
 /**
  * 账户接口
+ * @memberOf module:network
  */
 class JNetworkAccount{
   /**

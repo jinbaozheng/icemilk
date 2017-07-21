@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Source: src/differentiation/icbc.url.config.js</title>
+	<title>JBZWebSDK Class: JNetworkConfig</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="CoordinateModel.html">CoordinateModel</a></li><li><a href="module-network-JNetwork.html">network~JNetwork</a></li><li><a href="module-network-JNetworkAccount.html">network~JNetworkAccount</a></li><li><a href="module-network-JNetworkCinema.html">network~JNetworkCinema</a></li><li><a href="module-network-JNetworkCity.html">network~JNetworkCity</a></li><li><a href="module-network-JNetworkConfig.html">network~JNetworkConfig</a></li><li><a href="module-network-JNetworkFilm.html">network~JNetworkFilm</a></li><li><a href="module-network-JNetworkMine.html">network~JNetworkMine</a></li><li><a href="module-network-JNetworkOther.html">network~JNetworkOther</a></li><li><a href="module-network-JNetworkTrade.html">network~JNetworkTrade</a></li><li><a href="PageModel.html">PageModel</a></li><li><a href="SeatParasModel.html">SeatParasModel</a></li><li><a href="tool_JToolArray.html">tool/JToolArray</a></li><li><a href="tool_JToolDate.html">tool/JToolDate</a></li><li><a href="tool_JToolNumber.html">tool/JToolNumber</a></li><li><a href="tool_JToolObject.html">tool/JToolObject</a></li><li><a href="tool_JToolString.html">tool/JToolString</a></li><li><a href="tool_JToolUrl.html">tool/JToolUrl</a></li><li><a href="util_JManagerSeat.html">util/JManagerSeat</a></li><li><a href="util_TradeManager.html">util/TradeManager</a></li>
+					<li><a href="CoordinateModel.html">CoordinateModel</a></li><li><a href="module-network.JNetworkAccount.html">network.JNetworkAccount</a></li><li><a href="module-network.JNetworkCinema.html">network.JNetworkCinema</a></li><li><a href="module-network.JNetworkCity.html">network.JNetworkCity</a></li><li><a href="module-network.JNetworkConfig.html">network.JNetworkConfig</a></li><li><a href="module-network.JNetworkFilm.html">network.JNetworkFilm</a></li><li><a href="module-network.JNetworkMine.html">network.JNetworkMine</a></li><li><a href="module-network.JNetworkOther.html">network.JNetworkOther</a></li><li><a href="module-network.JNetworkTrade.html">network.JNetworkTrade</a></li><li><a href="module-network-JNetwork.html">network~JNetwork</a></li><li><a href="PageModel.html">PageModel</a></li><li><a href="SeatParasModel.html">SeatParasModel</a></li><li><a href="tool_JToolArray.html">tool/JToolArray</a></li><li><a href="tool_JToolDate.html">tool/JToolDate</a></li><li><a href="tool_JToolNumber.html">tool/JToolNumber</a></li><li><a href="tool_JToolObject.html">tool/JToolObject</a></li><li><a href="tool_JToolString.html">tool/JToolString</a></li><li><a href="tool_JToolUrl.html">tool/JToolUrl</a></li><li><a href="util_JManagerSeat.html">util/JManagerSeat</a></li><li><a href="util_TradeManager.html">util/TradeManager</a></li>
 				</ul>
 			</li>
 			
@@ -74,79 +74,127 @@
 <div class="row">
 
 	
-	<div class="col-md-12">
+	<div class="col-md-8">
 	
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: src/differentiation/icbc.url.config.js</h1>
-    
+	<h1 class="page-title">Class: JNetworkConfig</h1>
 <section>
-    <article>
-        <pre
-            class="sunlight-highlight-javascript ">/**
- * Created by cuppi on 2017/5/12.
- */
 
-const cityUrl = {
-  jbzCities: '/location/cities',
-  jbzCityByCoordinate: '/location/city',
-  jbzCityById: '/location/citybyid',
-  jbzDistricts: '/location/districts',
-  jbzHotCities: '/location/hotcities'
-};
+<header>
+    
+        <h2>
+            <span class="ancestors"><a href="module-network.html">network</a>.</span>
+        
+        JNetworkConfig
+        </h2>
+        
+            <div class="class-description">请求配置类</div>
+        
+    
+</header>
 
-const cinemaUrl = {
-  jbzList: '/cinema/cinemas',
-  jbzDetail: '/cinema/cinemaDetail',
-  jbzScreeningFilmList: '/cinema/films',
-  jbzScreeningDateList: '/cinema/filmshowdates',
-  jbzScreeningItems: '/cinema/filmshows',
-  jbzRealtimeSeat: '/cinema/realtimeseats'
-};
 
-const filmUrl = {
-  jbzHotFilms: '/film/hotFilms',
-  jbzHotFilmsPage: '/film/hotFilmsPage',
-  jbzHotFilmsSimple: '/film/hotFilmsSimple',
-  jbzWaitFilms: '/film/upcomingFilms',
-  jbzWaitFilmsPage: '/film/upcomingFilmsPage',
-  jbzFilmDetailByPartner: '/film/filmByPartner',
-  jbzFilmDetail: '/film/film',
-  jbzFilmDate: '/film/filmDate'
-};
+<article>
+    <div class="container-overview">
+    
+        
+<hr>
+<dt>
+    <h4 class="name" id="JNetworkConfig"><span class="type-signature"></span>new JNetworkConfig()</h4>
+    
+    
+</dt>
+<dd>
 
-const accountUrl = {
-  jbzLogin: '/account/login',
-  jbzLogout: '/account/logout',
-  jbzVerifycode: '/account/verifycode',
-  jbzRegister: '/account/register',
-  jbzUpdatepass: '/account/updatepass'
-};
+    
 
-const tradeUrl = {
-  jbzLockSeat: '/order/lockseat',
-  // jbzAppApplyTicket: '/appapi/applyticket',
-  jbzWebAtAppApplyTicket: '/order/applyticket',
-  // jbzCancelOrder: '/main/cancelOrder',
-  // jbzAppPrepay: '/webapi/prepay',
-  // jbzWebPrepay: '/appapi/prepay',
-};
+    
 
-const mineUrl = {
-  jbzMineCinema: '/mine/cinemacollectionlist'
-};
+    
 
-const otherUrl = {
-  jbzBanners: '/banner/banner',
-  jbzSearch: '/main/search'
-};
+    
+    
 
-export default {cityUrl, cinemaUrl, filmUrl, accountUrl, tradeUrl, mineUrl, otherUrl};
-</pre>
-    </article>
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
 </section>
-
 
 
 
@@ -156,6 +204,10 @@ export default {cityUrl, cinemaUrl, filmUrl, accountUrl, tradeUrl, mineUrl, othe
 
 	<div class="clearfix"></div>
 
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
 	
 
 </div>
@@ -190,7 +242,7 @@ export default {cityUrl, cinemaUrl, filmUrl, accountUrl, tradeUrl, mineUrl, othe
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a>
 	
-		on 2017-07-21T16:13:36+08:00
+		on 2017-07-21T16:56:51+08:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

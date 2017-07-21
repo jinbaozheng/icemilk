@@ -1,6 +1,5 @@
 /**
  * Created by cuppi on 2016/11/29.
- * @module network
  */
 'use strict';
 import JNetwork from './JNetwork.js';
@@ -11,6 +10,7 @@ import SeatManager from '../util/JManagerSeat';
 
 /**
  * 影院接口
+ * @memberOf module:network
  */
 class JNetworkCinema {
   /**

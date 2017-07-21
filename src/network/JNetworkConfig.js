@@ -1,6 +1,5 @@
 /**
  * Created by cuppi on 2017/4/14.
- * @module network
  */
 import NetworkManager from './JNetwork';
 import {UseConfig as UrlUseConfig} from '../unify/JUrlList'
@@ -8,6 +7,7 @@ import {UseConfig as DataUseConfig} from '../unify/JDataUnify'
 
 /**
  * 请求配置类
+ * @memberOf module:network
  */
 class JNetworkConfig {
   static setConfig(config){

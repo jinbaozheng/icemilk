@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Source: src/network/JNetworkOther.js</title>
+	<title>JBZWebSDK Class: JNetworkMine</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="CoordinateModel.html">CoordinateModel</a></li><li><a href="module-network-JNetwork.html">network~JNetwork</a></li><li><a href="module-network-JNetworkAccount.html">network~JNetworkAccount</a></li><li><a href="module-network-JNetworkCinema.html">network~JNetworkCinema</a></li><li><a href="module-network-JNetworkCity.html">network~JNetworkCity</a></li><li><a href="module-network-JNetworkConfig.html">network~JNetworkConfig</a></li><li><a href="module-network-JNetworkFilm.html">network~JNetworkFilm</a></li><li><a href="module-network-JNetworkMine.html">network~JNetworkMine</a></li><li><a href="module-network-JNetworkOther.html">network~JNetworkOther</a></li><li><a href="module-network-JNetworkTrade.html">network~JNetworkTrade</a></li><li><a href="PageModel.html">PageModel</a></li><li><a href="SeatParasModel.html">SeatParasModel</a></li><li><a href="tool_JToolArray.html">tool/JToolArray</a></li><li><a href="tool_JToolDate.html">tool/JToolDate</a></li><li><a href="tool_JToolNumber.html">tool/JToolNumber</a></li><li><a href="tool_JToolObject.html">tool/JToolObject</a></li><li><a href="tool_JToolString.html">tool/JToolString</a></li><li><a href="tool_JToolUrl.html">tool/JToolUrl</a></li><li><a href="util_JManagerSeat.html">util/JManagerSeat</a></li><li><a href="util_TradeManager.html">util/TradeManager</a></li>
+					<li><a href="CoordinateModel.html">CoordinateModel</a></li><li><a href="module-network.JNetworkAccount.html">network.JNetworkAccount</a></li><li><a href="module-network.JNetworkCinema.html">network.JNetworkCinema</a></li><li><a href="module-network.JNetworkCity.html">network.JNetworkCity</a></li><li><a href="module-network.JNetworkConfig.html">network.JNetworkConfig</a></li><li><a href="module-network.JNetworkFilm.html">network.JNetworkFilm</a></li><li><a href="module-network.JNetworkMine.html">network.JNetworkMine</a></li><li><a href="module-network.JNetworkOther.html">network.JNetworkOther</a></li><li><a href="module-network.JNetworkTrade.html">network.JNetworkTrade</a></li><li><a href="module-network-JNetwork.html">network~JNetwork</a></li><li><a href="PageModel.html">PageModel</a></li><li><a href="SeatParasModel.html">SeatParasModel</a></li><li><a href="tool_JToolArray.html">tool/JToolArray</a></li><li><a href="tool_JToolDate.html">tool/JToolDate</a></li><li><a href="tool_JToolNumber.html">tool/JToolNumber</a></li><li><a href="tool_JToolObject.html">tool/JToolObject</a></li><li><a href="tool_JToolString.html">tool/JToolString</a></li><li><a href="tool_JToolUrl.html">tool/JToolUrl</a></li><li><a href="util_JManagerSeat.html">util/JManagerSeat</a></li><li><a href="util_TradeManager.html">util/TradeManager</a></li>
 				</ul>
 			</li>
 			
@@ -74,93 +74,127 @@
 <div class="row">
 
 	
-	<div class="col-md-12">
+	<div class="col-md-8">
 	
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: src/network/JNetworkOther.js</h1>
-    
+	<h1 class="page-title">Class: JNetworkMine</h1>
 <section>
-    <article>
-        <pre
-            class="sunlight-highlight-javascript ">/**
- * Created by cuppi on 2016/12/1.
- * @module network
- */
-'use strict';
-import JNetwork from './JNetwork.js';
-import {otherUrl} from '../unify/JUrlList';
-import _ from '../unify/JDataUnify';
 
-/**
- * 其他接口
- */
-class JNetworkOther {
-  /**
-   * 搜索
-   * @param cityId 城市Id
-   * @param searchKey 关键字
-   * @param nextPageFirstKey 下一页的句柄
-   * @returns {Promise}
-   */
-  static search(cityId, searchKey, nextPageFirstKey) {
-    if (cityId) {
-      return JNetwork.POST(otherUrl.jbzSearch, {
-        cityId,
-        queryStr: searchKey,
-        lastKey: nextPageFirstKey
-      });
-    } else {
-      return JNetwork.POST(otherUrl.jbzSearch, {
-        queryStr: searchKey,
-        lastKey: nextPageFirstKey
-      });
-    }
-  }
+<header>
+    
+        <h2>
+            <span class="ancestors"><a href="module-network.html">network</a>.</span>
+        
+        JNetworkMine
+        </h2>
+        
+            <div class="class-description">个人中心接口</div>
+        
+    
+</header>
 
-  /**
-   * 热搜词汇
-   * @returns {{terminate, then}|*}
-   */
-  static hotSearchKeyword() {
-    return JNetwork.POST(otherUrl.jbzHotSearchKeyword);
-  }
 
-  /**
-   * 广告接口
-   * @param position 广告使用地点
-   * @param cityId 当前城市
-   * @returns {Promise}
-   */
-  static otherBanners(position, cityId) {
-    return new Promise((resolve, reject) => {
-      return JNetwork.POST(otherUrl.jbzBanners, {
-        position, cityId
-      }).then(data => {
-        resolve(_('otherUrl.jbzBanners', data));
-      }, error => {
-        reject(error);
-      });
-    })
-  }
+<article>
+    <div class="container-overview">
+    
+        
+<hr>
+<dt>
+    <h4 class="name" id="JNetworkMine"><span class="type-signature"></span>new JNetworkMine()</h4>
+    
+    
+</dt>
+<dd>
 
-  /**+
-   * 广告接口
-   * @param position 广告使用地点
-   * @param cityId 当前城市
-   * @returns {Promise}
-   */
-  static banners(position, cityId){
-    return JNetworkOther.otherBanners(position, cityId);
-  }
-}
+    
 
-export default JNetworkOther;
-</pre>
-    </article>
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
 </section>
-
 
 
 
@@ -170,6 +204,10 @@ export default JNetworkOther;
 
 	<div class="clearfix"></div>
 
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
 	
 
 </div>
@@ -204,7 +242,7 @@ export default JNetworkOther;
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a>
 	
-		on 2017-07-21T16:13:36+08:00
+		on 2017-07-21T16:56:51+08:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

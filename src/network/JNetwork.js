@@ -1,10 +1,11 @@
 /**
  * Created by cuppi on 2016/11/22.
- * @module network
  */
 'use strict';
 import axios from 'axios';
 import UrlTool from '../tool/JToolUrl.js';
+
+/** @module network*/
 
 /**
  * 网络请求类
@@ -16,13 +17,6 @@ class JNetwork {
   static timeout = 10 * 1000;
   static delegate = null;
   static inType = '';
-
-  /**
-   * @private
-   */
-  constructor(){
-
-  }
 
   /**
    * 需要定位的请求的公共参数

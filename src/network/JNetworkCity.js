@@ -1,6 +1,5 @@
 /**
  * Created by cuppi on 2016/11/30.
- * @module network
  */
 'use strict';
 import JNetwork from './JNetwork';
@@ -9,6 +8,7 @@ import _ from '../unify/JDataUnify';
 
 /**
  * 城市及定位接口
+ * @memberOf module:network
  * @hideconstructor
  */
 class JNetworkCity {
