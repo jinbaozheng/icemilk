@@ -14,7 +14,7 @@ class JNetworkFilm {
 
   /**
    * 获取热门电影
-   * @param page 分页模型
+   * @param page PageModel 分页模型
    * @returns {Promise}
    */
   static filmHotfilms(page) {

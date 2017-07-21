@@ -4,6 +4,7 @@
 
 import ICBCUrl from '../differentiation/icbc.url.config';
 import ShangHaiUrl from '../differentiation/shanghai.url.config';
+import ICMCUrl from '../differentiation/icmc.url.config';
 export var cityUrl = {};
 export var cinemaUrl = {};
 export var filmUrl = {};
@@ -61,12 +62,14 @@ let sdkApi = {
   },
   otherUrl: {
     jbzBanners: '',
-    jbzSearch: ''
+    jbzSearch: '',
+    jbzHotSearchKeyword: ''
   }
 }
 
 let _inType = '';
-let _VISIBLE_TYPE = ['ICBC-APP', 'SHANGHAI-APP'];
+let _TYPE_OBJECT = {'ICBC-APP': ICBCUrl, 'SHANGHAI-APP': ShangHaiUrl, 'ICMC-APP': ICMCUrl};
+let _VISIBLE_TYPE = Reflect.ownKeys(_TYPE_OBJECT);
 
 export function UseConfig(inType) {
   if (_VISIBLE_TYPE.indexOf(inType) === -1) {
@@ -96,12 +99,8 @@ function _chunk(chunk) {
 function _(chunk, title) {
   let map = {};
   let UseUrl = null;
-  if (_inType === 'ICBC-APP') {
-    UseUrl = ICBCUrl;
-  }
-  if (_inType === 'SHANGHAI-APP') {
-    UseUrl = ShangHaiUrl;
-  }
+
+  UseUrl = _TYPE_OBJECT[_inType];
   if (UseUrl && UseUrl.hasOwnProperty(chunk) && UseUrl[chunk].hasOwnProperty(title)) {
     return UseUrl[chunk][title];
   } else {
