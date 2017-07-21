@@ -1,5 +1,6 @@
 /**
  * Created by cuppi on 2017/3/6.
+ * @module network
  */
 'use strict';
 import _ from '../unify/JDataUnify';
@@ -8,7 +9,6 @@ import {mineUrl} from '../unify/JUrlList';
 
 /**
  * 个人中心接口
- * @alias network/JNetworkMine
  */
 class JNetworkMine {
 

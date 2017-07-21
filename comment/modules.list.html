@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Source: src/network/JNetworkOther.js</title>
+	<title>JBZWebSDK Modules</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -74,93 +74,157 @@
 <div class="row">
 
 	
-	<div class="col-md-12">
+	<div class="col-md-8">
 	
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: src/network/JNetworkOther.js</h1>
-    
+	<h1 class="page-title">Modules</h1>
 <section>
-    <article>
-        <pre
-            class="sunlight-highlight-javascript ">/**
- * Created by cuppi on 2016/12/1.
- * @module network
- */
-'use strict';
-import JNetwork from './JNetwork.js';
-import {otherUrl} from '../unify/JUrlList';
-import _ from '../unify/JDataUnify';
 
-/**
- * 其他接口
- */
-class JNetworkOther {
-  /**
-   * 搜索
-   * @param cityId 城市Id
-   * @param searchKey 关键字
-   * @param nextPageFirstKey 下一页的句柄
-   * @returns {Promise}
-   */
-  static search(cityId, searchKey, nextPageFirstKey) {
-    if (cityId) {
-      return JNetwork.POST(otherUrl.jbzSearch, {
-        cityId,
-        queryStr: searchKey,
-        lastKey: nextPageFirstKey
-      });
-    } else {
-      return JNetwork.POST(otherUrl.jbzSearch, {
-        queryStr: searchKey,
-        lastKey: nextPageFirstKey
-      });
-    }
-  }
+<header>
+    
+        <h2>
+        
+        </h2>
+        
+    
+</header>
 
-  /**
-   * 热搜词汇
-   * @returns {{terminate, then}|*}
-   */
-  static hotSearchKeyword() {
-    return JNetwork.POST(otherUrl.jbzHotSearchKeyword);
-  }
 
-  /**
-   * 广告接口
-   * @param position 广告使用地点
-   * @param cityId 当前城市
-   * @returns {Promise}
-   */
-  static otherBanners(position, cityId) {
-    return new Promise((resolve, reject) => {
-      return JNetwork.POST(otherUrl.jbzBanners, {
-        position, cityId
-      }).then(data => {
-        resolve(_('otherUrl.jbzBanners', data));
-      }, error => {
-        reject(error);
-      });
-    })
-  }
+<article>
+    <div class="container-overview">
+    
+        
 
-  /**+
-   * 广告接口
-   * @param position 广告使用地点
-   * @param cityId 当前城市
-   * @returns {Promise}
-   */
-  static banners(position, cityId){
-    return JNetworkOther.otherBanners(position, cityId);
-  }
-}
+        
+<dl class="details">
+    
 
-export default JNetworkOther;
-</pre>
-    </article>
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="CoordinateModel.html">CoordinateModel</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-network-JNetwork.html">JNetwork</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-network-JNetworkAccount.html">JNetworkAccount</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-network-JNetworkCinema.html">JNetworkCinema</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-network-JNetworkCity.html">JNetworkCity</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-network-JNetworkConfig.html">JNetworkConfig</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-network-JNetworkFilm.html">JNetworkFilm</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-network-JNetworkMine.html">JNetworkMine</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-network-JNetworkOther.html">JNetworkOther</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-network-JNetworkTrade.html">JNetworkTrade</a></dt>
+            <dd></dd>
+        
+            <dt><a href="PageModel.html">PageModel</a></dt>
+            <dd></dd>
+        
+            <dt><a href="SeatParasModel.html">SeatParasModel</a></dt>
+            <dd></dd>
+        
+            <dt><a href="tool_JToolArray.html">tool/JToolArray</a></dt>
+            <dd></dd>
+        
+            <dt><a href="tool_JToolDate.html">tool/JToolDate</a></dt>
+            <dd></dd>
+        
+            <dt><a href="tool_JToolNumber.html">tool/JToolNumber</a></dt>
+            <dd></dd>
+        
+            <dt><a href="tool_JToolObject.html">tool/JToolObject</a></dt>
+            <dd></dd>
+        
+            <dt><a href="tool_JToolString.html">tool/JToolString</a></dt>
+            <dd></dd>
+        
+            <dt><a href="tool_JToolUrl.html">tool/JToolUrl</a></dt>
+            <dd></dd>
+        
+            <dt><a href="util_JManagerSeat.html">util/JManagerSeat</a></dt>
+            <dd></dd>
+        
+            <dt><a href="util_TradeManager.html">util/TradeManager</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
 </section>
-
 
 
 
@@ -170,6 +234,10 @@ export default JNetworkOther;
 
 	<div class="clearfix"></div>
 
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
 	
 
 </div>

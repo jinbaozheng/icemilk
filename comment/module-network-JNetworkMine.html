@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Source: src/network/JNetworkOther.js</title>
+	<title>JBZWebSDK Class: JNetworkMine</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -74,93 +74,136 @@
 <div class="row">
 
 	
-	<div class="col-md-12">
+	<div class="col-md-8">
 	
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: src/network/JNetworkOther.js</h1>
-    
+	<h1 class="page-title">Class: JNetworkMine</h1>
 <section>
-    <article>
-        <pre
-            class="sunlight-highlight-javascript ">/**
- * Created by cuppi on 2016/12/1.
- * @module network
- */
-'use strict';
-import JNetwork from './JNetwork.js';
-import {otherUrl} from '../unify/JUrlList';
-import _ from '../unify/JDataUnify';
 
-/**
- * 其他接口
- */
-class JNetworkOther {
-  /**
-   * 搜索
-   * @param cityId 城市Id
-   * @param searchKey 关键字
-   * @param nextPageFirstKey 下一页的句柄
-   * @returns {Promise}
-   */
-  static search(cityId, searchKey, nextPageFirstKey) {
-    if (cityId) {
-      return JNetwork.POST(otherUrl.jbzSearch, {
-        cityId,
-        queryStr: searchKey,
-        lastKey: nextPageFirstKey
-      });
-    } else {
-      return JNetwork.POST(otherUrl.jbzSearch, {
-        queryStr: searchKey,
-        lastKey: nextPageFirstKey
-      });
-    }
-  }
+<header>
+    
+        <h2>
+            <span class="ancestors"><a href="module-network.html">network</a>~</span>
+        
+        JNetworkMine
+        </h2>
+        
+            <div class="class-description">个人中心接口</div>
+        
+    
+</header>
 
-  /**
-   * 热搜词汇
-   * @returns {{terminate, then}|*}
-   */
-  static hotSearchKeyword() {
-    return JNetwork.POST(otherUrl.jbzHotSearchKeyword);
-  }
 
-  /**
-   * 广告接口
-   * @param position 广告使用地点
-   * @param cityId 当前城市
-   * @returns {Promise}
-   */
-  static otherBanners(position, cityId) {
-    return new Promise((resolve, reject) => {
-      return JNetwork.POST(otherUrl.jbzBanners, {
-        position, cityId
-      }).then(data => {
-        resolve(_('otherUrl.jbzBanners', data));
-      }, error => {
-        reject(error);
-      });
-    })
-  }
+<article>
+    <div class="container-overview">
+    
+        
+<hr>
+<dt>
+    <h4 class="name" id="JNetworkMine"><span class="type-signature"></span>new JNetworkMine()</h4>
+    
+    
+</dt>
+<dd>
 
-  /**+
-   * 广告接口
-   * @param position 广告使用地点
-   * @param cityId 当前城市
-   * @returns {Promise}
-   */
-  static banners(position, cityId){
-    return JNetworkOther.otherBanners(position, cityId);
-  }
-}
+    
 
-export default JNetworkOther;
-</pre>
-    </article>
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="src_network_JNetworkMine.js.html">src/network/JNetworkMine.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
 </section>
-
 
 
 
@@ -170,6 +213,10 @@ export default JNetworkOther;
 
 	<div class="clearfix"></div>
 
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
 	
 
 </div>

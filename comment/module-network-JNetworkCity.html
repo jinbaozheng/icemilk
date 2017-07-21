@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Class: network/JNetworkAccount</title>
+	<title>JBZWebSDK Class: JNetworkCity</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -31,16 +31,23 @@
 		<ul class="nav navbar-nav">
 			
 			<li class="dropdown">
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="module-network.html">network</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="network_JNetwork.html">network/JNetwork</a></li><li><a href="network_JNetworkAccount.html">network/JNetworkAccount</a></li><li><a href="network_JNetworkCinema.html">network/JNetworkCinema</a></li><li><a href="network_JNetworkCity.html">network/JNetworkCity</a></li><li><a href="network_JNetworkConfig.html">network/JNetworkConfig</a></li><li><a href="network_JNetworkFilm.html">network/JNetworkFilm</a></li><li><a href="network_JNetworkMine.html">network/JNetworkMine</a></li><li><a href="network_JNetworkOther.html">network/JNetworkOther</a></li><li><a href="network_JNetworkTrade.html">network/JNetworkTrade</a></li><li><a href="tool_JToolArray.html">tool/JToolArray</a></li><li><a href="tool_JToolDate.html">tool/JToolDate</a></li><li><a href="tool_JToolNumber.html">tool/JToolNumber</a></li><li><a href="tool_JToolObject.html">tool/JToolObject</a></li><li><a href="tool_JToolString.html">tool/JToolString</a></li><li><a href="tool_JToolUrl.html">tool/JToolUrl</a></li><li><a href="util_JManagerSeat.html">util/JManagerSeat</a></li><li><a href="util_TradeManager.html">util/TradeManager</a></li>
+					<li><a href="CoordinateModel.html">CoordinateModel</a></li><li><a href="module-network-JNetwork.html">network~JNetwork</a></li><li><a href="module-network-JNetworkAccount.html">network~JNetworkAccount</a></li><li><a href="module-network-JNetworkCinema.html">network~JNetworkCinema</a></li><li><a href="module-network-JNetworkCity.html">network~JNetworkCity</a></li><li><a href="module-network-JNetworkConfig.html">network~JNetworkConfig</a></li><li><a href="module-network-JNetworkFilm.html">network~JNetworkFilm</a></li><li><a href="module-network-JNetworkMine.html">network~JNetworkMine</a></li><li><a href="module-network-JNetworkOther.html">network~JNetworkOther</a></li><li><a href="module-network-JNetworkTrade.html">network~JNetworkTrade</a></li><li><a href="PageModel.html">PageModel</a></li><li><a href="SeatParasModel.html">SeatParasModel</a></li><li><a href="tool_JToolArray.html">tool/JToolArray</a></li><li><a href="tool_JToolDate.html">tool/JToolDate</a></li><li><a href="tool_JToolNumber.html">tool/JToolNumber</a></li><li><a href="tool_JToolObject.html">tool/JToolObject</a></li><li><a href="tool_JToolString.html">tool/JToolString</a></li><li><a href="tool_JToolUrl.html">tool/JToolUrl</a></li><li><a href="util_JManagerSeat.html">util/JManagerSeat</a></li><li><a href="util_TradeManager.html">util/TradeManager</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#cityUrl">cityUrl</a></li><li><a href="global.html#Client">Client</a></li><li><a href="global.html#instance">instance</a></li><li><a href="global.html#other/jcombine">other/jcombine</a></li><li><a href="global.html#other/jlink">other/jlink</a></li>
+					<li><a href="global.html#cityUrl">cityUrl</a></li><li><a href="global.html#Client">Client</a></li><li><a href="global.html#other/jcombine">other/jcombine</a></li><li><a href="global.html#other/jlink">other/jlink</a></li>
 				</ul>
 			</li>
 			
@@ -72,16 +79,18 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: network/JNetworkAccount</h1>
+	<h1 class="page-title">Class: JNetworkCity</h1>
 <section>
 
 <header>
     
         <h2>
-        network/JNetworkAccount
+            <span class="ancestors"><a href="module-network.html">network</a>~</span>
+        
+        JNetworkCity
         </h2>
         
-            <div class="class-description">账户接口</div>
+            <div class="class-description">城市及定位接口</div>
         
     
 </header>
@@ -93,7 +102,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="network/JNetworkAccount"><span class="type-signature"></span>new network/JNetworkAccount()</h4>
+    <h4 class="name" id="JNetworkCity"><span class="type-signature"></span>new JNetworkCity()</h4>
     
     
 </dt>
@@ -143,7 +152,7 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="src_network_JNetworkAccount.js.html">src/network/JNetworkAccount.js</a>
+				<a href="src_network_JNetworkCity.js.html">src/network/JNetworkCity.js</a>
 			</li>
 		</ul>
 	</dd>
@@ -194,7 +203,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".accountLogin"><span class="type-signature">&lt;static> </span>accountLogin(mobile, password)</h4>
+    <h4 class="name" id=".cityByCoordinate"><span class="type-signature">&lt;static> </span>cityByCoordinate(coordinate)</h4>
     
     
 </dt>
@@ -202,7 +211,7 @@
 
     
     <div class="description">
-        用户登录
+        通过经纬度获取城市
     </div>
     
 
@@ -237,16 +246,10 @@
 
         <tr>
             
-                <td class="name"><code>mobile</code></td>
+                <td class="name"><code>coordinate</code></td>
             
 
             <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
             
             </td>
 
@@ -254,31 +257,7 @@
 
             
 
-            <td class="description last">登录需要的手机号码</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>password</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">登录需要的密码</td>
+            <td class="description last">位置信息</td>
         </tr>
 
     
@@ -322,7 +301,158 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="src_network_JNetworkAccount.js.html">src/network/JNetworkAccount.js</a>
+				<a href="src_network_JNetworkCity.js.html">src/network/JNetworkCity.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">*</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".cityById"><span class="type-signature">&lt;static> </span>cityById(cityId)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        通过城市id获取城市
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cityId</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="src_network_JNetworkCity.js.html">src/network/JNetworkCity.js</a>
 			</li>
 		</ul>
 	</dd>
@@ -378,7 +508,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".accountLogout"><span class="type-signature">&lt;static> </span>accountLogout(sessionId)</h4>
+    <h4 class="name" id=".cityDistrictList"><span class="type-signature">&lt;static> </span>cityDistrictList(cityId)</h4>
     
     
 </dt>
@@ -386,7 +516,8 @@
 
     
     <div class="description">
-        用户登出
+        +
+获取地区列表
     </div>
     
 
@@ -421,7 +552,7 @@
 
         <tr>
             
-                <td class="name"><code>sessionId</code></td>
+                <td class="name"><code>cityId</code></td>
             
 
             <td class="type">
@@ -432,7 +563,7 @@
 
             
 
-            <td class="description last">用户登录标识</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -476,7 +607,7 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="src_network_JNetworkAccount.js.html">src/network/JNetworkAccount.js</a>
+				<a href="src_network_JNetworkCity.js.html">src/network/JNetworkCity.js</a>
 			</li>
 		</ul>
 	</dd>
@@ -532,7 +663,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".accountRegister"><span class="type-signature">&lt;static> </span>accountRegister(mobile, verifyCode, password)</h4>
+    <h4 class="name" id=".cityHotList"><span class="type-signature">&lt;static> </span>cityHotList()</h4>
     
     
 </dt>
@@ -540,7 +671,7 @@
 
     
     <div class="description">
-        注册用户
+        获取热门城市列表
     </div>
     
 
@@ -549,86 +680,6 @@
     
 
     
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>mobile</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">用户的手机号码</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>verifyCode</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">验证码</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>password</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">密码</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
     
 
     
@@ -666,7 +717,7 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="src_network_JNetworkAccount.js.html">src/network/JNetworkAccount.js</a>
+				<a href="src_network_JNetworkCity.js.html">src/network/JNetworkCity.js</a>
 			</li>
 		</ul>
 	</dd>
@@ -722,7 +773,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".accountUpdatepass"><span class="type-signature">&lt;static> </span>accountUpdatepass(mobile, verfyCode, password)</h4>
+    <h4 class="name" id=".cityList"><span class="type-signature">&lt;static> </span>cityList()</h4>
     
     
 </dt>
@@ -730,7 +781,7 @@
 
     
     <div class="description">
-        忘记密码并且找回密码
+        获取城市列表
     </div>
     
 
@@ -739,86 +790,6 @@
     
 
     
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>mobile</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">手机号码</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>verfyCode</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">验证码</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>password</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">新密码</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
     
 
     
@@ -856,7 +827,7 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="src_network_JNetworkAccount.js.html">src/network/JNetworkAccount.js</a>
+				<a href="src_network_JNetworkCity.js.html">src/network/JNetworkCity.js</a>
 			</li>
 		</ul>
 	</dd>
@@ -892,9 +863,6 @@
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
-|
-
 <span class="param-type">*</span>
 
 
@@ -912,7 +880,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".accountVerifyCode"><span class="type-signature">&lt;static> </span>accountVerifyCode(mobile, type)</h4>
+    <h4 class="name" id=".cityNeedCoordinate"><span class="type-signature">&lt;static> </span>cityNeedCoordinate()</h4>
     
     
 </dt>
@@ -920,7 +888,8 @@
 
     
     <div class="description">
-        获取验证码
+        +
+通过经纬度获取城市（通过代理传递）
     </div>
     
 
@@ -929,68 +898,6 @@
     
 
     
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>mobile</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">接收验证码的手机号码</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">验证码类型 （1：注册使用 2：忘记密码使用）</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
     
 
     
@@ -1028,7 +935,7 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="src_network_JNetworkAccount.js.html">src/network/JNetworkAccount.js</a>
+				<a href="src_network_JNetworkCity.js.html">src/network/JNetworkCity.js</a>
 			</li>
 		</ul>
 	</dd>
@@ -1134,9 +1041,9 @@
 	</span>
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a>
 	
-		on 2017-07-20T15:30:59+08:00
+		on 2017-07-21T16:13:36+08:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

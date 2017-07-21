@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Class: network/JNetworkCity</title>
+	<title>JBZWebSDK Class: JNetwork</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -31,16 +31,23 @@
 		<ul class="nav navbar-nav">
 			
 			<li class="dropdown">
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="module-network.html">network</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="network_JNetwork.html">network/JNetwork</a></li><li><a href="network_JNetworkAccount.html">network/JNetworkAccount</a></li><li><a href="network_JNetworkCinema.html">network/JNetworkCinema</a></li><li><a href="network_JNetworkCity.html">network/JNetworkCity</a></li><li><a href="network_JNetworkConfig.html">network/JNetworkConfig</a></li><li><a href="network_JNetworkFilm.html">network/JNetworkFilm</a></li><li><a href="network_JNetworkMine.html">network/JNetworkMine</a></li><li><a href="network_JNetworkOther.html">network/JNetworkOther</a></li><li><a href="network_JNetworkTrade.html">network/JNetworkTrade</a></li><li><a href="tool_JToolArray.html">tool/JToolArray</a></li><li><a href="tool_JToolDate.html">tool/JToolDate</a></li><li><a href="tool_JToolNumber.html">tool/JToolNumber</a></li><li><a href="tool_JToolObject.html">tool/JToolObject</a></li><li><a href="tool_JToolString.html">tool/JToolString</a></li><li><a href="tool_JToolUrl.html">tool/JToolUrl</a></li><li><a href="util_JManagerSeat.html">util/JManagerSeat</a></li><li><a href="util_TradeManager.html">util/TradeManager</a></li>
+					<li><a href="CoordinateModel.html">CoordinateModel</a></li><li><a href="module-network-JNetwork.html">network~JNetwork</a></li><li><a href="module-network-JNetworkAccount.html">network~JNetworkAccount</a></li><li><a href="module-network-JNetworkCinema.html">network~JNetworkCinema</a></li><li><a href="module-network-JNetworkCity.html">network~JNetworkCity</a></li><li><a href="module-network-JNetworkConfig.html">network~JNetworkConfig</a></li><li><a href="module-network-JNetworkFilm.html">network~JNetworkFilm</a></li><li><a href="module-network-JNetworkMine.html">network~JNetworkMine</a></li><li><a href="module-network-JNetworkOther.html">network~JNetworkOther</a></li><li><a href="module-network-JNetworkTrade.html">network~JNetworkTrade</a></li><li><a href="PageModel.html">PageModel</a></li><li><a href="SeatParasModel.html">SeatParasModel</a></li><li><a href="tool_JToolArray.html">tool/JToolArray</a></li><li><a href="tool_JToolDate.html">tool/JToolDate</a></li><li><a href="tool_JToolNumber.html">tool/JToolNumber</a></li><li><a href="tool_JToolObject.html">tool/JToolObject</a></li><li><a href="tool_JToolString.html">tool/JToolString</a></li><li><a href="tool_JToolUrl.html">tool/JToolUrl</a></li><li><a href="util_JManagerSeat.html">util/JManagerSeat</a></li><li><a href="util_TradeManager.html">util/TradeManager</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#cityUrl">cityUrl</a></li><li><a href="global.html#Client">Client</a></li><li><a href="global.html#instance">instance</a></li><li><a href="global.html#other/jcombine">other/jcombine</a></li><li><a href="global.html#other/jlink">other/jlink</a></li>
+					<li><a href="global.html#cityUrl">cityUrl</a></li><li><a href="global.html#Client">Client</a></li><li><a href="global.html#other/jcombine">other/jcombine</a></li><li><a href="global.html#other/jlink">other/jlink</a></li>
 				</ul>
 			</li>
 			
@@ -72,16 +79,18 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: network/JNetworkCity</h1>
+	<h1 class="page-title">Class: JNetwork</h1>
 <section>
 
 <header>
     
         <h2>
-        network/JNetworkCity
+            <span class="ancestors"><a href="module-network.html">network</a>~</span>
+        
+        JNetwork
         </h2>
         
-            <div class="class-description">城市及定位接口</div>
+            <div class="class-description">网络请求类</div>
         
     
 </header>
@@ -93,7 +102,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="network/JNetworkCity"><span class="type-signature"></span>new network/JNetworkCity()</h4>
+    <h4 class="name" id="JNetwork"><span class="type-signature"></span>new JNetwork()</h4>
     
     
 </dt>
@@ -143,7 +152,7 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="src_network_JNetworkCity.js.html">src/network/JNetworkCity.js</a>
+				<a href="src_network_JNetwork.js.html">src/network/JNetwork.js</a>
 			</li>
 		</ul>
 	</dd>
@@ -194,7 +203,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".cityByCoordinate"><span class="type-signature">&lt;static> </span>cityByCoordinate(coordinate)</h4>
+    <h4 class="name" id=".freedomPOST"><span class="type-signature">&lt;static> </span>freedomPOST(baseUrl, url, parameters, headers, otherObject)</h4>
     
     
 </dt>
@@ -202,7 +211,7 @@
 
     
     <div class="description">
-        通过经纬度获取城市
+        高自由度POST方法
     </div>
     
 
@@ -237,10 +246,16 @@
 
         <tr>
             
-                <td class="name"><code>coordinate</code></td>
+                <td class="name"><code>baseUrl</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -248,7 +263,103 @@
 
             
 
-            <td class="description last">位置信息</td>
+            <td class="description last">基地址</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">相对地址</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>parameters</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">地址参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">头参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>otherObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">其他可用配置</td>
         </tr>
 
     
@@ -292,7 +403,7 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="src_network_JNetworkCity.js.html">src/network/JNetworkCity.js</a>
+				<a href="src_network_JNetwork.js.html">src/network/JNetwork.js</a>
 			</li>
 		</ul>
 	</dd>
@@ -320,6 +431,10 @@
     <h5>Returns:</h5>
     
             
+<div class="param-desc">
+    异步请求块
+</div>
+
 
 
 <dl>
@@ -328,7 +443,7 @@
     </dt>
     <dd>
         
-<span class="param-type">*</span>
+<span class="param-type">Promise</span>
 
 
 
@@ -345,7 +460,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".cityById"><span class="type-signature">&lt;static> </span>cityById(cityId)</h4>
+    <h4 class="name" id=".GET"><span class="type-signature">&lt;static> </span>GET(url, parameters, headers)</h4>
     
     
 </dt>
@@ -353,7 +468,7 @@
 
     
     <div class="description">
-        通过城市id获取城市
+        get请求
     </div>
     
 
@@ -388,10 +503,16 @@
 
         <tr>
             
-                <td class="name"><code>cityId</code></td>
+                <td class="name"><code>url</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -399,7 +520,55 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">相对地址</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>parameters</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">地址参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">头参数</td>
         </tr>
 
     
@@ -443,7 +612,7 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="src_network_JNetworkCity.js.html">src/network/JNetworkCity.js</a>
+				<a href="src_network_JNetwork.js.html">src/network/JNetwork.js</a>
 			</li>
 		</ul>
 	</dd>
@@ -471,6 +640,10 @@
     <h5>Returns:</h5>
     
             
+<div class="param-desc">
+    异步请求块
+</div>
+
 
 
 <dl>
@@ -479,10 +652,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
-|
-
-<span class="param-type">*</span>
+<span class="param-type">Promise</span>
 
 
 
@@ -499,7 +669,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".cityDistrictList"><span class="type-signature">&lt;static> </span>cityDistrictList(cityId)</h4>
+    <h4 class="name" id=".POST"><span class="type-signature">&lt;static> </span>POST(url, parameters, headers, otherObject)</h4>
     
     
 </dt>
@@ -507,8 +677,7 @@
 
     
     <div class="description">
-        +
-获取地区列表
+        post请求
     </div>
     
 
@@ -543,10 +712,16 @@
 
         <tr>
             
-                <td class="name"><code>cityId</code></td>
+                <td class="name"><code>url</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -554,7 +729,79 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">相对地址</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>parameters</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">地址参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">头参数(可空)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>otherObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">其他参数(可空)</td>
         </tr>
 
     
@@ -598,7 +845,7 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="src_network_JNetworkCity.js.html">src/network/JNetworkCity.js</a>
+				<a href="src_network_JNetwork.js.html">src/network/JNetwork.js</a>
 			</li>
 		</ul>
 	</dd>
@@ -626,6 +873,10 @@
     <h5>Returns:</h5>
     
             
+<div class="param-desc">
+    异步请求块
+</div>
+
 
 
 <dl>
@@ -634,338 +885,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
-|
-
-<span class="param-type">*</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".cityHotList"><span class="type-signature">&lt;static> </span>cityHotList()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        获取热门城市列表
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_network_JNetworkCity.js.html">src/network/JNetworkCity.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-|
-
-<span class="param-type">*</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".cityList"><span class="type-signature">&lt;static> </span>cityList()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        获取城市列表
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_network_JNetworkCity.js.html">src/network/JNetworkCity.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">*</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".cityNeedCoordinate"><span class="type-signature">&lt;static> </span>cityNeedCoordinate()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        +
-通过经纬度获取城市（通过代理传递）
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_network_JNetworkCity.js.html">src/network/JNetworkCity.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-|
-
-<span class="param-type">*</span>
+<span class="param-type">Promise</span>
 
 
 
@@ -1032,9 +952,9 @@
 	</span>
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a>
 	
-		on 2017-07-20T15:30:59+08:00
+		on 2017-07-21T16:13:36+08:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

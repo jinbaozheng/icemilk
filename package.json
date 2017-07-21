@@ -12,8 +12,9 @@
     "url": "https://git.oschina.net/cuppi/jbzwebsdk/issues"
   },
   "dependencies": {
-    "left-pad": "*",
-    "axios": "*"
+    "axios": "*",
+    "ink-docstrap": "^1.3.0",
+    "left-pad": "*"
   },
   "author": {
     "email": "cuppi413@163.com",
@@ -40,8 +41,7 @@
     "jsdoc-babel": "^0.3.0",
     "babel-plugin-transform-runtime": "^6.22.0",
     "babel-cli": "^6.0.0",
-    "babel-preset-stage-2": "^6.24.1",
-    "ink-docstrap": "^1.3.0"
+    "babel-preset-stage-2": "^6.24.1"
   },
   "description": "Shanghai jinbaozheng easy network technology Co.,Ltd sdk",
   "name": "jbzwebsdk",

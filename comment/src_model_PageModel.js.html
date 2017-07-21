@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Source: src/network/JNetworkOther.js</title>
+	<title>JBZWebSDK Source: src/model/PageModel.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -79,84 +79,28 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: src/network/JNetworkOther.js</h1>
+		<h1 class="page-title">Source: src/model/PageModel.js</h1>
     
 <section>
     <article>
         <pre
             class="sunlight-highlight-javascript ">/**
- * Created by cuppi on 2016/12/1.
- * @module network
+ * Created by cuppi on 2017/7/20.
  */
-'use strict';
-import JNetwork from './JNetwork.js';
-import {otherUrl} from '../unify/JUrlList';
-import _ from '../unify/JDataUnify';
 
-/**
- * 其他接口
- */
-class JNetworkOther {
+class PageModel{
   /**
-   * 搜索
-   * @param cityId 城市Id
-   * @param searchKey 关键字
-   * @param nextPageFirstKey 下一页的句柄
-   * @returns {Promise}
+   * number 页号索引 1
    */
-  static search(cityId, searchKey, nextPageFirstKey) {
-    if (cityId) {
-      return JNetwork.POST(otherUrl.jbzSearch, {
-        cityId,
-        queryStr: searchKey,
-        lastKey: nextPageFirstKey
-      });
-    } else {
-      return JNetwork.POST(otherUrl.jbzSearch, {
-        queryStr: searchKey,
-        lastKey: nextPageFirstKey
-      });
-    }
-  }
+  static index;
 
   /**
-   * 热搜词汇
-   * @returns {{terminate, then}|*}
+   * number 每页尺寸 5
    */
-  static hotSearchKeyword() {
-    return JNetwork.POST(otherUrl.jbzHotSearchKeyword);
-  }
-
-  /**
-   * 广告接口
-   * @param position 广告使用地点
-   * @param cityId 当前城市
-   * @returns {Promise}
-   */
-  static otherBanners(position, cityId) {
-    return new Promise((resolve, reject) => {
-      return JNetwork.POST(otherUrl.jbzBanners, {
-        position, cityId
-      }).then(data => {
-        resolve(_('otherUrl.jbzBanners', data));
-      }, error => {
-        reject(error);
-      });
-    })
-  }
-
-  /**+
-   * 广告接口
-   * @param position 广告使用地点
-   * @param cityId 当前城市
-   * @returns {Promise}
-   */
-  static banners(position, cityId){
-    return JNetworkOther.otherBanners(position, cityId);
-  }
+  static size;
 }
 
-export default JNetworkOther;
+export default PageModel;
 </pre>
     </article>
 </section>

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Source: src/network/JNetworkOther.js</title>
+	<title>JBZWebSDK Source: src/differentiation/icmc.url.config.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -79,84 +79,71 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: src/network/JNetworkOther.js</h1>
+		<h1 class="page-title">Source: src/differentiation/icmc.url.config.js</h1>
     
 <section>
     <article>
         <pre
             class="sunlight-highlight-javascript ">/**
- * Created by cuppi on 2016/12/1.
- * @module network
+ * Created by cuppi on 2017/5/12.
  */
-'use strict';
-import JNetwork from './JNetwork.js';
-import {otherUrl} from '../unify/JUrlList';
-import _ from '../unify/JDataUnify';
 
-/**
- * 其他接口
- */
-class JNetworkOther {
-  /**
-   * 搜索
-   * @param cityId 城市Id
-   * @param searchKey 关键字
-   * @param nextPageFirstKey 下一页的句柄
-   * @returns {Promise}
-   */
-  static search(cityId, searchKey, nextPageFirstKey) {
-    if (cityId) {
-      return JNetwork.POST(otherUrl.jbzSearch, {
-        cityId,
-        queryStr: searchKey,
-        lastKey: nextPageFirstKey
-      });
-    } else {
-      return JNetwork.POST(otherUrl.jbzSearch, {
-        queryStr: searchKey,
-        lastKey: nextPageFirstKey
-      });
-    }
-  }
+const cityUrl = {
+  jbzCities: '/location/cities',
+  jbzCityByCoordinate: '/location/city',
+  jbzCityById: '/location/citybyid',
+  jbzDistricts: '/location/districts',
+  jbzHotCities: '/location/hotcities'
+};
 
-  /**
-   * 热搜词汇
-   * @returns {{terminate, then}|*}
-   */
-  static hotSearchKeyword() {
-    return JNetwork.POST(otherUrl.jbzHotSearchKeyword);
-  }
+const cinemaUrl = {
+  jbzList: '/cinema/cinemas',
+  jbzDetail: '/cinema/cinemadetail',
+  jbzScreeningFilmList: '/cinema/films',
+  jbzScreeningDateList: '/cinema/filmshowdates',
+  jbzScreeningItems: '/cinema/filmshows',
+  jbzRealtimeSeat: '/cinema/realtimeseats'
+};
 
-  /**
-   * 广告接口
-   * @param position 广告使用地点
-   * @param cityId 当前城市
-   * @returns {Promise}
-   */
-  static otherBanners(position, cityId) {
-    return new Promise((resolve, reject) => {
-      return JNetwork.POST(otherUrl.jbzBanners, {
-        position, cityId
-      }).then(data => {
-        resolve(_('otherUrl.jbzBanners', data));
-      }, error => {
-        reject(error);
-      });
-    })
-  }
+const filmUrl = {
+  jbzHotFilms: '/film/hotfilms',
+  jbzHotFilmsPage: '/film/hotfilmspage',
+  jbzHotFilmsSimple: '/film/hotfilmssimple',
+  jbzWaitFilms: '/film/upcomingfilms',
+  jbzWaitFilmsPage: '/film/upcomingfilmspage',
+  jbzFilmDetailByPartner: '/film/filmbypartner',
+  jbzFilmDetail: '/film/filmpage', // 民生特有的 让卜浩合并的
+  jbzFilmDate: '/film/filmdate'
+};
 
-  /**+
-   * 广告接口
-   * @param position 广告使用地点
-   * @param cityId 当前城市
-   * @returns {Promise}
-   */
-  static banners(position, cityId){
-    return JNetworkOther.otherBanners(position, cityId);
-  }
-}
+const accountUrl = {
+  jbzLogin: '/account/login',
+  jbzLogout: '/account/logout',
+  jbzVerifycode: '/account/verifycode',
+  jbzRegister: '/account/register',
+  jbzUpdatepass: '/account/updatepass'
+};
 
-export default JNetworkOther;
+const tradeUrl = {
+  jbzLockSeat: '/order/lockseat',
+  // jbzAppApplyTicket: '/appapi/applyticket',
+  jbzWebAtAppApplyTicket: '/order/applyticket',
+  // jbzCancelOrder: '/main/cancelOrder',
+  // jbzAppPrepay: '/webapi/prepay',
+  // jbzWebPrepay: '/appapi/prepay',
+};
+
+const mineUrl = {
+  jbzMineCinema: '/mine/cinemacollectionlist'
+};
+
+const otherUrl = {
+  jbzBanners: '/banner/banners',
+  jbzSearch: '/search',
+  jbzHotSearchKeyword: '/hotquery'
+};
+
+export default {cityUrl, cinemaUrl, filmUrl, accountUrl, tradeUrl, mineUrl, otherUrl};
 </pre>
     </article>
 </section>
