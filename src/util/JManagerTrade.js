@@ -7,7 +7,7 @@ let instance = null;
 
 /**
  * 交易管理类
- * @alias util/TradeManager
+ * @memberOf module:manager
  */
 class TradeManager {
   constructor() {

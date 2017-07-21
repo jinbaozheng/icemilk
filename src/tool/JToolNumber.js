@@ -3,7 +3,7 @@ import leftPad from 'left-pad';
 
 /**
  * 数字工具类
- * @alias tool/JToolNumber
+ * @memberOf module:tool
  */
 class NumberTool {
   /**

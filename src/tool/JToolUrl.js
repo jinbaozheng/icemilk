@@ -4,7 +4,7 @@
 
 /**
  * 网络地址工具类
- * @alias tool/JToolUrl
+ * @memberOf module:tool
  */
 class UrlTool {
   /**

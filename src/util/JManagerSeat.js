@@ -12,7 +12,7 @@ let instance = null;
 
 /**
  * 座位图管理类
- * @alias util/JManagerSeat
+ * @module manager
  */
 class SeatManager {
   /**

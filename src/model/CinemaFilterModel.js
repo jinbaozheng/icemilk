@@ -2,7 +2,12 @@
  * Created by cuppi on 2017/7/20.
  */
 
-class CoordinateModel{
+
+/**
+ * 影院筛选模型
+ * @module model
+ */
+class CinemaFilterModel{
   static filmId;
   static feature;
   static region;
@@ -10,4 +15,4 @@ class CoordinateModel{
   static limit;
 }
 
-export default CoordinateModel;
+export default CinemaFilterModel;

@@ -4,7 +4,7 @@
 
 /**
  * 对象工具类
- * @alias tool/JToolObject
+ * @memberOf module:tool
  */
 class ObjectTool {
   /**

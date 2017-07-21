@@ -6,7 +6,7 @@ import NumberTool from './JToolNumber.js';
 
 /**
  * 时间工具类
- * @alias tool/JToolDate
+ * @memberOf module:tool
  */
 class DateTool {
 

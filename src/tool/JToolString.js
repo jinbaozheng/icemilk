@@ -2,7 +2,7 @@
 
 /**
  * 字符串工具类
- * @alias tool/JToolString
+ * @memberOf module:tool
  */
 class StringTool {
 

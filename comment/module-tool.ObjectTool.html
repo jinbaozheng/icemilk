@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Class: util/JManagerSeat</title>
+	<title>JBZWebSDK Class: ObjectTool</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-network.html">network</a></li>
+					<li><a href="module-manager.html">manager</a></li><li><a href="module-model.html">model</a></li><li><a href="module-network.html">network</a></li><li><a href="module-tool.html">tool</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="CoordinateModel.html">CoordinateModel</a></li><li><a href="module-network.JNetworkAccount.html">network.JNetworkAccount</a></li><li><a href="module-network.JNetworkCinema.html">network.JNetworkCinema</a></li><li><a href="module-network.JNetworkCity.html">network.JNetworkCity</a></li><li><a href="module-network.JNetworkConfig.html">network.JNetworkConfig</a></li><li><a href="module-network.JNetworkFilm.html">network.JNetworkFilm</a></li><li><a href="module-network.JNetworkMine.html">network.JNetworkMine</a></li><li><a href="module-network.JNetworkOther.html">network.JNetworkOther</a></li><li><a href="module-network.JNetworkTrade.html">network.JNetworkTrade</a></li><li><a href="module-network-JNetwork.html">network~JNetwork</a></li><li><a href="PageModel.html">PageModel</a></li><li><a href="SeatParasModel.html">SeatParasModel</a></li><li><a href="tool_JToolArray.html">tool/JToolArray</a></li><li><a href="tool_JToolDate.html">tool/JToolDate</a></li><li><a href="tool_JToolNumber.html">tool/JToolNumber</a></li><li><a href="tool_JToolObject.html">tool/JToolObject</a></li><li><a href="tool_JToolString.html">tool/JToolString</a></li><li><a href="tool_JToolUrl.html">tool/JToolUrl</a></li><li><a href="util_JManagerSeat.html">util/JManagerSeat</a></li><li><a href="util_TradeManager.html">util/TradeManager</a></li>
+					<li><a href="module-manager.TradeManager.html">manager.TradeManager</a></li><li><a href="module-manager-SeatManager.html">manager~SeatManager</a></li><li><a href="module-model.CityModel.html">model.CityModel</a></li><li><a href="module-model.PageModel.html">model.PageModel</a></li><li><a href="module-model.SeatParasModel.html">model.SeatParasModel</a></li><li><a href="module-network.JNetworkAccount.html">network.JNetworkAccount</a></li><li><a href="module-network.JNetworkCinema.html">network.JNetworkCinema</a></li><li><a href="module-network.JNetworkCity.html">network.JNetworkCity</a></li><li><a href="module-network.JNetworkConfig.html">network.JNetworkConfig</a></li><li><a href="module-network.JNetworkFilm.html">network.JNetworkFilm</a></li><li><a href="module-network.JNetworkMine.html">network.JNetworkMine</a></li><li><a href="module-network.JNetworkOther.html">network.JNetworkOther</a></li><li><a href="module-network.JNetworkTrade.html">network.JNetworkTrade</a></li><li><a href="module-network-JNetwork.html">network~JNetwork</a></li><li><a href="module-tool.DateTool.html">tool.DateTool</a></li><li><a href="module-tool.NumberTool.html">tool.NumberTool</a></li><li><a href="module-tool.ObjectTool.html">tool.ObjectTool</a></li><li><a href="module-tool.StringTool.html">tool.StringTool</a></li><li><a href="module-tool.UrlTool.html">tool.UrlTool</a></li>
 				</ul>
 			</li>
 			
@@ -79,16 +79,18 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: util/JManagerSeat</h1>
+	<h1 class="page-title">Class: ObjectTool</h1>
 <section>
 
 <header>
     
         <h2>
-        util/JManagerSeat
+            <span class="ancestors"><a href="module-tool.html">tool</a>.</span>
+        
+        ObjectTool
         </h2>
         
-            <div class="class-description">座位图管理类</div>
+            <div class="class-description">对象工具类</div>
         
     
 </header>
@@ -100,16 +102,12 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="util/JManagerSeat"><span class="type-signature"></span>new util/JManagerSeat()</h4>
+    <h4 class="name" id="ObjectTool"><span class="type-signature"></span>new ObjectTool()</h4>
     
     
 </dt>
 <dd>
 
-    
-    <div class="description">
-        构造器
-    </div>
     
 
     
@@ -196,7 +194,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".defaultManager"><span class="type-signature">&lt;static> </span>defaultManager()</h4>
+    <h4 class="name" id=".deleteProperty"><span class="type-signature">&lt;static> </span>deleteProperty(target, propertyKey)</h4>
     
     
 </dt>
@@ -204,105 +202,7 @@
 
     
     <div class="description">
-        单例方法
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">SeatManager</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".seatParasFromScreening"><span class="type-signature">&lt;static> </span>seatParasFromScreening(platform, screening)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        获取座位图时需要的参数
+        删除对象某个属性
     </div>
     
 
@@ -337,10 +237,16 @@
 
         <tr>
             
-                <td class="name"><code>platform</code></td>
+                <td class="name"><code>target</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
             
             </td>
 
@@ -348,17 +254,23 @@
 
             
 
-            <td class="description last">平台类型</td>
+            <td class="description last">对象</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>screening</code></td>
+                <td class="name"><code>propertyKey</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -366,7 +278,7 @@
 
             
 
-            <td class="description last">平台数据</td>
+            <td class="description last">属性</td>
         </tr>
 
     
@@ -430,7 +342,7 @@
     
             
 <div class="param-desc">
-    平台需要的参数
+    是否删除成功
 </div>
 
 
@@ -441,7 +353,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -458,7 +370,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".smartAutoSelected"><span class="type-signature">&lt;static> </span>smartAutoSelected(smartSeats, count)</h4>
+    <h4 class="name" id=".safeGet"><span class="type-signature">&lt;static> </span>safeGet(target, pChain)</h4>
     
     
 </dt>
@@ -466,7 +378,7 @@
 
     
     <div class="description">
-        智能选座
+        安全的获取链式属性 eg: a.b.c.d
     </div>
     
 
@@ -489,6 +401,8 @@
         <th>Type</th>
 
         
+        <th>Argument</th>
+        
 
         
 
@@ -501,7 +415,7 @@
 
         <tr>
             
-                <td class="name"><code>smartSeats</code></td>
+                <td class="name"><code>target</code></td>
             
 
             <td class="type">
@@ -509,17 +423,25 @@
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last">目标对象</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>count</code></td>
+                <td class="name"><code>pChain</code></td>
             
 
             <td class="type">
@@ -527,10 +449,20 @@
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last">对象链式属性</td>
         </tr>
 
     
@@ -601,499 +533,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="smartSeatDataFromSeats"><span class="type-signature"></span>smartSeatDataFromSeats(type, seatData)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        对原始座位图进行智能转换
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">平台类型</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>seatData</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">座位图原始数据</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    智能座位图详细信息
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="smartSeatDataFromSmartSeats"><span class="type-signature"></span>smartSeatDataFromSmartSeats(type, smartSeats)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        获取智能座位图元数据
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">平台类型</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>smartSeats</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">智能座位图</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    智能座位图详细信息
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="smartSeatsFromSeats"><span class="type-signature"></span>smartSeatsFromSeats(type, seatData)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        对原始座位图进行智能转换
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">平台类型</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>seatData</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">座位图原始数据</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    智能座位图列表
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array</span>
+<span class="param-type">*</span>
 
 
 
@@ -1162,7 +602,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a>
 	
-		on 2017-07-21T16:56:51+08:00
+		on 2017-07-21T17:43:23+08:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Class: tool/JToolArray</title>
+	<title>JBZWebSDK Class: UrlTool</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-network.html">network</a></li>
+					<li><a href="module-manager.html">manager</a></li><li><a href="module-model.html">model</a></li><li><a href="module-network.html">network</a></li><li><a href="module-tool.html">tool</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="CoordinateModel.html">CoordinateModel</a></li><li><a href="module-network.JNetworkAccount.html">network.JNetworkAccount</a></li><li><a href="module-network.JNetworkCinema.html">network.JNetworkCinema</a></li><li><a href="module-network.JNetworkCity.html">network.JNetworkCity</a></li><li><a href="module-network.JNetworkConfig.html">network.JNetworkConfig</a></li><li><a href="module-network.JNetworkFilm.html">network.JNetworkFilm</a></li><li><a href="module-network.JNetworkMine.html">network.JNetworkMine</a></li><li><a href="module-network.JNetworkOther.html">network.JNetworkOther</a></li><li><a href="module-network.JNetworkTrade.html">network.JNetworkTrade</a></li><li><a href="module-network-JNetwork.html">network~JNetwork</a></li><li><a href="PageModel.html">PageModel</a></li><li><a href="SeatParasModel.html">SeatParasModel</a></li><li><a href="tool_JToolArray.html">tool/JToolArray</a></li><li><a href="tool_JToolDate.html">tool/JToolDate</a></li><li><a href="tool_JToolNumber.html">tool/JToolNumber</a></li><li><a href="tool_JToolObject.html">tool/JToolObject</a></li><li><a href="tool_JToolString.html">tool/JToolString</a></li><li><a href="tool_JToolUrl.html">tool/JToolUrl</a></li><li><a href="util_JManagerSeat.html">util/JManagerSeat</a></li><li><a href="util_TradeManager.html">util/TradeManager</a></li>
+					<li><a href="module-manager.TradeManager.html">manager.TradeManager</a></li><li><a href="module-manager-SeatManager.html">manager~SeatManager</a></li><li><a href="module-model.CityModel.html">model.CityModel</a></li><li><a href="module-model.PageModel.html">model.PageModel</a></li><li><a href="module-model.SeatParasModel.html">model.SeatParasModel</a></li><li><a href="module-network.JNetworkAccount.html">network.JNetworkAccount</a></li><li><a href="module-network.JNetworkCinema.html">network.JNetworkCinema</a></li><li><a href="module-network.JNetworkCity.html">network.JNetworkCity</a></li><li><a href="module-network.JNetworkConfig.html">network.JNetworkConfig</a></li><li><a href="module-network.JNetworkFilm.html">network.JNetworkFilm</a></li><li><a href="module-network.JNetworkMine.html">network.JNetworkMine</a></li><li><a href="module-network.JNetworkOther.html">network.JNetworkOther</a></li><li><a href="module-network.JNetworkTrade.html">network.JNetworkTrade</a></li><li><a href="module-network-JNetwork.html">network~JNetwork</a></li><li><a href="module-tool.DateTool.html">tool.DateTool</a></li><li><a href="module-tool.NumberTool.html">tool.NumberTool</a></li><li><a href="module-tool.ObjectTool.html">tool.ObjectTool</a></li><li><a href="module-tool.StringTool.html">tool.StringTool</a></li><li><a href="module-tool.UrlTool.html">tool.UrlTool</a></li>
 				</ul>
 			</li>
 			
@@ -79,16 +79,18 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: tool/JToolArray</h1>
+	<h1 class="page-title">Class: UrlTool</h1>
 <section>
 
 <header>
     
         <h2>
-        tool/JToolArray
+            <span class="ancestors"><a href="module-tool.html">tool</a>.</span>
+        
+        UrlTool
         </h2>
         
-            <div class="class-description">数组工具类</div>
+            <div class="class-description">网络地址工具类</div>
         
     
 </header>
@@ -100,7 +102,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="tool/JToolArray"><span class="type-signature"></span>new tool/JToolArray()</h4>
+    <h4 class="name" id="UrlTool"><span class="type-signature"></span>new UrlTool()</h4>
     
     
 </dt>
@@ -186,6 +188,210 @@
     
 
     
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id=".urlFromPortion"><span class="type-signature">&lt;static> </span>urlFromPortion(baseUrl, subUrl, parameters)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        合成URL完整地址
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>baseUrl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">基础地址</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>subUrl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">相对地址</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>parameters</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">参数</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    返回拼接后的地址
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        </dl>
+    
 
     
 
@@ -240,7 +446,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a>
 	
-		on 2017-07-21T16:56:51+08:00
+		on 2017-07-21T17:43:23+08:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
