@@ -3,14 +3,17 @@
  */
 
 /**
+ * @member CityModel
+ * @property {object}  defaults               - The default values for parties.
+ */
+var id;
+
+/**
  * 城市模型
  * @memberOf module:model
  */
 class CityModel{
-  /**
-   * @member {string} id
-   */
-  static id;
+
   static name;
   static latin;
 }
