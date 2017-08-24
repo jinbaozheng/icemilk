@@ -31,6 +31,23 @@ var ObjectTool = function () {
       }
       return true;
     }
+  }, {
+    key: "safeGet",
+    value: function safeGet(target) {
+      for (var _len = arguments.length, pChain = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        pChain[_key - 1] = arguments[_key];
+      }
+
+      if (!target || !pChain || pChain.length <= 0) {
+        return undefined;
+      }
+      var property = target;
+      var chainIndex = 0;
+      do {
+        property = property[pChain[chainIndex++]];
+      } while (property && chainIndex < pChain.length);
+      return property;
+    }
   }]);
   return ObjectTool;
 }();
