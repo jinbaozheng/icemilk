@@ -43,14 +43,14 @@ class JNetworkOther {
 
   /**
    * 广告接口
-   * @param position 广告使用地点
+   * @param location 广告使用地点
    * @param cityId 当前城市
    * @returns {Promise}
    */
-  static otherBanners(position, cityId) {
+  static otherBanners(location, cityId) {
     return new Promise((resolve, reject) => {
       return JNetwork.POST(otherUrl.jbzBanners, {
-        position, cityId
+        location, cityId
       }).then(data => {
         resolve(_('otherUrl.jbzBanners', data));
       }, error => {
