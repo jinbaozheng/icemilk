@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Module: manager</title>
+	<title>JBZWebSDK Class: PageModel</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -79,10 +79,19 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Module: manager</h1>
+	<h1 class="page-title">Class: PageModel</h1>
 <section>
 
 <header>
+    
+        <h2>
+            <span class="ancestors"><a href="module-model.html">model</a>.</span>
+        
+        PageModel
+        </h2>
+        
+            <div class="class-description">分页模型</div>
+        
     
 </header>
 
@@ -91,91 +100,21 @@
     <div class="container-overview">
     
         
-            <div class="description">座位图管理类</div>
-        
-
-        
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="module-manager.html#.TradeManager">TradeManager</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-manager-SeatManager.html">SeatManager</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        <dl>
-            
 <hr>
-<dt class="name" id=".TradeManager">
-    <h4 id=".TradeManager"><span class="type-signature">&lt;static> </span>TradeManager<span class="type-signature"></span></h4>
-
+<dt>
+    <h4 class="name" id=".PageModel"><span class="type-signature"></span>new PageModel()</h4>
+    
     
 </dt>
 <dd>
-    
-    <div class="description">
-        交易管理类
-    </div>
+
     
 
+    
+
+    
+
+    
     
 
     
@@ -217,81 +156,22 @@
 	
 </dl>
 
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
 </dd>
 
-        </dl>
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-	<h1 class="page-title">Module: manager</h1>
-<section>
-
-<header>
-    
-</header>
-
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description">座位图管理类</div>
-        
-
-        
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-        
     
     </div>
 
@@ -300,85 +180,11 @@
     
 
     
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="module-manager.html#.TradeManager">TradeManager</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-manager-SeatManager.html">SeatManager</a></dt>
-            <dd></dd>
-        </dl>
-    
 
     
 
     
 
-    
-        <h3 class="subsection-title">Members</h3>
-
-        <dl>
-            
-<hr>
-<dt class="name" id=".TradeManager">
-    <h4 id=".TradeManager"><span class="type-signature">&lt;static> </span>TradeManager<span class="type-signature"></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        交易管理类
-    </div>
-    
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        </dl>
     
 
     

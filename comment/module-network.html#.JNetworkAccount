@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Class: SeatManager</title>
+	<title>JBZWebSDK Class: JNetworkAccount</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -79,16 +79,18 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: SeatManager</h1>
+	<h1 class="page-title">Class: JNetworkAccount</h1>
 <section>
 
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-manager.html">manager</a>~</span>
+            <span class="ancestors"><a href="module-network.html">network</a>.</span>
         
-        SeatManager
+        JNetworkAccount
         </h2>
+        
+            <div class="class-description">账户接口</div>
         
     
 </header>
@@ -100,16 +102,12 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="SeatManager"><span class="type-signature"></span>new SeatManager()</h4>
+    <h4 class="name" id=".JNetworkAccount"><span class="type-signature"></span>new JNetworkAccount()</h4>
     
     
 </dt>
 <dd>
 
-    
-    <div class="description">
-        构造器
-    </div>
     
 
     
@@ -170,26 +168,6 @@
     
 
     
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">*</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
 
     
 </dd>
@@ -216,7 +194,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".defaultManager"><span class="type-signature">&lt;static> </span>defaultManager()</h4>
+    <h4 class="name" id=".accountLogin"><span class="type-signature">&lt;static> </span>accountLogin(mobile, password)</h4>
     
     
 </dt>
@@ -224,203 +202,7 @@
 
     
     <div class="description">
-        单例方法
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">SeatManager</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".defaultManager"><span class="type-signature">&lt;static> </span>defaultManager()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        单例方法
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">SeatManager</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".seatParasFromScreening"><span class="type-signature">&lt;static> </span>seatParasFromScreening(platform, screening)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        获取座位图时需要的参数
+        用户登录
     </div>
     
 
@@ -455,10 +237,16 @@
 
         <tr>
             
-                <td class="name"><code>platform</code></td>
+                <td class="name"><code>mobile</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -466,17 +254,23 @@
 
             
 
-            <td class="description last">平台类型</td>
+            <td class="description last">登录需要的手机号码</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>screening</code></td>
+                <td class="name"><code>password</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -484,7 +278,7 @@
 
             
 
-            <td class="description last">平台数据</td>
+            <td class="description last">登录需要的密码</td>
         </tr>
 
     
@@ -547,10 +341,6 @@
     <h5>Returns:</h5>
     
             
-<div class="param-desc">
-    平台需要的参数
-</div>
-
 
 
 <dl>
@@ -560,6 +350,9 @@
     <dd>
         
 <span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
 
 
 
@@ -576,7 +369,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".seatParasFromScreening"><span class="type-signature">&lt;static> </span>seatParasFromScreening(platform, screening)</h4>
+    <h4 class="name" id=".accountLogin"><span class="type-signature">&lt;static> </span>accountLogin(mobile, password)</h4>
     
     
 </dt>
@@ -584,7 +377,7 @@
 
     
     <div class="description">
-        获取座位图时需要的参数
+        用户登录
     </div>
     
 
@@ -619,10 +412,16 @@
 
         <tr>
             
-                <td class="name"><code>platform</code></td>
+                <td class="name"><code>mobile</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -630,17 +429,23 @@
 
             
 
-            <td class="description last">平台类型</td>
+            <td class="description last">登录需要的手机号码</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>screening</code></td>
+                <td class="name"><code>password</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -648,7 +453,7 @@
 
             
 
-            <td class="description last">平台数据</td>
+            <td class="description last">登录需要的密码</td>
         </tr>
 
     
@@ -711,10 +516,6 @@
     <h5>Returns:</h5>
     
             
-<div class="param-desc">
-    平台需要的参数
-</div>
-
 
 
 <dl>
@@ -724,6 +525,9 @@
     <dd>
         
 <span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
 
 
 
@@ -740,7 +544,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".smartAutoSelected"><span class="type-signature">&lt;static> </span>smartAutoSelected(smartSeats, count)</h4>
+    <h4 class="name" id=".accountLogout"><span class="type-signature">&lt;static> </span>accountLogout(sessionId)</h4>
     
     
 </dt>
@@ -748,7 +552,7 @@
 
     
     <div class="description">
-        智能选座
+        用户登出
     </div>
     
 
@@ -783,7 +587,7 @@
 
         <tr>
             
-                <td class="name"><code>smartSeats</code></td>
+                <td class="name"><code>sessionId</code></td>
             
 
             <td class="type">
@@ -794,25 +598,7 @@
 
             
 
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>count</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
+            <td class="description last">用户登录标识</td>
         </tr>
 
     
@@ -883,7 +669,10 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise</span>
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
 
 
 
@@ -900,7 +689,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".smartAutoSelected"><span class="type-signature">&lt;static> </span>smartAutoSelected(smartSeats, count)</h4>
+    <h4 class="name" id=".accountLogout"><span class="type-signature">&lt;static> </span>accountLogout(sessionId)</h4>
     
     
 </dt>
@@ -908,7 +697,7 @@
 
     
     <div class="description">
-        智能选座
+        用户登出
     </div>
     
 
@@ -943,7 +732,7 @@
 
         <tr>
             
-                <td class="name"><code>smartSeats</code></td>
+                <td class="name"><code>sessionId</code></td>
             
 
             <td class="type">
@@ -954,25 +743,7 @@
 
             
 
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>count</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
+            <td class="description last">用户登录标识</td>
         </tr>
 
     
@@ -1043,7 +814,10 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise</span>
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
 
 
 
@@ -1060,7 +834,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="smartSeatDataFromSeats"><span class="type-signature"></span>smartSeatDataFromSeats(type, seatData)</h4>
+    <h4 class="name" id=".accountRegister"><span class="type-signature">&lt;static> </span>accountRegister(mobile, verifyCode, password)</h4>
     
     
 </dt>
@@ -1068,7 +842,7 @@
 
     
     <div class="description">
-        对原始座位图进行智能转换
+        注册用户
     </div>
     
 
@@ -1099,6 +873,748 @@
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mobile</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">用户的手机号码</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>verifyCode</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">验证码</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">密码</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".accountRegister"><span class="type-signature">&lt;static> </span>accountRegister(mobile, verifyCode, password)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        注册用户
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mobile</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">用户的手机号码</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>verifyCode</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">验证码</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">密码</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".accountUpdatepass"><span class="type-signature">&lt;static> </span>accountUpdatepass(mobile, verfyCode, password)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        忘记密码并且找回密码
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mobile</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">手机号码</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>verfyCode</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">验证码</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">新密码</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".accountUpdatepass"><span class="type-signature">&lt;static> </span>accountUpdatepass(mobile, verfyCode, password)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        忘记密码并且找回密码
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mobile</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">手机号码</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>verfyCode</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">验证码</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">新密码</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".accountVerifyCode"><span class="type-signature">&lt;static> </span>accountVerifyCode(mobile, type)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        获取验证码
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mobile</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">接收验证码的手机号码</td>
+        </tr>
+
     
 
         <tr>
@@ -1114,25 +1630,7 @@
 
             
 
-            <td class="description last">平台类型</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>seatData</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">座位图原始数据</td>
+            <td class="description last">验证码类型 （1：注册使用 2：忘记密码使用）</td>
         </tr>
 
     
@@ -1195,10 +1693,6 @@
     <h5>Returns:</h5>
     
             
-<div class="param-desc">
-    智能座位图详细信息
-</div>
-
 
 
 <dl>
@@ -1208,6 +1702,9 @@
     <dd>
         
 <span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
 
 
 
@@ -1224,7 +1721,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="smartSeatDataFromSeats"><span class="type-signature"></span>smartSeatDataFromSeats(type, seatData)</h4>
+    <h4 class="name" id=".accountVerifyCode"><span class="type-signature">&lt;static> </span>accountVerifyCode(mobile, type)</h4>
     
     
 </dt>
@@ -1232,7 +1729,7 @@
 
     
     <div class="description">
-        对原始座位图进行智能转换
+        获取验证码
     </div>
     
 
@@ -1267,6 +1764,24 @@
 
         <tr>
             
+                <td class="name"><code>mobile</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">接收验证码的手机号码</td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>type</code></td>
             
 
@@ -1278,25 +1793,7 @@
 
             
 
-            <td class="description last">平台类型</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>seatData</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">座位图原始数据</td>
+            <td class="description last">验证码类型 （1：注册使用 2：忘记密码使用）</td>
         </tr>
 
     
@@ -1359,10 +1856,6 @@
     <h5>Returns:</h5>
     
             
-<div class="param-desc">
-    智能座位图详细信息
-</div>
-
 
 
 <dl>
@@ -1372,662 +1865,9 @@
     <dd>
         
 <span class="param-type">Object</span>
+|
 
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="smartSeatDataFromSmartSeats"><span class="type-signature"></span>smartSeatDataFromSmartSeats(type, smartSeats)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        获取智能座位图元数据
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">平台类型</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>smartSeats</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">智能座位图</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    智能座位图详细信息
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="smartSeatDataFromSmartSeats"><span class="type-signature"></span>smartSeatDataFromSmartSeats(type, smartSeats)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        获取智能座位图元数据
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">平台类型</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>smartSeats</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">智能座位图</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    智能座位图详细信息
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="smartSeatsFromSeats"><span class="type-signature"></span>smartSeatsFromSeats(type, seatData)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        对原始座位图进行智能转换
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">平台类型</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>seatData</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">座位图原始数据</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    智能座位图列表
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="smartSeatsFromSeats"><span class="type-signature"></span>smartSeatsFromSeats(type, seatData)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        对原始座位图进行智能转换
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">平台类型</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>seatData</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">座位图原始数据</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    智能座位图列表
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array</span>
+<span class="param-type">*</span>
 
 
 

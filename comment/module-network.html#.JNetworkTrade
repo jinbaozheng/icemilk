@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Class: SeatManager</title>
+	<title>JBZWebSDK Class: JNetworkTrade</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -79,16 +79,18 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: SeatManager</h1>
+	<h1 class="page-title">Class: JNetworkTrade</h1>
 <section>
 
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-manager.html">manager</a>~</span>
+            <span class="ancestors"><a href="module-network.html">network</a>.</span>
         
-        SeatManager
+        JNetworkTrade
         </h2>
+        
+            <div class="class-description">交易接口</div>
         
     
 </header>
@@ -100,16 +102,12 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="SeatManager"><span class="type-signature"></span>new SeatManager()</h4>
+    <h4 class="name" id=".JNetworkTrade"><span class="type-signature"></span>new JNetworkTrade()</h4>
     
     
 </dt>
 <dd>
 
-    
-    <div class="description">
-        构造器
-    </div>
     
 
     
@@ -170,26 +168,6 @@
     
 
     
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">*</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
 
     
 </dd>
@@ -216,7 +194,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".defaultManager"><span class="type-signature">&lt;static> </span>defaultManager()</h4>
+    <h4 class="name" id=".cancelLockSeatNeedLogin"><span class="type-signature">&lt;static> </span>cancelLockSeatNeedLogin(orderId)</h4>
     
     
 </dt>
@@ -224,203 +202,7 @@
 
     
     <div class="description">
-        单例方法
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">SeatManager</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".defaultManager"><span class="type-signature">&lt;static> </span>defaultManager()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        单例方法
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">SeatManager</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".seatParasFromScreening"><span class="type-signature">&lt;static> </span>seatParasFromScreening(platform, screening)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        获取座位图时需要的参数
+        取消锁座
     </div>
     
 
@@ -455,7 +237,7 @@
 
         <tr>
             
-                <td class="name"><code>platform</code></td>
+                <td class="name"><code>orderId</code></td>
             
 
             <td class="type">
@@ -466,25 +248,7 @@
 
             
 
-            <td class="description last">平台类型</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>screening</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">平台数据</td>
+            <td class="description last">订单Id</td>
         </tr>
 
     
@@ -547,10 +311,6 @@
     <h5>Returns:</h5>
     
             
-<div class="param-desc">
-    平台需要的参数
-</div>
-
 
 
 <dl>
@@ -560,6 +320,9 @@
     <dd>
         
 <span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
 
 
 
@@ -576,7 +339,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".seatParasFromScreening"><span class="type-signature">&lt;static> </span>seatParasFromScreening(platform, screening)</h4>
+    <h4 class="name" id=".cancelLockSeatNeedLogin"><span class="type-signature">&lt;static> </span>cancelLockSeatNeedLogin(orderId)</h4>
     
     
 </dt>
@@ -584,7 +347,7 @@
 
     
     <div class="description">
-        获取座位图时需要的参数
+        取消锁座
     </div>
     
 
@@ -619,7 +382,7 @@
 
         <tr>
             
-                <td class="name"><code>platform</code></td>
+                <td class="name"><code>orderId</code></td>
             
 
             <td class="type">
@@ -630,25 +393,7 @@
 
             
 
-            <td class="description last">平台类型</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>screening</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">平台数据</td>
+            <td class="description last">订单Id</td>
         </tr>
 
     
@@ -711,10 +456,6 @@
     <h5>Returns:</h5>
     
             
-<div class="param-desc">
-    平台需要的参数
-</div>
-
 
 
 <dl>
@@ -724,6 +465,9 @@
     <dd>
         
 <span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
 
 
 
@@ -740,7 +484,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".smartAutoSelected"><span class="type-signature">&lt;static> </span>smartAutoSelected(smartSeats, count)</h4>
+    <h4 class="name" id=".tradeApplyOrderNeedLogin"><span class="type-signature">&lt;static> </span>tradeApplyOrderNeedLogin(type, paras)</h4>
     
     
 </dt>
@@ -748,327 +492,7 @@
 
     
     <div class="description">
-        智能选座
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>smartSeats</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>count</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".smartAutoSelected"><span class="type-signature">&lt;static> </span>smartAutoSelected(smartSeats, count)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        智能选座
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>smartSeats</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>count</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="smartSeatDataFromSeats"><span class="type-signature"></span>smartSeatDataFromSeats(type, seatData)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        对原始座位图进行智能转换
+        下订单
     </div>
     
 
@@ -1121,7 +545,7 @@
 
         <tr>
             
-                <td class="name"><code>seatData</code></td>
+                <td class="name"><code>paras</code></td>
             
 
             <td class="type">
@@ -1132,7 +556,7 @@
 
             
 
-            <td class="description last">座位图原始数据</td>
+            <td class="description last">下订单参数</td>
         </tr>
 
     
@@ -1195,10 +619,6 @@
     <h5>Returns:</h5>
     
             
-<div class="param-desc">
-    智能座位图详细信息
-</div>
-
 
 
 <dl>
@@ -1208,6 +628,9 @@
     <dd>
         
 <span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
 
 
 
@@ -1224,7 +647,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="smartSeatDataFromSeats"><span class="type-signature"></span>smartSeatDataFromSeats(type, seatData)</h4>
+    <h4 class="name" id=".tradeApplyOrderNeedLogin"><span class="type-signature">&lt;static> </span>tradeApplyOrderNeedLogin(type, paras)</h4>
     
     
 </dt>
@@ -1232,7 +655,7 @@
 
     
     <div class="description">
-        对原始座位图进行智能转换
+        下订单
     </div>
     
 
@@ -1285,7 +708,7 @@
 
         <tr>
             
-                <td class="name"><code>seatData</code></td>
+                <td class="name"><code>paras</code></td>
             
 
             <td class="type">
@@ -1296,7 +719,7 @@
 
             
 
-            <td class="description last">座位图原始数据</td>
+            <td class="description last">下订单参数</td>
         </tr>
 
     
@@ -1359,10 +782,6 @@
     <h5>Returns:</h5>
     
             
-<div class="param-desc">
-    智能座位图详细信息
-</div>
-
 
 
 <dl>
@@ -1372,6 +791,9 @@
     <dd>
         
 <span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
 
 
 
@@ -1388,7 +810,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="smartSeatDataFromSmartSeats"><span class="type-signature"></span>smartSeatDataFromSmartSeats(type, smartSeats)</h4>
+    <h4 class="name" id=".tradeLockSeatNeedLogin"><span class="type-signature">&lt;static> </span>tradeLockSeatNeedLogin(type, paras)</h4>
     
     
 </dt>
@@ -1396,7 +818,7 @@
 
     
     <div class="description">
-        获取智能座位图元数据
+        锁座
     </div>
     
 
@@ -1449,7 +871,7 @@
 
         <tr>
             
-                <td class="name"><code>smartSeats</code></td>
+                <td class="name"><code>paras</code></td>
             
 
             <td class="type">
@@ -1460,7 +882,7 @@
 
             
 
-            <td class="description last">智能座位图</td>
+            <td class="description last">锁座参数</td>
         </tr>
 
     
@@ -1523,10 +945,6 @@
     <h5>Returns:</h5>
     
             
-<div class="param-desc">
-    智能座位图详细信息
-</div>
-
 
 
 <dl>
@@ -1536,6 +954,9 @@
     <dd>
         
 <span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
 
 
 
@@ -1552,7 +973,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="smartSeatDataFromSmartSeats"><span class="type-signature"></span>smartSeatDataFromSmartSeats(type, smartSeats)</h4>
+    <h4 class="name" id=".tradeLockSeatNeedLogin"><span class="type-signature">&lt;static> </span>tradeLockSeatNeedLogin(type, paras)</h4>
     
     
 </dt>
@@ -1560,7 +981,7 @@
 
     
     <div class="description">
-        获取智能座位图元数据
+        锁座
     </div>
     
 
@@ -1613,7 +1034,7 @@
 
         <tr>
             
-                <td class="name"><code>smartSeats</code></td>
+                <td class="name"><code>paras</code></td>
             
 
             <td class="type">
@@ -1624,7 +1045,7 @@
 
             
 
-            <td class="description last">智能座位图</td>
+            <td class="description last">锁座参数</td>
         </tr>
 
     
@@ -1687,10 +1108,6 @@
     <h5>Returns:</h5>
     
             
-<div class="param-desc">
-    智能座位图详细信息
-</div>
-
 
 
 <dl>
@@ -1700,6 +1117,9 @@
     <dd>
         
 <span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
 
 
 
@@ -1716,7 +1136,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="smartSeatsFromSeats"><span class="type-signature"></span>smartSeatsFromSeats(type, seatData)</h4>
+    <h4 class="name" id=".tradePrePayOrderNeedLoginInType"><span class="type-signature">&lt;static> </span>tradePrePayOrderNeedLoginInType(orderId, payType, prizeIds, redIds)</h4>
     
     
 </dt>
@@ -1724,7 +1144,7 @@
 
     
     <div class="description">
-        对原始座位图进行智能转换
+        申请预订单
     </div>
     
 
@@ -1759,7 +1179,7 @@
 
         <tr>
             
-                <td class="name"><code>type</code></td>
+                <td class="name"><code>orderId</code></td>
             
 
             <td class="type">
@@ -1770,14 +1190,14 @@
 
             
 
-            <td class="description last">平台类型</td>
+            <td class="description last">订单Id</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>seatData</code></td>
+                <td class="name"><code>payType</code></td>
             
 
             <td class="type">
@@ -1788,7 +1208,43 @@
 
             
 
-            <td class="description last">座位图原始数据</td>
+            <td class="description last">支付类型</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>prizeIds</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">待定</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>redIds</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">待定</td>
         </tr>
 
     
@@ -1851,10 +1307,6 @@
     <h5>Returns:</h5>
     
             
-<div class="param-desc">
-    智能座位图列表
-</div>
-
 
 
 <dl>
@@ -1863,7 +1315,10 @@
     </dt>
     <dd>
         
-<span class="param-type">Array</span>
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
 
 
 
@@ -1880,7 +1335,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="smartSeatsFromSeats"><span class="type-signature"></span>smartSeatsFromSeats(type, seatData)</h4>
+    <h4 class="name" id=".tradePrePayOrderNeedLoginInType"><span class="type-signature">&lt;static> </span>tradePrePayOrderNeedLoginInType(orderId, payType, prizeIds, redIds)</h4>
     
     
 </dt>
@@ -1888,7 +1343,7 @@
 
     
     <div class="description">
-        对原始座位图进行智能转换
+        申请预订单
     </div>
     
 
@@ -1923,7 +1378,7 @@
 
         <tr>
             
-                <td class="name"><code>type</code></td>
+                <td class="name"><code>orderId</code></td>
             
 
             <td class="type">
@@ -1934,14 +1389,14 @@
 
             
 
-            <td class="description last">平台类型</td>
+            <td class="description last">订单Id</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>seatData</code></td>
+                <td class="name"><code>payType</code></td>
             
 
             <td class="type">
@@ -1952,7 +1407,43 @@
 
             
 
-            <td class="description last">座位图原始数据</td>
+            <td class="description last">支付类型</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>prizeIds</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">待定</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>redIds</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">待定</td>
         </tr>
 
     
@@ -2015,10 +1506,6 @@
     <h5>Returns:</h5>
     
             
-<div class="param-desc">
-    智能座位图列表
-</div>
-
 
 
 <dl>
@@ -2027,7 +1514,10 @@
     </dt>
     <dd>
         
-<span class="param-type">Array</span>
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
 
 
 

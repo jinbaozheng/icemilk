@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Class: SeatManager</title>
+	<title>JBZWebSDK Class: JNetwork</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -79,16 +79,18 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: SeatManager</h1>
+	<h1 class="page-title">Class: JNetwork</h1>
 <section>
 
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-manager.html">manager</a>~</span>
+            <span class="ancestors"><a href="module-network.html">network</a>~</span>
         
-        SeatManager
+        JNetwork
         </h2>
+        
+            <div class="class-description">网络请求类</div>
         
     
 </header>
@@ -100,16 +102,12 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="SeatManager"><span class="type-signature"></span>new SeatManager()</h4>
+    <h4 class="name" id="~JNetwork"><span class="type-signature"></span>new JNetwork()</h4>
     
     
 </dt>
 <dd>
 
-    
-    <div class="description">
-        构造器
-    </div>
     
 
     
@@ -170,26 +168,6 @@
     
 
     
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">*</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
 
     
 </dd>
@@ -216,7 +194,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".defaultManager"><span class="type-signature">&lt;static> </span>defaultManager()</h4>
+    <h4 class="name" id=".freedomPOST"><span class="type-signature">&lt;static> </span>freedomPOST(baseUrl, url, parameters, headers, otherObject)</h4>
     
     
 </dt>
@@ -224,203 +202,7 @@
 
     
     <div class="description">
-        单例方法
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">SeatManager</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".defaultManager"><span class="type-signature">&lt;static> </span>defaultManager()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        单例方法
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">SeatManager</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".seatParasFromScreening"><span class="type-signature">&lt;static> </span>seatParasFromScreening(platform, screening)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        获取座位图时需要的参数
+        高自由度POST方法
     </div>
     
 
@@ -455,10 +237,16 @@
 
         <tr>
             
-                <td class="name"><code>platform</code></td>
+                <td class="name"><code>baseUrl</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -466,17 +254,23 @@
 
             
 
-            <td class="description last">平台类型</td>
+            <td class="description last">基地址</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>screening</code></td>
+                <td class="name"><code>url</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -484,7 +278,79 @@
 
             
 
-            <td class="description last">平台数据</td>
+            <td class="description last">相对地址</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>parameters</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">地址参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">头参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>otherObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">其他可用配置</td>
         </tr>
 
     
@@ -548,333 +414,9 @@
     
             
 <div class="param-desc">
-    平台需要的参数
+    异步请求块
 </div>
 
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".seatParasFromScreening"><span class="type-signature">&lt;static> </span>seatParasFromScreening(platform, screening)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        获取座位图时需要的参数
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>platform</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">平台类型</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>screening</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">平台数据</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    平台需要的参数
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".smartAutoSelected"><span class="type-signature">&lt;static> </span>smartAutoSelected(smartSeats, count)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        智能选座
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>smartSeats</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>count</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
 <dl>
@@ -900,7 +442,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".smartAutoSelected"><span class="type-signature">&lt;static> </span>smartAutoSelected(smartSeats, count)</h4>
+    <h4 class="name" id=".freedomPOST"><span class="type-signature">&lt;static> </span>freedomPOST(baseUrl, url, parameters, headers, otherObject)</h4>
     
     
 </dt>
@@ -908,7 +450,7 @@
 
     
     <div class="description">
-        智能选座
+        高自由度POST方法
     </div>
     
 
@@ -943,10 +485,16 @@
 
         <tr>
             
-                <td class="name"><code>smartSeats</code></td>
+                <td class="name"><code>baseUrl</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -954,17 +502,23 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">基地址</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>count</code></td>
+                <td class="name"><code>url</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -972,7 +526,79 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">相对地址</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>parameters</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">地址参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">头参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>otherObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">其他可用配置</td>
         </tr>
 
     
@@ -1035,6 +661,10 @@
     <h5>Returns:</h5>
     
             
+<div class="param-desc">
+    异步请求块
+</div>
+
 
 
 <dl>
@@ -1060,7 +690,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="smartSeatDataFromSeats"><span class="type-signature"></span>smartSeatDataFromSeats(type, seatData)</h4>
+    <h4 class="name" id=".GET"><span class="type-signature">&lt;static> </span>GET(url, parameters, headers)</h4>
     
     
 </dt>
@@ -1068,7 +698,7 @@
 
     
     <div class="description">
-        对原始座位图进行智能转换
+        get请求
     </div>
     
 
@@ -1103,10 +733,16 @@
 
         <tr>
             
-                <td class="name"><code>type</code></td>
+                <td class="name"><code>url</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -1114,17 +750,23 @@
 
             
 
-            <td class="description last">平台类型</td>
+            <td class="description last">相对地址</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>seatData</code></td>
+                <td class="name"><code>parameters</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -1132,7 +774,31 @@
 
             
 
-            <td class="description last">座位图原始数据</td>
+            <td class="description last">地址参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">头参数</td>
         </tr>
 
     
@@ -1196,7 +862,7 @@
     
             
 <div class="param-desc">
-    智能座位图详细信息
+    异步请求块
 </div>
 
 
@@ -1207,7 +873,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
+<span class="param-type">Promise</span>
 
 
 
@@ -1224,7 +890,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="smartSeatDataFromSeats"><span class="type-signature"></span>smartSeatDataFromSeats(type, seatData)</h4>
+    <h4 class="name" id=".GET"><span class="type-signature">&lt;static> </span>GET(url, parameters, headers)</h4>
     
     
 </dt>
@@ -1232,7 +898,7 @@
 
     
     <div class="description">
-        对原始座位图进行智能转换
+        get请求
     </div>
     
 
@@ -1267,10 +933,16 @@
 
         <tr>
             
-                <td class="name"><code>type</code></td>
+                <td class="name"><code>url</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -1278,17 +950,23 @@
 
             
 
-            <td class="description last">平台类型</td>
+            <td class="description last">相对地址</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>seatData</code></td>
+                <td class="name"><code>parameters</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -1296,7 +974,31 @@
 
             
 
-            <td class="description last">座位图原始数据</td>
+            <td class="description last">地址参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">头参数</td>
         </tr>
 
     
@@ -1360,7 +1062,7 @@
     
             
 <div class="param-desc">
-    智能座位图详细信息
+    异步请求块
 </div>
 
 
@@ -1371,7 +1073,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
+<span class="param-type">Promise</span>
 
 
 
@@ -1388,7 +1090,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="smartSeatDataFromSmartSeats"><span class="type-signature"></span>smartSeatDataFromSmartSeats(type, smartSeats)</h4>
+    <h4 class="name" id=".POST"><span class="type-signature">&lt;static> </span>POST(url, parameters, headers, otherObject)</h4>
     
     
 </dt>
@@ -1396,7 +1098,7 @@
 
     
     <div class="description">
-        获取智能座位图元数据
+        post请求
     </div>
     
 
@@ -1431,10 +1133,16 @@
 
         <tr>
             
-                <td class="name"><code>type</code></td>
+                <td class="name"><code>url</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -1442,17 +1150,23 @@
 
             
 
-            <td class="description last">平台类型</td>
+            <td class="description last">相对地址</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>smartSeats</code></td>
+                <td class="name"><code>parameters</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
             
             </td>
 
@@ -1460,7 +1174,55 @@
 
             
 
-            <td class="description last">智能座位图</td>
+            <td class="description last">地址参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">头参数(可空)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>otherObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">其他参数(可空)</td>
         </tr>
 
     
@@ -1524,7 +1286,7 @@
     
             
 <div class="param-desc">
-    智能座位图详细信息
+    异步请求块
 </div>
 
 
@@ -1535,7 +1297,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
+<span class="param-type">Promise</span>
 
 
 
@@ -1552,7 +1314,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="smartSeatDataFromSmartSeats"><span class="type-signature"></span>smartSeatDataFromSmartSeats(type, smartSeats)</h4>
+    <h4 class="name" id=".POST"><span class="type-signature">&lt;static> </span>POST(url, parameters, headers, otherObject)</h4>
     
     
 </dt>
@@ -1560,7 +1322,7 @@
 
     
     <div class="description">
-        获取智能座位图元数据
+        post请求
     </div>
     
 
@@ -1595,10 +1357,16 @@
 
         <tr>
             
-                <td class="name"><code>type</code></td>
+                <td class="name"><code>url</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -1606,17 +1374,23 @@
 
             
 
-            <td class="description last">平台类型</td>
+            <td class="description last">相对地址</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>smartSeats</code></td>
+                <td class="name"><code>parameters</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
             
             </td>
 
@@ -1624,7 +1398,55 @@
 
             
 
-            <td class="description last">智能座位图</td>
+            <td class="description last">地址参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">头参数(可空)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>otherObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">其他参数(可空)</td>
         </tr>
 
     
@@ -1688,7 +1510,7 @@
     
             
 <div class="param-desc">
-    智能座位图详细信息
+    异步请求块
 </div>
 
 
@@ -1699,335 +1521,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="smartSeatsFromSeats"><span class="type-signature"></span>smartSeatsFromSeats(type, seatData)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        对原始座位图进行智能转换
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">平台类型</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>seatData</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">座位图原始数据</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    智能座位图列表
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="smartSeatsFromSeats"><span class="type-signature"></span>smartSeatsFromSeats(type, seatData)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        对原始座位图进行智能转换
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">平台类型</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>seatData</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">座位图原始数据</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    智能座位图列表
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array</span>
+<span class="param-type">Promise</span>
 
 
 
