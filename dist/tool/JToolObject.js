@@ -46,7 +46,7 @@ var ObjectTool = function () {
       do {
         property = property[pChain[chainIndex++]];
       } while (property && chainIndex < pChain.length);
-      return property;
+      return chainIndex === pChain.length ? property : undefined;
     }
   }]);
   return ObjectTool;

@@ -57,10 +57,10 @@ var JNetworkOther = function () {
     }
   }, {
     key: 'otherBanners',
-    value: function otherBanners(position, cityId) {
+    value: function otherBanners(location, cityId) {
       return new _promise2.default(function (resolve, reject) {
         return _JNetwork2.default.POST(_JUrlList.otherUrl.jbzBanners, {
-          position: position, cityId: cityId
+          location: location, cityId: cityId
         }).then(function (data) {
           resolve((0, _JDataUnify2.default)('otherUrl.jbzBanners', data));
         }, function (error) {

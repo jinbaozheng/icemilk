@@ -35,7 +35,7 @@ class ObjectTool {
     do {
       property = property[pChain[chainIndex++]]
     } while (property && (chainIndex < pChain.length))
-    return property;
+    return chainIndex === pChain.length ? property : undefined;
   }
 }
 

@@ -2,8 +2,8 @@
  * Created by cuppi on 2017/4/14.
  */
 import NetworkManager from './JNetwork';
-import {UseConfig as UrlUseConfig} from '../unify/JUrlList'
-import {UseConfig as DataUseConfig} from '../unify/JDataUnify'
+import {UseConfig as UseUrlConfig} from '../unify/JUrlList'
+import {UseConfig as UseDataConfig} from '../unify/JDataUnify'
 
 /**
  * 请求配置类
@@ -12,13 +12,13 @@ import {UseConfig as DataUseConfig} from '../unify/JDataUnify'
 class JNetworkConfig {
   static setConfig(config){
     NetworkManager.baseUrl = config.baseUrl;
-    NetworkManager.inType = config.inType;
     NetworkManager.delegate = config.delegate;
-    if (config.inType){
-      UrlUseConfig(config.inType);
-      DataUseConfig(config.inType);
+    let {urlMap, dataMap} = config;
+    if (!urlMap || !dataMap){
+      console.log('Didn\'t find out the urlMap value or dataMap, do you forget it?')
     } else {
-        console.log('Didn\'t find out the inType value, do you forget the inType at config ?')
+      UseUrlConfig(urlMap);
+      UseDataConfig(dataMap);
     }
   }
 }

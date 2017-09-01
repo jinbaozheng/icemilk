@@ -31,13 +31,15 @@ var JNetworkConfig = function () {
     key: 'setConfig',
     value: function setConfig(config) {
       _JNetwork2.default.baseUrl = config.baseUrl;
-      _JNetwork2.default.inType = config.inType;
       _JNetwork2.default.delegate = config.delegate;
-      if (config.inType) {
-        (0, _JUrlList.UseConfig)(config.inType);
-        (0, _JDataUnify.UseConfig)(config.inType);
+      var urlMap = config.urlMap,
+          dataMap = config.dataMap;
+
+      if (!urlMap || !dataMap) {
+        console.log('Didn\'t find out the urlMap value or dataMap, do you forget it?');
       } else {
-        console.log('Didn\'t find out the inType value, do you forget the inType at config ?');
+        (0, _JUrlList.UseConfig)(urlMap);
+        (0, _JDataUnify.UseConfig)(dataMap);
       }
     }
   }]);
