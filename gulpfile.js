@@ -25,6 +25,7 @@ gulp.task("do-babel-process", function() {
     .src("./ts-middleware/**/*.js")
     .pipe(sourcemaps.init())
     .pipe(babel({
+      plugins: ["transform-runtime"],
       presets: ["es2015", "stage-2"],
       comments: true
     }))
@@ -36,6 +37,8 @@ gulp.task("do-babel-process", function() {
 gulp.task("clean-middleware", function () {
    return del('./ts-middleware');
 });
+
+gulp.task("")
 
 // 默认任务
 gulp.task("default", function() {

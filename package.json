@@ -9,10 +9,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cp-publish": "./cp_publish.pl",
-    "generate-docs": "./generate_docs.pl",
+    "cp-publish": "node ./cp_publish.js",
+    "generate-docs": "node ./generate_docs.js",
     "update-docs": "node ./publish.js",
-    "build": "babel --plugins transform-runtime src -d dist"
+    "build": "gulp"
   },
   "repository": {
     "url": "git@git.oschina.net:cuppi/jbzwebsdk.git",
@@ -25,7 +25,7 @@
     "jbzwebsdk"
   ],
   "license": "MIT",
-  "version": "2.0.5",
+  "version": "2.0.8",
   "babel": {
     "presets": [
       "es2015",
@@ -41,6 +41,7 @@
     "axios": "*"
   },
   "devDependencies": {
+    "commander": "^2.11.0",
     "run-sequence": "^2.1.0",
     "gulp-sourcemaps": "^2.6.1",
     "gulp": "^3.9.1 ",
@@ -58,5 +59,8 @@
   "main": "dist/index.js",
   "name": "jbzwebsdk",
   "description": "Shanghai jinbaozheng easy network technology Co.,Ltd sdk",
-  "homepage": "https://git.oschina.net/cuppi/jbzwebsdk#readme"
+  "homepage": "https://git.oschina.net/cuppi/jbzwebsdk#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
 }

@@ -1,19 +1,21 @@
 "use strict";
+/**
+ * Created by cuppi on 2017/7/21.
+ */
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * @member CityModel
+ * @property {object}  defaults               - The default values for parties.
+ */
 var id;
-
-var CityModel = function CityModel() {
-  (0, _classCallCheck3.default)(this, CityModel);
-};
-
+/**
+ * 城市模型1111
+ * @memberOf module:model
+ */
+var CityModel = function () {
+  function CityModel() {}
+  return CityModel;
+}();
 exports.default = CityModel;
+//# sourceMappingURL=CityModel.js.map

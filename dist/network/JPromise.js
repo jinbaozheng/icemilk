@@ -1,17 +1,21 @@
 "use strict";
+/**
+ * Created by cuppi on 2017/5/10.
+ */
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var JPromise = function JPromise() {
-  (0, _classCallCheck3.default)(this, JPromise);
-};
-
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 废弃的 暂时不适用 存在不可实现的隐患
+ * @private
+ */
+var JPromise = function () {
+    function JPromise() {
+        var props = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            props[_i] = arguments[_i];
+        }
+    }
+    return JPromise;
+}();
 exports.default = JPromise;
+//# sourceMappingURL=JPromise.js.map

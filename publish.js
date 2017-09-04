@@ -9,6 +9,7 @@ const path = require('path');
 const exec = require('child_process').exec;
 const comment = path.resolve(__dirname, './comment')
 
+// 生成接口文档
 exec('npm run generate-docs', {cwd: comment}, (error, stdout, stderr) => {
   if (error) {
     console.error(`exec error: ${error}`);
@@ -17,7 +18,7 @@ exec('npm run generate-docs', {cwd: comment}, (error, stdout, stderr) => {
   commitDoc();
 });
 
-
+// 提交接口文档
 function commitDoc() {
   exec('git add comment/*', (error, stdout, stderr) => {
     exec('git commit comment/* -m "commit doc comment"', (error, stdout, stderr) => {
@@ -40,6 +41,7 @@ function commitDoc() {
   });
 }
 
+// 更新接口文档
 function updateDoc() {
   console.log('开始更新文档...');
   conn.on('ready', function () {
