@@ -8,20 +8,21 @@ import DateTool from '../tool/JToolDate';
 import _ from '../unify/JDataUnify';
 import SeatManager from '../util/JManagerSeat';
 import CinemaFilterModel from "../paras/CinemaFilterParas";
+import JNetworkRoot from './JNetworkRoot';
 
 /**
  * 影院接口
  * @memberOf module:network
  */
-class JNetworkCinema {
+class JNetworkCinema extends JNetworkRoot{
   /**
    * 获取影院详情
    * @param {string} cinemaId 影院ID
    * @returns {Promise} promise
    */
-  static cinemaDetail(cinemaId) {
+  cinemaDetail(cinemaId) {
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cinemaUrl.jbzDetail, {cinemaId}).then(data => {
+      JNetwork.POST(cinemaUrl.jbzDetail, {cinemaId}).useParas(...this.otherParas).useHeaders(...this.otherHeaders).then(data => {
         resolve(_('cinemaUrl.jbzDetail', data, 0));
       }, error => {
         reject(error);
@@ -30,29 +31,17 @@ class JNetworkCinema {
   }
 
   /**
-   * 获取影院详情(使用登录属性判断是否影院被收藏)
-   * @param {string} cinemaId 影院ID
-   * @returns {Promise} promise
-   */
-  static cinemaDetailCanLogin(cinemaId) {
-    let loginParas = JNetwork.loginParas();
-    return new Promise((resolve, reject) => {
-      JNetwork.POST(cinemaUrl.jbzDetail, {cinemaId, ...loginParas}).then(data => {
-        resolve(_('cinemaUrl.jbzDetail', data, 1));
-      }, error => {
-        reject(error);
-      });
-    });
-  }
-
-
-  /**
    * 影院列表
    * @param {} location
-   * @param {CoordinateModel} cinemaFilter
+   * @param {cinemaFilter} CinemaFilterModel
    * @returns {Promise}
    */
-  static cinemaList(location, cinemaFilter: CinemaFilterModel) {
+  cinemaList(location: any, cinemaFilter: CinemaFilterModel);
+  cinemaList(cinemaFilter: CinemaFilterModel);
+  cinemaList(location: any, cinemaFilter?: any){
+    if (cinemaFilter == undefined){
+      cinemaFilter = location;
+    }
     return new Promise((resolve, reject) => {
       let u = undefined;
       let {filmId, feature, region, sort, limit} = cinemaFilter ? cinemaFilter : {filmId: u, feature: u, region: u, sort: u, limit: u};
@@ -63,7 +52,7 @@ class JNetworkCinema {
         regionName: region,
         orderType: sort,
         limit
-      }).then(data => {
+      }).useParas(...this.otherParas).then(data => {
         resolve(_('cinemaUrl.jbzList', data));
       }, error => {
         reject(error);
@@ -72,30 +61,15 @@ class JNetworkCinema {
   }
 
   /**
-   * 影院列表
-   * @param cinemaFilter 影片筛选条件
-   * @returns {{terminate, then}|*}
-   */
-  static cinemaListNeedLocation(cinemaFilter) {
-    let location = JNetwork.locationParas();
-    return JNetworkCinema.cinemaList(location, cinemaFilter)
-  }
-
-  /**
    * 获取指定影院排片
    * @param cinemaId 影院Id
    * @returns {{terminate, then}|*}
    */
-  static cinemaScreeningFilmList(cinemaId) {
-    let loginParas = JNetwork.loginParas();
-    let account = {};
-    if (loginParas.hasAccount) {
-      account = {openId: loginParas.openId, sessionId: loginParas.sessionId};
-    }
+  cinemaScreeningFilmList(cinemaId) {
     return new Promise((resolve, reject) => {
       return JNetwork.POST(cinemaUrl.jbzScreeningFilmList, {
         cinemaId
-      }, account).then(data => {
+      }).useParas(...this.otherParas).useHeaders(...this.otherHeaders).then(data => {
         resolve(_('cinemaUrl.jbzScreeningFilmList', data));
       }, error => {
         reject(error);
@@ -109,9 +83,9 @@ class JNetworkCinema {
    * @param filmId 影片Id
    * @returns {{terminate, then}|*}
    */
-  static cinemaScreeningDateList(cinemaId, filmId) {
+  cinemaScreeningDateList(cinemaId, filmId) {
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cinemaUrl.jbzScreeningDateList, {cinemaId, filmId}).then(data => {
+      JNetwork.POST(cinemaUrl.jbzScreeningDateList, {cinemaId, filmId}).useParas(...this.otherParas).then(data => {
         resolve(_('cinemaUrl.jbzScreeningDateList', data));
       }, error => {
         reject(error);
@@ -126,10 +100,10 @@ class JNetworkCinema {
    * @param date 日期（时间戳标示）
    * @returns {{terminate, then}|*}
    */
-  static cinemaScreeningItems(cinemaId, filmId, date) {
+  cinemaScreeningItems(cinemaId, filmId, date) {
     return new Promise((resolve, reject) => {
       date = DateTool.dateStringFromTimeInterval(date, 'yyyy-MM-dd');
-      JNetwork.POST(cinemaUrl.jbzScreeningItems, {cinemaId, filmId, date}).then(data => {
+      JNetwork.POST(cinemaUrl.jbzScreeningItems, {cinemaId, filmId, date}).useParas(...this.otherParas).then(data => {
         resolve(_('cinemaUrl.jbzScreeningItems', data));
       }, error => {
         reject(error);
@@ -143,12 +117,12 @@ class JNetworkCinema {
    * @param paras （根据不同平台变化）
    * @returns {*}
    */
-  static cinemaSeats(type, paras) {
+  cinemaSeats(type, paras) {
     if (type === 'meituan' || type === 'dazhong') {
       type = 'maoyan';
     }
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cinemaUrl.jbzRealtimeSeat, {type, ...paras}).then(data => {
+      JNetwork.POST(cinemaUrl.jbzRealtimeSeat, {type, ...paras}).useParas(...this.otherParas).then(data => {
         resolve(_('cinemaUrl.jbzRealtimeSeat', data));
       }, error => {
         reject(error);
@@ -162,12 +136,12 @@ class JNetworkCinema {
    * @param paras （根据不同平台变化）
    * @returns {*}
    */
-  static cinemaSmartSeats(type, paras) {
+  cinemaSmartSeats(type, paras) {
     if (type === 'meituan' || type === 'dazhong') {
       type = 'maoyan';
     }
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cinemaUrl.jbzRealtimeSeat, {type, ...paras}).then(data => {
+      JNetwork.POST(cinemaUrl.jbzRealtimeSeat, {type, ...paras}).useParas(...this.otherParas).then(data => {
         resolve(SeatManager.defaultManager().smartSeatsFromSeats(type, _('cinemaUrl.jbzRealtimeSmartSeat', data)));
       }, error => {
         reject(error);
@@ -181,18 +155,11 @@ class JNetworkCinema {
    * @param cinemaName 影院名字
    * @returns {{terminate, then}|*}
    */
-  static cinemaFavoriteCinemaNeedLogin(cinemaId, cinemaName) {
-    let loginParas = JNetwork.loginParas();
-    if (!loginParas.hasAccount) {
-      return JNetwork.failedAuthorizationNetwork();
-    }
+  cinemaFavoriteCinema(cinemaId, cinemaName) {
     return JNetwork.POST(cinemaUrl.jbzCollectcinema, {
-      openId: loginParas.openId,
       cinemaId: cinemaId,
       cinemaName: cinemaName
-    }, {
-      'sessionId': loginParas.sessionId
-    });
+    }).useParas(...this.otherParas).useHeaders(...this.otherHeaders);
   }
 
   /**
@@ -200,17 +167,47 @@ class JNetworkCinema {
    * @param cinemaId 影院Id
    * @returns {{terminate, then}|*}
    */
-  static cinemaCancelFavoriteCinemaNeedLogin(cinemaId) {
-    let loginParas = JNetwork.loginParas();
-    if (!loginParas.hasAccount) {
-      return JNetwork.failedAuthorizationNetwork();
-    }
+  cinemaCancelFavoriteCinema(cinemaId) {
     return JNetwork.POST(cinemaUrl.jbzCancelcollectcinema, {
-      openId: loginParas.openId,
-      cinemaId: cinemaId
-    }, {
-      'sessionId': loginParas.sessionId
-    });
+    }).useParas(...this.otherParas);
+  }
+
+  static cinemaDetail(cinemaId) {
+    return this.instance().cinemaDetail(cinemaId);
+  }
+
+  static cinemaList(cinemaFilter: CinemaFilterModel);
+  static cinemaList(location: any, cinemaFilter: CinemaFilterModel);
+  static cinemaList(a: any, b?: any) {
+    return this.instance().cinemaList(a, b);
+  }
+
+  static cinemaScreeningFilmList(cinemaId) {
+    return this.instance().cinemaScreeningFilmList(cinemaId);
+  }
+
+  static cinemaScreeningDateList(cinemaId, filmId) {
+    return this.instance().cinemaScreeningDateList(cinemaId, filmId);
+  }
+
+  static cinemaScreeningItems(cinemaId, filmId, date) {
+    return this.instance().cinemaScreeningItems(cinemaId, filmId, date);
+  };
+
+  static cinemaSeats(type, paras) {
+    return this.instance().cinemaSeats(type, paras);
+  }
+
+  static cinemaSmartSeats(type, paras) {
+    return this.instance().cinemaSmartSeats(type, paras);
+  }
+
+  static cinemaFavoriteCinema(cinemaId, cinemaName) {
+    return this.instance().cinemaFavoriteCinema(cinemaId, cinemaName);
+  }
+
+  static cinemaCancelFavoriteCinema(cinemaId) {
+    return this.instance().cinemaCancelFavoriteCinema(cinemaId);
   }
 }
 

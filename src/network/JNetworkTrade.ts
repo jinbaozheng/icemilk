@@ -5,19 +5,20 @@
 import JNetwork from './JNetwork.ts';
 import {tradeUrl} from '../unify/JUrlList';
 import _ from '../unify/JDataUnify';
+import JNetworkRoot from './JNetworkRoot';
 
 /**
  * 交易接口
  * @memberOf module:network
  */
-class JNetworkTrade {
+class JNetworkTrade extends JNetworkRoot{
   /**
    * 锁座
    * @param type 平台类型
    * @param paras 锁座参数
    * @returns {{terminate, then}|*}
    */
-  static tradeLockSeatNeedLogin(type, paras) {
+  tradeLockSeatNeedLogin(type, paras) {
     let loginParas = JNetwork.loginParas();
     return new Promise((resolve, reject) => {
       JNetwork.POST(tradeUrl.jbzLockSeat, {type, ...loginParas, ...paras}).then(data => {
@@ -33,7 +34,7 @@ class JNetworkTrade {
    * @param orderId 订单Id
    * @returns {{terminate, then}|*}
    */
-  static cancelLockSeatNeedLogin(orderId) {
+  cancelLockSeatNeedLogin(orderId) {
     return JNetwork.POST(tradeUrl.jbzCancelOrder, {orderId})
   }
 
@@ -43,7 +44,7 @@ class JNetworkTrade {
    * @param paras 下订单参数
    * @returns {{terminate, then}|*}
    */
-  static tradeApplyOrderNeedLogin(type, paras) {
+  tradeApplyOrderNeedLogin(type, paras) {
     let loginParas = JNetwork.loginParas();
     let inType = JNetwork.inType;
 
@@ -56,15 +57,6 @@ class JNetworkTrade {
         });
       });
     }
-
-    // if (inType === 'DPIOS' || inType === 'DPANDROID') {
-    //   return JNetwork.POST(tradeUrl.jbzAppApplyTicket, {type, ...paras}, loginParas);
-    // }
-    //
-    // if (inType === 'DPWX' || inType === 'DPWEB' || inType === 'PC') {
-    //   return JNetwork.POST(tradeUrl.jbzWepApplyTicket, {type, ...paras}, loginParas);
-    // }
-
     return JNetwork.wrongInType();
   }
 
@@ -76,21 +68,34 @@ class JNetworkTrade {
    * @param redIds 待定
    * @returns {{terminate, then}|*}
    */
-  static tradePrePayOrderNeedLoginInType(orderId, payType, prizeIds, redIds) {
+  tradePrePayOrderNeedLoginInType(orderId, payType, prizeIds, redIds) {
     let loginParas = JNetwork.loginParas();
     let inType = JNetwork.inType;
-
     if (inType === 'DPIOS' || inType === 'DPANDROID') {
       return JNetwork.POST(tradeUrl.jbzAppPrepay, {orderId, payType, prizeIds, redIds}, loginParas);
     }
-
-
     if (inType === 'DPWX' || inType === 'DPWEB' || inType === 'PC') {
       return JNetwork.POST(tradeUrl.jbzWebPrepay, {orderId, payType, prizeIds, redIds}, loginParas);
     }
-
     return JNetwork.wrongInType();
   }
+
+  static tradeLockSeatNeedLogin(type, paras) {
+    return this.instance().tradeLockSeatNeedLogin(type, paras);
+  }
+
+  static cancelLockSeatNeedLogin(orderId) {
+    return this.instance().cancelLockSeatNeedLogin(orderId);
+  }
+
+  static tradeApplyOrderNeedLogin(type, paras) {
+    return this.instance().tradeApplyOrderNeedLogin(type, paras);
+  }
+
+  static tradePrePayOrderNeedLoginInType(orderId, payType, prizeIds, redIds) {
+    return this.instance().tradePrePayOrderNeedLoginInType(orderId, payType, prizeIds, redIds);
+  }
+
 }
 
 export default JNetworkTrade;

@@ -4,23 +4,24 @@
 'use strict';
 import JNetwork from './JNetwork.ts';
 import {accountUrl} from '../unify/JUrlList';
+import JNetworkRoot from "./JNetworkRoot";
 
 /**
  * 账户接口
  * @memberOf module:network
  */
-class JNetworkAccount{
+class JNetworkAccount extends JNetworkRoot{
   /**
    * 用户登录
    * @param {string} mobile 登录需要的手机号码
    * @param {string} password 登录需要的密码
    * @returns {{terminate, then}|*}
    */
-  static accountLogin(mobile, password) {
+  accountLogin(mobile, password) {
     return JNetwork.POST(accountUrl.jbzLogin, {
       mobile: mobile,
       password: password
-    });
+    }).useParas(...this.otherParas);
   }
 
   /**
@@ -28,8 +29,8 @@ class JNetworkAccount{
    * @param sessionId 用户登录标识
    * @returns {{terminate, then}|*}
    */
-  static accountLogout(sessionId) {
-    return JNetwork.POST(accountUrl.jbzLogout, {}, sessionId);
+  accountLogout(sessionId) {
+    return JNetwork.POST(accountUrl.jbzLogout, {}, sessionId).useParas(...this.otherParas);
   }
 
   /**
@@ -38,11 +39,11 @@ class JNetworkAccount{
    * @param type 验证码类型 （1：注册使用 2：忘记密码使用）
    * @returns {{terminate, then}|*}
    */
-  static accountVerifyCode(mobile, type) {
+  accountVerifyCode(mobile, type) {
     return JNetwork.POST(accountUrl.jbzVerifycode, {
       mobile: mobile,
       codetype: type
-    });
+    }).useParas(...this.otherParas);
   }
 
   /**
@@ -52,12 +53,12 @@ class JNetworkAccount{
    * @param password 密码
    * @returns {{terminate, then}|*}
    */
-  static accountRegister(mobile, verifyCode, password) {
+  accountRegister(mobile, verifyCode, password) {
     return JNetwork.POST(accountUrl.jbzRegister, {
       mobile: mobile,
       verifyCode: verifyCode,
       password: password
-    });
+    }).useParas(...this.otherParas);
   }
 
   /**
@@ -67,12 +68,32 @@ class JNetworkAccount{
    * @param password 新密码
    * @returns {{terminate, then}|*}
    */
-  static accountUpdatepass(mobile, verfyCode, password) {
+  accountUpdatepass(mobile, verfyCode, password) {
     return JNetwork.POST(accountUrl.jbzUpdatepass, {
       mobile: mobile,
       verifyCode: verfyCode,
       password: password
-    });
+    }).useParas(...this.otherParas);
+  }
+
+  static accountLogin(mobile, password) {
+    return this.instance().accountLogin(mobile, password);
+  }
+
+  static accountLogout(sessionId) {
+    return this.instance().accountLogout(sessionId);
+  }
+
+  static accountVerifyCode(mobile, type) {
+    return this.instance().accountVerifyCode(mobile, type);
+  }
+
+  static accountRegister(mobile, verifyCode, password) {
+    return this.instance().accountRegister(mobile, verifyCode, password);
+  }
+
+  static accountUpdatepass(mobile, verfyCode, password) {
+    return this.instance().accountUpdatepass(mobile, verfyCode, password);
   }
 }
 

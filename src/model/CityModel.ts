@@ -9,7 +9,7 @@
 var id;
 
 /**
- * 城市模型1111
+ * 城市模型
  * @memberOf module:model
  */
 interface CityModel{

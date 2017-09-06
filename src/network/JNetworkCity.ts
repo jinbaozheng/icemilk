@@ -5,21 +5,47 @@
 import JNetwork from './JNetwork';
 import {cityUrl} from '../unify/JUrlList';
 import _ from '../unify/JDataUnify';
+import JPromise from "../structure/JPromise";
+import JNetworkRoot from "./JNetworkRoot";
 
 /**
  * 城市及定位接口
  * @memberOf module:network
  * @hideconstructor
  */
-class JNetworkCity {
+class JNetworkCity extends JNetworkRoot{
+
+  static cityList() {
+    this.instance().cityList();
+  }
+
+  static cityByCoordinate(coordinate) {
+    this.instance().cityByCoordinate(coordinate);
+  }
+
+  static cityNeedCoordinate() {
+    this.instance().cityNeedCoordinate();
+  }
+
+  static cityById(cityId) {
+    this.instance().cityById(cityId);
+  }
+
+  static cityDistrictList(cityId) {
+    this.instance().cityDistrictList(cityId);
+  }
+
+  static cityHotList() {
+    this.instance().cityHotList();
+  }
 
   /**
    *  获取城市列表
    * @returns {*}
    */
-  static cityList() {
+  cityList() {
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cityUrl.jbzCities).then(data => {
+      JNetwork.POST(cityUrl.jbzCities).useParas(...this.otherParas).then(data => {
         resolve(_('cityUrl.jbzCities', data));
       }, error => {
         reject(error);
@@ -32,9 +58,9 @@ class JNetworkCity {
    *  @param coordinate 位置信息
    * @returns {*}
    */
-  static cityByCoordinate(coordinate) {
+  cityByCoordinate(coordinate) {
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cityUrl.jbzCityByCoordinate, coordinate).then(data => {
+      JNetwork.POST(cityUrl.jbzCityByCoordinate, coordinate).useParas(...this.otherParas).then(data => {
         resolve(_('cityUrl.jbzCityByCoordinate', data));
       }, error => {
         reject(error);
@@ -46,9 +72,9 @@ class JNetworkCity {
    * 通过经纬度获取城市（通过代理传递）
    * @returns {{terminate, then}|*}
    */
-  static cityNeedCoordinate() {
+  cityNeedCoordinate() {
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cityUrl.jbzCityByCoordinate, {...JNetwork.locationParas()}).then(data => {
+      JNetwork.POST(cityUrl.jbzCityByCoordinate, {...JNetwork.locationParas()}).useParas(...this.otherParas).then(data => {
         resolve(_('cityUrl.jbzCityByCoordinate', data));
       }, error => {
         reject(error);
@@ -61,9 +87,9 @@ class JNetworkCity {
    * @param cityId
    * @returns {{terminate, then}|*}
    */
-  static cityById(cityId) {
-    return new Promise((resolve, reject) => {
-      JNetwork.POST(cityUrl.jbzCityById, {cityId}).then(data => {
+  cityById(cityId) {
+    return JPromise.create((resolve, reject) => {
+      JNetwork.POST(cityUrl.jbzCityById, {cityId}).useParas(...this.otherParas).then(data => {
         resolve(_('cityUrl.jbzCityById', data));
       }, error => {
         reject(error);
@@ -76,9 +102,9 @@ class JNetworkCity {
    * @param cityId
    * @returns {{terminate, then}|*}
    */
-  static cityDistrictList(cityId) {
+  cityDistrictList(cityId) {
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cityUrl.jbzDistricts, {cityId}).then(data => {
+      JNetwork.POST(cityUrl.jbzDistricts, {cityId}).useParas(...this.otherParas).then(data => {
         resolve(_('cityUrl.jbzDistricts', data));
       }, error => {
         reject(error);
@@ -90,9 +116,9 @@ class JNetworkCity {
    * 获取热门城市列表
    * @returns {{terminate, then}|*}
    */
-  static cityHotList() {
+  cityHotList() {
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cityUrl.jbzHotCities).then(data => {
+      JNetwork.POST(cityUrl.jbzHotCities).useParas(...this.otherParas).then(data => {
         resolve(_('cityUrl.jbzHotCities', data));
       }, error => {
         reject(error);

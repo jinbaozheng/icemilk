@@ -2,13 +2,13 @@
  * Created by cuppi on 2016/11/22.
  */
 'use strict';
-import axios from 'axios';
+import axios from 'axios'
 import UrlTool from '../tool/JToolUrl';
 import LocationParas from "../paras/LocationParas";
 import CityParas from "../paras/CityParas";
 import CoordinateParas from "../paras/CoordinateParas";
 import NetworkDelegate from "../delegate/NetworkDelegate";
-
+import JPromise from '../structure/JPromise';
 
 /** @module network*/
 
@@ -28,7 +28,7 @@ class JNetwork {
    * @private
    * @returns {*}
    */
-  static locationParas(): LocationParas{
+  static locationParas(): LocationParas {
     if (this.delegate) {
       let cityParas: CityParas = this.delegate.cityParas();
       let coordinateParas: CoordinateParas = this.delegate.coordinateParas();
@@ -76,11 +76,22 @@ class JNetwork {
   }
 
   /**
+   * 没有登录
+   * @param code
+   * @returns {any}
+   */
+  static notLoginError(code: number): Error {
+    let error: Error = new Error('NotLogin');
+    Reflect.defineProperty(error, 'errorCode', {value: code});
+    return error;
+  }
+
+  /**
    * 错误类型
    * @private
    * @returns {Promise}
    */
-  static wrongInType() {
+  static wrongInType(): Promise<any> {
     return new Promise((resolve, reject) => {
       reject(new Error('the inType is not exist, please check your inType property in JBZConfig'));
     });
@@ -92,28 +103,8 @@ class JNetwork {
    * @param promise 异步请求块
    * @returns {Promise} 被包裹后的异步请求块
    */
-  static wrapCancelablePromise(promise) {
-    let hasCanceled_ = false;
-    const wrappedPromise = new Promise((resolve, reject) => {
-      promise.then((val) => hasCanceled_
-        ? () => {
-        }
-        : resolve(val), () => {
-        // 不写会有警告
-      });
-      promise.catch((error) => hasCanceled_
-        ? () => {
-        }
-        : reject(error));
-    });
-    return {
-      terminate () {
-        hasCanceled_ = true;
-      },
-      then (resolve, reject) {
-        return wrappedPromise.then(resolve, reject);
-      }
-    };
+  static wrapCancelablePromise(promise: Promise<any>): JPromise<any> {
+    return JPromise.create(promise);
   }
 
   /***
@@ -127,37 +118,80 @@ class JNetwork {
     }
   }
 
-  /**
-   * 高自由度POST方法
-   * @param {string} baseUrl 基地址
-   * @param {string} url 相对地址
-   * @param {object} parameters 地址参数
-   * @param {object} headers 头参数
-   * @param {object} otherObject 其他可用配置
-   * @returns {Promise} 异步请求块
-   */
-  static freedomPOST(baseUrl, url, parameters, headers, otherObject) {
+  static fetchRequest(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any): JPromise<any> {
     this.checkConfigBaseUrl();
     let isOk;
-    return this.wrapCancelablePromise(new Promise((resolve, reject) => {
+    let jpromise = this.wrapCancelablePromise(new Promise((resolve, reject) => {
       let iHeaders = Object.assign({
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        // TODO: 搞明白
+        'Content-Type': 'application/x-www-form-urlencoded'
+        // 'Content-Type': 'application/json'
       }, headers);
-      if (headers) {
-        // console.log(iHeaders)
-      }
-      console.log('POST ' + UrlTool.urlFromPortion(baseUrl, url, parameters));
-      axios(url, {
+      let jaxios = axios.create({
+        method: method,
         timeout: otherObject.timeout,
-        method: 'post',
+        params: parameters,
         baseURL: baseUrl,
-        headers: iHeaders,
-        params: parameters
-      }).then((response) => {
+        headers: iHeaders
+      })
+      jaxios.interceptors.request.use(config => {
+        let otherParas = {};
+        jpromise.otherParas.forEach(key => {
+          if (typeof key == "object"){
+            otherParas = {...otherParas, ...key};
+            return;
+          }
+          let globalParaFunc = this.delegate.globalParas()[key];
+          if (globalParaFunc){
+            let globalPara = globalParaFunc();
+            if (typeof globalPara == "object"){
+              otherParas = {...otherParas, ...globalPara};
+            } else if (typeof globalPara == "string" || typeof globalPara == "number"){
+              otherParas[key] = globalPara;
+            } else {
+              console.log('全局变量类型不正确:' + key);
+            }
+          } else {
+            console.log('不存在的全局变量:' + key);
+          }
+        });
+        let otherHeaders = {};
+        jpromise.otherHeaders.forEach(key => {
+          if (typeof key == "object"){
+            otherHeaders = {...otherHeaders, ...key};
+            return;
+          }
+          let globalHeaderFunc = this.delegate.globalHeaders()[key];
+          if (globalHeaderFunc){
+            let globalHeader = globalHeaderFunc();
+            if (typeof globalHeader == "object"){
+              otherHeaders = {...otherHeaders, ...globalHeader};
+            } else if (typeof globalHeader == "string" || typeof globalHeader == "number"){
+              otherHeaders[key] = globalHeader;
+            } else {
+              console.log('全局变量类型不正确:' + key);
+            }
+          } else {
+            console.log('不存在的全局变量:' + key);
+          }
+        });
+
+        config.params = {...config.params, ...otherParas};
+        config.headers = {...config.headers, ...otherHeaders};
+        return this.delegate.requestInterceptor(config);
+      }, error => {
+        return this.delegate.requestInterceptorError(error);
+      });
+      jaxios.interceptors.response.use(response => {
+        return this.delegate.responseInterceptor(response);
+      }, error => {
+        return this.delegate.responseInterceptorError(error);
+      });
+      jaxios.post(url).then((response) => {
         isOk = response.status === 200;
         return response.data;
-      }).then((responseJson: {errorCode: number, data: any, message:string}) => {
+      }).then((responseJson: { errorCode: number, data: any, message: string }) => {
         if (isOk) {
           if (!responseJson.errorCode) {
             resolve(responseJson.data);
@@ -181,79 +215,64 @@ class JNetwork {
         }
       });
     }));
+    return jpromise;
+  }
+
+  /**
+   * 高自由度POST方法
+   * @param {string} baseUrl 基地址
+   * @param {string} url 相对地址
+   * @param {object} parameters 地址参数
+   * @param {object} headers 头参数
+   * @param {object} otherObject 其他可用配置
+   * @returns {Promise} 异步请求块
+   */
+  static freedomPOST(baseUrl, url, parameters, headers, otherObject): JPromise<any> {
+    return this.fetchRequest('post', baseUrl, url, parameters, headers, otherObject);
+  }
+
+  /**
+   * 高自由度GET方法
+   * @param {string} baseUrl
+   * @param {string} url
+   * @param {object} parameters
+   * @param {object} headers
+   * @param {object} otherObject
+   * @returns {Promise} 异步请求块
+   */
+  static freedomGET(baseUrl: string, url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
+    return this.fetchRequest('get', baseUrl, url, parameters, headers, otherObject);
   }
 
   /**
    * post请求
    * @param {string} url 相对地址
    * @param {object} parameters 地址参数
-   * @param {object} headers 头参数(可空)
-   * @param {object} otherObject 其他参数(可空)
+   * @param {object} headers 头参数
+   * @param {object} otherObject 其他参数
    * @returns {Promise} 异步请求块
    */
-  static POST(url: string, parameters?: object, headers?: object, otherObject?: object) {
-    return this.freedomPOST(this.baseUrl, url, {...parameters, inType: this.inType}, headers, {timeout: this.timeout, ...otherObject})
+  static POST(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
+    return this.freedomPOST(this.baseUrl, url, {
+      ...parameters,
+      inType: this.inType
+    }, headers, {timeout: this.timeout, ...otherObject})
   }
 
   /**
    * get请求
    * @param {string} url 相对地址
-   * @param {string} parameters 地址参数
-   * @param {string} headers 头参数
+   * @param {object} parameters 地址参数
+   * @param {object} headers 头参数
+   * @param {object} otherObject 其他参数
    * @returns {Promise} 异步请求块
    */
-  static GET(url, parameters, headers) {
-    this.checkConfigBaseUrl();
-    let isOk;
-    return this.wrapCancelablePromise(new Promise((resolve, reject) => {
-      let iHeaders = Object.assign({
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }, headers);
-      if (headers) {
-        // console.log(iHeaders)
-      }
-      console.log('GET ' + UrlTool.urlFromPortion(this.baseUrl, url, parameters));
-      axios(url, {
-        timeout: this.timeout,
-        method: 'get',
-        baseURL: this.baseUrl,
-        headers: iHeaders,
-        params: {...parameters, inType: this.inType}
-      }).then((response) => {
-        isOk = response.status === 200;
-        return response.data;
-      }).then((responseJson) => {
-        if (isOk) {
-          if (!responseJson.errorCode) {
-            resolve(responseJson.data);
-          } else {
-            if (responseJson.errorCode == 10022) {
-              reject(JNetwork.notLoginError(100022));
-            } else {
-              reject(new Error(responseJson.message));
-            }
-          }
-        } else {
-          reject(responseJson);
-        }
-      }).catch(error => {
-        // 请求超时
-        if (error.message.indexOf('timeout') != -1) {
-          reject(new Error('请求超时, 请稍后重试'));
-        } else {
-          reject(error);
-        }
-      });
-    }));
+  static GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
+    return this.freedomGET(this.baseUrl, url, {
+      ...parameters,
+      inType: this.inType
+    }, headers, {timeout: this.timeout, ...otherObject})
   }
-
-  static notLoginError(code){
-    let error:any = new Error('NotLogin');
-    error.errorCode = code;
-    return error;
-  }
-
 }
 
 export default JNetwork;

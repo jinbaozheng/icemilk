@@ -5,12 +5,13 @@
 import JNetwork from './JNetwork.ts';
 import {otherUrl} from '../unify/JUrlList';
 import _ from '../unify/JDataUnify';
+import JNetworkRoot from './JNetworkRoot'
 
 /**
  * 其他接口
  * @memberOf module:network
  */
-class JNetworkOther {
+class JNetworkOther extends JNetworkRoot{
   /**
    * 搜索
    * @param cityId 城市Id
@@ -18,7 +19,7 @@ class JNetworkOther {
    * @param nextPageFirstKey 下一页的句柄
    * @returns {Promise}
    */
-  static search(cityId, searchKey, nextPageFirstKey) {
+  search(cityId, searchKey, nextPageFirstKey) {
     if (cityId) {
       return JNetwork.POST(otherUrl.jbzSearch, {
         cityId,
@@ -37,7 +38,7 @@ class JNetworkOther {
    * 热搜词汇
    * @returns {{terminate, then}|*}
    */
-  static hotSearchKeyword() {
+  hotSearchKeyword() {
     return JNetwork.POST(otherUrl.jbzHotSearchKeyword);
   }
 
@@ -47,7 +48,7 @@ class JNetworkOther {
    * @param cityId 当前城市
    * @returns {Promise}
    */
-  static otherBanners(location, cityId) {
+  otherBanners(location, cityId) {
     return new Promise((resolve, reject) => {
       return JNetwork.POST(otherUrl.jbzBanners, {
         location, cityId
@@ -65,8 +66,24 @@ class JNetworkOther {
    * @param cityId 当前城市
    * @returns {Promise}
    */
-  static banners(position, cityId){
+  banners(position, cityId){
     return JNetworkOther.otherBanners(position, cityId);
+  }
+
+  static search(cityId, searchKey, nextPageFirstKey) {
+    this.instance().search(cityId, searchKey, nextPageFirstKey);
+  }
+
+  static hotSearchKeyword() {
+    this.instance().hotSearchKeyword();
+  }
+
+  static otherBanners(location, cityId) {
+    this.instance().otherBanners(location, cityId);
+  }
+
+  static banners(position, cityId){
+    this.instance().banners(position, cityId);
   }
 }
 

@@ -5,43 +5,34 @@
 import _ from '../unify/JDataUnify';
 import JNetwork from './JNetwork.ts';
 import {mineUrl} from '../unify/JUrlList';
+import JNetworkRoot from './JNetworkRoot';
 
 /**
  * 个人中心接口
  * @memberOf module:network
  */
-class JNetworkMine {
+class JNetworkMine extends JNetworkRoot{
 
   /**
    * 我的订单
    * @private
    * @returns {*}
    */
-  static mineOrderNeedLogin() {
-    let loginParas = JNetwork.loginParas();
-    if (!loginParas.hasAccount) {
-      return JNetwork.failedAuthorizationNetwork();
-    }
-    let {openId, sessionId} = loginParas;
-    return JNetwork.POST(mineUrl.userorders, {
-      openId
-    }, {
-      openId, sessionId
-    });
+  mineOrder() {
+    return JNetwork.POST(mineUrl.userorders).useParas(...this.otherParas).useHeaders(...this.otherHeaders);
   }
 
   /***
    * 我的收藏(影院)
    */
-  static mineFavoriteCinemaNeedLogin() {
-     let loginParas = JNetwork.loginParas();
-     return new Promise((resolve, reject) => {
-       JNetwork.POST(mineUrl.jbzMineCinema, {...loginParas}).then(data => {
-         resolve(_('mineUrl.jbzMineCinema', data));
-       }, error => {
-         reject(error);
-       });
-     })
+  mineFavoriteCinema() {
+    return new Promise((resolve, reject) => {
+      JNetwork.POST(mineUrl.jbzMineCinema).useParas(...this.otherParas).useHeaders(...this.otherHeaders).then(data => {
+        resolve(_('mineUrl.jbzMineCinema', data));
+      }, error => {
+        reject(error);
+      });
+    })
   }
 
   /**
@@ -49,17 +40,21 @@ class JNetworkMine {
    * @private
    * @returns {*}
    */
-  static mineFavoriteNeedLogin() {
-    let loginParas = JNetwork.loginParas();
-    if (!loginParas.hasAccount) {
-      return JNetwork.failedAuthorizationNetwork();
-    }
-    let {openId, sessionId} = loginParas;
-    return JNetwork.POST(mineUrl.collectedcinemalist, {
-      openId: openId
-    }, {
-      openId: openId, sessionId
-    });
+  mineFavorite() {
+    return JNetwork.POST(mineUrl.collectedcinemalist).useParas(...this.otherParas).useHeaders(...this.otherHeaders);
+  }
+
+  /***/
+  static mineOrder() {
+    return this.instance().mineOrder();
+  }
+
+  static mineFavoriteCinema() {
+    return this.instance().mineFavoriteCinema();
+  }
+
+  static mineFavorite() {
+    return this.instance().mineFavorite();
   }
 }
 
