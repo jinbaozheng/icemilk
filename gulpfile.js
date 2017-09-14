@@ -33,14 +33,15 @@ gulp.task("do-babel-process", function() {
     .pipe(gulp.dest("dist"))
 });
 
-// 清楚typescript中间文件
+// 清除typescript中间文件
 gulp.task("clean-middleware", function () {
    return del('./ts-middleware');
 });
-
-gulp.task("")
+// 执行打包操作
+gulp.task("transform-ts-to-js", function () {
+  runSequence('do-typescript-process', 'do-babel-process');
+});
 
 // 默认任务
 gulp.task("default", function() {
-  runSequence('do-typescript-process', 'do-babel-process', 'clean-middleware');
 });

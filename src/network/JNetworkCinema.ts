@@ -2,7 +2,7 @@
  * Created by cuppi on 2016/11/29.
  */
 'use strict';
-import JNetwork from './JNetwork.ts';
+import JNetwork from './JNetwork';
 import {cinemaUrl} from '../unify/JUrlList';
 import DateTool from '../tool/JToolDate';
 import _ from '../unify/JDataUnify';

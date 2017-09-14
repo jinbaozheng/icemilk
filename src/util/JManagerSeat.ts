@@ -2,8 +2,8 @@
  * Created by cuppi on 2016/12/5.
  */
 
-import NetworkCinemaManager from '../network/JNetworkCinema.ts';
-import StringTool from '../tool/JToolString.ts';
+import NetworkCinemaManager from '../network/JNetworkCinema';
+import StringTool from '../tool/JToolString';
 import AutoSeatPicking from '../arithmetic/AutoSeatPicking';
 import SmartSeatModel from "../model/SmartSeatModel";
 

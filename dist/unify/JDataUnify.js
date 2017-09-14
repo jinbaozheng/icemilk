@@ -4,9 +4,6 @@
  */
 
 Object.defineProperty(exports, "__esModule", { value: true });
-// import IcbcUnify from '../differentiation/icbc.network.unify';
-// import ShangHaiUnify from '../differentiation/shanghai.network.unify';
-// import IcmcUnify from '../differentiation/icmc.network.unify';
 var _dataMap = {};
 function UseConfig(dataMap) {
     // if (_VISIBLE_TYPE.indexOf(inType) === -1) {

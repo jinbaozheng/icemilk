@@ -2,7 +2,7 @@
  * Created by cuppi on 2016/12/1.
  */
 'use strict';
-import JNetwork from './JNetwork.ts';
+import JNetwork from './JNetwork';
 import {otherUrl} from '../unify/JUrlList';
 import _ from '../unify/JDataUnify';
 import JNetworkRoot from './JNetworkRoot'
@@ -71,19 +71,19 @@ class JNetworkOther extends JNetworkRoot{
   }
 
   static search(cityId, searchKey, nextPageFirstKey) {
-    this.instance().search(cityId, searchKey, nextPageFirstKey);
+    return this.instance().search(cityId, searchKey, nextPageFirstKey);
   }
 
   static hotSearchKeyword() {
-    this.instance().hotSearchKeyword();
+    return this.instance().hotSearchKeyword();
   }
 
   static otherBanners(location, cityId) {
-    this.instance().otherBanners(location, cityId);
+    return this.instance().otherBanners(location, cityId);
   }
 
   static banners(position, cityId){
-    this.instance().banners(position, cityId);
+    return this.instance().banners(position, cityId);
   }
 }
 

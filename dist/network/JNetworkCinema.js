@@ -3,224 +3,306 @@
  */
 'use strict';
 
-var _promise = require("babel-runtime/core-js/promise");
-
-var _promise2 = _interopRequireDefault(_promise);
-
 var _assign = require("babel-runtime/core-js/object/assign");
 
 var _assign2 = _interopRequireDefault(_assign);
 
+var _toConsumableArray2 = require("babel-runtime/helpers/toConsumableArray");
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+var _promise = require("babel-runtime/core-js/promise");
+
+var _promise2 = _interopRequireDefault(_promise);
+
+var _getPrototypeOf = require("babel-runtime/core-js/object/get-prototype-of");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require("babel-runtime/helpers/createClass");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require("babel-runtime/helpers/possibleConstructorReturn");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require("babel-runtime/helpers/inherits");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var __assign = undefined && undefined.__assign || _assign2.default || function (t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) {
-            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-        }
-    }
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var JNetwork_js_1 = require("./JNetwork.js");
+var JNetwork_1 = require("./JNetwork");
 var JUrlList_1 = require("../unify/JUrlList");
 var JToolDate_1 = require("../tool/JToolDate");
 var JDataUnify_1 = require("../unify/JDataUnify");
 var JManagerSeat_1 = require("../util/JManagerSeat");
+var JNetworkRoot_1 = require("./JNetworkRoot");
 /**
  * 影院接口
  * @memberOf module:network
  */
-var JNetworkCinema = function () {
-    function JNetworkCinema() {}
-    /**
-     * 获取影院详情
-     * @param {string} cinemaId 影院ID
-     * @returns {Promise} promise
-     */
-    JNetworkCinema.cinemaDetail = function (cinemaId) {
-        return new _promise2.default(function (resolve, reject) {
-            JNetwork_js_1.default.POST(JUrlList_1.cinemaUrl.jbzDetail, { cinemaId: cinemaId }).then(function (data) {
-                resolve(JDataUnify_1.default('cinemaUrl.jbzDetail', data, 0));
-            }, function (error) {
-                reject(error);
+
+var JNetworkCinema = function (_JNetworkRoot_1$defau) {
+    (0, _inherits3.default)(JNetworkCinema, _JNetworkRoot_1$defau);
+
+    function JNetworkCinema() {
+        (0, _classCallCheck3.default)(this, JNetworkCinema);
+        return (0, _possibleConstructorReturn3.default)(this, (JNetworkCinema.__proto__ || (0, _getPrototypeOf2.default)(JNetworkCinema)).apply(this, arguments));
+    }
+
+    (0, _createClass3.default)(JNetworkCinema, [{
+        key: "cinemaDetail",
+
+        /**
+         * 获取影院详情
+         * @param {string} cinemaId 影院ID
+         * @returns {Promise} promise
+         */
+        value: function cinemaDetail(cinemaId) {
+            var _this2 = this;
+
+            return new _promise2.default(function (resolve, reject) {
+                var _JNetwork_1$default$P, _JNetwork_1$default$P2;
+
+                (_JNetwork_1$default$P = (_JNetwork_1$default$P2 = JNetwork_1.default.POST(JUrlList_1.cinemaUrl.jbzDetail, { cinemaId: cinemaId })).useParas.apply(_JNetwork_1$default$P2, (0, _toConsumableArray3.default)(_this2.otherParas))).useHeaders.apply(_JNetwork_1$default$P, (0, _toConsumableArray3.default)(_this2.otherHeaders)).then(function (data) {
+                    resolve(JDataUnify_1.default('cinemaUrl.jbzDetail', data, 0));
+                }, function (error) {
+                    reject(error);
+                });
             });
-        });
-    };
-    /**
-     * 获取影院详情(使用登录属性判断是否影院被收藏)
-     * @param {string} cinemaId 影院ID
-     * @returns {Promise} promise
-     */
-    JNetworkCinema.cinemaDetailCanLogin = function (cinemaId) {
-        var loginParas = JNetwork_js_1.default.loginParas();
-        return new _promise2.default(function (resolve, reject) {
-            JNetwork_js_1.default.POST(JUrlList_1.cinemaUrl.jbzDetail, __assign({ cinemaId: cinemaId }, loginParas)).then(function (data) {
-                resolve(JDataUnify_1.default('cinemaUrl.jbzDetail', data, 1));
-            }, function (error) {
-                reject(error);
-            });
-        });
-    };
-    /**
-     * 影院列表
-     * @param {CoordinateModel} location
-     * @param {} cinemaFilter
-     * @returns {Promise}
-     */
-    JNetworkCinema.cinemaList = function (location, cinemaFilter) {
-        return new _promise2.default(function (resolve, reject) {
-            var _a = cinemaFilter ? cinemaFilter : {},
-                filmId = _a.filmId,
-                feature = _a.feature,
-                region = _a.region,
-                sort = _a.sort,
-                limit = _a.limit;
-            JNetwork_js_1.default.POST(JUrlList_1.cinemaUrl.jbzList, __assign({}, location, { filmId: filmId,
-                feature: feature, regionName: region, orderType: sort, limit: limit })).then(function (data) {
-                resolve(JDataUnify_1.default('cinemaUrl.jbzList', data));
-            }, function (error) {
-                reject(error);
-            });
-        });
-    };
-    /**
-     * 影院列表
-     * @param cinemaFilter 影片筛选条件
-     * @returns {{terminate, then}|*}
-     */
-    JNetworkCinema.cinemaListNeedLocation = function (cinemaFilter) {
-        var location = JNetwork_js_1.default.locationParas();
-        return JNetworkCinema.cinemaList(location, cinemaFilter);
-    };
-    /**
-     * 获取指定影院排片
-     * @param cinemaId 影院Id
-     * @returns {{terminate, then}|*}
-     */
-    JNetworkCinema.cinemaScreeningFilmList = function (cinemaId) {
-        var loginParas = JNetwork_js_1.default.loginParas();
-        var account = {};
-        if (loginParas.hasAccount) {
-            account = { openId: loginParas.openId, sessionId: loginParas.sessionId };
         }
-        return new _promise2.default(function (resolve, reject) {
-            return JNetwork_js_1.default.POST(JUrlList_1.cinemaUrl.jbzScreeningFilmList, {
-                cinemaId: cinemaId
-            }, account).then(function (data) {
-                resolve(JDataUnify_1.default('cinemaUrl.jbzScreeningFilmList', data));
-            }, function (error) {
-                reject(error);
+    }, {
+        key: "cinemaList",
+        value: function cinemaList(location, cinemaFilter) {
+            var _this3 = this;
+
+            if (cinemaFilter == undefined) {
+                cinemaFilter = location;
+            }
+            return new _promise2.default(function (resolve, reject) {
+                var _JNetwork_1$default$P3;
+
+                var u = undefined;
+
+                var _ref = cinemaFilter ? cinemaFilter : { filmId: u, feature: u, region: u, sort: u, limit: u },
+                    filmId = _ref.filmId,
+                    feature = _ref.feature,
+                    region = _ref.region,
+                    sort = _ref.sort,
+                    limit = _ref.limit;
+
+                (_JNetwork_1$default$P3 = JNetwork_1.default.POST(JUrlList_1.cinemaUrl.jbzList, (0, _assign2.default)({}, location, { filmId: filmId,
+                    feature: feature, regionName: region, orderType: sort, limit: limit }))).useParas.apply(_JNetwork_1$default$P3, (0, _toConsumableArray3.default)(_this3.otherParas)).then(function (data) {
+                    resolve(JDataUnify_1.default('cinemaUrl.jbzList', data));
+                }, function (error) {
+                    reject(error);
+                });
             });
-        });
-    };
-    /**
-     * 获取指定影院排片日期安排
-     * @param cinemaId 影院Id
-     * @param filmId 影片Id
-     * @returns {{terminate, then}|*}
-     */
-    JNetworkCinema.cinemaScreeningDateList = function (cinemaId, filmId) {
-        return new _promise2.default(function (resolve, reject) {
-            JNetwork_js_1.default.POST(JUrlList_1.cinemaUrl.jbzScreeningDateList, { cinemaId: cinemaId, filmId: filmId }).then(function (data) {
-                resolve(JDataUnify_1.default('cinemaUrl.jbzScreeningDateList', data));
-            }, function (error) {
-                reject(error);
-            });
-        });
-    };
-    /**
-     * 获取指定影院排片放映厅安排
-     * @param cinemaId 影院Id
-     * @param filmId 影片Id
-     * @param date 日期（时间戳标示）
-     * @returns {{terminate, then}|*}
-     */
-    JNetworkCinema.cinemaScreeningItems = function (cinemaId, filmId, date) {
-        return new _promise2.default(function (resolve, reject) {
-            date = JToolDate_1.default.dateStringFromTimeInterval(date, 'yyyy-MM-dd');
-            JNetwork_js_1.default.POST(JUrlList_1.cinemaUrl.jbzScreeningItems, { cinemaId: cinemaId, filmId: filmId, date: date }).then(function (data) {
-                resolve(JDataUnify_1.default('cinemaUrl.jbzScreeningItems', data));
-            }, function (error) {
-                reject(error);
-            });
-        });
-    };
-    ;
-    /**
-     * 实时座位图
-     * @param type 平台类型 （必须）
-     * @param paras （根据不同平台变化）
-     * @returns {*}
-     */
-    JNetworkCinema.cinemaSeats = function (type, paras) {
-        if (type === 'meituan' || type === 'dazhong') {
-            type = 'maoyan';
         }
-        return new _promise2.default(function (resolve, reject) {
-            JNetwork_js_1.default.POST(JUrlList_1.cinemaUrl.jbzRealtimeSeat, __assign({ type: type }, paras)).then(function (data) {
-                resolve(JDataUnify_1.default('cinemaUrl.jbzRealtimeSeat', data));
-            }, function (error) {
-                reject(error);
+        /**
+         * 获取指定影院排片
+         * @param cinemaId 影院Id
+         * @returns {{terminate, then}|*}
+         */
+
+    }, {
+        key: "cinemaScreeningFilmList",
+        value: function cinemaScreeningFilmList(cinemaId) {
+            var _this4 = this;
+
+            return new _promise2.default(function (resolve, reject) {
+                var _JNetwork_1$default$P4, _JNetwork_1$default$P5;
+
+                return (_JNetwork_1$default$P4 = (_JNetwork_1$default$P5 = JNetwork_1.default.POST(JUrlList_1.cinemaUrl.jbzScreeningFilmList, {
+                    cinemaId: cinemaId
+                })).useParas.apply(_JNetwork_1$default$P5, (0, _toConsumableArray3.default)(_this4.otherParas))).useHeaders.apply(_JNetwork_1$default$P4, (0, _toConsumableArray3.default)(_this4.otherHeaders)).then(function (data) {
+                    resolve(JDataUnify_1.default('cinemaUrl.jbzScreeningFilmList', data));
+                }, function (error) {
+                    reject(error);
+                });
             });
-        });
-    };
-    /**
-     * 智能实时座位图
-     * @param type 平台类型 （必须）
-     * @param paras （根据不同平台变化）
-     * @returns {*}
-     */
-    JNetworkCinema.cinemaSmartSeats = function (type, paras) {
-        if (type === 'meituan' || type === 'dazhong') {
-            type = 'maoyan';
         }
-        return new _promise2.default(function (resolve, reject) {
-            JNetwork_js_1.default.POST(JUrlList_1.cinemaUrl.jbzRealtimeSeat, __assign({ type: type }, paras)).then(function (data) {
-                resolve(JManagerSeat_1.default.defaultManager().smartSeatsFromSeats(type, JDataUnify_1.default('cinemaUrl.jbzRealtimeSmartSeat', data)));
-            }, function (error) {
-                reject(error);
+        /**
+         * 获取指定影院排片日期安排
+         * @param cinemaId 影院Id
+         * @param filmId 影片Id
+         * @returns {{terminate, then}|*}
+         */
+
+    }, {
+        key: "cinemaScreeningDateList",
+        value: function cinemaScreeningDateList(cinemaId, filmId) {
+            var _this5 = this;
+
+            return new _promise2.default(function (resolve, reject) {
+                var _JNetwork_1$default$P6;
+
+                (_JNetwork_1$default$P6 = JNetwork_1.default.POST(JUrlList_1.cinemaUrl.jbzScreeningDateList, { cinemaId: cinemaId, filmId: filmId })).useParas.apply(_JNetwork_1$default$P6, (0, _toConsumableArray3.default)(_this5.otherParas)).then(function (data) {
+                    resolve(JDataUnify_1.default('cinemaUrl.jbzScreeningDateList', data));
+                }, function (error) {
+                    reject(error);
+                });
             });
-        });
-    };
-    /**
-     * 收藏影院
-     * @param cinemaId 影院Id
-     * @param cinemaName 影院名字
-     * @returns {{terminate, then}|*}
-     */
-    JNetworkCinema.cinemaFavoriteCinemaNeedLogin = function (cinemaId, cinemaName) {
-        var loginParas = JNetwork_js_1.default.loginParas();
-        if (!loginParas.hasAccount) {
-            return JNetwork_js_1.default.failedAuthorizationNetwork();
         }
-        return JNetwork_js_1.default.POST(JUrlList_1.cinemaUrl.jbzCollectcinema, {
-            openId: loginParas.openId,
-            cinemaId: cinemaId,
-            cinemaName: cinemaName
-        }, {
-            'sessionId': loginParas.sessionId
-        });
-    };
-    /**
-     * 取消收藏影院
-     * @param cinemaId 影院Id
-     * @returns {{terminate, then}|*}
-     */
-    JNetworkCinema.cinemaCancelFavoriteCinemaNeedLogin = function (cinemaId) {
-        var loginParas = JNetwork_js_1.default.loginParas();
-        if (!loginParas.hasAccount) {
-            return JNetwork_js_1.default.failedAuthorizationNetwork();
+        /**
+         * 获取指定影院排片放映厅安排
+         * @param cinemaId 影院Id
+         * @param filmId 影片Id
+         * @param date 日期（时间戳标示）
+         * @returns {{terminate, then}|*}
+         */
+
+    }, {
+        key: "cinemaScreeningItems",
+        value: function cinemaScreeningItems(cinemaId, filmId, date) {
+            var _this6 = this;
+
+            return new _promise2.default(function (resolve, reject) {
+                var _JNetwork_1$default$P7;
+
+                date = JToolDate_1.default.dateStringFromTimeInterval(date, 'yyyy-MM-dd');
+                (_JNetwork_1$default$P7 = JNetwork_1.default.POST(JUrlList_1.cinemaUrl.jbzScreeningItems, { cinemaId: cinemaId, filmId: filmId, date: date })).useParas.apply(_JNetwork_1$default$P7, (0, _toConsumableArray3.default)(_this6.otherParas)).then(function (data) {
+                    resolve(JDataUnify_1.default('cinemaUrl.jbzScreeningItems', data));
+                }, function (error) {
+                    reject(error);
+                });
+            });
         }
-        return JNetwork_js_1.default.POST(JUrlList_1.cinemaUrl.jbzCancelcollectcinema, {
-            openId: loginParas.openId,
-            cinemaId: cinemaId
-        }, {
-            'sessionId': loginParas.sessionId
-        });
-    };
+    }, {
+        key: "cinemaSeats",
+
+        /**
+         * 实时座位图
+         * @param type 平台类型 （必须）
+         * @param paras （根据不同平台变化）
+         * @returns {*}
+         */
+        value: function cinemaSeats(type, paras) {
+            var _this7 = this;
+
+            if (type === 'meituan' || type === 'dazhong') {
+                type = 'maoyan';
+            }
+            return new _promise2.default(function (resolve, reject) {
+                var _JNetwork_1$default$P8;
+
+                (_JNetwork_1$default$P8 = JNetwork_1.default.POST(JUrlList_1.cinemaUrl.jbzRealtimeSeat, (0, _assign2.default)({ type: type }, paras))).useParas.apply(_JNetwork_1$default$P8, (0, _toConsumableArray3.default)(_this7.otherParas)).then(function (data) {
+                    resolve(JDataUnify_1.default('cinemaUrl.jbzRealtimeSeat', data));
+                }, function (error) {
+                    reject(error);
+                });
+            });
+        }
+        /**
+         * 智能实时座位图
+         * @param type 平台类型 （必须）
+         * @param paras （根据不同平台变化）
+         * @returns {*}
+         */
+
+    }, {
+        key: "cinemaSmartSeats",
+        value: function cinemaSmartSeats(type, paras) {
+            var _this8 = this;
+
+            if (type === 'meituan' || type === 'dazhong') {
+                type = 'maoyan';
+            }
+            return new _promise2.default(function (resolve, reject) {
+                var _JNetwork_1$default$P9;
+
+                (_JNetwork_1$default$P9 = JNetwork_1.default.POST(JUrlList_1.cinemaUrl.jbzRealtimeSeat, (0, _assign2.default)({ type: type }, paras))).useParas.apply(_JNetwork_1$default$P9, (0, _toConsumableArray3.default)(_this8.otherParas)).then(function (data) {
+                    resolve(JManagerSeat_1.default.defaultManager().smartSeatsFromSeats(type, JDataUnify_1.default('cinemaUrl.jbzRealtimeSmartSeat', data)));
+                }, function (error) {
+                    reject(error);
+                });
+            });
+        }
+        /**
+         * 收藏影院
+         * @param cinemaId 影院Id
+         * @param cinemaName 影院名字
+         * @returns {{terminate, then}|*}
+         */
+
+    }, {
+        key: "cinemaFavoriteCinema",
+        value: function cinemaFavoriteCinema(cinemaId, cinemaName) {
+            var _JNetwork_1$default$P10, _JNetwork_1$default$P11;
+
+            return (_JNetwork_1$default$P10 = (_JNetwork_1$default$P11 = JNetwork_1.default.POST(JUrlList_1.cinemaUrl.jbzCollectcinema, {
+                cinemaId: cinemaId,
+                cinemaName: cinemaName
+            })).useParas.apply(_JNetwork_1$default$P11, (0, _toConsumableArray3.default)(this.otherParas))).useHeaders.apply(_JNetwork_1$default$P10, (0, _toConsumableArray3.default)(this.otherHeaders));
+        }
+        /**
+         * 取消收藏影院
+         * @param cinemaId 影院Id
+         * @returns {{terminate, then}|*}
+         */
+
+    }, {
+        key: "cinemaCancelFavoriteCinema",
+        value: function cinemaCancelFavoriteCinema(cinemaId) {
+            var _JNetwork_1$default$P12;
+
+            return (_JNetwork_1$default$P12 = JNetwork_1.default.POST(JUrlList_1.cinemaUrl.jbzCancelcollectcinema, {})).useParas.apply(_JNetwork_1$default$P12, (0, _toConsumableArray3.default)(this.otherParas));
+        }
+    }], [{
+        key: "cinemaDetail",
+        value: function cinemaDetail(cinemaId) {
+            return this.instance().cinemaDetail(cinemaId);
+        }
+    }, {
+        key: "cinemaList",
+        value: function cinemaList(a, b) {
+            return this.instance().cinemaList(a, b);
+        }
+    }, {
+        key: "cinemaScreeningFilmList",
+        value: function cinemaScreeningFilmList(cinemaId) {
+            return this.instance().cinemaScreeningFilmList(cinemaId);
+        }
+    }, {
+        key: "cinemaScreeningDateList",
+        value: function cinemaScreeningDateList(cinemaId, filmId) {
+            return this.instance().cinemaScreeningDateList(cinemaId, filmId);
+        }
+    }, {
+        key: "cinemaScreeningItems",
+        value: function cinemaScreeningItems(cinemaId, filmId, date) {
+            return this.instance().cinemaScreeningItems(cinemaId, filmId, date);
+        }
+    }, {
+        key: "cinemaSeats",
+        value: function cinemaSeats(type, paras) {
+            return this.instance().cinemaSeats(type, paras);
+        }
+    }, {
+        key: "cinemaSmartSeats",
+        value: function cinemaSmartSeats(type, paras) {
+            return this.instance().cinemaSmartSeats(type, paras);
+        }
+    }, {
+        key: "cinemaFavoriteCinema",
+        value: function cinemaFavoriteCinema(cinemaId, cinemaName) {
+            return this.instance().cinemaFavoriteCinema(cinemaId, cinemaName);
+        }
+    }, {
+        key: "cinemaCancelFavoriteCinema",
+        value: function cinemaCancelFavoriteCinema(cinemaId) {
+            return this.instance().cinemaCancelFavoriteCinema(cinemaId);
+        }
+    }]);
     return JNetworkCinema;
-}();
+}(JNetworkRoot_1.default);
+
 exports.default = JNetworkCinema;
 //# sourceMappingURL=JNetworkCinema.js.map

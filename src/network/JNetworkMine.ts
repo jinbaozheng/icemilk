@@ -3,7 +3,7 @@
  */
 'use strict';
 import _ from '../unify/JDataUnify';
-import JNetwork from './JNetwork.ts';
+import JNetwork from './JNetwork';
 import {mineUrl} from '../unify/JUrlList';
 import JNetworkRoot from './JNetworkRoot';
 

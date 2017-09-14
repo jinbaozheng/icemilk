@@ -176,7 +176,6 @@ class JNetwork {
             console.log('不存在的全局变量:' + key);
           }
         });
-
         config.params = {...config.params, ...otherParas};
         config.headers = {...config.headers, ...otherHeaders};
         return this.delegate.requestInterceptor(config);

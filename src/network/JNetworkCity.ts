@@ -14,31 +14,6 @@ import JNetworkRoot from "./JNetworkRoot";
  * @hideconstructor
  */
 class JNetworkCity extends JNetworkRoot{
-
-  static cityList() {
-    this.instance().cityList();
-  }
-
-  static cityByCoordinate(coordinate) {
-    this.instance().cityByCoordinate(coordinate);
-  }
-
-  static cityNeedCoordinate() {
-    this.instance().cityNeedCoordinate();
-  }
-
-  static cityById(cityId) {
-    this.instance().cityById(cityId);
-  }
-
-  static cityDistrictList(cityId) {
-    this.instance().cityDistrictList(cityId);
-  }
-
-  static cityHotList() {
-    this.instance().cityHotList();
-  }
-
   /**
    *  获取城市列表
    * @returns {*}
@@ -88,7 +63,7 @@ class JNetworkCity extends JNetworkRoot{
    * @returns {{terminate, then}|*}
    */
   cityById(cityId) {
-    return JPromise.create((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       JNetwork.POST(cityUrl.jbzCityById, {cityId}).useParas(...this.otherParas).then(data => {
         resolve(_('cityUrl.jbzCityById', data));
       }, error => {
@@ -124,6 +99,30 @@ class JNetworkCity extends JNetworkRoot{
         reject(error);
       });
     });
+  }
+
+  static cityList() {
+    return this.instance().cityList();
+  }
+
+  static cityByCoordinate(coordinate) {
+    return this.instance().cityByCoordinate(coordinate);
+  }
+
+  static cityNeedCoordinate() {
+    return this.instance().cityNeedCoordinate();
+  }
+
+  static cityById(cityId) {
+    return this.instance().cityById(cityId);
+  }
+
+  static cityDistrictList(cityId) {
+    return this.instance().cityDistrictList(cityId);
+  }
+
+  static cityHotList() {
+    return this.instance().cityHotList();
   }
 }
 

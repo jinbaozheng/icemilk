@@ -2,7 +2,7 @@
  * Created by cuppi on 2016/12/7.
  */
 'use strict';
-import JNetwork from './JNetwork.ts';
+import JNetwork from './JNetwork';
 import {tradeUrl} from '../unify/JUrlList';
 import _ from '../unify/JDataUnify';
 import JNetworkRoot from './JNetworkRoot';

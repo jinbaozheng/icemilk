@@ -2,8 +2,8 @@
  * Created by cuppi on 2017/9/6.
  */
 
-let instance = null;
 class JNetworkRoot{
+  static _instance: any;
   otherParas: Array<string|object> = [];
   otherHeaders: Array<string|object> = [];
 
@@ -20,10 +20,11 @@ class JNetworkRoot{
   }
 
   static instance(): any {
-    if (!instance) {
-      instance = new this();
+    if (!this._instance) {
+      this._instance = new this();
+      this._instance.test = Math.random();
     }
-    return instance;
+    return this._instance;
   }
 }
 
