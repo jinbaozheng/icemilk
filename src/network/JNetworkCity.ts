@@ -20,7 +20,7 @@ class JNetworkCity extends JNetworkRoot{
    */
   cityList() {
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cityUrl.jbzCities).useParas(...this.otherParas).then(data => {
+      this.prefixPromise(cityUrl.jbzCities).then(data => {
         resolve(_('cityUrl.jbzCities', data));
       }, error => {
         reject(error);
@@ -35,7 +35,7 @@ class JNetworkCity extends JNetworkRoot{
    */
   cityByCoordinate(coordinate) {
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cityUrl.jbzCityByCoordinate, coordinate).useParas(...this.otherParas).then(data => {
+      this.prefixPromise(cityUrl.jbzCityByCoordinate, coordinate).then(data => {
         resolve(_('cityUrl.jbzCityByCoordinate', data));
       }, error => {
         reject(error);
@@ -49,7 +49,7 @@ class JNetworkCity extends JNetworkRoot{
    */
   cityNeedCoordinate() {
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cityUrl.jbzCityByCoordinate, {...JNetwork.locationParas()}).useParas(...this.otherParas).then(data => {
+      this.prefixPromise(cityUrl.jbzCityByCoordinate).then(data => {
         resolve(_('cityUrl.jbzCityByCoordinate', data));
       }, error => {
         reject(error);
@@ -64,7 +64,7 @@ class JNetworkCity extends JNetworkRoot{
    */
   cityById(cityId) {
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cityUrl.jbzCityById, {cityId}).useParas(...this.otherParas).then(data => {
+      this.prefixPromise(cityUrl.jbzCityById, {cityId}).then(data => {
         resolve(_('cityUrl.jbzCityById', data));
       }, error => {
         reject(error);
@@ -79,7 +79,7 @@ class JNetworkCity extends JNetworkRoot{
    */
   cityDistrictList(cityId) {
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cityUrl.jbzDistricts, {cityId}).useParas(...this.otherParas).then(data => {
+      this.prefixPromise(cityUrl.jbzDistricts, {cityId}).then(data => {
         resolve(_('cityUrl.jbzDistricts', data));
       }, error => {
         reject(error);
@@ -93,7 +93,7 @@ class JNetworkCity extends JNetworkRoot{
    */
   cityHotList() {
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cityUrl.jbzHotCities).useParas(...this.otherParas).then(data => {
+      this.prefixPromise(cityUrl.jbzHotCities).then(data => {
         resolve(_('cityUrl.jbzHotCities', data));
       }, error => {
         reject(error);

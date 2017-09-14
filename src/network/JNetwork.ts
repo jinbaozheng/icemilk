@@ -3,10 +3,6 @@
  */
 'use strict';
 import axios from 'axios'
-import UrlTool from '../tool/JToolUrl';
-import LocationParas from "../paras/LocationParas";
-import CityParas from "../paras/CityParas";
-import CoordinateParas from "../paras/CoordinateParas";
 import NetworkDelegate from "../delegate/NetworkDelegate";
 import JPromise from '../structure/JPromise';
 
@@ -18,39 +14,33 @@ import JPromise from '../structure/JPromise';
  */
 class JNetwork {
 
-  static baseUrl = '';
-  static timeout = 10 * 1000;
+  static baseUrl: string = '';
   static delegate: NetworkDelegate = null;
-  static inType = '';
+  static inType: string = '';
+  static timeout: number = 10 * 1000;
+  static _instance: any;
 
-  /**
-   * 需要定位的请求的公共参数
-   * @private
-   * @returns {*}
-   */
-  static locationParas(): LocationParas {
-    if (this.delegate) {
-      let cityParas: CityParas = this.delegate.cityParas();
-      let coordinateParas: CoordinateParas = this.delegate.coordinateParas();
-      return {
-        cityId: cityParas.id,
-        longitude: coordinateParas.longitude,
-        latitude: coordinateParas.latitude
-      };
-    }
-    return null;
+  otherParas: Array<string|object> = [];
+  otherHeaders: Array<string|object> = [];
+
+  static useParas(...paras: Array<string|object>) {
+    let instance = this.instance();
+    instance.otherParas = paras;
+    return instance;
   }
 
-  /**
-   * 需要登录的请求的公共参数
-   * @private
-   * @returns {*}
-   */
-  static loginParas() {
-    if (this.delegate && this.delegate.loginParas) {
-      return this.delegate.loginParas();
+  static useHeaders(...headers: Array<string|object>) {
+    let instance = this.instance();
+    instance.otherHeaders = headers;
+    return instance;
+  }
+
+  static instance(): any {
+    if (!this._instance) {
+      this._instance = new this();
+      this._instance.test = Math.random();
     }
-    return {};
+    return this._instance;
   }
 
   /**
@@ -111,17 +101,27 @@ class JNetwork {
    * 检查是否配置SDK
    * @private
    */
-  static checkConfigBaseUrl() {
-    if (!this.baseUrl || this.baseUrl === '') {
+  checkConfigBaseUrl() {
+    if (!JNetwork.baseUrl || JNetwork.baseUrl === '') {
       console.log('please check if you have config baseUrl for SDK');
-      throw Error('Not Config');
+      // throw Error('Not Config');
     }
   }
 
-  static fetchRequest(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any): JPromise<any> {
+  /**
+   * 发送请求
+   * @param method 方法类型
+   * @param baseUrl 基地址
+   * @param url 相对地址
+   * @param parameters 参数
+   * @param headers 头参数
+   * @param otherObject 其他相关设置
+   * @returns {JPromise<any>}
+   */
+  fetchRequest(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any): JPromise<any> {
     this.checkConfigBaseUrl();
     let isOk;
-    let jpromise = this.wrapCancelablePromise(new Promise((resolve, reject) => {
+    let jpromise = JNetwork.wrapCancelablePromise(new Promise((resolve, reject) => {
       let iHeaders = Object.assign({
         'Accept': 'application/json',
         // TODO: 搞明白
@@ -142,7 +142,7 @@ class JNetwork {
             otherParas = {...otherParas, ...key};
             return;
           }
-          let globalParaFunc = this.delegate.globalParas()[key];
+          let globalParaFunc = JNetwork.delegate.globalParas()[key];
           if (globalParaFunc){
             let globalPara = globalParaFunc();
             if (typeof globalPara == "object"){
@@ -162,7 +162,7 @@ class JNetwork {
             otherHeaders = {...otherHeaders, ...key};
             return;
           }
-          let globalHeaderFunc = this.delegate.globalHeaders()[key];
+          let globalHeaderFunc = JNetwork.delegate.globalHeaders()[key];
           if (globalHeaderFunc){
             let globalHeader = globalHeaderFunc();
             if (typeof globalHeader == "object"){
@@ -178,14 +178,14 @@ class JNetwork {
         });
         config.params = {...config.params, ...otherParas};
         config.headers = {...config.headers, ...otherHeaders};
-        return this.delegate.requestInterceptor(config);
+        return JNetwork.delegate.requestInterceptor(config);
       }, error => {
-        return this.delegate.requestInterceptorError(error);
+        return JNetwork.delegate.requestInterceptorError(error);
       });
       jaxios.interceptors.response.use(response => {
-        return this.delegate.responseInterceptor(response);
+        return JNetwork.delegate.responseInterceptor(response);
       }, error => {
-        return this.delegate.responseInterceptorError(error);
+        return JNetwork.delegate.responseInterceptorError(error);
       });
       jaxios.post(url).then((response) => {
         isOk = response.status === 200;
@@ -227,7 +227,7 @@ class JNetwork {
    * @returns {Promise} 异步请求块
    */
   static freedomPOST(baseUrl, url, parameters, headers, otherObject): JPromise<any> {
-    return this.fetchRequest('post', baseUrl, url, parameters, headers, otherObject);
+    return this.instance().freedomPOST(...arguments)
   }
 
   /**
@@ -240,7 +240,7 @@ class JNetwork {
    * @returns {Promise} 异步请求块
    */
   static freedomGET(baseUrl: string, url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
-    return this.fetchRequest('get', baseUrl, url, parameters, headers, otherObject);
+    return this.instance().freedomGET(...arguments)
   }
 
   /**
@@ -252,10 +252,7 @@ class JNetwork {
    * @returns {Promise} 异步请求块
    */
   static POST(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
-    return this.freedomPOST(this.baseUrl, url, {
-      ...parameters,
-      inType: this.inType
-    }, headers, {timeout: this.timeout, ...otherObject})
+    return this.instance().POST(...arguments)
   }
 
   /**
@@ -267,10 +264,30 @@ class JNetwork {
    * @returns {Promise} 异步请求块
    */
   static GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
-    return this.freedomGET(this.baseUrl, url, {
+    return this.instance().GET(...arguments)
+  }
+
+
+  freedomPOST(baseUrl, url, parameters, headers, otherObject): JPromise<any> {
+    return this.fetchRequest('post', baseUrl, url, parameters, headers, otherObject);
+  }
+
+  freedomGET(baseUrl: string, url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
+    return this.fetchRequest('get', baseUrl, url, parameters, headers, otherObject);
+  }
+
+  POST(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
+    return this.freedomPOST(JNetwork.baseUrl, url, {
       ...parameters,
-      inType: this.inType
-    }, headers, {timeout: this.timeout, ...otherObject})
+      inType: JNetwork.inType
+    }, headers, {timeout: JNetwork.timeout, ...otherObject})
+  }
+
+  GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
+    return this.freedomGET(JNetwork.baseUrl, url, {
+      ...parameters,
+      inType: JNetwork.inType
+    }, headers, {timeout: JNetwork.timeout, ...otherObject})
   }
 }
 

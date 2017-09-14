@@ -22,7 +22,7 @@ class JNetworkFilm extends JNetworkRoot{
   filmHotfilms(page: PageModel) {
     if (!page) {
       return new Promise((resolve, reject) => {
-        JNetwork.POST(filmUrl.jbzHotFilms).useParas(...this.otherParas).then(data => {
+        this.prefixPromise(filmUrl.jbzHotFilms).then(data => {
           resolve(_('filmUrl.jbzHotFilms', data));
         }, error => {
           reject(error);
@@ -30,7 +30,7 @@ class JNetworkFilm extends JNetworkRoot{
       })
     } else {
       return new Promise((resolve, reject) => {
-        JNetwork.POST(filmUrl.jbzHotFilmsPage, {page: page.index, size: page.size}).useParas(...this.otherParas).then(data => {
+        this.prefixPromise(filmUrl.jbzHotFilmsPage, {page: page.index, size: page.size}).then(data => {
           resolve(_('filmUrl.jbzHotFilmsPage', data));
         }, error => {
           reject(error);
@@ -45,7 +45,7 @@ class JNetworkFilm extends JNetworkRoot{
    */
   filmHotfilmsSimple() {
     return new Promise((resolve, reject) => {
-      JNetwork.POST(filmUrl.jbzHotFilmsSimple).useParas(...this.otherParas).then(data => {
+      this.prefixPromise(filmUrl.jbzHotFilmsSimple).then(data => {
         resolve(_('filmUrl.jbzHotFilmsSimple', data));
       }, error => {
         reject(error);
@@ -61,7 +61,7 @@ class JNetworkFilm extends JNetworkRoot{
   filmWaitfilms(page) {
     if (!page) {
       return new Promise((resolve, reject) => {
-        JNetwork.POST(filmUrl.jbzWaitFilms).useParas(...this.otherParas).then(data => {
+        this.prefixPromise(filmUrl.jbzWaitFilms).then(data => {
           resolve(_('filmUrl.jbzWaitFilms', data));
         }, error => {
           reject(error);
@@ -69,7 +69,7 @@ class JNetworkFilm extends JNetworkRoot{
       })
     } else {
       return new Promise((resolve, reject) => {
-        JNetwork.POST(filmUrl.jbzWaitFilmsPage, {page: page.index, size: page.size}).useParas(...this.otherParas).then(data => {
+        this.prefixPromise(filmUrl.jbzWaitFilmsPage, {page: page.index, size: page.size}).then(data => {
           resolve(_('filmUrl.jbzWaitFilmsPage', data));
         }, error => {
           reject(error);
@@ -87,7 +87,7 @@ class JNetworkFilm extends JNetworkRoot{
   filmDetail(filmId, platform = null) {
     if (platform && platform !== 'jbz') {
       return new Promise((resolve, reject) => {
-        JNetwork.POST(filmUrl.jbzFilmDetailByPartner, {platformFilmId: filmId, platform}).useParas(...this.otherParas).then(data => {
+        this.prefixPromise(filmUrl.jbzFilmDetailByPartner, {platformFilmId: filmId, platform}).then(data => {
           resolve(_('filmUrl.jbzFilmDetailByPartner', data));
         }, error => {
           reject(error);
@@ -95,7 +95,7 @@ class JNetworkFilm extends JNetworkRoot{
       });
     } else {
       return new Promise((resolve, reject) => {
-        JNetwork.POST(filmUrl.jbzFilmDetail, {filmId}).useParas(...this.otherParas).then(data => {
+        this.prefixPromise(filmUrl.jbzFilmDetail, {filmId}).then(data => {
           resolve(_('filmUrl.jbzFilmDetail', data));
         }, error => {
           reject(error);
@@ -111,7 +111,7 @@ class JNetworkFilm extends JNetworkRoot{
    */
   filmDateList(filmId) {
     return new Promise((resolve, reject) => {
-      JNetwork.POST(filmUrl.jbzFilmDate, {filmId}).useParas(...this.otherParas).then(data => {
+      this.prefixPromise(filmUrl.jbzFilmDate, {filmId}).then(data => {
         resolve(_('filmUrl.jbzFilmDate', data));
       }, error => {
         reject(error);

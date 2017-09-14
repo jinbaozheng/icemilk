@@ -21,13 +21,13 @@ class JNetworkOther extends JNetworkRoot{
    */
   search(cityId, searchKey, nextPageFirstKey) {
     if (cityId) {
-      return JNetwork.POST(otherUrl.jbzSearch, {
+      return this.prefixPromise(otherUrl.jbzSearch, {
         cityId,
         queryStr: searchKey,
         lastKey: nextPageFirstKey
       });
     } else {
-      return JNetwork.POST(otherUrl.jbzSearch, {
+      return this.prefixPromise(otherUrl.jbzSearch, {
         queryStr: searchKey,
         lastKey: nextPageFirstKey
       });
@@ -39,7 +39,7 @@ class JNetworkOther extends JNetworkRoot{
    * @returns {{terminate, then}|*}
    */
   hotSearchKeyword() {
-    return JNetwork.POST(otherUrl.jbzHotSearchKeyword);
+    return this.prefixPromise(otherUrl.jbzHotSearchKeyword);
   }
 
   /**
@@ -50,7 +50,7 @@ class JNetworkOther extends JNetworkRoot{
    */
   otherBanners(location, cityId) {
     return new Promise((resolve, reject) => {
-      return JNetwork.POST(otherUrl.jbzBanners, {
+      return this.prefixPromise(otherUrl.jbzBanners, {
         location, cityId
       }).then(data => {
         resolve(_('otherUrl.jbzBanners', data));
@@ -67,7 +67,7 @@ class JNetworkOther extends JNetworkRoot{
    * @returns {Promise}
    */
   banners(position, cityId){
-    return JNetworkOther.otherBanners(position, cityId);
+    return this.prefixPromise(position, cityId);
   }
 
   static search(cityId, searchKey, nextPageFirstKey) {

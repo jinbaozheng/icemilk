@@ -19,7 +19,7 @@ class JNetworkMine extends JNetworkRoot{
    * @returns {*}
    */
   mineOrder() {
-    return JNetwork.POST(mineUrl.userorders).useParas(...this.otherParas).useHeaders(...this.otherHeaders);
+    return this.prefixPromise(mineUrl.userorders);
   }
 
   /***
@@ -27,7 +27,7 @@ class JNetworkMine extends JNetworkRoot{
    */
   mineFavoriteCinema() {
     return new Promise((resolve, reject) => {
-      JNetwork.POST(mineUrl.jbzMineCinema).useParas(...this.otherParas).useHeaders(...this.otherHeaders).then(data => {
+      this.prefixPromise(mineUrl.jbzMineCinema).then(data => {
         resolve(_('mineUrl.jbzMineCinema', data));
       }, error => {
         reject(error);
@@ -41,7 +41,7 @@ class JNetworkMine extends JNetworkRoot{
    * @returns {*}
    */
   mineFavorite() {
-    return JNetwork.POST(mineUrl.collectedcinemalist).useParas(...this.otherParas).useHeaders(...this.otherHeaders);
+    return this.prefixPromise(mineUrl.collectedcinemalist);
   }
 
   /***/

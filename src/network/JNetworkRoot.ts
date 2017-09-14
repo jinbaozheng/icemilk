@@ -1,6 +1,7 @@
 /**
  * Created by cuppi on 2017/9/6.
  */
+import JNetwork from './JNetwork';
 
 class JNetworkRoot{
   static _instance: any;
@@ -25,6 +26,10 @@ class JNetworkRoot{
       this._instance.test = Math.random();
     }
     return this._instance;
+  }
+
+  prefixPromise(url, paras?, headers?){
+    return JNetwork.useParas(...this.otherParas).useHeaders(...this.otherHeaders).POST(url, paras, headers);
   }
 }
 

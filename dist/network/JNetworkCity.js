@@ -41,7 +41,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var JNetwork_1 = require("./JNetwork");
 var JUrlList_1 = require("../unify/JUrlList");
 var JDataUnify_1 = require("../unify/JDataUnify");
-var JPromise_1 = require("../structure/JPromise");
 var JNetworkRoot_1 = require("./JNetworkRoot");
 /**
  * 城市及定位接口
@@ -129,7 +128,7 @@ var JNetworkCity = function (_JNetworkRoot_1$defau) {
         value: function cityById(cityId) {
             var _this5 = this;
 
-            return JPromise_1.default.create(function (resolve, reject) {
+            return new _promise2.default(function (resolve, reject) {
                 var _JNetwork_1$default$P4;
 
                 (_JNetwork_1$default$P4 = JNetwork_1.default.POST(JUrlList_1.cityUrl.jbzCityById, { cityId: cityId })).useParas.apply(_JNetwork_1$default$P4, (0, _toConsumableArray3.default)(_this5.otherParas)).then(function (data) {

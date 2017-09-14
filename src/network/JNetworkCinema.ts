@@ -22,7 +22,7 @@ class JNetworkCinema extends JNetworkRoot{
    */
   cinemaDetail(cinemaId) {
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cinemaUrl.jbzDetail, {cinemaId}).useParas(...this.otherParas).useHeaders(...this.otherHeaders).then(data => {
+      this.prefixPromise(cinemaUrl.jbzDetail, {cinemaId}).then(data => {
         resolve(_('cinemaUrl.jbzDetail', data, 0));
       }, error => {
         reject(error);
@@ -45,14 +45,14 @@ class JNetworkCinema extends JNetworkRoot{
     return new Promise((resolve, reject) => {
       let u = undefined;
       let {filmId, feature, region, sort, limit} = cinemaFilter ? cinemaFilter : {filmId: u, feature: u, region: u, sort: u, limit: u};
-      JNetwork.POST(cinemaUrl.jbzList, {
+      this.prefixPromise(cinemaUrl.jbzList, {
         ...location,
         filmId,
         feature,
         regionName: region,
         orderType: sort,
         limit
-      }).useParas(...this.otherParas).then(data => {
+      }).then(data => {
         resolve(_('cinemaUrl.jbzList', data));
       }, error => {
         reject(error);
@@ -67,9 +67,9 @@ class JNetworkCinema extends JNetworkRoot{
    */
   cinemaScreeningFilmList(cinemaId) {
     return new Promise((resolve, reject) => {
-      return JNetwork.POST(cinemaUrl.jbzScreeningFilmList, {
+      return this.prefixPromise(cinemaUrl.jbzScreeningFilmList, {
         cinemaId
-      }).useParas(...this.otherParas).useHeaders(...this.otherHeaders).then(data => {
+      }).then(data => {
         resolve(_('cinemaUrl.jbzScreeningFilmList', data));
       }, error => {
         reject(error);
@@ -85,7 +85,7 @@ class JNetworkCinema extends JNetworkRoot{
    */
   cinemaScreeningDateList(cinemaId, filmId) {
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cinemaUrl.jbzScreeningDateList, {cinemaId, filmId}).useParas(...this.otherParas).then(data => {
+      this.prefixPromise(cinemaUrl.jbzScreeningDateList, {cinemaId, filmId}).then(data => {
         resolve(_('cinemaUrl.jbzScreeningDateList', data));
       }, error => {
         reject(error);
@@ -103,7 +103,7 @@ class JNetworkCinema extends JNetworkRoot{
   cinemaScreeningItems(cinemaId, filmId, date) {
     return new Promise((resolve, reject) => {
       date = DateTool.dateStringFromTimeInterval(date, 'yyyy-MM-dd');
-      JNetwork.POST(cinemaUrl.jbzScreeningItems, {cinemaId, filmId, date}).useParas(...this.otherParas).then(data => {
+      this.prefixPromise(cinemaUrl.jbzScreeningItems, {cinemaId, filmId, date}).then(data => {
         resolve(_('cinemaUrl.jbzScreeningItems', data));
       }, error => {
         reject(error);
@@ -122,7 +122,7 @@ class JNetworkCinema extends JNetworkRoot{
       type = 'maoyan';
     }
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cinemaUrl.jbzRealtimeSeat, {type, ...paras}).useParas(...this.otherParas).then(data => {
+      this.prefixPromise(cinemaUrl.jbzRealtimeSeat, {type, ...paras}).then(data => {
         resolve(_('cinemaUrl.jbzRealtimeSeat', data));
       }, error => {
         reject(error);
@@ -141,7 +141,7 @@ class JNetworkCinema extends JNetworkRoot{
       type = 'maoyan';
     }
     return new Promise((resolve, reject) => {
-      JNetwork.POST(cinemaUrl.jbzRealtimeSeat, {type, ...paras}).useParas(...this.otherParas).then(data => {
+      this.prefixPromise(cinemaUrl.jbzRealtimeSeat, {type, ...paras}).then(data => {
         resolve(SeatManager.defaultManager().smartSeatsFromSeats(type, _('cinemaUrl.jbzRealtimeSmartSeat', data)));
       }, error => {
         reject(error);
@@ -156,10 +156,10 @@ class JNetworkCinema extends JNetworkRoot{
    * @returns {{terminate, then}|*}
    */
   cinemaFavoriteCinema(cinemaId, cinemaName) {
-    return JNetwork.POST(cinemaUrl.jbzCollectcinema, {
+    return this.prefixPromise(cinemaUrl.jbzCollectcinema, {
       cinemaId: cinemaId,
       cinemaName: cinemaName
-    }).useParas(...this.otherParas).useHeaders(...this.otherHeaders);
+    });
   }
 
   /**
@@ -168,8 +168,8 @@ class JNetworkCinema extends JNetworkRoot{
    * @returns {{terminate, then}|*}
    */
   cinemaCancelFavoriteCinema(cinemaId) {
-    return JNetwork.POST(cinemaUrl.jbzCancelcollectcinema, {
-    }).useParas(...this.otherParas);
+    return this.prefixPromise(cinemaUrl.jbzCancelcollectcinema, {
+    });
   }
 
   static cinemaDetail(cinemaId) {

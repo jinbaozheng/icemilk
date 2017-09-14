@@ -19,9 +19,8 @@ class JNetworkTrade extends JNetworkRoot{
    * @returns {{terminate, then}|*}
    */
   tradeLockSeatNeedLogin(type, paras) {
-    let loginParas = JNetwork.loginParas();
     return new Promise((resolve, reject) => {
-      JNetwork.POST(tradeUrl.jbzLockSeat, {type, ...loginParas, ...paras}).then(data => {
+      this.prefixPromise(tradeUrl.jbzLockSeat, {type, ...paras}).then(data => {
         resolve(_('tradeUrl.jbzLockSeat', data));
       }, error => {
         reject(error);
@@ -35,7 +34,7 @@ class JNetworkTrade extends JNetworkRoot{
    * @returns {{terminate, then}|*}
    */
   cancelLockSeatNeedLogin(orderId) {
-    return JNetwork.POST(tradeUrl.jbzCancelOrder, {orderId})
+    return this.prefixPromise(tradeUrl.jbzCancelOrder, {orderId})
   }
 
   /**
@@ -45,12 +44,10 @@ class JNetworkTrade extends JNetworkRoot{
    * @returns {{terminate, then}|*}
    */
   tradeApplyOrderNeedLogin(type, paras) {
-    let loginParas = JNetwork.loginParas();
     let inType = JNetwork.inType;
-
     if (inType === 'ICBC-APP' || inType === 'SHANGHAI-APP') {
       return new Promise((resolve, reject) => {
-        JNetwork.POST(tradeUrl.jbzWebAtAppApplyTicket, {type, ...loginParas, ...paras}).then(data => {
+        this.prefixPromise(tradeUrl.jbzWebAtAppApplyTicket, {type, ...paras}).then(data => {
           resolve(_('tradeUrl.jbzWebAtAppApplyTicket', data));
         }, error => {
           reject(error);
@@ -69,13 +66,12 @@ class JNetworkTrade extends JNetworkRoot{
    * @returns {{terminate, then}|*}
    */
   tradePrePayOrderNeedLoginInType(orderId, payType, prizeIds, redIds) {
-    let loginParas = JNetwork.loginParas();
     let inType = JNetwork.inType;
     if (inType === 'DPIOS' || inType === 'DPANDROID') {
-      return JNetwork.POST(tradeUrl.jbzAppPrepay, {orderId, payType, prizeIds, redIds}, loginParas);
+      return this.prefixPromise(tradeUrl.jbzAppPrepay, {orderId, payType, prizeIds, redIds});
     }
     if (inType === 'DPWX' || inType === 'DPWEB' || inType === 'PC') {
-      return JNetwork.POST(tradeUrl.jbzWebPrepay, {orderId, payType, prizeIds, redIds}, loginParas);
+      return this.prefixPromise(tradeUrl.jbzWebPrepay, {orderId, payType, prizeIds, redIds});
     }
     return JNetwork.wrongInType();
   }

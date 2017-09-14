@@ -18,10 +18,10 @@ class JNetworkAccount extends JNetworkRoot{
    * @returns {{terminate, then}|*}
    */
   accountLogin(mobile, password) {
-    return JNetwork.POST(accountUrl.jbzLogin, {
+    return this.prefixPromise(accountUrl.jbzLogin, {
       mobile: mobile,
       password: password
-    }).useParas(...this.otherParas);
+    });
   }
 
   /**
@@ -30,7 +30,8 @@ class JNetworkAccount extends JNetworkRoot{
    * @returns {{terminate, then}|*}
    */
   accountLogout(sessionId) {
-    return JNetwork.POST(accountUrl.jbzLogout, {}, sessionId).useParas(...this.otherParas);
+    return this.prefixPromise(accountUrl.jbzLogout, {
+    }, sessionId);
   }
 
   /**
@@ -40,10 +41,10 @@ class JNetworkAccount extends JNetworkRoot{
    * @returns {{terminate, then}|*}
    */
   accountVerifyCode(mobile, type) {
-    return JNetwork.POST(accountUrl.jbzVerifycode, {
+    return this.prefixPromise(accountUrl.jbzVerifycode, {
       mobile: mobile,
       codetype: type
-    }).useParas(...this.otherParas);
+    });
   }
 
   /**
@@ -54,11 +55,11 @@ class JNetworkAccount extends JNetworkRoot{
    * @returns {{terminate, then}|*}
    */
   accountRegister(mobile, verifyCode, password) {
-    return JNetwork.POST(accountUrl.jbzRegister, {
+    return this.prefixPromise(accountUrl.jbzRegister, {
       mobile: mobile,
       verifyCode: verifyCode,
       password: password
-    }).useParas(...this.otherParas);
+    });
   }
 
   /**
@@ -69,11 +70,11 @@ class JNetworkAccount extends JNetworkRoot{
    * @returns {{terminate, then}|*}
    */
   accountUpdatepass(mobile, verfyCode, password) {
-    return JNetwork.POST(accountUrl.jbzUpdatepass, {
+    return this.prefixPromise(accountUrl.jbzUpdatepass, {
       mobile: mobile,
       verifyCode: verfyCode,
       password: password
-    }).useParas(...this.otherParas);
+    });
   }
 
   static accountLogin(mobile, password) {
