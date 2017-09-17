@@ -30,7 +30,6 @@ var _inherits3 = _interopRequireDefault(_inherits2);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var JNetwork_1 = require("./JNetwork");
 var JUrlList_1 = require("../unify/JUrlList");
 var JDataUnify_1 = require("../unify/JDataUnify");
 var JNetworkRoot_1 = require("./JNetworkRoot");
@@ -59,13 +58,13 @@ var JNetworkOther = function (_JNetworkRoot_1$defau) {
          */
         value: function search(cityId, searchKey, nextPageFirstKey) {
             if (cityId) {
-                return JNetwork_1.default.POST(JUrlList_1.otherUrl.jbzSearch, {
+                return this.prefixPromise(JUrlList_1.otherUrl.jbzSearch, {
                     cityId: cityId,
                     queryStr: searchKey,
                     lastKey: nextPageFirstKey
                 });
             } else {
-                return JNetwork_1.default.POST(JUrlList_1.otherUrl.jbzSearch, {
+                return this.prefixPromise(JUrlList_1.otherUrl.jbzSearch, {
                     queryStr: searchKey,
                     lastKey: nextPageFirstKey
                 });
@@ -79,7 +78,7 @@ var JNetworkOther = function (_JNetworkRoot_1$defau) {
     }, {
         key: "hotSearchKeyword",
         value: function hotSearchKeyword() {
-            return JNetwork_1.default.POST(JUrlList_1.otherUrl.jbzHotSearchKeyword);
+            return this.prefixPromise(JUrlList_1.otherUrl.jbzHotSearchKeyword);
         }
         /**
          * 广告接口
@@ -91,8 +90,10 @@ var JNetworkOther = function (_JNetworkRoot_1$defau) {
     }, {
         key: "otherBanners",
         value: function otherBanners(location, cityId) {
+            var _this2 = this;
+
             return new _promise2.default(function (resolve, reject) {
-                return JNetwork_1.default.POST(JUrlList_1.otherUrl.jbzBanners, {
+                return _this2.prefixPromise(JUrlList_1.otherUrl.jbzBanners, {
                     location: location, cityId: cityId
                 }).then(function (data) {
                     resolve(JDataUnify_1.default('otherUrl.jbzBanners', data));
@@ -111,7 +112,7 @@ var JNetworkOther = function (_JNetworkRoot_1$defau) {
     }, {
         key: "banners",
         value: function banners(position, cityId) {
-            return JNetworkOther.otherBanners(position, cityId);
+            return this.prefixPromise(position, cityId);
         }
     }], [{
         key: "search",

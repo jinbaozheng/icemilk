@@ -10,9 +10,6 @@ import UrlTool from "../tool/JToolUrl";
 abstract class NetworkDelegate{
   globalParas: Function;
   globalHeaders: Function;
-  abstract coordinateParas(): CoordinateParas;
-  abstract cityParas(): CityParas;
-  abstract loginParas(): any;
   abstract requestInterceptor(config: AxiosRequestConfig): AxiosRequestConfig;
   abstract requestInterceptorError(error: Error): Promise<never>;
   abstract responseInterceptor(response: AxiosResponse): AxiosResponse;

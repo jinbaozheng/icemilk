@@ -3,6 +3,10 @@
  */
 'use strict';
 
+var _defineProperty = require("babel-runtime/core-js/reflect/define-property");
+
+var _defineProperty2 = _interopRequireDefault(_defineProperty);
+
 var _typeof2 = require("babel-runtime/helpers/typeof");
 
 var _typeof3 = _interopRequireDefault(_typeof2);
@@ -10,10 +14,6 @@ var _typeof3 = _interopRequireDefault(_typeof2);
 var _assign = require("babel-runtime/core-js/object/assign");
 
 var _assign2 = _interopRequireDefault(_assign);
-
-var _defineProperty = require("babel-runtime/core-js/reflect/define-property");
-
-var _defineProperty2 = _interopRequireDefault(_defineProperty);
 
 var _promise = require("babel-runtime/core-js/promise");
 
@@ -41,41 +41,197 @@ var JPromise_1 = require("../structure/JPromise");
 var JNetwork = function () {
     function JNetwork() {
         (0, _classCallCheck3.default)(this, JNetwork);
+
+        this.otherParas = [];
+        this.otherHeaders = [];
     }
 
-    (0, _createClass3.default)(JNetwork, null, [{
-        key: "locationParas",
+    (0, _createClass3.default)(JNetwork, [{
+        key: "checkConfigBaseUrl",
 
-        /**
-         * 需要定位的请求的公共参数
+        /***
+         * 检查是否配置SDK
          * @private
-         * @returns {*}
          */
-        value: function locationParas() {
-            if (this.delegate) {
-                var cityParas = this.delegate.cityParas();
-                var coordinateParas = this.delegate.coordinateParas();
-                return {
-                    cityId: cityParas.id,
-                    longitude: coordinateParas.longitude,
-                    latitude: coordinateParas.latitude
-                };
+        value: function checkConfigBaseUrl() {
+            if (!JNetwork.baseUrl || JNetwork.baseUrl === '') {
+                console.log('please check if you have config baseUrl for SDK');
+                // throw Error('Not Config');
             }
-            return null;
         }
         /**
-         * 需要登录的请求的公共参数
-         * @private
-         * @returns {*}
+         * 发送请求
+         * @param method 方法类型
+         * @param baseUrl 基地址
+         * @param url 相对地址
+         * @param parameters 参数
+         * @param headers 头参数
+         * @param otherObject 其他相关设置
+         * @returns {JPromise<any>}
          */
 
     }, {
-        key: "loginParas",
-        value: function loginParas() {
-            if (this.delegate && this.delegate.loginParas) {
-                return this.delegate.loginParas();
+        key: "fetchRequest",
+        value: function fetchRequest(method, baseUrl, url, parameters, headers, otherObject) {
+            this.checkConfigBaseUrl();
+            var isOk = void 0;
+            var jpromise = JNetwork.wrapCancelablePromise(new _promise2.default(function (resolve, reject) {
+                var iHeaders = (0, _assign2.default)({
+                    'Accept': 'application/json',
+                    // TODO: 搞明白
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                    // 'Content-Type': 'application/json'
+                }, headers);
+                var jaxios = axios_1.default.create({
+                    method: method,
+                    timeout: otherObject.timeout,
+                    params: parameters,
+                    baseURL: baseUrl,
+                    headers: iHeaders
+                });
+                jaxios.interceptors.request.use(function (config) {
+                    var otherParas = {};
+                    jpromise.otherParas.forEach(function (key) {
+                        if ((typeof key === "undefined" ? "undefined" : (0, _typeof3.default)(key)) == "object") {
+                            otherParas = (0, _assign2.default)({}, otherParas, key);
+                            return;
+                        }
+                        var globalParaFunc = JNetwork.delegate.globalParas()[key];
+                        if (globalParaFunc) {
+                            var globalPara = globalParaFunc();
+                            if ((typeof globalPara === "undefined" ? "undefined" : (0, _typeof3.default)(globalPara)) == "object") {
+                                otherParas = (0, _assign2.default)({}, otherParas, globalPara);
+                            } else if (typeof globalPara == "string" || typeof globalPara == "number") {
+                                otherParas[key] = globalPara;
+                            } else {
+                                console.log('全局变量类型不正确:' + key);
+                            }
+                        } else {
+                            console.log('不存在的全局变量:' + key);
+                        }
+                    });
+                    var otherHeaders = {};
+                    jpromise.otherHeaders.forEach(function (key) {
+                        if ((typeof key === "undefined" ? "undefined" : (0, _typeof3.default)(key)) == "object") {
+                            otherHeaders = (0, _assign2.default)({}, otherHeaders, key);
+                            return;
+                        }
+                        var globalHeaderFunc = JNetwork.delegate.globalHeaders()[key];
+                        if (globalHeaderFunc) {
+                            var globalHeader = globalHeaderFunc();
+                            if ((typeof globalHeader === "undefined" ? "undefined" : (0, _typeof3.default)(globalHeader)) == "object") {
+                                otherHeaders = (0, _assign2.default)({}, otherHeaders, globalHeader);
+                            } else if (typeof globalHeader == "string" || typeof globalHeader == "number") {
+                                otherHeaders[key] = globalHeader;
+                            } else {
+                                console.log('全局变量类型不正确:' + key);
+                            }
+                        } else {
+                            console.log('不存在的全局变量:' + key);
+                        }
+                    });
+                    config.params = (0, _assign2.default)({}, config.params, otherParas);
+                    config.headers = (0, _assign2.default)({}, config.headers, otherHeaders);
+                    return JNetwork.delegate.requestInterceptor(config);
+                }, function (error) {
+                    return JNetwork.delegate.requestInterceptorError(error);
+                });
+                jaxios.interceptors.response.use(function (response) {
+                    return JNetwork.delegate.responseInterceptor(response);
+                }, function (error) {
+                    return JNetwork.delegate.responseInterceptorError(error);
+                });
+                jaxios.post(url).then(function (response) {
+                    isOk = response.status === 200;
+                    return response.data;
+                }).then(function (responseJson) {
+                    if (isOk) {
+                        if (!responseJson.errorCode) {
+                            resolve(responseJson.data);
+                        } else {
+                            var errorCode = responseJson.errorCode;
+                            if (responseJson.errorCode == 10022) {
+                                reject(JNetwork.notLoginError(100022));
+                            } else {
+                                reject(new Error(responseJson.message));
+                            }
+                        }
+                    } else {
+                        reject(responseJson);
+                    }
+                }).catch(function (error) {
+                    // 请求超时
+                    if (error.message.indexOf('timeout') != -1) {
+                        reject(new Error('请求超时, 请稍后重试'));
+                    } else {
+                        reject(error);
+                    }
+                });
+            }));
+            return jpromise;
+        }
+        /**
+         * 高自由度POST方法
+         * @param {string} baseUrl 基地址
+         * @param {string} url 相对地址
+         * @param {object} parameters 地址参数
+         * @param {object} headers 头参数
+         * @param {object} otherObject 其他可用配置
+         * @returns {Promise} 异步请求块
+         */
+
+    }, {
+        key: "freedomPOST",
+        value: function freedomPOST(baseUrl, url, parameters, headers, otherObject) {
+            return this.fetchRequest('post', baseUrl, url, parameters, headers, otherObject);
+        }
+    }, {
+        key: "freedomGET",
+        value: function freedomGET(baseUrl, url, parameters, headers, otherObject) {
+            return this.fetchRequest('get', baseUrl, url, parameters, headers, otherObject);
+        }
+    }, {
+        key: "POST",
+        value: function POST(url, parameters, headers, otherObject) {
+            return this.freedomPOST(JNetwork.baseUrl, url, (0, _assign2.default)({}, parameters, { inType: JNetwork.inType }), headers, (0, _assign2.default)({ timeout: JNetwork.timeout }, otherObject));
+        }
+    }, {
+        key: "GET",
+        value: function GET(url, parameters, headers, otherObject) {
+            return this.freedomGET(JNetwork.baseUrl, url, (0, _assign2.default)({}, parameters, { inType: JNetwork.inType }), headers, (0, _assign2.default)({ timeout: JNetwork.timeout }, otherObject));
+        }
+    }], [{
+        key: "useParas",
+        value: function useParas() {
+            var instance = this.instance();
+
+            for (var _len = arguments.length, paras = Array(_len), _key = 0; _key < _len; _key++) {
+                paras[_key] = arguments[_key];
             }
-            return {};
+
+            instance.otherParas = paras;
+            return instance;
+        }
+    }, {
+        key: "useHeaders",
+        value: function useHeaders() {
+            var instance = this.instance();
+
+            for (var _len2 = arguments.length, headers = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+                headers[_key2] = arguments[_key2];
+            }
+
+            instance.otherHeaders = headers;
+            return instance;
+        }
+    }, {
+        key: "instance",
+        value: function instance() {
+            if (!this._instance) {
+                this._instance = new this();
+                this._instance.test = Math.random();
+            }
+            return this._instance;
         }
         /**
          * 验证失败
@@ -141,135 +297,12 @@ var JNetwork = function () {
         value: function wrapCancelablePromise(promise) {
             return JPromise_1.default.create(promise);
         }
-        /***
-         * 检查是否配置SDK
-         * @private
-         */
-
-    }, {
-        key: "checkConfigBaseUrl",
-        value: function checkConfigBaseUrl() {
-            if (!this.baseUrl || this.baseUrl === '') {
-                console.log('please check if you have config baseUrl for SDK');
-                throw Error('Not Config');
-            }
-        }
-    }, {
-        key: "fetchRequest",
-        value: function fetchRequest(method, baseUrl, url, parameters, headers, otherObject) {
-            var _this = this;
-
-            this.checkConfigBaseUrl();
-            var isOk = void 0;
-            var jpromise = this.wrapCancelablePromise(new _promise2.default(function (resolve, reject) {
-                var iHeaders = (0, _assign2.default)({
-                    'Accept': 'application/json',
-                    // TODO: 搞明白
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                    // 'Content-Type': 'application/json'
-                }, headers);
-                var jaxios = axios_1.default.create({
-                    method: method,
-                    timeout: otherObject.timeout,
-                    params: parameters,
-                    baseURL: baseUrl,
-                    headers: iHeaders
-                });
-                jaxios.interceptors.request.use(function (config) {
-                    var otherParas = {};
-                    jpromise.otherParas.forEach(function (key) {
-                        if ((typeof key === "undefined" ? "undefined" : (0, _typeof3.default)(key)) == "object") {
-                            otherParas = (0, _assign2.default)({}, otherParas, key);
-                            return;
-                        }
-                        var globalParaFunc = _this.delegate.globalParas()[key];
-                        if (globalParaFunc) {
-                            var globalPara = globalParaFunc();
-                            if ((typeof globalPara === "undefined" ? "undefined" : (0, _typeof3.default)(globalPara)) == "object") {
-                                otherParas = (0, _assign2.default)({}, otherParas, globalPara);
-                            } else if (typeof globalPara == "string" || typeof globalPara == "number") {
-                                otherParas[key] = globalPara;
-                            } else {
-                                console.log('全局变量类型不正确:' + key);
-                            }
-                        } else {
-                            console.log('不存在的全局变量:' + key);
-                        }
-                    });
-                    var otherHeaders = {};
-                    jpromise.otherHeaders.forEach(function (key) {
-                        if ((typeof key === "undefined" ? "undefined" : (0, _typeof3.default)(key)) == "object") {
-                            otherHeaders = (0, _assign2.default)({}, otherHeaders, key);
-                            return;
-                        }
-                        var globalHeaderFunc = _this.delegate.globalHeaders()[key];
-                        if (globalHeaderFunc) {
-                            var globalHeader = globalHeaderFunc();
-                            if ((typeof globalHeader === "undefined" ? "undefined" : (0, _typeof3.default)(globalHeader)) == "object") {
-                                otherHeaders = (0, _assign2.default)({}, otherHeaders, globalHeader);
-                            } else if (typeof globalHeader == "string" || typeof globalHeader == "number") {
-                                otherHeaders[key] = globalHeader;
-                            } else {
-                                console.log('全局变量类型不正确:' + key);
-                            }
-                        } else {
-                            console.log('不存在的全局变量:' + key);
-                        }
-                    });
-                    config.params = (0, _assign2.default)({}, config.params, otherParas);
-                    config.headers = (0, _assign2.default)({}, config.headers, otherHeaders);
-                    return _this.delegate.requestInterceptor(config);
-                }, function (error) {
-                    return _this.delegate.requestInterceptorError(error);
-                });
-                jaxios.interceptors.response.use(function (response) {
-                    return _this.delegate.responseInterceptor(response);
-                }, function (error) {
-                    return _this.delegate.responseInterceptorError(error);
-                });
-                jaxios.post(url).then(function (response) {
-                    isOk = response.status === 200;
-                    return response.data;
-                }).then(function (responseJson) {
-                    if (isOk) {
-                        if (!responseJson.errorCode) {
-                            resolve(responseJson.data);
-                        } else {
-                            var errorCode = responseJson.errorCode;
-                            if (responseJson.errorCode == 10022) {
-                                reject(JNetwork.notLoginError(100022));
-                            } else {
-                                reject(new Error(responseJson.message));
-                            }
-                        }
-                    } else {
-                        reject(responseJson);
-                    }
-                }).catch(function (error) {
-                    // 请求超时
-                    if (error.message.indexOf('timeout') != -1) {
-                        reject(new Error('请求超时, 请稍后重试'));
-                    } else {
-                        reject(error);
-                    }
-                });
-            }));
-            return jpromise;
-        }
-        /**
-         * 高自由度POST方法
-         * @param {string} baseUrl 基地址
-         * @param {string} url 相对地址
-         * @param {object} parameters 地址参数
-         * @param {object} headers 头参数
-         * @param {object} otherObject 其他可用配置
-         * @returns {Promise} 异步请求块
-         */
-
     }, {
         key: "freedomPOST",
         value: function freedomPOST(baseUrl, url, parameters, headers, otherObject) {
-            return this.fetchRequest('post', baseUrl, url, parameters, headers, otherObject);
+            var _instance;
+
+            return (_instance = this.instance()).freedomPOST.apply(_instance, arguments);
         }
         /**
          * 高自由度GET方法
@@ -284,7 +317,9 @@ var JNetwork = function () {
     }, {
         key: "freedomGET",
         value: function freedomGET(baseUrl, url, parameters, headers, otherObject) {
-            return this.fetchRequest('get', baseUrl, url, parameters, headers, otherObject);
+            var _instance2;
+
+            return (_instance2 = this.instance()).freedomGET.apply(_instance2, arguments);
         }
         /**
          * post请求
@@ -298,7 +333,9 @@ var JNetwork = function () {
     }, {
         key: "POST",
         value: function POST(url, parameters, headers, otherObject) {
-            return this.freedomPOST(this.baseUrl, url, (0, _assign2.default)({}, parameters, { inType: this.inType }), headers, (0, _assign2.default)({ timeout: this.timeout }, otherObject));
+            var _instance3;
+
+            return (_instance3 = this.instance()).POST.apply(_instance3, arguments);
         }
         /**
          * get请求
@@ -312,15 +349,17 @@ var JNetwork = function () {
     }, {
         key: "GET",
         value: function GET(url, parameters, headers, otherObject) {
-            return this.freedomGET(this.baseUrl, url, (0, _assign2.default)({}, parameters, { inType: this.inType }), headers, (0, _assign2.default)({ timeout: this.timeout }, otherObject));
+            var _instance4;
+
+            return (_instance4 = this.instance()).GET.apply(_instance4, arguments);
         }
     }]);
     return JNetwork;
 }();
 
 JNetwork.baseUrl = '';
-JNetwork.timeout = 10 * 1000;
 JNetwork.delegate = null;
 JNetwork.inType = '';
+JNetwork.timeout = 10 * 1000;
 exports.default = JNetwork;
 //# sourceMappingURL=JNetwork.js.map

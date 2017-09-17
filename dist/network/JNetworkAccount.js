@@ -3,10 +3,6 @@
  */
 'use strict';
 
-var _toConsumableArray2 = require("babel-runtime/helpers/toConsumableArray");
-
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
-
 var _getPrototypeOf = require("babel-runtime/core-js/object/get-prototype-of");
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -30,7 +26,6 @@ var _inherits3 = _interopRequireDefault(_inherits2);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var JNetwork_1 = require("./JNetwork");
 var JUrlList_1 = require("../unify/JUrlList");
 var JNetworkRoot_1 = require("./JNetworkRoot");
 /**
@@ -56,12 +51,10 @@ var JNetworkAccount = function (_JNetworkRoot_1$defau) {
          * @returns {{terminate, then}|*}
          */
         value: function accountLogin(mobile, password) {
-            var _JNetwork_1$default$P;
-
-            return (_JNetwork_1$default$P = JNetwork_1.default.POST(JUrlList_1.accountUrl.jbzLogin, {
+            return this.prefixPromise(JUrlList_1.accountUrl.jbzLogin, {
                 mobile: mobile,
                 password: password
-            })).useParas.apply(_JNetwork_1$default$P, (0, _toConsumableArray3.default)(this.otherParas));
+            });
         }
         /**
          * 用户登出
@@ -72,9 +65,7 @@ var JNetworkAccount = function (_JNetworkRoot_1$defau) {
     }, {
         key: "accountLogout",
         value: function accountLogout(sessionId) {
-            var _JNetwork_1$default$P2;
-
-            return (_JNetwork_1$default$P2 = JNetwork_1.default.POST(JUrlList_1.accountUrl.jbzLogout, {}, sessionId)).useParas.apply(_JNetwork_1$default$P2, (0, _toConsumableArray3.default)(this.otherParas));
+            return this.prefixPromise(JUrlList_1.accountUrl.jbzLogout, {}, sessionId);
         }
         /**
          * 获取验证码
@@ -86,12 +77,10 @@ var JNetworkAccount = function (_JNetworkRoot_1$defau) {
     }, {
         key: "accountVerifyCode",
         value: function accountVerifyCode(mobile, type) {
-            var _JNetwork_1$default$P3;
-
-            return (_JNetwork_1$default$P3 = JNetwork_1.default.POST(JUrlList_1.accountUrl.jbzVerifycode, {
+            return this.prefixPromise(JUrlList_1.accountUrl.jbzVerifycode, {
                 mobile: mobile,
                 codetype: type
-            })).useParas.apply(_JNetwork_1$default$P3, (0, _toConsumableArray3.default)(this.otherParas));
+            });
         }
         /**
          * 注册用户
@@ -104,13 +93,11 @@ var JNetworkAccount = function (_JNetworkRoot_1$defau) {
     }, {
         key: "accountRegister",
         value: function accountRegister(mobile, verifyCode, password) {
-            var _JNetwork_1$default$P4;
-
-            return (_JNetwork_1$default$P4 = JNetwork_1.default.POST(JUrlList_1.accountUrl.jbzRegister, {
+            return this.prefixPromise(JUrlList_1.accountUrl.jbzRegister, {
                 mobile: mobile,
                 verifyCode: verifyCode,
                 password: password
-            })).useParas.apply(_JNetwork_1$default$P4, (0, _toConsumableArray3.default)(this.otherParas));
+            });
         }
         /**
          * 忘记密码并且找回密码
@@ -123,13 +110,11 @@ var JNetworkAccount = function (_JNetworkRoot_1$defau) {
     }, {
         key: "accountUpdatepass",
         value: function accountUpdatepass(mobile, verfyCode, password) {
-            var _JNetwork_1$default$P5;
-
-            return (_JNetwork_1$default$P5 = JNetwork_1.default.POST(JUrlList_1.accountUrl.jbzUpdatepass, {
+            return this.prefixPromise(JUrlList_1.accountUrl.jbzUpdatepass, {
                 mobile: mobile,
                 verifyCode: verfyCode,
                 password: password
-            })).useParas.apply(_JNetwork_1$default$P5, (0, _toConsumableArray3.default)(this.otherParas));
+            });
         }
     }], [{
         key: "accountLogin",

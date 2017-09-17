@@ -39,7 +39,7 @@ gulp.task("clean-middleware", function () {
 });
 // 执行打包操作
 gulp.task("transform-ts-to-js", function () {
-  runSequence('do-typescript-process', 'do-babel-process');
+  runSequence('do-typescript-process', 'do-babel-process', 'clean-middleware');
 });
 
 // 默认任务

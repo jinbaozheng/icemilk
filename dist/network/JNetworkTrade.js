@@ -61,9 +61,10 @@ var JNetworkTrade = function (_JNetworkRoot_1$defau) {
          * @returns {{terminate, then}|*}
          */
         value: function tradeLockSeatNeedLogin(type, paras) {
-            var loginParas = JNetwork_1.default.loginParas();
+            var _this2 = this;
+
             return new _promise2.default(function (resolve, reject) {
-                JNetwork_1.default.POST(JUrlList_1.tradeUrl.jbzLockSeat, (0, _assign2.default)({ type: type }, loginParas, paras)).then(function (data) {
+                _this2.prefixPromise(JUrlList_1.tradeUrl.jbzLockSeat, (0, _assign2.default)({ type: type }, paras)).then(function (data) {
                     resolve(JDataUnify_1.default('tradeUrl.jbzLockSeat', data));
                 }, function (error) {
                     reject(error);
@@ -79,7 +80,7 @@ var JNetworkTrade = function (_JNetworkRoot_1$defau) {
     }, {
         key: "cancelLockSeatNeedLogin",
         value: function cancelLockSeatNeedLogin(orderId) {
-            return JNetwork_1.default.POST(JUrlList_1.tradeUrl.jbzCancelOrder, { orderId: orderId });
+            return this.prefixPromise(JUrlList_1.tradeUrl.jbzCancelOrder, { orderId: orderId });
         }
         /**
          * 下订单
@@ -91,11 +92,12 @@ var JNetworkTrade = function (_JNetworkRoot_1$defau) {
     }, {
         key: "tradeApplyOrderNeedLogin",
         value: function tradeApplyOrderNeedLogin(type, paras) {
-            var loginParas = JNetwork_1.default.loginParas();
+            var _this3 = this;
+
             var inType = JNetwork_1.default.inType;
             if (inType === 'ICBC-APP' || inType === 'SHANGHAI-APP') {
                 return new _promise2.default(function (resolve, reject) {
-                    JNetwork_1.default.POST(JUrlList_1.tradeUrl.jbzWebAtAppApplyTicket, (0, _assign2.default)({ type: type }, loginParas, paras)).then(function (data) {
+                    _this3.prefixPromise(JUrlList_1.tradeUrl.jbzWebAtAppApplyTicket, (0, _assign2.default)({ type: type }, paras)).then(function (data) {
                         resolve(JDataUnify_1.default('tradeUrl.jbzWebAtAppApplyTicket', data));
                     }, function (error) {
                         reject(error);
@@ -116,13 +118,12 @@ var JNetworkTrade = function (_JNetworkRoot_1$defau) {
     }, {
         key: "tradePrePayOrderNeedLoginInType",
         value: function tradePrePayOrderNeedLoginInType(orderId, payType, prizeIds, redIds) {
-            var loginParas = JNetwork_1.default.loginParas();
             var inType = JNetwork_1.default.inType;
             if (inType === 'DPIOS' || inType === 'DPANDROID') {
-                return JNetwork_1.default.POST(JUrlList_1.tradeUrl.jbzAppPrepay, { orderId: orderId, payType: payType, prizeIds: prizeIds, redIds: redIds }, loginParas);
+                return this.prefixPromise(JUrlList_1.tradeUrl.jbzAppPrepay, { orderId: orderId, payType: payType, prizeIds: prizeIds, redIds: redIds });
             }
             if (inType === 'DPWX' || inType === 'DPWEB' || inType === 'PC') {
-                return JNetwork_1.default.POST(JUrlList_1.tradeUrl.jbzWebPrepay, { orderId: orderId, payType: payType, prizeIds: prizeIds, redIds: redIds }, loginParas);
+                return this.prefixPromise(JUrlList_1.tradeUrl.jbzWebPrepay, { orderId: orderId, payType: payType, prizeIds: prizeIds, redIds: redIds });
             }
             return JNetwork_1.default.wrongInType();
         }

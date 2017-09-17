@@ -7,10 +7,6 @@ var _assign = require("babel-runtime/core-js/object/assign");
 
 var _assign2 = _interopRequireDefault(_assign);
 
-var _toConsumableArray2 = require("babel-runtime/helpers/toConsumableArray");
-
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
-
 var _promise = require("babel-runtime/core-js/promise");
 
 var _promise2 = _interopRequireDefault(_promise);
@@ -38,7 +34,6 @@ var _inherits3 = _interopRequireDefault(_inherits2);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var JNetwork_1 = require("./JNetwork");
 var JUrlList_1 = require("../unify/JUrlList");
 var JToolDate_1 = require("../tool/JToolDate");
 var JDataUnify_1 = require("../unify/JDataUnify");
@@ -69,9 +64,7 @@ var JNetworkCinema = function (_JNetworkRoot_1$defau) {
             var _this2 = this;
 
             return new _promise2.default(function (resolve, reject) {
-                var _JNetwork_1$default$P, _JNetwork_1$default$P2;
-
-                (_JNetwork_1$default$P = (_JNetwork_1$default$P2 = JNetwork_1.default.POST(JUrlList_1.cinemaUrl.jbzDetail, { cinemaId: cinemaId })).useParas.apply(_JNetwork_1$default$P2, (0, _toConsumableArray3.default)(_this2.otherParas))).useHeaders.apply(_JNetwork_1$default$P, (0, _toConsumableArray3.default)(_this2.otherHeaders)).then(function (data) {
+                _this2.prefixPromise(JUrlList_1.cinemaUrl.jbzDetail, { cinemaId: cinemaId }).then(function (data) {
                     resolve(JDataUnify_1.default('cinemaUrl.jbzDetail', data, 0));
                 }, function (error) {
                     reject(error);
@@ -87,8 +80,6 @@ var JNetworkCinema = function (_JNetworkRoot_1$defau) {
                 cinemaFilter = location;
             }
             return new _promise2.default(function (resolve, reject) {
-                var _JNetwork_1$default$P3;
-
                 var u = undefined;
 
                 var _ref = cinemaFilter ? cinemaFilter : { filmId: u, feature: u, region: u, sort: u, limit: u },
@@ -98,8 +89,8 @@ var JNetworkCinema = function (_JNetworkRoot_1$defau) {
                     sort = _ref.sort,
                     limit = _ref.limit;
 
-                (_JNetwork_1$default$P3 = JNetwork_1.default.POST(JUrlList_1.cinemaUrl.jbzList, (0, _assign2.default)({}, location, { filmId: filmId,
-                    feature: feature, regionName: region, orderType: sort, limit: limit }))).useParas.apply(_JNetwork_1$default$P3, (0, _toConsumableArray3.default)(_this3.otherParas)).then(function (data) {
+                _this3.prefixPromise(JUrlList_1.cinemaUrl.jbzList, (0, _assign2.default)({}, location, { filmId: filmId,
+                    feature: feature, regionName: region, orderType: sort, limit: limit })).then(function (data) {
                     resolve(JDataUnify_1.default('cinemaUrl.jbzList', data));
                 }, function (error) {
                     reject(error);
@@ -118,11 +109,9 @@ var JNetworkCinema = function (_JNetworkRoot_1$defau) {
             var _this4 = this;
 
             return new _promise2.default(function (resolve, reject) {
-                var _JNetwork_1$default$P4, _JNetwork_1$default$P5;
-
-                return (_JNetwork_1$default$P4 = (_JNetwork_1$default$P5 = JNetwork_1.default.POST(JUrlList_1.cinemaUrl.jbzScreeningFilmList, {
+                return _this4.prefixPromise(JUrlList_1.cinemaUrl.jbzScreeningFilmList, {
                     cinemaId: cinemaId
-                })).useParas.apply(_JNetwork_1$default$P5, (0, _toConsumableArray3.default)(_this4.otherParas))).useHeaders.apply(_JNetwork_1$default$P4, (0, _toConsumableArray3.default)(_this4.otherHeaders)).then(function (data) {
+                }).then(function (data) {
                     resolve(JDataUnify_1.default('cinemaUrl.jbzScreeningFilmList', data));
                 }, function (error) {
                     reject(error);
@@ -142,9 +131,7 @@ var JNetworkCinema = function (_JNetworkRoot_1$defau) {
             var _this5 = this;
 
             return new _promise2.default(function (resolve, reject) {
-                var _JNetwork_1$default$P6;
-
-                (_JNetwork_1$default$P6 = JNetwork_1.default.POST(JUrlList_1.cinemaUrl.jbzScreeningDateList, { cinemaId: cinemaId, filmId: filmId })).useParas.apply(_JNetwork_1$default$P6, (0, _toConsumableArray3.default)(_this5.otherParas)).then(function (data) {
+                _this5.prefixPromise(JUrlList_1.cinemaUrl.jbzScreeningDateList, { cinemaId: cinemaId, filmId: filmId }).then(function (data) {
                     resolve(JDataUnify_1.default('cinemaUrl.jbzScreeningDateList', data));
                 }, function (error) {
                     reject(error);
@@ -165,10 +152,8 @@ var JNetworkCinema = function (_JNetworkRoot_1$defau) {
             var _this6 = this;
 
             return new _promise2.default(function (resolve, reject) {
-                var _JNetwork_1$default$P7;
-
                 date = JToolDate_1.default.dateStringFromTimeInterval(date, 'yyyy-MM-dd');
-                (_JNetwork_1$default$P7 = JNetwork_1.default.POST(JUrlList_1.cinemaUrl.jbzScreeningItems, { cinemaId: cinemaId, filmId: filmId, date: date })).useParas.apply(_JNetwork_1$default$P7, (0, _toConsumableArray3.default)(_this6.otherParas)).then(function (data) {
+                _this6.prefixPromise(JUrlList_1.cinemaUrl.jbzScreeningItems, { cinemaId: cinemaId, filmId: filmId, date: date }).then(function (data) {
                     resolve(JDataUnify_1.default('cinemaUrl.jbzScreeningItems', data));
                 }, function (error) {
                     reject(error);
@@ -191,9 +176,7 @@ var JNetworkCinema = function (_JNetworkRoot_1$defau) {
                 type = 'maoyan';
             }
             return new _promise2.default(function (resolve, reject) {
-                var _JNetwork_1$default$P8;
-
-                (_JNetwork_1$default$P8 = JNetwork_1.default.POST(JUrlList_1.cinemaUrl.jbzRealtimeSeat, (0, _assign2.default)({ type: type }, paras))).useParas.apply(_JNetwork_1$default$P8, (0, _toConsumableArray3.default)(_this7.otherParas)).then(function (data) {
+                _this7.prefixPromise(JUrlList_1.cinemaUrl.jbzRealtimeSeat, (0, _assign2.default)({ type: type }, paras)).then(function (data) {
                     resolve(JDataUnify_1.default('cinemaUrl.jbzRealtimeSeat', data));
                 }, function (error) {
                     reject(error);
@@ -216,9 +199,7 @@ var JNetworkCinema = function (_JNetworkRoot_1$defau) {
                 type = 'maoyan';
             }
             return new _promise2.default(function (resolve, reject) {
-                var _JNetwork_1$default$P9;
-
-                (_JNetwork_1$default$P9 = JNetwork_1.default.POST(JUrlList_1.cinemaUrl.jbzRealtimeSeat, (0, _assign2.default)({ type: type }, paras))).useParas.apply(_JNetwork_1$default$P9, (0, _toConsumableArray3.default)(_this8.otherParas)).then(function (data) {
+                _this8.prefixPromise(JUrlList_1.cinemaUrl.jbzRealtimeSeat, (0, _assign2.default)({ type: type }, paras)).then(function (data) {
                     resolve(JManagerSeat_1.default.defaultManager().smartSeatsFromSeats(type, JDataUnify_1.default('cinemaUrl.jbzRealtimeSmartSeat', data)));
                 }, function (error) {
                     reject(error);
@@ -235,12 +216,10 @@ var JNetworkCinema = function (_JNetworkRoot_1$defau) {
     }, {
         key: "cinemaFavoriteCinema",
         value: function cinemaFavoriteCinema(cinemaId, cinemaName) {
-            var _JNetwork_1$default$P10, _JNetwork_1$default$P11;
-
-            return (_JNetwork_1$default$P10 = (_JNetwork_1$default$P11 = JNetwork_1.default.POST(JUrlList_1.cinemaUrl.jbzCollectcinema, {
+            return this.prefixPromise(JUrlList_1.cinemaUrl.jbzCollectcinema, {
                 cinemaId: cinemaId,
                 cinemaName: cinemaName
-            })).useParas.apply(_JNetwork_1$default$P11, (0, _toConsumableArray3.default)(this.otherParas))).useHeaders.apply(_JNetwork_1$default$P10, (0, _toConsumableArray3.default)(this.otherHeaders));
+            });
         }
         /**
          * 取消收藏影院
@@ -251,9 +230,7 @@ var JNetworkCinema = function (_JNetworkRoot_1$defau) {
     }, {
         key: "cinemaCancelFavoriteCinema",
         value: function cinemaCancelFavoriteCinema(cinemaId) {
-            var _JNetwork_1$default$P12;
-
-            return (_JNetwork_1$default$P12 = JNetwork_1.default.POST(JUrlList_1.cinemaUrl.jbzCancelcollectcinema, {})).useParas.apply(_JNetwork_1$default$P12, (0, _toConsumableArray3.default)(this.otherParas));
+            return this.prefixPromise(JUrlList_1.cinemaUrl.jbzCancelcollectcinema, {});
         }
     }], [{
         key: "cinemaDetail",

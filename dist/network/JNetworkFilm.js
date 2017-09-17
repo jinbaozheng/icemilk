@@ -3,10 +3,6 @@
  */
 'use strict';
 
-var _toConsumableArray2 = require("babel-runtime/helpers/toConsumableArray");
-
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
-
 var _promise = require("babel-runtime/core-js/promise");
 
 var _promise2 = _interopRequireDefault(_promise);
@@ -34,7 +30,6 @@ var _inherits3 = _interopRequireDefault(_inherits2);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var JNetwork_1 = require("./JNetwork");
 var JUrlList_1 = require("../unify/JUrlList");
 var JDataUnify_1 = require("../unify/JDataUnify");
 var JNetworkRoot_1 = require("./JNetworkRoot");
@@ -64,9 +59,7 @@ var JNetworkFilm = function (_JNetworkRoot_1$defau) {
 
             if (!page) {
                 return new _promise2.default(function (resolve, reject) {
-                    var _JNetwork_1$default$P;
-
-                    (_JNetwork_1$default$P = JNetwork_1.default.POST(JUrlList_1.filmUrl.jbzHotFilms)).useParas.apply(_JNetwork_1$default$P, (0, _toConsumableArray3.default)(_this2.otherParas)).then(function (data) {
+                    _this2.prefixPromise(JUrlList_1.filmUrl.jbzHotFilms).then(function (data) {
                         resolve(JDataUnify_1.default('filmUrl.jbzHotFilms', data));
                     }, function (error) {
                         reject(error);
@@ -74,9 +67,7 @@ var JNetworkFilm = function (_JNetworkRoot_1$defau) {
                 });
             } else {
                 return new _promise2.default(function (resolve, reject) {
-                    var _JNetwork_1$default$P2;
-
-                    (_JNetwork_1$default$P2 = JNetwork_1.default.POST(JUrlList_1.filmUrl.jbzHotFilmsPage, { page: page.index, size: page.size })).useParas.apply(_JNetwork_1$default$P2, (0, _toConsumableArray3.default)(_this2.otherParas)).then(function (data) {
+                    _this2.prefixPromise(JUrlList_1.filmUrl.jbzHotFilmsPage, { page: page.index, size: page.size }).then(function (data) {
                         resolve(JDataUnify_1.default('filmUrl.jbzHotFilmsPage', data));
                     }, function (error) {
                         reject(error);
@@ -95,9 +86,7 @@ var JNetworkFilm = function (_JNetworkRoot_1$defau) {
             var _this3 = this;
 
             return new _promise2.default(function (resolve, reject) {
-                var _JNetwork_1$default$P3;
-
-                (_JNetwork_1$default$P3 = JNetwork_1.default.POST(JUrlList_1.filmUrl.jbzHotFilmsSimple)).useParas.apply(_JNetwork_1$default$P3, (0, _toConsumableArray3.default)(_this3.otherParas)).then(function (data) {
+                _this3.prefixPromise(JUrlList_1.filmUrl.jbzHotFilmsSimple).then(function (data) {
                     resolve(JDataUnify_1.default('filmUrl.jbzHotFilmsSimple', data));
                 }, function (error) {
                     reject(error);
@@ -117,9 +106,7 @@ var JNetworkFilm = function (_JNetworkRoot_1$defau) {
 
             if (!page) {
                 return new _promise2.default(function (resolve, reject) {
-                    var _JNetwork_1$default$P4;
-
-                    (_JNetwork_1$default$P4 = JNetwork_1.default.POST(JUrlList_1.filmUrl.jbzWaitFilms)).useParas.apply(_JNetwork_1$default$P4, (0, _toConsumableArray3.default)(_this4.otherParas)).then(function (data) {
+                    _this4.prefixPromise(JUrlList_1.filmUrl.jbzWaitFilms).then(function (data) {
                         resolve(JDataUnify_1.default('filmUrl.jbzWaitFilms', data));
                     }, function (error) {
                         reject(error);
@@ -127,9 +114,7 @@ var JNetworkFilm = function (_JNetworkRoot_1$defau) {
                 });
             } else {
                 return new _promise2.default(function (resolve, reject) {
-                    var _JNetwork_1$default$P5;
-
-                    (_JNetwork_1$default$P5 = JNetwork_1.default.POST(JUrlList_1.filmUrl.jbzWaitFilmsPage, { page: page.index, size: page.size })).useParas.apply(_JNetwork_1$default$P5, (0, _toConsumableArray3.default)(_this4.otherParas)).then(function (data) {
+                    _this4.prefixPromise(JUrlList_1.filmUrl.jbzWaitFilmsPage, { page: page.index, size: page.size }).then(function (data) {
                         resolve(JDataUnify_1.default('filmUrl.jbzWaitFilmsPage', data));
                     }, function (error) {
                         reject(error);
@@ -153,9 +138,7 @@ var JNetworkFilm = function (_JNetworkRoot_1$defau) {
 
             if (platform && platform !== 'jbz') {
                 return new _promise2.default(function (resolve, reject) {
-                    var _JNetwork_1$default$P6;
-
-                    (_JNetwork_1$default$P6 = JNetwork_1.default.POST(JUrlList_1.filmUrl.jbzFilmDetailByPartner, { platformFilmId: filmId, platform: platform })).useParas.apply(_JNetwork_1$default$P6, (0, _toConsumableArray3.default)(_this5.otherParas)).then(function (data) {
+                    _this5.prefixPromise(JUrlList_1.filmUrl.jbzFilmDetailByPartner, { platformFilmId: filmId, platform: platform }).then(function (data) {
                         resolve(JDataUnify_1.default('filmUrl.jbzFilmDetailByPartner', data));
                     }, function (error) {
                         reject(error);
@@ -163,9 +146,7 @@ var JNetworkFilm = function (_JNetworkRoot_1$defau) {
                 });
             } else {
                 return new _promise2.default(function (resolve, reject) {
-                    var _JNetwork_1$default$P7;
-
-                    (_JNetwork_1$default$P7 = JNetwork_1.default.POST(JUrlList_1.filmUrl.jbzFilmDetail, { filmId: filmId })).useParas.apply(_JNetwork_1$default$P7, (0, _toConsumableArray3.default)(_this5.otherParas)).then(function (data) {
+                    _this5.prefixPromise(JUrlList_1.filmUrl.jbzFilmDetail, { filmId: filmId }).then(function (data) {
                         resolve(JDataUnify_1.default('filmUrl.jbzFilmDetail', data));
                     }, function (error) {
                         reject(error);
@@ -185,9 +166,7 @@ var JNetworkFilm = function (_JNetworkRoot_1$defau) {
             var _this6 = this;
 
             return new _promise2.default(function (resolve, reject) {
-                var _JNetwork_1$default$P8;
-
-                (_JNetwork_1$default$P8 = JNetwork_1.default.POST(JUrlList_1.filmUrl.jbzFilmDate, { filmId: filmId })).useParas.apply(_JNetwork_1$default$P8, (0, _toConsumableArray3.default)(_this6.otherParas)).then(function (data) {
+                _this6.prefixPromise(JUrlList_1.filmUrl.jbzFilmDate, { filmId: filmId }).then(function (data) {
                     resolve(JDataUnify_1.default('filmUrl.jbzFilmDate', data));
                 }, function (error) {
                     reject(error);

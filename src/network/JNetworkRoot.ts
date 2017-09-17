@@ -4,20 +4,30 @@
 import JNetwork from './JNetwork';
 
 class JNetworkRoot{
-  static _instance: any;
   otherParas: Array<string|object> = [];
   otherHeaders: Array<string|object> = [];
+  static _instance: any;
 
   static useParas(...paras: Array<string|object>) {
-    let instance = this.instance();
+    let instance = new this();
     instance.otherParas = paras;
     return instance;
   }
 
   static useHeaders(...headers: Array<string|object>) {
-    let instance = this.instance();
+    let instance = new this();
     instance.otherHeaders = headers;
     return instance;
+  }
+
+  useParas(...paras: Array<string|object>): JNetworkRoot {
+    this.otherParas = paras;
+    return this;
+  }
+
+  useHeaders(...headers: Array<string|object>): JNetworkRoot {
+    this.otherHeaders = headers;
+    return this;
   }
 
   static instance(): any {

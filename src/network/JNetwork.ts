@@ -24,15 +24,25 @@ class JNetwork {
   otherHeaders: Array<string|object> = [];
 
   static useParas(...paras: Array<string|object>) {
-    let instance = this.instance();
+    let instance = new this();
     instance.otherParas = paras;
     return instance;
   }
 
   static useHeaders(...headers: Array<string|object>) {
-    let instance = this.instance();
+    let instance = new this();
     instance.otherHeaders = headers;
     return instance;
+  }
+
+  useParas(...paras: Array<string|object>): JNetwork {
+    this.otherParas = paras;
+    return this;
+  }
+
+  useHeaders(...headers: Array<string|object>): JNetwork {
+    this.otherHeaders = headers;
+    return this;
   }
 
   static instance(): any {
@@ -137,7 +147,7 @@ class JNetwork {
       })
       jaxios.interceptors.request.use(config => {
         let otherParas = {};
-        jpromise.otherParas.forEach(key => {
+        this.otherParas.forEach(key => {
           if (typeof key == "object"){
             otherParas = {...otherParas, ...key};
             return;
@@ -157,7 +167,7 @@ class JNetwork {
           }
         });
         let otherHeaders = {};
-        jpromise.otherHeaders.forEach(key => {
+        this.otherHeaders.forEach(key => {
           if (typeof key == "object"){
             otherHeaders = {...otherHeaders, ...key};
             return;

@@ -7,10 +7,6 @@ var _promise = require("babel-runtime/core-js/promise");
 
 var _promise2 = _interopRequireDefault(_promise);
 
-var _toConsumableArray2 = require("babel-runtime/helpers/toConsumableArray");
-
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
-
 var _getPrototypeOf = require("babel-runtime/core-js/object/get-prototype-of");
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -35,7 +31,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var JDataUnify_1 = require("../unify/JDataUnify");
-var JNetwork_1 = require("./JNetwork");
 var JUrlList_1 = require("../unify/JUrlList");
 var JNetworkRoot_1 = require("./JNetworkRoot");
 /**
@@ -60,9 +55,7 @@ var JNetworkMine = function (_JNetworkRoot_1$defau) {
          * @returns {*}
          */
         value: function mineOrder() {
-            var _JNetwork_1$default$P, _JNetwork_1$default$P2;
-
-            return (_JNetwork_1$default$P = (_JNetwork_1$default$P2 = JNetwork_1.default.POST(JUrlList_1.mineUrl.userorders)).useParas.apply(_JNetwork_1$default$P2, (0, _toConsumableArray3.default)(this.otherParas))).useHeaders.apply(_JNetwork_1$default$P, (0, _toConsumableArray3.default)(this.otherHeaders));
+            return this.prefixPromise(JUrlList_1.mineUrl.userorders);
         }
         /***
          * 我的收藏(影院)
@@ -74,9 +67,7 @@ var JNetworkMine = function (_JNetworkRoot_1$defau) {
             var _this2 = this;
 
             return new _promise2.default(function (resolve, reject) {
-                var _JNetwork_1$default$P3, _JNetwork_1$default$P4;
-
-                (_JNetwork_1$default$P3 = (_JNetwork_1$default$P4 = JNetwork_1.default.POST(JUrlList_1.mineUrl.jbzMineCinema)).useParas.apply(_JNetwork_1$default$P4, (0, _toConsumableArray3.default)(_this2.otherParas))).useHeaders.apply(_JNetwork_1$default$P3, (0, _toConsumableArray3.default)(_this2.otherHeaders)).then(function (data) {
+                _this2.prefixPromise(JUrlList_1.mineUrl.jbzMineCinema).then(function (data) {
                     resolve(JDataUnify_1.default('mineUrl.jbzMineCinema', data));
                 }, function (error) {
                     reject(error);
@@ -92,9 +83,7 @@ var JNetworkMine = function (_JNetworkRoot_1$defau) {
     }, {
         key: "mineFavorite",
         value: function mineFavorite() {
-            var _JNetwork_1$default$P5, _JNetwork_1$default$P6;
-
-            return (_JNetwork_1$default$P5 = (_JNetwork_1$default$P6 = JNetwork_1.default.POST(JUrlList_1.mineUrl.collectedcinemalist)).useParas.apply(_JNetwork_1$default$P6, (0, _toConsumableArray3.default)(this.otherParas))).useHeaders.apply(_JNetwork_1$default$P5, (0, _toConsumableArray3.default)(this.otherHeaders));
+            return this.prefixPromise(JUrlList_1.mineUrl.collectedcinemalist);
         }
         /***/
 

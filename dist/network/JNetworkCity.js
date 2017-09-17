@@ -3,14 +3,6 @@
  */
 'use strict';
 
-var _assign = require("babel-runtime/core-js/object/assign");
-
-var _assign2 = _interopRequireDefault(_assign);
-
-var _toConsumableArray2 = require("babel-runtime/helpers/toConsumableArray");
-
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
-
 var _promise = require("babel-runtime/core-js/promise");
 
 var _promise2 = _interopRequireDefault(_promise);
@@ -38,7 +30,6 @@ var _inherits3 = _interopRequireDefault(_inherits2);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var JNetwork_1 = require("./JNetwork");
 var JUrlList_1 = require("../unify/JUrlList");
 var JDataUnify_1 = require("../unify/JDataUnify");
 var JNetworkRoot_1 = require("./JNetworkRoot");
@@ -67,9 +58,7 @@ var JNetworkCity = function (_JNetworkRoot_1$defau) {
             var _this2 = this;
 
             return new _promise2.default(function (resolve, reject) {
-                var _JNetwork_1$default$P;
-
-                (_JNetwork_1$default$P = JNetwork_1.default.POST(JUrlList_1.cityUrl.jbzCities)).useParas.apply(_JNetwork_1$default$P, (0, _toConsumableArray3.default)(_this2.otherParas)).then(function (data) {
+                _this2.prefixPromise(JUrlList_1.cityUrl.jbzCities).then(function (data) {
                     resolve(JDataUnify_1.default('cityUrl.jbzCities', data));
                 }, function (error) {
                     reject(error);
@@ -88,9 +77,7 @@ var JNetworkCity = function (_JNetworkRoot_1$defau) {
             var _this3 = this;
 
             return new _promise2.default(function (resolve, reject) {
-                var _JNetwork_1$default$P2;
-
-                (_JNetwork_1$default$P2 = JNetwork_1.default.POST(JUrlList_1.cityUrl.jbzCityByCoordinate, coordinate)).useParas.apply(_JNetwork_1$default$P2, (0, _toConsumableArray3.default)(_this3.otherParas)).then(function (data) {
+                _this3.prefixPromise(JUrlList_1.cityUrl.jbzCityByCoordinate, coordinate).then(function (data) {
                     resolve(JDataUnify_1.default('cityUrl.jbzCityByCoordinate', data));
                 }, function (error) {
                     reject(error);
@@ -108,9 +95,7 @@ var JNetworkCity = function (_JNetworkRoot_1$defau) {
             var _this4 = this;
 
             return new _promise2.default(function (resolve, reject) {
-                var _JNetwork_1$default$P3;
-
-                (_JNetwork_1$default$P3 = JNetwork_1.default.POST(JUrlList_1.cityUrl.jbzCityByCoordinate, (0, _assign2.default)({}, JNetwork_1.default.locationParas()))).useParas.apply(_JNetwork_1$default$P3, (0, _toConsumableArray3.default)(_this4.otherParas)).then(function (data) {
+                _this4.prefixPromise(JUrlList_1.cityUrl.jbzCityByCoordinate).then(function (data) {
                     resolve(JDataUnify_1.default('cityUrl.jbzCityByCoordinate', data));
                 }, function (error) {
                     reject(error);
@@ -129,9 +114,7 @@ var JNetworkCity = function (_JNetworkRoot_1$defau) {
             var _this5 = this;
 
             return new _promise2.default(function (resolve, reject) {
-                var _JNetwork_1$default$P4;
-
-                (_JNetwork_1$default$P4 = JNetwork_1.default.POST(JUrlList_1.cityUrl.jbzCityById, { cityId: cityId })).useParas.apply(_JNetwork_1$default$P4, (0, _toConsumableArray3.default)(_this5.otherParas)).then(function (data) {
+                _this5.prefixPromise(JUrlList_1.cityUrl.jbzCityById, { cityId: cityId }).then(function (data) {
                     resolve(JDataUnify_1.default('cityUrl.jbzCityById', data));
                 }, function (error) {
                     reject(error);
@@ -150,9 +133,7 @@ var JNetworkCity = function (_JNetworkRoot_1$defau) {
             var _this6 = this;
 
             return new _promise2.default(function (resolve, reject) {
-                var _JNetwork_1$default$P5;
-
-                (_JNetwork_1$default$P5 = JNetwork_1.default.POST(JUrlList_1.cityUrl.jbzDistricts, { cityId: cityId })).useParas.apply(_JNetwork_1$default$P5, (0, _toConsumableArray3.default)(_this6.otherParas)).then(function (data) {
+                _this6.prefixPromise(JUrlList_1.cityUrl.jbzDistricts, { cityId: cityId }).then(function (data) {
                     resolve(JDataUnify_1.default('cityUrl.jbzDistricts', data));
                 }, function (error) {
                     reject(error);
@@ -170,9 +151,7 @@ var JNetworkCity = function (_JNetworkRoot_1$defau) {
             var _this7 = this;
 
             return new _promise2.default(function (resolve, reject) {
-                var _JNetwork_1$default$P6;
-
-                (_JNetwork_1$default$P6 = JNetwork_1.default.POST(JUrlList_1.cityUrl.jbzHotCities)).useParas.apply(_JNetwork_1$default$P6, (0, _toConsumableArray3.default)(_this7.otherParas)).then(function (data) {
+                _this7.prefixPromise(JUrlList_1.cityUrl.jbzHotCities).then(function (data) {
                     resolve(JDataUnify_1.default('cityUrl.jbzHotCities', data));
                 }, function (error) {
                     reject(error);
