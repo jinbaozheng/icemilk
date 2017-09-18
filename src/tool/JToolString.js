@@ -69,6 +69,18 @@ class StringTool {
   }
 
   /**
+   * 去除数字左边所有0
+   * @param c
+   * @returns {*}
+   */
+  static numberRemoveLeftZero(c){
+    if (/^[0-9]*$/.test(c)) {
+      return Number.parseInt(c) + '';
+    }
+    return c;
+  }
+
+  /**
    * 通过asc得出字符数值
    * @param {string} ascChar asc字符
    * @returns {number} 数值 A=0; B=1;

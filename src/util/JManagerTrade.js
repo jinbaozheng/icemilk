@@ -90,6 +90,7 @@ class TradeManager {
         cinemaId
       };
     }
+
     if (platform === 'baidu') {
       return {
         showId: platformData.seqid,
@@ -98,7 +99,17 @@ class TradeManager {
       };
     }
 
-
+    if (platform === 'taobao'){
+      return {
+        jbzFilmId: filmId,
+        filmId: platform.filmId,
+        showId: platform.showId,
+        cinemaName: cinemaName,
+        platformCinemaId: platform.cinemaId,
+        filmName,
+        cinemaId
+      };
+    }
   }
 
   /**
@@ -238,6 +249,29 @@ class TradeManager {
         mobile,
         openId
       }
+    }
+
+    // 淘票票
+    if (type === 'taobao') {
+      let seatInfos = [];
+      let seatNumberInfos = [];
+      let seatNameInfos = [];
+      for (let seat of seatList) {
+        seatInfos.push(seat.seatModel.seatId);
+        seatNumberInfos.push(seat.rowOriNumber + ':' + seat.colOriNumber);
+        seatNameInfos.push(seat.seatModel.name);
+      }
+      let s = {
+        seatIds: seatInfos.join('|'),
+        count: seatInfos.length,
+        seatNumberInfos: seatNumberInfos.join('|'),
+        seatsName: seatNameInfos.join('|'),
+        applyKey: '',
+        mobile,
+        openId
+      }
+      console.log(s);
+      return s;
     }
   }
 
