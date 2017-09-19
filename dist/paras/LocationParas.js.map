@@ -1,1 +1,0 @@
-{"version":3,"sources":["paras/LocationParas.js"],"names":["Object","defineProperty","exports","value"],"mappings":"AAAA;AACA;;;;AAGAA,OAAOC,cAAP,CAAsBC,OAAtB,EAA+B,YAA/B,EAA6C,EAAEC,OAAO,IAAT,EAA7C","file":"LocationParas.js","sourcesContent":["\"use strict\";\n/**\n * Created by cuppi on 2017/9/4.\n */\nObject.defineProperty(exports, \"__esModule\", { value: true });\n"]}

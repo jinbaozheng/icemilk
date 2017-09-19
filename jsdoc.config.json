@@ -4,7 +4,7 @@
     "dictionaries": ["jsdoc","closure"]
   },
   "source": {
-    "includePattern": ".+\\.js(doc|x)?$",
+    "includePattern": ".+\\.ts(doc|x)?$",
     "excludePattern": "(node_modules/|docs)"
   },
   "plugins": ["node_modules/jsdoc-babel"],
@@ -20,7 +20,7 @@
     "cleverLinks": false,
     "monospaceLinks": false,
     "systemName"            : "JBZWebSDK",
-    "footer"                : "v1.0.79",
+    "footer"                : "v2.0.14",
     "copyright"             :  "Shanghai jinbaozheng easy network technology Co.,Ltd sdk copyright",
     "includeDate"           : true,
     "navType"               : "{vertical}",

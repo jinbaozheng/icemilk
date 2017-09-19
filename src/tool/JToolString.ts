@@ -51,7 +51,6 @@ class StringTool {
     return (/^[0-9]{6}$/.test(verifycode));
   }
 
-
   /**
    * 校验是否为密码
    * @param {string} password 密码
@@ -73,11 +72,7 @@ class StringTool {
    * @param c
    * @returns {*}
    */
-<<<<<<< HEAD
-  static numberRemoveLeftZero(c){
-=======
   static numberRemoveLeftZero(c: string): string{
->>>>>>> 3e1dd7fe38ec524502eb35dd6c477b58d423d588
     if (/^[0-9]*$/.test(c)) {
       return Number.parseInt(c) + '';
     }
