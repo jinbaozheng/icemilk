@@ -18,7 +18,7 @@ class JNetworkTrade extends JNetworkRoot{
    * @param paras 锁座参数
    * @returns {{terminate, then}|*}
    */
-  tradeLockSeatNeedLogin(type, paras) {
+  tradeLockSeat(type, paras) {
     return new Promise((resolve, reject) => {
       this.prefixPromise(tradeUrl.jbzLockSeat, {type, ...paras}).then(data => {
         resolve(_('tradeUrl.jbzLockSeat', data));
@@ -33,7 +33,7 @@ class JNetworkTrade extends JNetworkRoot{
    * @param orderId 订单Id
    * @returns {{terminate, then}|*}
    */
-  cancelLockSeatNeedLogin(orderId) {
+  tradeCancelLockSeat(orderId) {
     return this.prefixPromise(tradeUrl.jbzCancelOrder, {orderId})
   }
 
@@ -43,7 +43,7 @@ class JNetworkTrade extends JNetworkRoot{
    * @param paras 下订单参数
    * @returns {{terminate, then}|*}
    */
-  tradeApplyOrderNeedLogin(type, paras) {
+  tradeApplyOrder(type, paras) {
     let inType = JNetwork.inType;
     if (inType === 'ICBC-APP' || inType === 'SHANGHAI-APP') {
       return new Promise((resolve, reject) => {
@@ -65,7 +65,7 @@ class JNetworkTrade extends JNetworkRoot{
    * @param redIds 待定
    * @returns {{terminate, then}|*}
    */
-  tradePrePayOrderNeedLoginInType(orderId, payType, prizeIds, redIds) {
+  tradePrePayOrder(orderId, payType, prizeIds, redIds) {
     let inType = JNetwork.inType;
     if (inType === 'DPIOS' || inType === 'DPANDROID') {
       return this.prefixPromise(tradeUrl.jbzAppPrepay, {orderId, payType, prizeIds, redIds});
@@ -76,19 +76,19 @@ class JNetworkTrade extends JNetworkRoot{
     return JNetwork.wrongInType();
   }
 
-  static tradeLockSeatNeedLogin(type, paras) {
+  static tradeLockSeat(type, paras) {
     return this.instance().tradeLockSeatNeedLogin(type, paras);
   }
 
-  static cancelLockSeatNeedLogin(orderId) {
+  static tradeCancelLockSeat(orderId) {
     return this.instance().cancelLockSeatNeedLogin(orderId);
   }
 
-  static tradeApplyOrderNeedLogin(type, paras) {
+  static tradeApplyOrder(type, paras) {
     return this.instance().tradeApplyOrderNeedLogin(type, paras);
   }
 
-  static tradePrePayOrderNeedLoginInType(orderId, payType, prizeIds, redIds) {
+  static tradePrePayOrder(orderId, payType, prizeIds, redIds) {
     return this.instance().tradePrePayOrderNeedLoginInType(orderId, payType, prizeIds, redIds);
   }
 

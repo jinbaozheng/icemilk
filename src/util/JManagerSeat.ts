@@ -8,7 +8,10 @@ import AutoSeatPicking from '../arithmetic/AutoSeatPicking';
 import SmartSeatModel from "../model/SmartSeatModel";
 
 const _cellSize = 30;
-const _cellSpace = 8;
+const _cellRowSpace = 8;
+const _cellColSpace = 8;
+
+
 let instance = null;
 
 /**
@@ -56,7 +59,7 @@ class SeatManager {
    * @returns {Object} 平台需要的参数
    */
   static seatParasFromScreening(platform, screening) {
-    var paras = {};
+    let paras = {};
     if (platform === 'wangpiao') {
       paras = {
         cinemaId: screening.cinemaId,
@@ -93,6 +96,14 @@ class SeatManager {
     if (platform === 'baidu') {
       paras = {
         showId: screening.showId
+      }
+    }
+
+    if (platform === 'taobao'){
+      paras = {
+        cinemaId: platform.cinemaId,
+        showId: platform.showId,
+        sectionId: platform.sectionId
       }
     }
     return paras;
@@ -171,6 +182,14 @@ class SeatManager {
       return seatList;
     }
 
+    if (!seatData){
+      return [];
+    }
+    // 淘票票预处理
+    if (type === 'taobao' && !seatData.regular){
+      seatData = this.handleTaoBaoSeatData(seatData);
+    }
+
     let seatList = [];
     let seatMap = seatData.seatMap;
     let maxRow = seatData.maxRow;
@@ -213,6 +232,83 @@ class SeatManager {
   }
 
   /**
+   * 淘票票座位图处理
+   * @param seatData
+   * @returns {*}
+   */
+  handleTaoBaoSeatData(seatData){
+    let seatMap = seatData.seatMap;
+    let seatRowList: number[] = [];
+    let seatColList: number[] = [];
+    for (let key in seatMap){
+      if (seatMap.hasOwnProperty(key)){
+        let location: string[] = key.split(':');
+        seatRowList.push(parseInt(location[0]));
+        seatColList.push(parseInt(location[1]));
+      }
+    }
+    seatRowList.sort((a: number, b: number) => {
+      return (a - b) && ((a - b) / Math.abs(a - b))
+    })
+    seatColList.sort((a: number, b: number) => {
+      return (a - b) && ((a - b) / Math.abs(a - b))
+    })
+    let closeRowSpace:any = {};
+    let closeColSpace:any = {};
+    for (let i = 1, l = Math.min(seatRowList.length, seatColList.length); i < l; i++){
+      let rowOffset = seatRowList[i] - seatRowList[i - 1];
+      if (closeRowSpace.hasOwnProperty(rowOffset)){
+        closeRowSpace[rowOffset]++;
+      } else {
+        closeRowSpace[rowOffset] = 1;
+      }
+
+      let colOffset = seatColList[i] - seatColList[i - 1];
+      if (closeColSpace.hasOwnProperty(colOffset)){
+        closeColSpace[colOffset]++;
+      } else {
+        closeColSpace[colOffset] = 1;
+      }
+    }
+
+    let rowSpace = Number.MAX_VALUE;
+    let rowStress = 0;
+    for (let spaceString in closeRowSpace){
+      if(closeRowSpace.hasOwnProperty(spaceString)){
+        let space = parseInt(spaceString);
+        if (space !== 0 && closeRowSpace[space] > rowStress){
+          rowSpace = space;
+          rowStress = closeRowSpace[space];
+        }
+      }
+    }
+
+    let colSpace = Number.MAX_VALUE;
+    let colStress = 0;
+    for (let spaceString in closeColSpace){
+      let space = parseInt(spaceString);
+      if (space !== 0 && closeColSpace[space] > colStress){
+        colSpace = space;
+        colStress = closeColSpace[space];
+      }
+    }
+
+    let filteredSeatMap = {};
+    for (let key in seatMap){
+      if (seatMap.hasOwnProperty(key)){
+        let location: string[] = key.split(':');
+        let filteredRow: number = Math.floor(parseInt(location[0]) / rowSpace);
+        let filteredCol: number = Math.floor(parseInt(location[1]) / colSpace);
+        let rowId: number = Math.floor(seatMap[key].rowId / rowSpace);
+        let columnId: number = Math.floor(seatMap[key].columnId / colSpace);
+        filteredSeatMap[filteredRow + ':' + filteredCol] = {...seatMap[key], rowId, columnId};
+      }
+    }
+    seatData.seatMap = filteredSeatMap;
+    return seatData;
+  }
+
+  /**
    * 获取智能座位图通用方法
    * @private
    * @param type 平台类型
@@ -220,24 +316,41 @@ class SeatManager {
    * @returns {Array} 智能座位图
    */
   smartSeatsWithSeats(type, seatList) {
+    let smartSeats = [];
     if (type === 'wangpiao') {
-      return this.smartSeatsWithWPSeats(seatList);
+      smartSeats = this.smartSeatsWithWPSeats(seatList);
     }
     if (type === 'spider') {
-      return this.smartSeatsWithSPSeats(seatList);
+      smartSeats = this.smartSeatsWithSPSeats(seatList);
     }
     if (type === 'maizuo') {
-      return this.smartSeatsWithMZSeats(seatList);
+      smartSeats = this.smartSeatsWithMZSeats(seatList);
     }
     if (type === 'danche') {
-      return this.smartSeatsWithDCSeats(seatList);
+      smartSeats = this.smartSeatsWithDCSeats(seatList);
     }
     if (type === 'maoyan' || type === 'meituan' || type === 'dazhong') {
-      return this.smartSeatsWithMYSeats(seatList);
+      smartSeats = this.smartSeatsWithMYSeats(seatList);
     }
     if (type === 'baidu') {
-      return this.smartSeatsWithBDSeats(seatList);
+      smartSeats = this.smartSeatsWithBDSeats(seatList);
     }
+    if (type === 'taobao') {
+      smartSeats = this.smartSeatsWithTBSeats(seatList);
+    }
+    let minRow = Number.MAX_VALUE;
+    let minCol = Number.MAX_VALUE;
+    smartSeats.forEach(seat => {
+      minRow = Math.min(minRow, seat.row);
+      minCol = Math.min(minCol, seat.col);
+    })
+    smartSeats.forEach(seat => {
+      seat.adjustRow = seat.row - minRow;
+      seat.adjustCol = seat.col - minCol;
+      seat.rowLocation -= minRow * (_cellSize + _cellRowSpace)
+      seat.colLocation -= minCol * (_cellSize + _cellColSpace)
+    })
+    return smartSeats;
   }
 
   /**
@@ -250,9 +363,13 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.key.split(':').shift());
       let col = Number.parseInt(seatModel.key.split(':').pop());
+      let rowOriNumber = StringTool.numberRemoveLeftZero(seatModel.rowName);
+      let colOriNumber = StringTool.numberRemoveLeftZero(seatModel.columnName);
       let rowNumber = StringTool.numberFromString(seatModel.Name.split(':').shift(), true, 1);
       let colNumber = StringTool.numberFromString(seatModel.Name.split(':').pop(), true, 1);
       return {
+        rowOriNumber,
+        colOriNumber,
         row: row,
         col: col,
         rowNumber: rowNumber,
@@ -265,8 +382,8 @@ class SeatManager {
         ...bridgeModel,
         // N:lock  Y:unLock
         status: seatRowModel.Status === 'Y' ? 0 : 1,
-        rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
-        colLocation: bridgeModel.col * (_cellSize + _cellSpace),
+        rowLocation: bridgeModel.row * (_cellSize + _cellRowSpace),
+        colLocation: bridgeModel.col * (_cellSize + _cellColSpace),
         loveIndex: Number.parseInt(seatRowModel.LoveFlag)
       };
     });
@@ -282,9 +399,13 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowNum);
       let col = Number.parseInt(seatModel.columnNum);
+      let rowOriNumber = StringTool.numberRemoveLeftZero(seatModel.rowName);
+      let colOriNumber = StringTool.numberRemoveLeftZero(seatModel.columnName);
       let rowNumber = StringTool.numberFromString(seatModel.rowId, true, 1);
       let colNumber = StringTool.numberFromString(seatModel.columnId, true, 1);
       return {
+        rowOriNumber,
+        colOriNumber,
         row: row,
         col: col,
         rowNumber: rowNumber,
@@ -298,8 +419,8 @@ class SeatManager {
         status: seatRowModel.isLock
           ? 1
           : 0,
-        rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
-        colLocation: bridgeModel.col * (_cellSize + _cellSpace),
+        rowLocation: bridgeModel.row * (_cellSize + _cellRowSpace),
+        colLocation: bridgeModel.col * (_cellSize + _cellColSpace),
         loveIndex: Number.parseInt(seatRowModel.loveIndex)
       }
     });
@@ -315,10 +436,14 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowNum);
       let col = Number.parseInt(seatModel.columnNum);
+      let rowOriNumber = StringTool.numberRemoveLeftZero(seatModel.rowName);
+      let colOriNumber = StringTool.numberRemoveLeftZero(seatModel.columnName);
       let rowNumber = StringTool.numberFromString(seatModel.rowId, true, 1);
       let colNumber = StringTool.numberFromString(seatModel.columnId, true, 1);
       // 上海百美汇影城
       return {
+        rowOriNumber,
+        colOriNumber,
         row: row,
         col: col,
         rowNumber: rowNumber,
@@ -332,8 +457,8 @@ class SeatManager {
         status: seatRowModel.isLock === '1'
           ? 1
           : 0,
-        rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
-        colLocation: bridgeModel.col * (_cellSize + _cellSpace),
+        rowLocation: bridgeModel.row * (_cellSize + _cellRowSpace),
+        colLocation: bridgeModel.col * (_cellSize + _cellColSpace),
         loveIndex: Number.parseInt(seatRowModel.loveIndex)
       }
     });
@@ -349,9 +474,13 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowNum);
       let col = Number.parseInt(seatModel.columnNum);
+      let rowOriNumber = StringTool.numberRemoveLeftZero(seatModel.rowName);
+      let colOriNumber = StringTool.numberRemoveLeftZero(seatModel.columnName);
       let rowNumber = StringTool.numberFromString(seatModel.rowId, true, 1);
       let colNumber = StringTool.numberFromString(seatModel.columnId, true, 1);
       return {
+        rowOriNumber,
+        colOriNumber,
         row: row,
         col: col,
         rowNumber: rowNumber,
@@ -366,8 +495,8 @@ class SeatManager {
         status: seatRowModel.isLock
           ? 1
           : 0,
-        rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
-        colLocation: bridgeModel.col * (_cellSize + _cellSpace),
+        rowLocation: bridgeModel.row * (_cellSize + _cellRowSpace),
+        colLocation: bridgeModel.col * (_cellSize + _cellColSpace),
         loveIndex: Number.parseInt(seatRowModel.loveIndex)
       }
     });
@@ -383,9 +512,13 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowNo);
       let col = Number.parseInt(seatModel.columnNo);
+      let rowOriNumber = StringTool.numberRemoveLeftZero(seatModel.rowName);
+      let colOriNumber = StringTool.numberRemoveLeftZero(seatModel.columnName);
       let rowNumber = StringTool.numberFromString(seatModel.rowId, true, 1);
       let colNumber = StringTool.numberFromString(seatModel.columnId, true, 1);
       return {
+        rowOriNumber,
+        colOriNumber,
         row: row,
         col: col,
         rowNumber: rowNumber,
@@ -393,7 +526,7 @@ class SeatManager {
         seatModel: seatModel
       };
     }).map(bridgeModel => {
-      var seatRowModel = bridgeModel.seatModel;
+      let seatRowModel = bridgeModel.seatModel;
       let loveIndex = 0;
       if (seatRowModel.status === 'L') {
         loveIndex = 1;
@@ -405,8 +538,8 @@ class SeatManager {
         status: seatRowModel.status === 'LK'
           ? 1
           : 0,
-        rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
-        colLocation: bridgeModel.col * (_cellSize + _cellSpace),
+        rowLocation: bridgeModel.row * (_cellSize + _cellRowSpace),
+        colLocation: bridgeModel.col * (_cellSize + _cellColSpace),
         loveIndex: loveIndex
       }
     });
@@ -422,9 +555,13 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowId);
       let col = Number.parseInt(seatModel.columnId);
+      let rowOriNumber = StringTool.numberRemoveLeftZero(seatModel.rowName);
+      let colOriNumber = StringTool.numberRemoveLeftZero(seatModel.columnName);
       let rowNumber = StringTool.numberFromString(seatModel.rowNo, true, 1);
       let colNumber = StringTool.numberFromString(seatModel.columnNo, true, 1);
       return {
+        rowOriNumber,
+        colOriNumber,
         row: row,
         col: col,
         rowNumber: rowNumber,
@@ -438,11 +575,49 @@ class SeatManager {
         status: seatRowModel.status === '2'
           ? 1
           : 0,
-        rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
-        colLocation: bridgeModel.col * (_cellSize + _cellSpace),
+        rowLocation: bridgeModel.row * (_cellSize + _cellRowSpace),
+        colLocation: bridgeModel.col * (_cellSize + _cellColSpace),
         loveIndex: Number.parseInt(seatRowModel.isLove),
         areaInfo: seatRowModel.area
       };
+    });
+  }
+
+  /**
+   * 获取淘票票智能座位图
+   * @param seatList
+   * @returns {Array}
+   */
+  smartSeatsWithTBSeats(seatList) {
+    return seatList.map((seatModel) => {
+      let row = Number.parseInt(seatModel.rowId);
+      let col = Number.parseInt(seatModel.columnId);
+      let rowOriNumber: string = StringTool.numberRemoveLeftZero(seatModel.rowName);
+      let colOriNumber: string = StringTool.numberRemoveLeftZero(seatModel.columnName);
+      let rowNumber = StringTool.numberFromString(rowOriNumber, true, 1);
+      let colNumber = StringTool.numberFromString(colOriNumber, true, 1);
+      return {
+        rowOriNumber,
+        colOriNumber,
+        row,
+        col,
+        rowNumber,
+        colNumber,
+        seatModel
+      };
+    }).map(bridgeModel => {
+      let seatRowModel = bridgeModel.seatModel;
+      let loveIndex = 0;
+      loveIndex = seatRowModel.loveIndex;
+      return {
+        ...bridgeModel,
+        status: seatRowModel.status === 0
+          ? 1
+          : 0,
+        rowLocation: bridgeModel.row * (_cellSize + _cellRowSpace),
+        colLocation: bridgeModel.col * (_cellSize + _cellColSpace),
+        loveIndex: loveIndex
+      }
     });
   }
 
@@ -478,7 +653,8 @@ class SeatManager {
   seatContentDataFromSmartSeats(smartSeats) {
     let seatContentSize = this.seatContentSizeWithSmartSeats(smartSeats);
     return {
-      'seatCellSpace': _cellSpace,
+      'seatCellRowSpace': _cellRowSpace,
+      'seatCellColSpace': _cellColSpace,
       'seatCellWidth': _cellSize,
       'seatCellHeight': _cellSize,
       'seatContentWidth': seatContentSize.width,
