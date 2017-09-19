@@ -2,7 +2,7 @@
 //  * Created by cuppi on 2016/12/7.
 //  */
 'use strict'
-import NetworkTrade from '../network/JNetworkTrade.ts';
+import NetworkTrade from '../network/JNetworkTrade';
 
 // /**
 //  * 交易管理类
