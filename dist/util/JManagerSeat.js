@@ -85,6 +85,9 @@ var SeatManager = function () {
   }, {
     key: 'unitySeatWithSeatData',
     value: function unitySeatWithSeatData(type, seatData) {
+      if (!seatData) {
+        return [];
+      }
       if (type === 'maoyan' || type === 'meituan' || type === 'dazhong') {
         var _seatList = [];
         var sections = seatData.sections;
@@ -131,10 +134,6 @@ var SeatManager = function () {
         }
 
         return _seatList;
-      }
-
-      if (!seatData) {
-        return [];
       }
 
       if (type === 'taobao' && !seatData.regular) {
