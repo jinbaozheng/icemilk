@@ -24,6 +24,7 @@ var StringTool = function () {
     function StringTool() {
         (0, _classCallCheck3.default)(this, StringTool);
     }
+<<<<<<< HEAD
 
     (0, _createClass3.default)(StringTool, null, [{
         key: 'isMobile',
@@ -36,6 +37,56 @@ var StringTool = function () {
         value: function isMobile(mobile) {
             return (/^1[34578]\d{9}$/.test(mobile)
             );
+=======
+  }, {
+    key: 'isVerifyCode',
+    value: function isVerifyCode(verifycode) {
+      return (/^[0-9]{6}$/.test(verifycode)
+      );
+    }
+  }, {
+    key: 'isPassword',
+    value: function isPassword(password, minLength, maxLength) {
+      if (minLength !== undefined && maxLength !== undefined) {
+        return new RegExp("^[a-zA-Z0-9]{" + minLength + "," + maxLength + "}$").test(password);
+      }
+      return (/^[a-zA-Z0-9]{6,14}$/.test(password)
+      );
+    }
+  }, {
+    key: 'numberRemoveLeftZero',
+    value: function numberRemoveLeftZero(c) {
+      if (/^[0-9]*$/.test(c)) {
+        return (0, _parseInt2.default)(c) + '';
+      }
+      return c;
+    }
+  }, {
+    key: 'numberFromASC',
+    value: function numberFromASC(ascChar) {
+      var asc = ascChar.charCodeAt(0);
+      if (asc >= 65 && asc <= 90) {
+        asc -= 65;
+      } else if (asc >= 97 && asc <= 122) {
+        asc -= 97;
+      } else if (asc >= 48 && asc <= 57) {
+        asc -= 48;
+      } else {
+        asc = 0;
+      }
+      return asc;
+    }
+  }, {
+    key: 'numbFromString',
+    value: function numberFromString(string, force, offset) {
+      if (/^[0-9]*$/.test(string)) {
+        return (0, _parseInt2.default)(string);
+      }
+      var sum = offset ? offset : 0;
+      if (force) {
+        for (var i = string.length - 1, radix = 1; i >= 0; i--, radix = radix * 26) {
+          sum += StringTool.numberFromASC(string[i]) * radix;
+>>>>>>> e13f47324e500524629d57d9d116ace213b0ff0b
         }
         /**
          * 校验是否为电话号码
@@ -140,9 +191,10 @@ var StringTool = function () {
             if (force) {
                 for (var i = string.length - 1, radix = 1; i >= 0; i--, radix = radix * 26) {
                     sum += StringTool.numberFromASC(string[i]) * radix;
-                }
-            }
-            return sum;
+           
+------
+l
+	    return sum;
         }
         /**
          * 清除所有空格字符
@@ -153,7 +205,7 @@ var StringTool = function () {
     }, {
         key: 'clearSpace',
         value: function clearSpace(string) {
-            // 过滤空格
+            / 过滤空格
             return string.replace(/\s+/g, '');
         }
         /**
@@ -163,7 +215,7 @@ var StringTool = function () {
          */
 
     }, {
-        key: 'clearComma',
+key: 'clearComma',
         value: function clearComma(string) {
             // 过滤空格
             return string.replace(/\u002c+/g, '').replace(/，+/g, '');
