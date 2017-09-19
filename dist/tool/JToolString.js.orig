@@ -77,7 +77,7 @@ var StringTool = function () {
       return asc;
     }
   }, {
-    key: 'numbFromString',
+    key: 'numberFromString',
     value: function numberFromString(string, force, offset) {
       if (/^[0-9]*$/.test(string)) {
         return (0, _parseInt2.default)(string);
@@ -191,10 +191,9 @@ var StringTool = function () {
             if (force) {
                 for (var i = string.length - 1, radix = 1; i >= 0; i--, radix = radix * 26) {
                     sum += StringTool.numberFromASC(string[i]) * radix;
-           
-------
-l
-	    return sum;
+                }
+            }
+            return sum;
         }
         /**
          * 清除所有空格字符
@@ -205,7 +204,7 @@ l
     }, {
         key: 'clearSpace',
         value: function clearSpace(string) {
-            / 过滤空格
+            // 过滤空格
             return string.replace(/\s+/g, '');
         }
         /**
@@ -215,7 +214,7 @@ l
          */
 
     }, {
-key: 'clearComma',
+        key: 'clearComma',
         value: function clearComma(string) {
             // 过滤空格
             return string.replace(/\u002c+/g, '').replace(/，+/g, '');

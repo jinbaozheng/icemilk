@@ -1,32 +1,40 @@
-"use strict";
 
-var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _stringify = require('babel-runtime/core-js/json/stringify');
+
+var _stringify2 = _interopRequireDefault(_stringify);
+
+var _getIterator2 = require('babel-runtime/core-js/get-iterator');
+
+var _getIterator3 = _interopRequireDefault(_getIterator2);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _JNetworkTrade = require('../network/JNetworkTrade.js');
+
+var _JNetworkTrade2 = _interopRequireDefault(_JNetworkTrade);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-<<<<<<< HEAD
-Object.defineProperty(exports, "__esModule", { value: true });
-// /**
-//  * Created by cuppi on 2016/12/7.
-//  */
-// 'use strict'
-// import NetworkTrade from '../network/JNetworkTrade.ts';
-// let instance = null;
-//
-// /**
-//  * 交易管理类
-//  * @memberOf module:manager
-//  */
-
-var TradeManager = function TradeManager() {
-  (0, _classCallCheck3.default)(this, TradeManager);
-};
-
-exports.default = TradeManager;
-//# sourceMappingURL=JManagerTrade.js.map
-=======
 var instance = null;
 
 var TradeManager = function () {
@@ -508,4 +516,3 @@ var TradeManager = function () {
 }();
 
 exports.default = TradeManager;
->>>>>>> e13f47324e500524629d57d9d116ace213b0ff0b

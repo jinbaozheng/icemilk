@@ -1,32 +1,40 @@
-"use strict";
 
-var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _stringify = require('babel-runtime/core-js/json/stringify');
+
+var _stringify2 = _interopRequireDefault(_stringify);
+
+var _getIterator2 = require('babel-runtime/core-js/get-iterator');
+
+var _getIterator3 = _interopRequireDefault(_getIterator2);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _JNetworkTrade = require('../network/JNetworkTrade.js');
+
+var _JNetworkTrade2 = _interopRequireDefault(_JNetworkTrade);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-<<<<<<< HEAD
-Object.defineProperty(exports, "__esModule", { value: true });
-// /**
-//  * Created by cuppi on 2016/12/7.
-//  */
-// 'use strict'
-// import NetworkTrade from '../network/JNetworkTrade.ts';
-// let instance = null;
-//
-// /**
-//  * 交易管理类
-//  * @memberOf module:manager
-//  */
-
-var TradeManager = function TradeManager() {
-  (0, _classCallCheck3.default)(this, TradeManager);
-};
-
-exports.default = TradeManager;
-//# sourceMappingURL=JManagerTrade.js.map
-=======
 var instance = null;
 
 var TradeManager = function () {
@@ -291,50 +299,6 @@ var TradeManager = function () {
           openId: openId
         };
       }
-
-      if (type === 'taobao') {
-        var _seatInfos5 = [];
-        var _seatNumberInfos6 = [];
-        var seatNameInfos = [];
-        var _iteratorNormalCompletion7 = true;
-        var _didIteratorError7 = false;
-        var _iteratorError7 = undefined;
-
-        try {
-          for (var _iterator7 = (0, _getIterator3.default)(seatList), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-            var _seat6 = _step7.value;
-
-            _seatInfos5.push(_seat6.seatModel.seatId);
-            _seatNumberInfos6.push(_seat6.rowOriNumber + ':' + _seat6.colOriNumber);
-            seatNameInfos.push(_seat6.seatModel.name);
-          }
-        } catch (err) {
-          _didIteratorError7 = true;
-          _iteratorError7 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion7 && _iterator7.return) {
-              _iterator7.return();
-            }
-          } finally {
-            if (_didIteratorError7) {
-              throw _iteratorError7;
-            }
-          }
-        }
-
-        var s = {
-          seatIds: _seatInfos5.join('|'),
-          count: _seatInfos5.length,
-          seatNumberInfos: _seatNumberInfos6.join('|'),
-          seatsName: seatNameInfos.join('|'),
-          applyKey: '',
-          mobile: mobile,
-          openId: openId
-        };
-        console.log(s);
-        return s;
-      }
     }
   }, {
     key: 'buyTicket',
@@ -482,23 +446,10 @@ var TradeManager = function () {
           cinemaId: cinemaId
         };
       }
-
       if (platform === 'baidu') {
         return {
           showId: platformData.seqid,
           platformCinemaId: platformData.cinemaId,
-          cinemaId: cinemaId
-        };
-      }
-
-      if (platform === 'taobao') {
-        return {
-          jbzFilmId: filmId,
-          filmId: platform.filmId,
-          showId: platform.showId,
-          cinemaName: cinemaName,
-          platformCinemaId: platform.cinemaId,
-          filmName: filmName,
           cinemaId: cinemaId
         };
       }
@@ -508,4 +459,3 @@ var TradeManager = function () {
 }();
 
 exports.default = TradeManager;
->>>>>>> e13f47324e500524629d57d9d116ace213b0ff0b
