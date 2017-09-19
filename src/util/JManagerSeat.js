@@ -155,6 +155,9 @@ class SeatManager {
    * @returns {Array}
    */
   unitySeatWithSeatData(type, seatData) {
+    if (!seatData){
+      return [];
+    }
     if (type === 'maoyan' || type === 'meituan' || type === 'dazhong') {
       let seatList = [];
       let sections = seatData.sections;
@@ -181,9 +184,6 @@ class SeatManager {
       return seatList;
     }
 
-    if (!seatData){
-      return [];
-    }
     // 淘票票预处理
     if (type === 'taobao' && !seatData.regular){
       seatData = this.handleTaoBaoSeatData(seatData);
