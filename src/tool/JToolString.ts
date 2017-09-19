@@ -73,7 +73,11 @@ class StringTool {
    * @param c
    * @returns {*}
    */
+<<<<<<< HEAD
   static numberRemoveLeftZero(c){
+=======
+  static numberRemoveLeftZero(c: string): string{
+>>>>>>> 3e1dd7fe38ec524502eb35dd6c477b58d423d588
     if (/^[0-9]*$/.test(c)) {
       return Number.parseInt(c) + '';
     }
@@ -128,7 +132,6 @@ class StringTool {
     // 过滤空格
     return string.replace(/\s+/g, '');
   }
-
 
   /**
    * 清除所有逗号

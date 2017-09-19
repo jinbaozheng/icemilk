@@ -238,15 +238,24 @@ class SeatManager {
    */
   handleTaoBaoSeatData(seatData){
     let seatMap = seatData.seatMap;
+<<<<<<< HEAD
     let seatRowList = [];
     let seatColList = [];
     for (let key in seatMap){
       if (seatMap.hasOwnProperty(key)){
         let location = key.split(':');
+=======
+    let seatRowList: number[] = [];
+    let seatColList: number[] = [];
+    for (let key in seatMap){
+      if (seatMap.hasOwnProperty(key)){
+        let location: string[] = key.split(':');
+>>>>>>> 3e1dd7fe38ec524502eb35dd6c477b58d423d588
         seatRowList.push(parseInt(location[0]));
         seatColList.push(parseInt(location[1]));
       }
     }
+<<<<<<< HEAD
     seatRowList.sort((a, b) => {
       return (a - b) && ((a - b) / Math.abs(a - b))
     })
@@ -255,6 +264,16 @@ class SeatManager {
     })
     let closeRowSpace = {};
     let closeColSpace = {};
+=======
+    seatRowList.sort((a: number, b: number) => {
+      return (a - b) && ((a - b) / Math.abs(a - b))
+    })
+    seatColList.sort((a: number, b: number) => {
+      return (a - b) && ((a - b) / Math.abs(a - b))
+    })
+    let closeRowSpace:any = {};
+    let closeColSpace:any = {};
+>>>>>>> 3e1dd7fe38ec524502eb35dd6c477b58d423d588
     for (let i = 1, l = Math.min(seatRowList.length, seatColList.length); i < l; i++){
       let rowOffset = seatRowList[i] - seatRowList[i - 1];
       if (closeRowSpace.hasOwnProperty(rowOffset)){
@@ -274,10 +293,19 @@ class SeatManager {
     let rowSpace = Number.MAX_VALUE;
     let rowStress = 0;
     for (let spaceString in closeRowSpace){
+<<<<<<< HEAD
       let space = parseInt(spaceString);
       if (space !== 0 && closeRowSpace[space] > rowStress){
         rowSpace = space;
         rowStress = closeRowSpace[space];
+=======
+      if(closeRowSpace.hasOwnProperty(spaceString)){
+        let space = parseInt(spaceString);
+        if (space !== 0 && closeRowSpace[space] > rowStress){
+          rowSpace = space;
+          rowStress = closeRowSpace[space];
+        }
+>>>>>>> 3e1dd7fe38ec524502eb35dd6c477b58d423d588
       }
     }
 
@@ -294,16 +322,27 @@ class SeatManager {
     let filteredSeatMap = {};
     for (let key in seatMap){
       if (seatMap.hasOwnProperty(key)){
+<<<<<<< HEAD
         let location = key.split(':');
         let filteredRow = Math.floor(location[0] / rowSpace);
         let filteredCol = Math.floor(location[1] / colSpace);
         let rowId = Math.floor(seatMap[key].rowId / rowSpace);
         let columnId = Math.floor(seatMap[key].columnId / colSpace);
+=======
+        let location: string[] = key.split(':');
+        let filteredRow: number = Math.floor(parseInt(location[0]) / rowSpace);
+        let filteredCol: number = Math.floor(parseInt(location[1]) / colSpace);
+        let rowId: number = Math.floor(seatMap[key].rowId / rowSpace);
+        let columnId: number = Math.floor(seatMap[key].columnId / colSpace);
+>>>>>>> 3e1dd7fe38ec524502eb35dd6c477b58d423d588
         filteredSeatMap[filteredRow + ':' + filteredCol] = {...seatMap[key], rowId, columnId};
       }
     }
     seatData.seatMap = filteredSeatMap;
+<<<<<<< HEAD
     console.log(seatData);
+=======
+>>>>>>> 3e1dd7fe38ec524502eb35dd6c477b58d423d588
     return seatData;
   }
 
@@ -398,7 +437,12 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowNum);
       let col = Number.parseInt(seatModel.columnNum);
+<<<<<<< HEAD
 <<<<<<< HEAD:src/util/JManagerSeat.ts
+=======
+      let rowOriNumber = StringTool.numberRemoveLeftZero(seatModel.rowName);
+      let colOriNumber = StringTool.numberRemoveLeftZero(seatModel.columnName);
+>>>>>>> 3e1dd7fe38ec524502eb35dd6c477b58d423d588
       let rowNumber = StringTool.numberFromString(seatModel.rowId, true, 1);
       let colNumber = StringTool.numberFromString(seatModel.columnId, true, 1);
 =======
@@ -440,7 +484,12 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowNum);
       let col = Number.parseInt(seatModel.columnNum);
+<<<<<<< HEAD
 <<<<<<< HEAD:src/util/JManagerSeat.ts
+=======
+      let rowOriNumber = StringTool.numberRemoveLeftZero(seatModel.rowName);
+      let colOriNumber = StringTool.numberRemoveLeftZero(seatModel.columnName);
+>>>>>>> 3e1dd7fe38ec524502eb35dd6c477b58d423d588
       let rowNumber = StringTool.numberFromString(seatModel.rowId, true, 1);
       let colNumber = StringTool.numberFromString(seatModel.columnId, true, 1);
 =======
@@ -483,7 +532,12 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowNum);
       let col = Number.parseInt(seatModel.columnNum);
+<<<<<<< HEAD
 <<<<<<< HEAD:src/util/JManagerSeat.ts
+=======
+      let rowOriNumber = StringTool.numberRemoveLeftZero(seatModel.rowName);
+      let colOriNumber = StringTool.numberRemoveLeftZero(seatModel.columnName);
+>>>>>>> 3e1dd7fe38ec524502eb35dd6c477b58d423d588
       let rowNumber = StringTool.numberFromString(seatModel.rowId, true, 1);
       let colNumber = StringTool.numberFromString(seatModel.columnId, true, 1);
 =======
@@ -526,7 +580,12 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowNo);
       let col = Number.parseInt(seatModel.columnNo);
+<<<<<<< HEAD
 <<<<<<< HEAD:src/util/JManagerSeat.ts
+=======
+      let rowOriNumber = StringTool.numberRemoveLeftZero(seatModel.rowName);
+      let colOriNumber = StringTool.numberRemoveLeftZero(seatModel.columnName);
+>>>>>>> 3e1dd7fe38ec524502eb35dd6c477b58d423d588
       let rowNumber = StringTool.numberFromString(seatModel.rowId, true, 1);
       let colNumber = StringTool.numberFromString(seatModel.columnId, true, 1);
 =======
@@ -574,7 +633,12 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowId);
       let col = Number.parseInt(seatModel.columnId);
+<<<<<<< HEAD
 <<<<<<< HEAD:src/util/JManagerSeat.ts
+=======
+      let rowOriNumber = StringTool.numberRemoveLeftZero(seatModel.rowName);
+      let colOriNumber = StringTool.numberRemoveLeftZero(seatModel.columnName);
+>>>>>>> 3e1dd7fe38ec524502eb35dd6c477b58d423d588
       let rowNumber = StringTool.numberFromString(seatModel.rowNo, true, 1);
       let colNumber = StringTool.numberFromString(seatModel.columnNo, true, 1);
 =======
@@ -616,10 +680,17 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowId);
       let col = Number.parseInt(seatModel.columnId);
+<<<<<<< HEAD
       let rowOriNumber = StringTool.numberRemoveLeftZero(seatModel.rowName);
       let colOriNumber = StringTool.numberRemoveLeftZero(seatModel.columnName);
       let rowNumber = Number.parseInt(StringTool.numberFromString(rowOriNumber, true, 1));
       let colNumber = Number.parseInt(StringTool.numberFromString(colOriNumber, true, 1));
+=======
+      let rowOriNumber: string = StringTool.numberRemoveLeftZero(seatModel.rowName);
+      let colOriNumber: string = StringTool.numberRemoveLeftZero(seatModel.columnName);
+      let rowNumber = StringTool.numberFromString(rowOriNumber, true, 1);
+      let colNumber = StringTool.numberFromString(colOriNumber, true, 1);
+>>>>>>> 3e1dd7fe38ec524502eb35dd6c477b58d423d588
       return {
         rowOriNumber,
         colOriNumber,
