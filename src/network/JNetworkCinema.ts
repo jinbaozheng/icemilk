@@ -7,7 +7,7 @@ import {cinemaUrl} from '../unify/JUrlList';
 import DateTool from '../tool/JToolDate';
 import _ from '../unify/JDataUnify';
 import SeatManager from '../util/JManagerSeat';
-import CinemaFilterModel from "../paras/CinemaFilterParas";
+import CinemaFilterParas from "../paras/CinemaFilterParas";
 import JNetworkRoot from './JNetworkRoot';
 
 /**
@@ -33,11 +33,11 @@ class JNetworkCinema extends JNetworkRoot{
   /**
    * 影院列表
    * @param {} location
-   * @param {cinemaFilter} CinemaFilterModel
+   * @param {cinemaFilter} CinemaFilterParas
    * @returns {Promise}
    */
-  cinemaList(location: any, cinemaFilter: CinemaFilterModel);
-  cinemaList(cinemaFilter: CinemaFilterModel);
+  cinemaList(location: any, cinemaFilter: CinemaFilterParas);
+  cinemaList(cinemaFilter: CinemaFilterParas);
   cinemaList(location: any, cinemaFilter?: any){
     if (cinemaFilter == undefined){
       cinemaFilter = location;
@@ -176,8 +176,8 @@ class JNetworkCinema extends JNetworkRoot{
     return this.instance().cinemaDetail(cinemaId);
   }
 
-  static cinemaList(cinemaFilter: CinemaFilterModel);
-  static cinemaList(location: any, cinemaFilter: CinemaFilterModel);
+  static cinemaList(cinemaFilter: CinemaFilterParas);
+  static cinemaList(location: any, cinemaFilter: CinemaFilterParas);
   static cinemaList(a: any, b?: any) {
     return this.instance().cinemaList(a, b);
   }

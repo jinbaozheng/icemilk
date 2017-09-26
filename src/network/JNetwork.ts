@@ -16,7 +16,7 @@ class JNetwork {
 
   static baseUrl: string = '';
   static delegate: NetworkDelegate = null;
-  static inType: string = '';
+  static carryData: object | Function = {};
   static timeout: number = 10 * 1000;
   static _instance: any;
 
@@ -48,7 +48,6 @@ class JNetwork {
   static instance(): any {
     if (!this._instance) {
       this._instance = new this();
-      this._instance.test = Math.random();
     }
     return this._instance;
   }
@@ -152,9 +151,25 @@ class JNetwork {
             otherParas = {...otherParas, ...key};
             return;
           }
-          let globalParaFunc = JNetwork.delegate.globalParas()[key];
+          let globalParas = JNetwork.delegate.globalParas;
+          if (!globalParas){
+            console.error('未找到全局参数，请确认是否设置globalParas');
+            return;
+          }
+          let globalParaFunc = null;
+          if (typeof globalParas == "function"){
+            globalParaFunc = globalParas()[key];
+          } else if (typeof globalParas == "object") {
+            globalParaFunc = globalParas[key];
+          }
+
           if (globalParaFunc){
-            let globalPara = globalParaFunc();
+            let globalPara = null;
+            if (typeof globalParaFunc == "function"){
+              globalPara = globalParaFunc();
+            } else {
+              globalPara = globalParaFunc;
+            }
             if (typeof globalPara == "object"){
               otherParas = {...otherParas, ...globalPara};
             } else if (typeof globalPara == "string" || typeof globalPara == "number"){
@@ -197,6 +212,7 @@ class JNetwork {
       }, error => {
         return JNetwork.delegate.responseInterceptorError(error);
       });
+      // TODO: 隐性bug 只有post方法
       jaxios.post(url).then((response) => {
         isOk = response.status === 200;
         return response.data;
@@ -277,6 +293,18 @@ class JNetwork {
     return this.instance().GET(...arguments)
   }
 
+  getCarryData(): object{
+    let carryData: object = null;
+    if (JNetwork.carryData){
+      if (typeof JNetwork.carryData == "function"){
+        carryData = JNetwork.carryData();
+      }
+      if (typeof JNetwork.carryData == "object"){
+        carryData = JNetwork.carryData;
+      }
+    }
+    return carryData || {};
+  }
 
   freedomPOST(baseUrl, url, parameters, headers, otherObject): JPromise<any> {
     return this.fetchRequest('post', baseUrl, url, parameters, headers, otherObject);
@@ -288,15 +316,15 @@ class JNetwork {
 
   POST(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
     return this.freedomPOST(JNetwork.baseUrl, url, {
-      ...parameters,
-      inType: JNetwork.inType
+      ...this.getCarryData(),
+      ...parameters
     }, headers, {timeout: JNetwork.timeout, ...otherObject})
   }
 
   GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
     return this.freedomGET(JNetwork.baseUrl, url, {
-      ...parameters,
-      inType: JNetwork.inType
+      ...this.getCarryData(),
+      ...parameters
     }, headers, {timeout: JNetwork.timeout, ...otherObject})
   }
 }

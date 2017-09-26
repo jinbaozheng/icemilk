@@ -24,7 +24,7 @@ exports.default = NetworkDelegate;
 exports.defaultInterceptor = {
     requestInterceptor: function requestInterceptor(config) {
         // Do something before request is sent
-        console.log('POST ' + JToolUrl_1.default.urlFromPortion(config.baseURL, '', config.params));
+        console.log('POST ' + JToolUrl_1.default.urlFromPortion(config.url, '', config.params));
         return config;
     },
     requestInterceptorError: function requestInterceptorError(error) {

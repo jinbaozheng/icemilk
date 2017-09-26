@@ -21,7 +21,7 @@ export default NetworkDelegate;
 export const defaultInterceptor = {
   requestInterceptor: (config: AxiosRequestConfig): AxiosRequestConfig => {
     // Do something before request is sent
-    console.log('POST ' + UrlTool.urlFromPortion(config.baseURL, '', config.params));
+    console.log('POST ' + UrlTool.urlFromPortion(config.url, '', config.params));
     return config;
   },
   requestInterceptorError: (error: Error): Promise<never> => {

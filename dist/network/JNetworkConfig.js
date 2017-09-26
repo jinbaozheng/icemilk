@@ -37,6 +37,7 @@ var JNetworkConfig = function () {
         value: function setConfig(config) {
             JNetwork_1.default.baseUrl = config.baseUrl;
             JNetwork_1.default.delegate = (0, _assign2.default)({}, NetworkDelegate_1.defaultInterceptor, config.delegate);
+            JNetwork_1.default.carryData = config.carryData;
             var urlMap = config.urlMap,
                 dataMap = config.dataMap;
 

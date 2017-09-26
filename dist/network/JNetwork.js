@@ -118,9 +118,24 @@ var JNetwork = function () {
                             otherParas = (0, _assign2.default)({}, otherParas, key);
                             return;
                         }
-                        var globalParaFunc = JNetwork.delegate.globalParas()[key];
+                        var globalParas = JNetwork.delegate.globalParas;
+                        if (!globalParas) {
+                            console.error('未找到全局参数，请确认是否设置globalParas');
+                            return;
+                        }
+                        var globalParaFunc = null;
+                        if (typeof globalParas == "function") {
+                            globalParaFunc = globalParas()[key];
+                        } else if ((typeof globalParas === "undefined" ? "undefined" : (0, _typeof3.default)(globalParas)) == "object") {
+                            globalParaFunc = globalParas[key];
+                        }
                         if (globalParaFunc) {
-                            var globalPara = globalParaFunc();
+                            var globalPara = null;
+                            if (typeof globalParaFunc == "function") {
+                                globalPara = globalParaFunc();
+                            } else {
+                                globalPara = globalParaFunc;
+                            }
                             if ((typeof globalPara === "undefined" ? "undefined" : (0, _typeof3.default)(globalPara)) == "object") {
                                 otherParas = (0, _assign2.default)({}, otherParas, globalPara);
                             } else if (typeof globalPara == "string" || typeof globalPara == "number") {
@@ -163,6 +178,7 @@ var JNetwork = function () {
                 }, function (error) {
                     return JNetwork.delegate.responseInterceptorError(error);
                 });
+                // TODO: 隐性bug 只有post方法
                 jaxios.post(url).then(function (response) {
                     isOk = response.status === 200;
                     return response.data;
@@ -203,6 +219,20 @@ var JNetwork = function () {
          */
 
     }, {
+        key: "getCarryData",
+        value: function getCarryData() {
+            var carryData = null;
+            if (JNetwork.carryData) {
+                if (typeof JNetwork.carryData == "function") {
+                    carryData = JNetwork.carryData();
+                }
+                if ((0, _typeof3.default)(JNetwork.carryData) == "object") {
+                    carryData = JNetwork.carryData;
+                }
+            }
+            return carryData || {};
+        }
+    }, {
         key: "freedomPOST",
         value: function freedomPOST(baseUrl, url, parameters, headers, otherObject) {
             return this.fetchRequest('post', baseUrl, url, parameters, headers, otherObject);
@@ -215,12 +245,12 @@ var JNetwork = function () {
     }, {
         key: "POST",
         value: function POST(url, parameters, headers, otherObject) {
-            return this.freedomPOST(JNetwork.baseUrl, url, (0, _assign2.default)({}, parameters, { inType: JNetwork.inType }), headers, (0, _assign2.default)({ timeout: JNetwork.timeout }, otherObject));
+            return this.freedomPOST(JNetwork.baseUrl, url, (0, _assign2.default)({}, this.getCarryData(), parameters), headers, (0, _assign2.default)({ timeout: JNetwork.timeout }, otherObject));
         }
     }, {
         key: "GET",
         value: function GET(url, parameters, headers, otherObject) {
-            return this.freedomGET(JNetwork.baseUrl, url, (0, _assign2.default)({}, parameters, { inType: JNetwork.inType }), headers, (0, _assign2.default)({ timeout: JNetwork.timeout }, otherObject));
+            return this.freedomGET(JNetwork.baseUrl, url, (0, _assign2.default)({}, this.getCarryData(), parameters), headers, (0, _assign2.default)({ timeout: JNetwork.timeout }, otherObject));
         }
     }], [{
         key: "useParas",
@@ -251,7 +281,6 @@ var JNetwork = function () {
         value: function instance() {
             if (!this._instance) {
                 this._instance = new this();
-                this._instance.test = Math.random();
             }
             return this._instance;
         }
@@ -381,7 +410,7 @@ var JNetwork = function () {
 
 JNetwork.baseUrl = '';
 JNetwork.delegate = null;
-JNetwork.inType = '';
+JNetwork.carryData = {};
 JNetwork.timeout = 10 * 1000;
 exports.default = JNetwork;
 //# sourceMappingURL=JNetwork.js.map

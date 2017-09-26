@@ -7,7 +7,7 @@
  * 影院筛选模型
  * @module model
  */
-interface CinemaFilterModel{
+interface CinemaFilterParas{
   filmId: string;
   feature: string;
   region: string;
@@ -15,4 +15,4 @@ interface CinemaFilterModel{
   limit: string;
 }
 
-export default CinemaFilterModel;
+export default CinemaFilterParas;
