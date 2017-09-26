@@ -9,5 +9,6 @@ if ($ARGV[0] eq '--simple' || $ARGV[0] eq '-s'){
   system('jsdoc -c jsdoc.config.json --destination ./comment -R README.md -r .');
 } else {
   system('jsdoc -c jsdoc.config.json --destination ./comment -t ./node_modules/ink-docstrap/template -R README.md -r .');
+#    system('jsdoc -c jsdoc.config.json --destination ./comment -t ./node_modules/ink-docstrap/template README.md -r .');
 }
 

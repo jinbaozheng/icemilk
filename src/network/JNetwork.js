@@ -5,9 +5,11 @@
 import axios from 'axios';
 import UrlTool from '../tool/JToolUrl.js';
 
+/** @module network*/
+
 /**
  * 网络请求类
- * @alias network/JNetwork
+ * @hideconstructor
  */
 class JNetwork {
 

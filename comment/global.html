@@ -31,16 +31,23 @@
 		<ul class="nav navbar-nav">
 			
 			<li class="dropdown">
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="module-manager.html">manager</a></li><li><a href="module-model.html">model</a></li><li><a href="module-network.html">network</a></li><li><a href="module-tool.html">tool</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="network_JNetwork.html">network/JNetwork</a></li><li><a href="network_JNetworkAccount.html">network/JNetworkAccount</a></li><li><a href="network_JNetworkCinema.html">network/JNetworkCinema</a></li><li><a href="network_JNetworkCity.html">network/JNetworkCity</a></li><li><a href="network_JNetworkConfig.html">network/JNetworkConfig</a></li><li><a href="network_JNetworkFilm.html">network/JNetworkFilm</a></li><li><a href="network_JNetworkMine.html">network/JNetworkMine</a></li><li><a href="network_JNetworkOther.html">network/JNetworkOther</a></li><li><a href="network_JNetworkTrade.html">network/JNetworkTrade</a></li><li><a href="tool_JToolArray.html">tool/JToolArray</a></li><li><a href="tool_JToolDate.html">tool/JToolDate</a></li><li><a href="tool_JToolNumber.html">tool/JToolNumber</a></li><li><a href="tool_JToolObject.html">tool/JToolObject</a></li><li><a href="tool_JToolString.html">tool/JToolString</a></li><li><a href="tool_JToolUrl.html">tool/JToolUrl</a></li><li><a href="util_JManagerSeat.html">util/JManagerSeat</a></li><li><a href="util_TradeManager.html">util/TradeManager</a></li>
+					<li><a href="module-manager.TradeManager.html">manager.TradeManager</a></li><li><a href="module-manager-SeatManager.html">manager~SeatManager</a></li><li><a href="module-model.CityModel.html">model.CityModel</a></li><li><a href="module-model.PageModel.html">model.PageModel</a></li><li><a href="module-model.SeatParasModel.html">model.SeatParasModel</a></li><li><a href="module-network.JNetworkAccount.html">network.JNetworkAccount</a></li><li><a href="module-network.JNetworkCinema.html">network.JNetworkCinema</a></li><li><a href="module-network.JNetworkCity.html">network.JNetworkCity</a></li><li><a href="module-network.JNetworkConfig.html">network.JNetworkConfig</a></li><li><a href="module-network.JNetworkFilm.html">network.JNetworkFilm</a></li><li><a href="module-network.JNetworkMine.html">network.JNetworkMine</a></li><li><a href="module-network.JNetworkOther.html">network.JNetworkOther</a></li><li><a href="module-network.JNetworkTrade.html">network.JNetworkTrade</a></li><li><a href="module-network-JNetwork.html">network~JNetwork</a></li><li><a href="module-tool.DateTool.html">tool.DateTool</a></li><li><a href="module-tool.NumberTool.html">tool.NumberTool</a></li><li><a href="module-tool.ObjectTool.html">tool.ObjectTool</a></li><li><a href="module-tool.StringTool.html">tool.StringTool</a></li><li><a href="module-tool.UrlTool.html">tool.UrlTool</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#cityUrl">cityUrl</a></li><li><a href="global.html#Client">Client</a></li><li><a href="global.html#instance">instance</a></li><li><a href="global.html#other/jcombine">other/jcombine</a></li><li><a href="global.html#other/jlink">other/jlink</a></li>
+					<li><a href="global.html#CityModel">CityModel</a></li><li><a href="global.html#cityUrl">cityUrl</a></li><li><a href="global.html#Client">Client</a></li><li><a href="global.html#other/jcombine">other/jcombine</a></li><li><a href="global.html#other/jlink">other/jlink</a></li>
 				</ul>
 			</li>
 			
@@ -150,16 +157,12 @@
         <dl>
             
 <hr>
-<dt class="name" id="cityUrl">
-    <h4 id="cityUrl"><span class="type-signature">&lt;constant> </span>cityUrl<span class="type-signature"></span></h4>
+<dt class="name" id="CityModel">
+    <h4 id="CityModel"><span class="type-signature"></span>CityModel<span class="type-signature"></span></h4>
 
     
 </dt>
 <dd>
-    
-    <div class="description">
-        Created by cuppi on 2017/5/12.
-    </div>
     
 
     
@@ -168,6 +171,59 @@
 <dl class="details">
     
 
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>defaults</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The default values for parties.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
 	
 
 	
@@ -194,15 +250,6 @@
 
 
 
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_differentiation_shanghai.url.config.js.html">src/differentiation/shanghai.url.config.js</a>
-			</li>
-		</ul>
-	</dd>
 	
 
 	
@@ -264,14 +311,65 @@
 
 
 	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_differentiation_beijing.url.config.js.html">src/differentiation/beijing.url.config.js</a>
-			</li>
-		</ul>
-	</dd>
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="cityUrl">
+    <h4 id="cityUrl"><span class="type-signature">&lt;constant> </span>cityUrl<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Created by cuppi on 2017/5/12.
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
 	
 
 	
@@ -333,14 +431,65 @@
 
 
 	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_differentiation_icbc.url.config.js.html">src/differentiation/icbc.url.config.js</a>
-			</li>
-		</ul>
-	</dd>
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="cityUrl">
+    <h4 id="cityUrl"><span class="type-signature">&lt;constant> </span>cityUrl<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Created by cuppi on 2017/5/12.
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
 	
 
 	
@@ -401,84 +550,6 @@
 
 
 
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="publish.js.html">publish.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="instance">
-    <h4 id="instance"><span class="type-signature"></span>instance<span class="type-signature"></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Created by cuppi on                                              2016/12/21.
-    </div>
-    
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_arithmetic_AutoSeatPicking.js.html">src/arithmetic/AutoSeatPicking.js</a>
-			</li>
-		</ul>
-	</dd>
 	
 
 	
@@ -603,15 +674,6 @@
 
 
 
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_network_JNetworkFunc.js.html">src/network/JNetworkFunc.js</a>
-			</li>
-		</ul>
-	</dd>
 	
 
 	
@@ -767,15 +829,6 @@
 
 
 	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_network_JNetworkFunc.js.html">src/network/JNetworkFunc.js</a>
-			</li>
-		</ul>
-	</dd>
-	
 
 	
 
@@ -874,9 +927,9 @@
 	</span>
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a>
 	
-		on 2017-06-19T14:35:43+08:00
+		on 2017-07-24T11:00:06+08:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

@@ -35,32 +35,43 @@ var JNetworkOther = function () {
   }
 
   (0, _createClass3.default)(JNetworkOther, null, [{
-    key: 'otherSearch',
-    value: function otherSearch(cityId, key, lastKey) {
-      if (cityId) {} else {
+    key: 'search',
+    value: function search(cityId, searchKey, nextPageFirstKey) {
+      if (cityId) {
         return _JNetwork2.default.POST(_JUrlList.otherUrl.jbzSearch, {
-          queryStr: key,
-          lastKey: lastKey
+          cityId: cityId,
+          queryStr: searchKey,
+          lastKey: nextPageFirstKey
+        });
+      } else {
+        return _JNetwork2.default.POST(_JUrlList.otherUrl.jbzSearch, {
+          queryStr: searchKey,
+          lastKey: nextPageFirstKey
         });
       }
     }
   }, {
-    key: 'hotQuery',
-    value: function hotQuery() {
-      return _JNetwork2.default.POST(_JUrlList.otherUrl.hotquery);
+    key: 'hotSearchKeyword',
+    value: function hotSearchKeyword() {
+      return _JNetwork2.default.POST(_JUrlList.otherUrl.jbzHotSearchKeyword);
     }
   }, {
     key: 'otherBanners',
-    value: function otherBanners(location, cityId) {
+    value: function otherBanners(position, cityId) {
       return new _promise2.default(function (resolve, reject) {
         return _JNetwork2.default.POST(_JUrlList.otherUrl.jbzBanners, {
-          location: location, cityId: cityId
+          position: position, cityId: cityId
         }).then(function (data) {
           resolve((0, _JDataUnify2.default)('otherUrl.jbzBanners', data));
         }, function (error) {
           reject(error);
         });
       });
+    }
+  }, {
+    key: 'banners',
+    value: function banners(position, cityId) {
+      return JNetworkOther.otherBanners(position, cityId);
     }
   }]);
   return JNetworkOther;

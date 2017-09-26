@@ -8,27 +8,27 @@ import _ from '../unify/JDataUnify';
 
 /**
  * 其他接口
- * @alias network/JNetworkOther
+ * @memberOf module:network
  */
 class JNetworkOther {
   /**
    * 搜索
    * @param cityId 城市Id
-   * @param key 关键字
-   * @param lastKey 下一页的句柄
-   * @returns {{terminate, then}|*}
+   * @param searchKey 关键字
+   * @param nextPageFirstKey 下一页的句柄
+   * @returns {Promise}
    */
-  static otherSearch(cityId, key, lastKey) {
+  static search(cityId, searchKey, nextPageFirstKey) {
     if (cityId) {
-      // return JNetwork.POST(otherUrl.jbzSearch, {
-      //   cityId,
-      //   queryStr: key,
-      //   lastKey: lastKey
-      // });
+      return JNetwork.POST(otherUrl.jbzSearch, {
+        cityId,
+        queryStr: searchKey,
+        lastKey: nextPageFirstKey
+      });
     } else {
       return JNetwork.POST(otherUrl.jbzSearch, {
-        queryStr: key,
-        lastKey: lastKey
+        queryStr: searchKey,
+        lastKey: nextPageFirstKey
       });
     }
   }
@@ -37,24 +37,36 @@ class JNetworkOther {
    * 热搜词汇
    * @returns {{terminate, then}|*}
    */
-  static hotQuery() {
-    return JNetwork.POST(otherUrl.hotquery);
+  static hotSearchKeyword() {
+    return JNetwork.POST(otherUrl.jbzHotSearchKeyword);
   }
 
   /**
    * 广告接口
-   * @returns {{terminate, then}|*}
+   * @param position 广告使用地点
+   * @param cityId 当前城市
+   * @returns {Promise}
    */
-  static otherBanners(location, cityId) {
+  static otherBanners(position, cityId) {
     return new Promise((resolve, reject) => {
       return JNetwork.POST(otherUrl.jbzBanners, {
-        location, cityId
+        position, cityId
       }).then(data => {
         resolve(_('otherUrl.jbzBanners', data));
       }, error => {
         reject(error);
       });
     })
+  }
+
+  /**+
+   * 广告接口
+   * @param position 广告使用地点
+   * @param cityId 当前城市
+   * @returns {Promise}
+   */
+  static banners(position, cityId){
+    return JNetworkOther.otherBanners(position, cityId);
   }
 }
 

@@ -8,7 +8,7 @@ import {mineUrl} from '../unify/JUrlList';
 
 /**
  * 个人中心接口
- * @alias network/JNetworkMine
+ * @memberOf module:network
  */
 class JNetworkMine {
 

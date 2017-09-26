@@ -4,7 +4,7 @@
 
 /**
  * 对象工具类
- * @alias tool/JToolObject
+ * @memberOf module:tool
  */
 class ObjectTool {
   /**
@@ -18,6 +18,24 @@ class ObjectTool {
       return Reflect.deleteProperty(target, propertyKey);
     }
     return true;
+  }
+
+  /**
+   * 安全的获取链式属性 eg: a.b.c.d
+   * @param target 目标对象
+   * @param pChain 对象链式属性
+   * @returns {*}
+   */
+  static safeGet(target, ...pChain) {
+    if (!target || !pChain || pChain.length <= 0) {
+      return undefined;
+    }
+    let property = target;
+    let chainIndex = 0;
+    do {
+      property = property[pChain[chainIndex++]]
+    } while (property && (chainIndex < pChain.length))
+    return property;
   }
 }
 

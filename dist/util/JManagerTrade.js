@@ -299,6 +299,50 @@ var TradeManager = function () {
           openId: openId
         };
       }
+
+      if (type === 'taobao') {
+        var _seatInfos5 = [];
+        var _seatNumberInfos6 = [];
+        var seatNameInfos = [];
+        var _iteratorNormalCompletion7 = true;
+        var _didIteratorError7 = false;
+        var _iteratorError7 = undefined;
+
+        try {
+          for (var _iterator7 = (0, _getIterator3.default)(seatList), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+            var _seat6 = _step7.value;
+
+            _seatInfos5.push(_seat6.seatModel.seatId);
+            _seatNumberInfos6.push(_seat6.rowOriNumber + ':' + _seat6.colOriNumber);
+            seatNameInfos.push(_seat6.seatModel.name);
+          }
+        } catch (err) {
+          _didIteratorError7 = true;
+          _iteratorError7 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion7 && _iterator7.return) {
+              _iterator7.return();
+            }
+          } finally {
+            if (_didIteratorError7) {
+              throw _iteratorError7;
+            }
+          }
+        }
+
+        var s = {
+          seatIds: _seatInfos5.join('|'),
+          count: _seatInfos5.length,
+          seatNumberInfos: _seatNumberInfos6.join('|'),
+          seatsName: seatNameInfos.join('|'),
+          applyKey: '',
+          mobile: mobile,
+          openId: openId
+        };
+        console.log(s);
+        return s;
+      }
     }
   }, {
     key: 'buyTicket',
@@ -446,10 +490,23 @@ var TradeManager = function () {
           cinemaId: cinemaId
         };
       }
+
       if (platform === 'baidu') {
         return {
           showId: platformData.seqid,
           platformCinemaId: platformData.cinemaId,
+          cinemaId: cinemaId
+        };
+      }
+
+      if (platform === 'taobao') {
+        return {
+          jbzFilmId: filmId,
+          filmId: platform.filmId,
+          showId: platform.showId,
+          cinemaName: cinemaName,
+          platformCinemaId: platform.cinemaId,
+          filmName: filmName,
           cinemaId: cinemaId
         };
       }

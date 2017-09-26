@@ -10,7 +10,7 @@ import SeatManager from '../util/JManagerSeat';
 
 /**
  * 影院接口
- * @alias network/JNetworkCinema
+ * @memberOf module:network
  */
 class JNetworkCinema {
   /**

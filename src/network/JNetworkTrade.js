@@ -8,7 +8,7 @@ import _ from '../unify/JDataUnify';
 
 /**
  * 交易接口
- * @alias network/JNetworkTrade
+ * @memberOf module:network
  */
 class JNetworkTrade {
   /**

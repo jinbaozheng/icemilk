@@ -47,7 +47,9 @@ var _AutoSeatPicking2 = _interopRequireDefault(_AutoSeatPicking);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _cellSize = 30;
-var _cellSpace = 8;
+var _cellRowSpace = 8;
+var _cellColSpace = 8;
+
 var instance = null;
 
 var SeatManager = function () {
@@ -83,6 +85,9 @@ var SeatManager = function () {
   }, {
     key: 'unitySeatWithSeatData',
     value: function unitySeatWithSeatData(type, seatData) {
+      if (!seatData) {
+        return [];
+      }
       if (type === 'maoyan' || type === 'meituan' || type === 'dazhong') {
         var _seatList = [];
         var sections = seatData.sections;
@@ -131,6 +136,10 @@ var SeatManager = function () {
         return _seatList;
       }
 
+      if (type === 'taobao' && !seatData.regular) {
+        seatData = this.handleTaoBaoSeatData(seatData);
+      }
+
       var seatList = [];
       var seatMap = seatData.seatMap;
       var maxRow = seatData.maxRow;
@@ -170,26 +179,115 @@ var SeatManager = function () {
       return seatList;
     }
   }, {
+    key: 'handleTaoBaoSeatData',
+    value: function handleTaoBaoSeatData(seatData) {
+      var seatMap = seatData.seatMap;
+      var seatRowList = [];
+      var seatColList = [];
+      for (var key in seatMap) {
+        if (seatMap.hasOwnProperty(key)) {
+          var location = key.split(':');
+          seatRowList.push(parseInt(location[0]));
+          seatColList.push(parseInt(location[1]));
+        }
+      }
+      seatRowList.sort(function (a, b) {
+        return a - b && (a - b) / Math.abs(a - b);
+      });
+      seatColList.sort(function (a, b) {
+        return a - b && (a - b) / Math.abs(a - b);
+      });
+      var closeRowSpace = {};
+      var closeColSpace = {};
+      for (var i = 1, l = Math.min(seatRowList.length, seatColList.length); i < l; i++) {
+        var rowOffset = seatRowList[i] - seatRowList[i - 1];
+        if (closeRowSpace.hasOwnProperty(rowOffset)) {
+          closeRowSpace[rowOffset]++;
+        } else {
+          closeRowSpace[rowOffset] = 1;
+        }
+
+        var colOffset = seatColList[i] - seatColList[i - 1];
+        if (closeColSpace.hasOwnProperty(colOffset)) {
+          closeColSpace[colOffset]++;
+        } else {
+          closeColSpace[colOffset] = 1;
+        }
+      }
+
+      var rowSpace = Number.MAX_VALUE;
+      var rowStress = 0;
+      for (var spaceString in closeRowSpace) {
+        var space = parseInt(spaceString);
+        if (space !== 0 && closeRowSpace[space] > rowStress) {
+          rowSpace = space;
+          rowStress = closeRowSpace[space];
+        }
+      }
+
+      var colSpace = Number.MAX_VALUE;
+      var colStress = 0;
+      for (var _spaceString in closeColSpace) {
+        var _space = parseInt(_spaceString);
+        if (_space !== 0 && closeColSpace[_space] > colStress) {
+          colSpace = _space;
+          colStress = closeColSpace[_space];
+        }
+      }
+
+      var filteredSeatMap = {};
+      for (var _key in seatMap) {
+        if (seatMap.hasOwnProperty(_key)) {
+          var _location = _key.split(':');
+          var filteredRow = Math.floor(_location[0] / rowSpace);
+          var filteredCol = Math.floor(_location[1] / colSpace);
+          var rowId = Math.floor(seatMap[_key].rowId / rowSpace);
+          var columnId = Math.floor(seatMap[_key].columnId / colSpace);
+          filteredSeatMap[filteredRow + ':' + filteredCol] = (0, _extends3.default)({}, seatMap[_key], { rowId: rowId, columnId: columnId });
+        }
+      }
+      seatData.seatMap = filteredSeatMap;
+      console.log(seatData);
+      return seatData;
+    }
+  }, {
     key: 'smartSeatsWithSeats',
     value: function smartSeatsWithSeats(type, seatList) {
+      var smartSeats = [];
       if (type === 'wangpiao') {
-        return this.smartSeatsWithWPSeats(seatList);
+        smartSeats = this.smartSeatsWithWPSeats(seatList);
       }
       if (type === 'spider') {
-        return this.smartSeatsWithSPSeats(seatList);
+        smartSeats = this.smartSeatsWithSPSeats(seatList);
       }
       if (type === 'maizuo') {
-        return this.smartSeatsWithMZSeats(seatList);
+        smartSeats = this.smartSeatsWithMZSeats(seatList);
       }
       if (type === 'danche') {
-        return this.smartSeatsWithDCSeats(seatList);
+        smartSeats = this.smartSeatsWithDCSeats(seatList);
       }
       if (type === 'maoyan' || type === 'meituan' || type === 'dazhong') {
-        return this.smartSeatsWithMYSeats(seatList);
+        smartSeats = this.smartSeatsWithMYSeats(seatList);
       }
       if (type === 'baidu') {
-        return this.smartSeatsWithBDSeats(seatList);
+        smartSeats = this.smartSeatsWithBDSeats(seatList);
       }
+      if (type === 'taobao') {
+        smartSeats = this.smartSeatsWithTBSeats(seatList);
+      }
+      var minRow = Number.MAX_VALUE;
+      var minCol = Number.MAX_VALUE;
+      smartSeats.forEach(function (seat) {
+        minRow = Math.min(minRow, seat.row);
+        minCol = Math.min(minCol, seat.col);
+      });
+      smartSeats.forEach(function (seat) {
+        seat.adjustRow = seat.row - minRow;
+        seat.adjustCol = seat.col - minCol;
+        seat.rowLocation -= minRow * (_cellSize + _cellRowSpace);
+        seat.colLocation -= minCol * (_cellSize + _cellColSpace);
+      });
+      return smartSeats;
     }
   }, {
     key: 'smartSeatsWithWPSeats',
@@ -197,9 +295,13 @@ var SeatManager = function () {
       return seatList.map(function (seatModel) {
         var row = (0, _parseInt2.default)(seatModel.key.split(':').shift());
         var col = (0, _parseInt2.default)(seatModel.key.split(':').pop());
+        var rowOriNumber = _JToolString2.default.numberRemoveLeftZero(seatModel.rowName);
+        var colOriNumber = _JToolString2.default.numberRemoveLeftZero(seatModel.columnName);
         var rowNumber = _JToolString2.default.numberFromString(seatModel.Name.split(':').shift(), true, 1);
         var colNumber = _JToolString2.default.numberFromString(seatModel.Name.split(':').pop(), true, 1);
         return {
+          rowOriNumber: rowOriNumber,
+          colOriNumber: colOriNumber,
           row: row,
           col: col,
           rowNumber: rowNumber,
@@ -210,8 +312,8 @@ var SeatManager = function () {
         var seatRowModel = bridgeModel.seatModel;
         return (0, _extends3.default)({}, bridgeModel, {
           status: seatRowModel.Status === 'Y' ? 0 : 1,
-          rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
-          colLocation: bridgeModel.col * (_cellSize + _cellSpace),
+          rowLocation: bridgeModel.row * (_cellSize + _cellRowSpace),
+          colLocation: bridgeModel.col * (_cellSize + _cellColSpace),
           loveIndex: (0, _parseInt2.default)(seatRowModel.LoveFlag)
         });
       });
@@ -222,9 +324,13 @@ var SeatManager = function () {
       return seatList.map(function (seatModel) {
         var row = (0, _parseInt2.default)(seatModel.rowNum);
         var col = (0, _parseInt2.default)(seatModel.columnNum);
+        var rowOriNumber = _JToolString2.default.numberRemoveLeftZero(seatModel.rowName);
+        var colOriNumber = _JToolString2.default.numberRemoveLeftZero(seatModel.columnName);
         var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowId, true, 1));
         var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnId, true, 1));
         return {
+          rowOriNumber: rowOriNumber,
+          colOriNumber: colOriNumber,
           row: row,
           col: col,
           rowNumber: rowNumber,
@@ -235,8 +341,8 @@ var SeatManager = function () {
         var seatRowModel = bridgeModel.seatModel;
         return (0, _extends3.default)({}, bridgeModel, {
           status: seatRowModel.isLock ? 1 : 0,
-          rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
-          colLocation: bridgeModel.col * (_cellSize + _cellSpace),
+          rowLocation: bridgeModel.row * (_cellSize + _cellRowSpace),
+          colLocation: bridgeModel.col * (_cellSize + _cellColSpace),
           loveIndex: (0, _parseInt2.default)(seatRowModel.loveIndex)
         });
       });
@@ -247,10 +353,14 @@ var SeatManager = function () {
       return seatList.map(function (seatModel) {
         var row = (0, _parseInt2.default)(seatModel.rowNum);
         var col = (0, _parseInt2.default)(seatModel.columnNum);
+        var rowOriNumber = _JToolString2.default.numberRemoveLeftZero(seatModel.rowName);
+        var colOriNumber = _JToolString2.default.numberRemoveLeftZero(seatModel.columnName);
         var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowId, true, 1));
         var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnId, true, 1));
 
         return {
+          rowOriNumber: rowOriNumber,
+          colOriNumber: colOriNumber,
           row: row,
           col: col,
           rowNumber: rowNumber,
@@ -261,8 +371,8 @@ var SeatManager = function () {
         var seatRowModel = bridgeModel.seatModel;
         return (0, _extends3.default)({}, bridgeModel, {
           status: seatRowModel.isLock === '1' ? 1 : 0,
-          rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
-          colLocation: bridgeModel.col * (_cellSize + _cellSpace),
+          rowLocation: bridgeModel.row * (_cellSize + _cellRowSpace),
+          colLocation: bridgeModel.col * (_cellSize + _cellColSpace),
           loveIndex: (0, _parseInt2.default)(seatRowModel.loveIndex)
         });
       });
@@ -273,9 +383,13 @@ var SeatManager = function () {
       return seatList.map(function (seatModel) {
         var row = (0, _parseInt2.default)(seatModel.rowNum);
         var col = (0, _parseInt2.default)(seatModel.columnNum);
+        var rowOriNumber = _JToolString2.default.numberRemoveLeftZero(seatModel.rowName);
+        var colOriNumber = _JToolString2.default.numberRemoveLeftZero(seatModel.columnName);
         var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowId, true, 1));
         var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnId, true, 1));
         return {
+          rowOriNumber: rowOriNumber,
+          colOriNumber: colOriNumber,
           row: row,
           col: col,
           rowNumber: rowNumber,
@@ -287,8 +401,8 @@ var SeatManager = function () {
         console.log(seatRowModel.loveIndex);
         return (0, _extends3.default)({}, bridgeModel, {
           status: seatRowModel.isLock ? 1 : 0,
-          rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
-          colLocation: bridgeModel.col * (_cellSize + _cellSpace),
+          rowLocation: bridgeModel.row * (_cellSize + _cellRowSpace),
+          colLocation: bridgeModel.col * (_cellSize + _cellColSpace),
           loveIndex: (0, _parseInt2.default)(seatRowModel.loveIndex)
         });
       });
@@ -299,9 +413,13 @@ var SeatManager = function () {
       return seatList.map(function (seatModel) {
         var row = (0, _parseInt2.default)(seatModel.rowNo);
         var col = (0, _parseInt2.default)(seatModel.columnNo);
+        var rowOriNumber = _JToolString2.default.numberRemoveLeftZero(seatModel.rowName);
+        var colOriNumber = _JToolString2.default.numberRemoveLeftZero(seatModel.columnName);
         var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowId, true, 1));
         var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnId, true, 1));
         return {
+          rowOriNumber: rowOriNumber,
+          colOriNumber: colOriNumber,
           row: row,
           col: col,
           rowNumber: rowNumber,
@@ -318,8 +436,8 @@ var SeatManager = function () {
         }
         return (0, _extends3.default)({}, bridgeModel, {
           status: seatRowModel.status === 'LK' ? 1 : 0,
-          rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
-          colLocation: bridgeModel.col * (_cellSize + _cellSpace),
+          rowLocation: bridgeModel.row * (_cellSize + _cellRowSpace),
+          colLocation: bridgeModel.col * (_cellSize + _cellColSpace),
           loveIndex: loveIndex
         });
       });
@@ -330,9 +448,13 @@ var SeatManager = function () {
       return seatList.map(function (seatModel) {
         var row = (0, _parseInt2.default)(seatModel.rowId);
         var col = (0, _parseInt2.default)(seatModel.columnId);
+        var rowOriNumber = _JToolString2.default.numberRemoveLeftZero(seatModel.rowName);
+        var colOriNumber = _JToolString2.default.numberRemoveLeftZero(seatModel.columnName);
         var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.rowNo, true, 1));
         var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(seatModel.columnNo, true, 1));
         return {
+          rowOriNumber: rowOriNumber,
+          colOriNumber: colOriNumber,
           row: row,
           col: col,
           rowNumber: rowNumber,
@@ -343,10 +465,41 @@ var SeatManager = function () {
         var seatRowModel = bridgeModel.seatModel;
         return (0, _extends3.default)({}, bridgeModel, {
           status: seatRowModel.status === '2' ? 1 : 0,
-          rowLocation: bridgeModel.row * (_cellSize + _cellSpace),
-          colLocation: bridgeModel.col * (_cellSize + _cellSpace),
+          rowLocation: bridgeModel.row * (_cellSize + _cellRowSpace),
+          colLocation: bridgeModel.col * (_cellSize + _cellColSpace),
           loveIndex: (0, _parseInt2.default)(seatRowModel.isLove),
           areaInfo: seatRowModel.area
+        });
+      });
+    }
+  }, {
+    key: 'smartSeatsWithTBSeats',
+    value: function smartSeatsWithTBSeats(seatList) {
+      return seatList.map(function (seatModel) {
+        var row = (0, _parseInt2.default)(seatModel.rowId);
+        var col = (0, _parseInt2.default)(seatModel.columnId);
+        var rowOriNumber = _JToolString2.default.numberRemoveLeftZero(seatModel.rowName);
+        var colOriNumber = _JToolString2.default.numberRemoveLeftZero(seatModel.columnName);
+        var rowNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(rowOriNumber, true, 1));
+        var colNumber = (0, _parseInt2.default)(_JToolString2.default.numberFromString(colOriNumber, true, 1));
+        return {
+          rowOriNumber: rowOriNumber,
+          colOriNumber: colOriNumber,
+          row: row,
+          col: col,
+          rowNumber: rowNumber,
+          colNumber: colNumber,
+          seatModel: seatModel
+        };
+      }).map(function (bridgeModel) {
+        var seatRowModel = bridgeModel.seatModel;
+        var loveIndex = 0;
+        loveIndex = seatRowModel.loveIndex;
+        return (0, _extends3.default)({}, bridgeModel, {
+          status: seatRowModel.status === 0 ? 1 : 0,
+          rowLocation: bridgeModel.row * (_cellSize + _cellRowSpace),
+          colLocation: bridgeModel.col * (_cellSize + _cellColSpace),
+          loveIndex: loveIndex
         });
       });
     }
@@ -394,7 +547,8 @@ var SeatManager = function () {
     value: function seatContentDataFromSmartSeats(smartSeats) {
       var seatContentSize = this.seatContentSizeWithSmartSeats(smartSeats);
       return {
-        'seatCellSpace': _cellSpace,
+        'seatCellRowSpace': _cellRowSpace,
+        'seatCellColSpace': _cellColSpace,
         'seatCellWidth': _cellSize,
         'seatCellHeight': _cellSize,
         'seatContentWidth': seatContentSize.width,
@@ -519,6 +673,14 @@ var SeatManager = function () {
       if (platform === 'baidu') {
         paras = {
           showId: screening.showId
+        };
+      }
+
+      if (platform === 'taobao') {
+        paras = {
+          cinemaId: platform.cinemaId,
+          showId: platform.showId,
+          sectionId: platform.sectionId
         };
       }
       return paras;

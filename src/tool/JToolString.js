@@ -2,7 +2,7 @@
 
 /**
  * 字符串工具类
- * @alias tool/JToolString
+ * @memberOf module:tool
  */
 class StringTool {
 
@@ -66,6 +66,18 @@ class StringTool {
         "}$").test(password);
     }
     return (/^[a-zA-Z0-9]{6,14}$/.test(password));
+  }
+
+  /**
+   * 去除数字左边所有0
+   * @param c
+   * @returns {*}
+   */
+  static numberRemoveLeftZero(c){
+    if (/^[0-9]*$/.test(c)) {
+      return Number.parseInt(c) + '';
+    }
+    return c;
   }
 
   /**

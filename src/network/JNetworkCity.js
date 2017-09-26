@@ -8,9 +8,11 @@ import _ from '../unify/JDataUnify';
 
 /**
  * 城市及定位接口
- * @alias network/JNetworkCity
+ * @memberOf module:network
+ * @hideconstructor
  */
 class JNetworkCity {
+
   /**
    *  获取城市列表
    * @returns {*}

@@ -8,13 +8,13 @@ import _ from '../unify/JDataUnify';
 
 /**
  * 影片接口
- * @alias network/JNetworkFilm
+ * @memberOf module:network
  */
 class JNetworkFilm {
 
   /**
    * 获取热门电影
-   * @param page 分页模型
+   * @param page PageModel 分页模型
    * @returns {Promise}
    */
   static filmHotfilms(page) {

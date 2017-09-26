@@ -7,7 +7,7 @@ import {UseConfig as DataUseConfig} from '../unify/JDataUnify'
 
 /**
  * 请求配置类
- * @alias network/JNetworkConfig
+ * @memberOf module:network
  */
 class JNetworkConfig {
   static setConfig(config){

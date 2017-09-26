@@ -7,7 +7,7 @@ import {accountUrl} from '../unify/JUrlList';
 
 /**
  * 账户接口
- * @alias network/JNetworkAccount
+ * @memberOf module:network
  */
 class JNetworkAccount{
   /**

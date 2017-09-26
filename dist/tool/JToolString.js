@@ -62,6 +62,14 @@ var StringTool = function () {
       );
     }
   }, {
+    key: 'numberRemoveLeftZero',
+    value: function numberRemoveLeftZero(c) {
+      if (/^[0-9]*$/.test(c)) {
+        return (0, _parseInt2.default)(c) + '';
+      }
+      return c;
+    }
+  }, {
     key: 'numberFromASC',
     value: function numberFromASC(ascChar) {
       var asc = ascChar.charCodeAt(0);

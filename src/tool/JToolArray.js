@@ -4,7 +4,7 @@
 
 /**
  * 数组工具类
- * @alias tool/JToolArray
+ * @module tool
  */
 class ArrayTool {
 
