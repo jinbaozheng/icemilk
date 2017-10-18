@@ -1,17 +1,7 @@
 "use strict";
+/**
+ * Created by cuppi on 2017/7/20.
+ */
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var PageModel = function PageModel() {
-  (0, _classCallCheck3.default)(this, PageModel);
-};
-
-exports.default = PageModel;
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=PageModel.js.map
