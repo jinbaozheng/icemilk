@@ -130,22 +130,22 @@ var JNetworkTrade = function (_JNetworkRoot_1$defau) {
     }], [{
         key: "tradeLockSeat",
         value: function tradeLockSeat(type, paras) {
-            return this.instance().tradeLockSeatNeedLogin(type, paras);
+            return this.instance().tradeLockSeat(type, paras);
         }
     }, {
         key: "tradeCancelLockSeat",
         value: function tradeCancelLockSeat(orderId) {
-            return this.instance().cancelLockSeatNeedLogin(orderId);
+            return this.instance().tradeCancelLockSeat(orderId);
         }
     }, {
         key: "tradeApplyOrder",
         value: function tradeApplyOrder(type, paras) {
-            return this.instance().tradeApplyOrderNeedLogin(type, paras);
+            return this.instance().tradeApplyOrder(type, paras);
         }
     }, {
         key: "tradePrePayOrder",
         value: function tradePrePayOrder(orderId, payType, prizeIds, redIds) {
-            return this.instance().tradePrePayOrderNeedLoginInType(orderId, payType, prizeIds, redIds);
+            return this.instance().tradePrePayOrder(orderId, payType, prizeIds, redIds);
         }
     }]);
     return JNetworkTrade;
