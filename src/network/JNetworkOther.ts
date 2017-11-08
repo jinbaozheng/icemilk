@@ -21,16 +21,28 @@ class JNetworkOther extends JNetworkRoot{
    */
   search(cityId, searchKey, nextPageFirstKey) {
     if (cityId) {
-      return this.prefixPromise(otherUrl.jbzSearch, {
-        cityId,
-        queryStr: searchKey,
-        lastKey: nextPageFirstKey
-      });
+      return new Promise((resolve, reject) => {
+        this.prefixPromise(otherUrl.jbzSearch, {
+          cityId,
+          queryStr: searchKey,
+          lastKey: nextPageFirstKey
+        }).then(data => {
+          resolve(_('otherUrl.jbzSearch', data));
+        }, error => {
+          reject(error);
+        });
+      })
     } else {
-      return this.prefixPromise(otherUrl.jbzSearch, {
-        queryStr: searchKey,
-        lastKey: nextPageFirstKey
-      });
+      return new Promise((resolve, reject) => {
+        this.prefixPromise(otherUrl.jbzSearch, {
+          queryStr: searchKey,
+          lastKey: nextPageFirstKey
+        }).then(data => {
+          resolve(_('otherUrl.jbzSearch', data));
+        }, error => {
+          reject(error);
+        });
+      })
     }
   }
 

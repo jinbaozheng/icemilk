@@ -38,8 +38,8 @@ class JNetworkRoot{
     return this._instance;
   }
 
-  prefixPromise(url, paras?, headers?){
-    return JNetwork.useParas(...this.otherParas).useHeaders(...this.otherHeaders).POST(url, paras, headers);
+  prefixPromise(url, paras?: object, headers?: object, options?: object){
+    return JNetwork.useParas(...this.otherParas).useHeaders(...this.otherHeaders).POST(url, paras, headers).then();
   }
 }
 
