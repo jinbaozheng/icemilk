@@ -14,6 +14,7 @@ import JPromise from '../structure/JPromise';
  */
 class JNetwork {
 
+  static inType: string = '';
   static baseUrl: string = '';
   static delegate: NetworkDelegate = null;
   static carryData: object | Function = {};
