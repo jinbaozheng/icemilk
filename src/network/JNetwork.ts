@@ -76,7 +76,19 @@ class JNetwork {
   }
 
   /**
-   * 没有登录
+   * 普通异常
+   * @param {error} errorMessage
+   * @param {number} code
+   * @returns {Error}
+   */
+  static generalError(errorMessage: string, code: number): Error {
+    let resultError: Error = new Error(errorMessage);
+    Reflect.defineProperty(resultError, 'errorCode', {value: code});
+    return resultError;
+  }
+
+  /**
+   * 没有登录异常
    * @param code
    * @returns {any}
    */
@@ -226,7 +238,7 @@ class JNetwork {
             if (responseJson.errorCode == 10022) {
               reject(JNetwork.notLoginError(100022));
             } else {
-              reject(new Error(responseJson.message));
+              reject(JNetwork.generalError(responseJson.message, responseJson.errorCode));
             }
           }
         } else {
