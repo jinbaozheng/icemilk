@@ -13,8 +13,20 @@ class NumberTool {
    * @returns {string}  整数字符串
    */
   static zeroPad(number: number, length: number): string {
-    return leftPad(number, length);
+    return leftPad(number, length, 0);
   }
+
+  /**
+   * 字符补位
+   * @param {number | string} pad 字符
+   * @param {number} length 最终的长度
+   * @param {number, string} placeholder 补全字符
+   * @returns {string}  字符串
+   */
+  static leftPad(pad: string | number, length: number, placeholder: string | number = 0): string {
+    return leftPad(pad, length, placeholder);
+  }
+
 
   /**
    * 小数部分有效数字保留

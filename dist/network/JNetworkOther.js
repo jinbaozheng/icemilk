@@ -57,16 +57,30 @@ var JNetworkOther = function (_JNetworkRoot_1$defau) {
          * @returns {Promise}
          */
         value: function search(cityId, searchKey, nextPageFirstKey) {
+            var _this2 = this;
+
             if (cityId) {
-                return this.prefixPromise(JUrlList_1.otherUrl.jbzSearch, {
-                    cityId: cityId,
-                    queryStr: searchKey,
-                    lastKey: nextPageFirstKey
+                return new _promise2.default(function (resolve, reject) {
+                    _this2.prefixPromise(JUrlList_1.otherUrl.jbzSearch, {
+                        cityId: cityId,
+                        queryStr: searchKey,
+                        lastKey: nextPageFirstKey
+                    }).then(function (data) {
+                        resolve(JDataUnify_1.default('otherUrl.jbzSearch', data));
+                    }, function (error) {
+                        reject(error);
+                    });
                 });
             } else {
-                return this.prefixPromise(JUrlList_1.otherUrl.jbzSearch, {
-                    queryStr: searchKey,
-                    lastKey: nextPageFirstKey
+                return new _promise2.default(function (resolve, reject) {
+                    _this2.prefixPromise(JUrlList_1.otherUrl.jbzSearch, {
+                        queryStr: searchKey,
+                        lastKey: nextPageFirstKey
+                    }).then(function (data) {
+                        resolve(JDataUnify_1.default('otherUrl.jbzSearch', data));
+                    }, function (error) {
+                        reject(error);
+                    });
                 });
             }
         }
@@ -90,10 +104,10 @@ var JNetworkOther = function (_JNetworkRoot_1$defau) {
     }, {
         key: "otherBanners",
         value: function otherBanners(location, cityId) {
-            var _this2 = this;
+            var _this3 = this;
 
             return new _promise2.default(function (resolve, reject) {
-                return _this2.prefixPromise(JUrlList_1.otherUrl.jbzBanners, {
+                return _this3.prefixPromise(JUrlList_1.otherUrl.jbzBanners, {
                     location: location, cityId: cityId
                 }).then(function (data) {
                     resolve(JDataUnify_1.default('otherUrl.jbzBanners', data));

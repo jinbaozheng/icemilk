@@ -201,8 +201,8 @@ var DateTool = function () {
             distance = Math.floor(distance / 60);
             var hour = distance % 24;
             distance = Math.floor(distance / 24);
-            var day = distance % 30;
-            var mou = Math.floor(distance / 30);
+            var day = distance % 1000;
+            var mou = Math.floor(distance / 1000);
             return [sec, min, hour, day, mou];
         }
         /**

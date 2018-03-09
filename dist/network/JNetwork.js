@@ -191,7 +191,7 @@ var JNetwork = function () {
                             if (responseJson.errorCode == 10022) {
                                 reject(JNetwork.notLoginError(100022));
                             } else {
-                                reject(new Error(responseJson.message));
+                                reject(JNetwork.generalError(responseJson.message, responseJson.errorCode));
                             }
                         }
                     } else {
@@ -311,7 +311,21 @@ var JNetwork = function () {
             });
         }
         /**
-         * 没有登录
+         * 普通异常
+         * @param {error} errorMessage
+         * @param {number} code
+         * @returns {Error}
+         */
+
+    }, {
+        key: "generalError",
+        value: function generalError(errorMessage, code) {
+            var resultError = new Error(errorMessage);
+            (0, _defineProperty2.default)(resultError, 'errorCode', { value: code });
+            return resultError;
+        }
+        /**
+         * 没有登录异常
          * @param code
          * @returns {any}
          */
@@ -408,6 +422,7 @@ var JNetwork = function () {
     return JNetwork;
 }();
 
+JNetwork.inType = '';
 JNetwork.baseUrl = '';
 JNetwork.delegate = null;
 JNetwork.carryData = {};
