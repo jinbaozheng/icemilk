@@ -14,6 +14,8 @@ abstract class NetworkDelegate{
   abstract requestInterceptorError(error: Error): Promise<never>;
   abstract responseInterceptor(response: AxiosResponse): AxiosResponse;
   abstract responseInterceptorError(error: Error): Promise<never>;
+  abstract resolveInterceptor(data: any): boolean;
+  abstract rejectInterceptor(error: Error): boolean;
 }
 
 export default NetworkDelegate;
@@ -35,5 +37,11 @@ export const defaultInterceptor = {
   responseInterceptorError: (error: Error): Promise<never> => {
     // Do something with response error
     return Promise.reject(error);
+  },
+  resolveInterceptor: (data: any): boolean => {
+    return true;
+  },
+  rejectInterceptor: (error: Error): boolean => {
+    return true;
   }
 }

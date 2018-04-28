@@ -32,7 +32,22 @@ var NumberTool = function () {
          * @returns {string}  整数字符串
          */
         value: function zeroPad(number, length) {
-            return left_pad_1.default(number, length);
+            return left_pad_1.default(number, length, 0);
+        }
+        /**
+         * 字符补位
+         * @param {number | string} pad 字符
+         * @param {number} length 最终的长度
+         * @param {number, string} placeholder 补全字符
+         * @returns {string}  字符串
+         */
+
+    }, {
+        key: "leftPad",
+        value: function leftPad(pad, length) {
+            var placeholder = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+
+            return left_pad_1.default(pad, length, placeholder);
         }
         /**
          * 小数部分有效数字保留

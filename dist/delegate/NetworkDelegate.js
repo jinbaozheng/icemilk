@@ -38,6 +38,12 @@ exports.defaultInterceptor = {
     responseInterceptorError: function responseInterceptorError(error) {
         // Do something with response error
         return _promise2.default.reject(error);
+    },
+    resolveInterceptor: function resolveInterceptor(data) {
+        return true;
+    },
+    rejectInterceptor: function rejectInterceptor(error) {
+        return true;
     }
 };
 //# sourceMappingURL=NetworkDelegate.js.map

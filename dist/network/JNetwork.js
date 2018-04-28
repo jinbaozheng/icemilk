@@ -185,13 +185,16 @@ var JNetwork = function () {
                 }).then(function (responseJson) {
                     if (isOk) {
                         if (!responseJson.errorCode) {
-                            resolve(responseJson.data);
+                            if (JNetwork.delegate.resolveInterceptor(responseJson.data)) {
+                                resolve(responseJson.data);
+                            }
                         } else {
-                            var errorCode = responseJson.errorCode;
-                            if (responseJson.errorCode == 10022) {
-                                reject(JNetwork.notLoginError(100022));
-                            } else {
-                                reject(JNetwork.generalError(responseJson.message, responseJson.errorCode));
+                            if (JNetwork.delegate.rejectInterceptor(JNetwork.generalError(responseJson.message, responseJson.errorCode))) {
+                                if (responseJson.errorCode == 10022) {
+                                    reject(JNetwork.notLoginError(10022));
+                                } else {
+                                    reject(JNetwork.generalError(responseJson.message, responseJson.errorCode));
+                                }
                             }
                         }
                     } else {

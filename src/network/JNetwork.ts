@@ -232,13 +232,16 @@ class JNetwork {
       }).then((responseJson: { errorCode: number, data: any, message: string }) => {
         if (isOk) {
           if (!responseJson.errorCode) {
-            resolve(responseJson.data);
+            if (JNetwork.delegate.resolveInterceptor(responseJson.data)){
+              resolve(responseJson.data);
+            }
           } else {
-            let errorCode = responseJson.errorCode;
-            if (responseJson.errorCode == 10022) {
-              reject(JNetwork.notLoginError(100022));
-            } else {
-              reject(JNetwork.generalError(responseJson.message, responseJson.errorCode));
+            if (JNetwork.delegate.rejectInterceptor(JNetwork.generalError(responseJson.message, responseJson.errorCode))) {
+              if (responseJson.errorCode == 10022) {
+                reject(JNetwork.notLoginError(10022));
+              } else {
+                reject(JNetwork.generalError(responseJson.message, responseJson.errorCode));
+              }
             }
           }
         } else {
