@@ -39,10 +39,10 @@ exports.defaultInterceptor = {
         // Do something with response error
         return _promise2.default.reject(error);
     },
-    resolveInterceptor: function resolveInterceptor(data) {
+    resolveInterceptor: function resolveInterceptor(response, data) {
         return true;
     },
-    rejectInterceptor: function rejectInterceptor(error) {
+    rejectInterceptor: function rejectInterceptor(response, error) {
         return true;
     }
 };

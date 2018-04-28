@@ -225,18 +225,20 @@ class JNetwork {
       }, error => {
         return JNetwork.delegate.responseInterceptorError(error);
       });
+      let _response = null;
       // TODO: 隐性bug 只有post方法
       jaxios.post(url).then((response) => {
         isOk = response.status === 200;
+        _response = response;
         return response.data;
       }).then((responseJson: { errorCode: number, data: any, message: string }) => {
         if (isOk) {
           if (!responseJson.errorCode) {
-            if (JNetwork.delegate.resolveInterceptor(responseJson.data)){
+            if (JNetwork.delegate.resolveInterceptor(_response, responseJson.data)){
               resolve(responseJson.data);
             }
           } else {
-            if (JNetwork.delegate.rejectInterceptor(JNetwork.generalError(responseJson.message, responseJson.errorCode))) {
+            if (JNetwork.delegate.rejectInterceptor(_response, JNetwork.generalError(responseJson.message, responseJson.errorCode))) {
               if (responseJson.errorCode == 10022) {
                 reject(JNetwork.notLoginError(10022));
               } else {
