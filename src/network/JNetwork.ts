@@ -152,7 +152,7 @@ class JNetwork {
       }, headers);
       let jaxios = axios.create({
         method: method,
-        timeout: otherObject.timeout,
+        timeout: otherObject?otherObject.timeout:JNetwork.timeout,
         params: parameters,
         baseURL: baseUrl,
         headers: iHeaders
@@ -227,7 +227,7 @@ class JNetwork {
       });
       let _response = null;
       // TODO: 隐性bug 只有post方法
-      jaxios.post(url).then((response) => {
+      jaxios.request({url}).then((response) => {
         isOk = response.status === 200;
         _response = response;
         return response.data;
