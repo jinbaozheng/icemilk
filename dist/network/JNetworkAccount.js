@@ -1,6 +1,6 @@
 /**
- * Created by cuppi on 2017/3/6.
- */
+* Created by cuppi on 2017/3/6.
+*/
 'use strict';
 
 var _getPrototypeOf = require("babel-runtime/core-js/object/get-prototype-of");

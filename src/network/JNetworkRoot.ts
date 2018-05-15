@@ -2,6 +2,7 @@
  * Created by cuppi on 2017/9/6.
  */
 import JNetwork from './JNetwork';
+import _ from '../unify/JDataUnify';
 
 class JNetworkRoot{
   otherParas: Array<string|object> = [];
@@ -38,8 +39,10 @@ class JNetworkRoot{
     return this._instance;
   }
 
-  prefixPromise(url, paras?, headers?){
-    return JNetwork.useParas(...this.otherParas).useHeaders(...this.otherHeaders).POST(url, paras, headers);
+  prefixPromise(url, paras?: object, headers?: object, options?: object){
+    return JNetwork.useParas(...this.otherParas).useHeaders(...this.otherHeaders).POST(url, paras, headers).then(data => {
+      return data;
+    });
   }
 }
 

@@ -34,7 +34,7 @@ var StringTool = function () {
          * @returns {boolean} 结果
          */
         value: function isMobile(mobile) {
-            return (/^1[34578]\d{9}$/.test(mobile)
+            return (/^1[345789]\d{9}$/.test(mobile)
             );
         }
         /**

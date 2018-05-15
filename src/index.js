@@ -10,6 +10,7 @@ import NetworkMine from './network/JNetworkMine';
 import NetworkOther from './network/JNetworkOther';
 import NetworkTrade from './network/JNetworkTrade';
 import NetworkConfig from './network/JNetworkConfig';
+import NetworkRoot from './network/JNetworkRoot';
 export {
   Network as JNetwork,
   NetworkAccount as JNetworkAccount,
@@ -19,7 +20,8 @@ export {
   NetworkMine as JNetworkMine,
   NetworkOther as JNetworkOther,
   NetworkTrade as JNetworkTrade,
-  NetworkConfig as JNetworkConfig
+  NetworkConfig as JNetworkConfig,
+  NetworkRoot as JNetworkRoot
 };
 
 import ToolDate from './tool/JToolDate';

@@ -77,19 +77,19 @@ class JNetworkTrade extends JNetworkRoot{
   }
 
   static tradeLockSeat(type, paras) {
-    return this.instance().tradeLockSeatNeedLogin(type, paras);
+    return this.instance().tradeLockSeat(type, paras);
   }
 
   static tradeCancelLockSeat(orderId) {
-    return this.instance().cancelLockSeatNeedLogin(orderId);
+    return this.instance().tradeCancelLockSeat(orderId);
   }
 
   static tradeApplyOrder(type, paras) {
-    return this.instance().tradeApplyOrderNeedLogin(type, paras);
+    return this.instance().tradeApplyOrder(type, paras);
   }
 
   static tradePrePayOrder(orderId, payType, prizeIds, redIds) {
-    return this.instance().tradePrePayOrderNeedLoginInType(orderId, payType, prizeIds, redIds);
+    return this.instance().tradePrePayOrder(orderId, payType, prizeIds, redIds);
   }
 
 }

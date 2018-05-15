@@ -165,8 +165,8 @@ class DateTool {
     distance = Math.floor(distance / 60);
     let hour = distance % 24;
     distance = Math.floor(distance / 24);
-    let day = distance % 30;
-    let mou = Math.floor(distance / 30);
+    let day = distance % 1000;
+    let mou = Math.floor(distance / 1000);
     return [sec, min, hour, day, mou];
   }
 

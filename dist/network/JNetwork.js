@@ -178,20 +178,25 @@ var JNetwork = function () {
                 }, function (error) {
                     return JNetwork.delegate.responseInterceptorError(error);
                 });
+                var _response = null;
                 // TODO: 隐性bug 只有post方法
                 jaxios.post(url).then(function (response) {
                     isOk = response.status === 200;
+                    _response = response;
                     return response.data;
                 }).then(function (responseJson) {
                     if (isOk) {
                         if (!responseJson.errorCode) {
-                            resolve(responseJson.data);
+                            if (JNetwork.delegate.resolveInterceptor(_response, responseJson.data)) {
+                                resolve(responseJson.data);
+                            }
                         } else {
-                            var errorCode = responseJson.errorCode;
-                            if (responseJson.errorCode == 10022) {
-                                reject(JNetwork.notLoginError(100022));
-                            } else {
-                                reject(new Error(responseJson.message));
+                            if (JNetwork.delegate.rejectInterceptor(_response, JNetwork.generalError(responseJson.message, responseJson.errorCode))) {
+                                if (responseJson.errorCode == 10022) {
+                                    reject(JNetwork.notLoginError(10022));
+                                } else {
+                                    reject(JNetwork.generalError(responseJson.message, responseJson.errorCode));
+                                }
                             }
                         }
                     } else {
@@ -311,7 +316,21 @@ var JNetwork = function () {
             });
         }
         /**
-         * 没有登录
+         * 普通异常
+         * @param {error} errorMessage
+         * @param {number} code
+         * @returns {Error}
+         */
+
+    }, {
+        key: "generalError",
+        value: function generalError(errorMessage, code) {
+            var resultError = new Error(errorMessage);
+            (0, _defineProperty2.default)(resultError, 'errorCode', { value: code });
+            return resultError;
+        }
+        /**
+         * 没有登录异常
          * @param code
          * @returns {any}
          */
@@ -408,6 +427,7 @@ var JNetwork = function () {
     return JNetwork;
 }();
 
+JNetwork.inType = '';
 JNetwork.baseUrl = '';
 JNetwork.delegate = null;
 JNetwork.carryData = {};

@@ -14,6 +14,7 @@ import JPromise from '../structure/JPromise';
  */
 class JNetwork {
 
+  static inType: string = '';
   static baseUrl: string = '';
   static delegate: NetworkDelegate = null;
   static carryData: object | Function = {};
@@ -75,7 +76,19 @@ class JNetwork {
   }
 
   /**
-   * 没有登录
+   * 普通异常
+   * @param {error} errorMessage
+   * @param {number} code
+   * @returns {Error}
+   */
+  static generalError(errorMessage: string, code: number): Error {
+    let resultError: Error = new Error(errorMessage);
+    Reflect.defineProperty(resultError, 'errorCode', {value: code});
+    return resultError;
+  }
+
+  /**
+   * 没有登录异常
    * @param code
    * @returns {any}
    */
@@ -139,7 +152,7 @@ class JNetwork {
       }, headers);
       let jaxios = axios.create({
         method: method,
-        timeout: otherObject.timeout,
+        timeout: otherObject?otherObject.timeout:JNetwork.timeout,
         params: parameters,
         baseURL: baseUrl,
         headers: iHeaders
@@ -212,20 +225,25 @@ class JNetwork {
       }, error => {
         return JNetwork.delegate.responseInterceptorError(error);
       });
+      let _response = null;
       // TODO: 隐性bug 只有post方法
-      jaxios.post(url).then((response) => {
+      jaxios.request({url}).then((response) => {
         isOk = response.status === 200;
+        _response = response;
         return response.data;
       }).then((responseJson: { errorCode: number, data: any, message: string }) => {
         if (isOk) {
           if (!responseJson.errorCode) {
-            resolve(responseJson.data);
+            if (JNetwork.delegate.resolveInterceptor(_response, responseJson.data)){
+              resolve(responseJson.data);
+            }
           } else {
-            let errorCode = responseJson.errorCode;
-            if (responseJson.errorCode == 10022) {
-              reject(JNetwork.notLoginError(100022));
-            } else {
-              reject(new Error(responseJson.message));
+            if (JNetwork.delegate.rejectInterceptor(_response, JNetwork.generalError(responseJson.message, responseJson.errorCode))) {
+              if (responseJson.errorCode == 10022) {
+                reject(JNetwork.notLoginError(10022));
+              } else {
+                reject(JNetwork.generalError(responseJson.message, responseJson.errorCode));
+              }
             }
           }
         } else {

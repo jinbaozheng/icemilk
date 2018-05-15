@@ -50,10 +50,12 @@ var JNetworkRoot = function () {
         }
     }, {
         key: "prefixPromise",
-        value: function prefixPromise(url, paras, headers) {
+        value: function prefixPromise(url, paras, headers, options) {
             var _JNetwork_1$default$u, _JNetwork_1$default;
 
-            return (_JNetwork_1$default$u = (_JNetwork_1$default = JNetwork_1.default).useParas.apply(_JNetwork_1$default, (0, _toConsumableArray3.default)(this.otherParas))).useHeaders.apply(_JNetwork_1$default$u, (0, _toConsumableArray3.default)(this.otherHeaders)).POST(url, paras, headers);
+            return (_JNetwork_1$default$u = (_JNetwork_1$default = JNetwork_1.default).useParas.apply(_JNetwork_1$default, (0, _toConsumableArray3.default)(this.otherParas))).useHeaders.apply(_JNetwork_1$default$u, (0, _toConsumableArray3.default)(this.otherHeaders)).POST(url, paras, headers).then(function (data) {
+                return data;
+            });
         }
     }], [{
         key: "useParas",
