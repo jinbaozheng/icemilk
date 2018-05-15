@@ -2,9 +2,10 @@
  * Created by cuppi on 2016/12/5.
  */
 
-import NetworkCinemaManager from '../network/JNetworkCinema.js';
-import StringTool from '../tool/JToolString.js';
+import NetworkCinemaManager from '../network/JNetworkCinema';
+import StringTool from '../tool/JToolString';
 import AutoSeatPicking from '../arithmetic/AutoSeatPicking';
+import SmartSeatModel from "../model/SmartSeatModel";
 
 const _cellSize = 30;
 const _cellRowSpace = 8;
@@ -158,6 +159,7 @@ class SeatManager {
     if (!seatData){
       return [];
     }
+
     if (type === 'maoyan' || type === 'meituan' || type === 'dazhong') {
       let seatList = [];
       let sections = seatData.sections;
@@ -237,23 +239,23 @@ class SeatManager {
    */
   handleTaoBaoSeatData(seatData){
     let seatMap = seatData.seatMap;
-    let seatRowList = [];
-    let seatColList = [];
+    let seatRowList: number[] = [];
+    let seatColList: number[] = [];
     for (let key in seatMap){
       if (seatMap.hasOwnProperty(key)){
-        let location = key.split(':');
+        let location: string[] = key.split(':');
         seatRowList.push(parseInt(location[0]));
         seatColList.push(parseInt(location[1]));
       }
     }
-    seatRowList.sort((a, b) => {
+    seatRowList.sort((a: number, b: number) => {
       return (a - b) && ((a - b) / Math.abs(a - b))
     })
-    seatColList.sort((a, b) => {
+    seatColList.sort((a: number, b: number) => {
       return (a - b) && ((a - b) / Math.abs(a - b))
     })
-    let closeRowSpace = {};
-    let closeColSpace = {};
+    let closeRowSpace:any = {};
+    let closeColSpace:any = {};
     for (let i = 1, l = Math.min(seatRowList.length, seatColList.length); i < l; i++){
       let rowOffset = seatRowList[i] - seatRowList[i - 1];
       if (closeRowSpace.hasOwnProperty(rowOffset)){
@@ -273,10 +275,12 @@ class SeatManager {
     let rowSpace = Number.MAX_VALUE;
     let rowStress = 0;
     for (let spaceString in closeRowSpace){
-      let space = parseInt(spaceString);
-      if (space !== 0 && closeRowSpace[space] > rowStress){
-        rowSpace = space;
-        rowStress = closeRowSpace[space];
+      if(closeRowSpace.hasOwnProperty(spaceString)){
+        let space = parseInt(spaceString);
+        if (space !== 0 && closeRowSpace[space] > rowStress){
+          rowSpace = space;
+          rowStress = closeRowSpace[space];
+        }
       }
     }
 
@@ -293,16 +297,15 @@ class SeatManager {
     let filteredSeatMap = {};
     for (let key in seatMap){
       if (seatMap.hasOwnProperty(key)){
-        let location = key.split(':');
-        let filteredRow = Math.floor(location[0] / rowSpace);
-        let filteredCol = Math.floor(location[1] / colSpace);
-        let rowId = Math.floor(seatMap[key].rowId / rowSpace);
-        let columnId = Math.floor(seatMap[key].columnId / colSpace);
+        let location: string[] = key.split(':');
+        let filteredRow: number = Math.floor(parseInt(location[0]) / rowSpace);
+        let filteredCol: number = Math.floor(parseInt(location[1]) / colSpace);
+        let rowId: number = Math.floor(seatMap[key].rowId / rowSpace);
+        let columnId: number = Math.floor(seatMap[key].columnId / colSpace);
         filteredSeatMap[filteredRow + ':' + filteredCol] = {...seatMap[key], rowId, columnId};
       }
     }
     seatData.seatMap = filteredSeatMap;
-    console.log(seatData);
     return seatData;
   }
 
@@ -399,8 +402,8 @@ class SeatManager {
       let col = Number.parseInt(seatModel.columnNum);
       let rowOriNumber = StringTool.numberRemoveLeftZero(seatModel.rowName);
       let colOriNumber = StringTool.numberRemoveLeftZero(seatModel.columnName);
-      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowId, true, 1));
-      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnId, true, 1));
+      let rowNumber = StringTool.numberFromString(seatModel.rowId, true, 1);
+      let colNumber = StringTool.numberFromString(seatModel.columnId, true, 1);
       return {
         rowOriNumber,
         colOriNumber,
@@ -436,8 +439,8 @@ class SeatManager {
       let col = Number.parseInt(seatModel.columnNum);
       let rowOriNumber = StringTool.numberRemoveLeftZero(seatModel.rowName);
       let colOriNumber = StringTool.numberRemoveLeftZero(seatModel.columnName);
-      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowId, true, 1));
-      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnId, true, 1));
+      let rowNumber = StringTool.numberFromString(seatModel.rowId, true, 1);
+      let colNumber = StringTool.numberFromString(seatModel.columnId, true, 1);
       // 上海百美汇影城
       return {
         rowOriNumber,
@@ -474,8 +477,8 @@ class SeatManager {
       let col = Number.parseInt(seatModel.columnNum);
       let rowOriNumber = StringTool.numberRemoveLeftZero(seatModel.rowName);
       let colOriNumber = StringTool.numberRemoveLeftZero(seatModel.columnName);
-      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowId, true, 1));
-      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnId, true, 1));
+      let rowNumber = StringTool.numberFromString(seatModel.rowId, true, 1);
+      let colNumber = StringTool.numberFromString(seatModel.columnId, true, 1);
       return {
         rowOriNumber,
         colOriNumber,
@@ -512,8 +515,8 @@ class SeatManager {
       let col = Number.parseInt(seatModel.columnNo);
       let rowOriNumber = StringTool.numberRemoveLeftZero(seatModel.rowName);
       let colOriNumber = StringTool.numberRemoveLeftZero(seatModel.columnName);
-      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowId, true, 1));
-      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnId, true, 1));
+      let rowNumber = StringTool.numberFromString(seatModel.rowId, true, 1);
+      let colNumber = StringTool.numberFromString(seatModel.columnId, true, 1);
       return {
         rowOriNumber,
         colOriNumber,
@@ -555,8 +558,8 @@ class SeatManager {
       let col = Number.parseInt(seatModel.columnId);
       let rowOriNumber = StringTool.numberRemoveLeftZero(seatModel.rowName);
       let colOriNumber = StringTool.numberRemoveLeftZero(seatModel.columnName);
-      let rowNumber = Number.parseInt(StringTool.numberFromString(seatModel.rowNo, true, 1));
-      let colNumber = Number.parseInt(StringTool.numberFromString(seatModel.columnNo, true, 1));
+      let rowNumber = StringTool.numberFromString(seatModel.rowNo, true, 1);
+      let colNumber = StringTool.numberFromString(seatModel.columnNo, true, 1);
       return {
         rowOriNumber,
         colOriNumber,
@@ -590,10 +593,10 @@ class SeatManager {
     return seatList.map((seatModel) => {
       let row = Number.parseInt(seatModel.rowId);
       let col = Number.parseInt(seatModel.columnId);
-      let rowOriNumber = StringTool.numberRemoveLeftZero(seatModel.rowName);
-      let colOriNumber = StringTool.numberRemoveLeftZero(seatModel.columnName);
-      let rowNumber = Number.parseInt(StringTool.numberFromString(rowOriNumber, true, 1));
-      let colNumber = Number.parseInt(StringTool.numberFromString(colOriNumber, true, 1));
+      let rowOriNumber: string = StringTool.numberRemoveLeftZero(seatModel.rowName);
+      let colOriNumber: string = StringTool.numberRemoveLeftZero(seatModel.columnName);
+      let rowNumber = StringTool.numberFromString(rowOriNumber, true, 1);
+      let colNumber = StringTool.numberFromString(colOriNumber, true, 1);
       return {
         rowOriNumber,
         colOriNumber,
@@ -666,7 +669,7 @@ class SeatManager {
    * @param smartSeats 智能座位图
    * @returns {Array.<*>} 返回行号数据 {rowNumber, colLocation}
    */
-  rowDataFromSmartSeats(smartSeats) {
+  rowDataFromSmartSeats(smartSeats: SmartSeatModel[]) {
     let dict = new Map();
     for (let seat of smartSeats) {
       let row = seat.rowNumber;
@@ -675,11 +678,12 @@ class SeatManager {
       }
       dict.set(row, seat.rowLocation);
     }
-    let allRowNumber = dict.keys();
     let allRowData = [];
-    for (let rowNumber of allRowNumber) {
-      allRowData.push({rowNumber: rowNumber, colLocation: dict.get(rowNumber)});
-    }
+
+    dict.forEach((value: number, key: number) => {
+      allRowData.push({rowNumber: key, colLocation: value});
+    });
+
     return allRowData.sort((a, b) => {
       return a.rowNumber.toString().localeCompare(b.rowNumber.toString());
     })
