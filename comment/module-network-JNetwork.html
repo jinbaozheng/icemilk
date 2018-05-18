@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Class: JNetworkOther</title>
+	<title>JBZWebSDK Class: JNetwork</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -79,18 +79,18 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: JNetworkOther</h1>
+	<h1 class="page-title">Class: JNetwork</h1>
 <section>
 
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-network.html">network</a>.</span>
+            <span class="ancestors"><a href="module-network.html">network</a>~</span>
         
-        JNetworkOther
+        JNetwork
         </h2>
         
-            <div class="class-description">其他接口</div>
+            <div class="class-description">网络请求类</div>
         
     
 </header>
@@ -102,7 +102,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="JNetworkOther"><span class="type-signature"></span>new JNetworkOther()</h4>
+    <h4 class="name" id="JNetwork"><span class="type-signature"></span>new JNetwork()</h4>
     
     
 </dt>
@@ -194,7 +194,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="banners"><span class="type-signature"></span>banners(position, cityId)</h4>
+    <h4 class="name" id=".freedomGET"><span class="type-signature">&lt;static> </span>freedomGET(baseUrl, url, parameters, headers, otherObject)</h4>
     
     
 </dt>
@@ -202,8 +202,7 @@
 
     
     <div class="description">
-        +
-广告接口
+        高自由度GET方法
     </div>
     
 
@@ -238,10 +237,16 @@
 
         <tr>
             
-                <td class="name"><code>position</code></td>
+                <td class="name"><code>baseUrl</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -249,17 +254,23 @@
 
             
 
-            <td class="description last">广告使用地点</td>
+            <td class="description last"></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>cityId</code></td>
+                <td class="name"><code>url</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -267,7 +278,503 @@
 
             
 
-            <td class="description last">当前城市</td>
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>parameters</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>otherObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    异步请求块
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".freedomPOST"><span class="type-signature">&lt;static> </span>freedomPOST(baseUrl, url, parameters, headers, otherObject)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        高自由度POST方法
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>baseUrl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">基地址</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">相对地址</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>parameters</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">地址参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">头参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>otherObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">其他可用配置</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    异步请求块
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".generalError"><span class="type-signature">&lt;static> </span>generalError(errorMessage, code)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        普通异常
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>errorMessage</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">error</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>code</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
         </tr>
 
     
@@ -338,7 +845,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise</span>
+<span class="param-type">Error</span>
 
 
 
@@ -355,7 +862,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="hotSearchKeyword"><span class="type-signature"></span>hotSearchKeyword()</h4>
+    <h4 class="name" id=".GET"><span class="type-signature">&lt;static> </span>GET(url, parameters, headers, otherObject)</h4>
     
     
 </dt>
@@ -363,7 +870,7 @@
 
     
     <div class="description">
-        热搜词汇
+        get请求
     </div>
     
 
@@ -372,6 +879,128 @@
     
 
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">相对地址</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>parameters</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">地址参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">头参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>otherObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">其他参数</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -428,6 +1057,10 @@
     <h5>Returns:</h5>
     
             
+<div class="param-desc">
+    异步请求块
+</div>
+
 
 
 <dl>
@@ -436,10 +1069,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
-|
-
-<span class="param-type">*</span>
+<span class="param-type">Promise</span>
 
 
 
@@ -456,7 +1086,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="otherBanners"><span class="type-signature"></span>otherBanners(location, cityId)</h4>
+    <h4 class="name" id=".notLoginError"><span class="type-signature">&lt;static> </span>notLoginError(code)</h4>
     
     
 </dt>
@@ -464,7 +1094,7 @@
 
     
     <div class="description">
-        广告接口
+        没有登录异常
     </div>
     
 
@@ -499,7 +1129,7 @@
 
         <tr>
             
-                <td class="name"><code>location</code></td>
+                <td class="name"><code>code</code></td>
             
 
             <td class="type">
@@ -510,25 +1140,7 @@
 
             
 
-            <td class="description last">广告使用地点</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>cityId</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">当前城市</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -599,7 +1211,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise</span>
+<span class="param-type">any</span>
 
 
 
@@ -616,7 +1228,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="search"><span class="type-signature"></span>search(cityId, searchKey, nextPageFirstKey)</h4>
+    <h4 class="name" id=".POST"><span class="type-signature">&lt;static> </span>POST(url, parameters, headers, otherObject)</h4>
     
     
 </dt>
@@ -624,7 +1236,7 @@
 
     
     <div class="description">
-        搜索
+        post请求
     </div>
     
 
@@ -659,10 +1271,16 @@
 
         <tr>
             
-                <td class="name"><code>cityId</code></td>
+                <td class="name"><code>url</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -670,17 +1288,23 @@
 
             
 
-            <td class="description last">城市Id</td>
+            <td class="description last">相对地址</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>searchKey</code></td>
+                <td class="name"><code>parameters</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
             
             </td>
 
@@ -688,14 +1312,190 @@
 
             
 
-            <td class="description last">关键字</td>
+            <td class="description last">地址参数</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>nextPageFirstKey</code></td>
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">头参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>otherObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">其他参数</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    异步请求块
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="fetchRequest"><span class="type-signature"></span>fetchRequest(method, baseUrl, url, parameters, headers, otherObject)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        发送请求
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>method</code></td>
             
 
             <td class="type">
@@ -706,7 +1506,97 @@
 
             
 
-            <td class="description last">下一页的句柄</td>
+            <td class="description last">方法类型</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>baseUrl</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">基地址</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">相对地址</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>parameters</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">头参数</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>otherObject</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">其他相关设置</td>
         </tr>
 
     
@@ -777,7 +1667,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise</span>
+<span class="param-type"><a href="JPromise.html">JPromise</a>.&lt;any></span>
 
 
 

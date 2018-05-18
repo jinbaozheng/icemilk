@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Class: SeatParasModel</title>
+	<title>JBZWebSDK Class: ObjectTool</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -79,18 +79,18 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: SeatParasModel</h1>
+	<h1 class="page-title">Class: ObjectTool</h1>
 <section>
 
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-model.html">model</a>.</span>
+            <span class="ancestors"><a href="module-tool.html">tool</a>.</span>
         
-        SeatParasModel
+        ObjectTool
         </h2>
         
-            <div class="class-description">座位图参数模型</div>
+            <div class="class-description">对象工具类</div>
         
     
 </header>
@@ -102,7 +102,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="SeatParasModel"><span class="type-signature"></span>new SeatParasModel()</h4>
+    <h4 class="name" id="ObjectTool"><span class="type-signature"></span>new ObjectTool()</h4>
     
     
 </dt>
@@ -187,6 +187,366 @@
 
     
 
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id=".deleteProperty"><span class="type-signature">&lt;static> </span>deleteProperty(target, propertyKey)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        删除对象某个属性
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">对象</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>propertyKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">属性</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    是否删除成功
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".safeGet"><span class="type-signature">&lt;static> </span>safeGet(target, pChain)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        安全的获取链式属性 eg: a.b.c.d
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">目标对象</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pChain</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">对象链式属性</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">*</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        </dl>
     
 
     

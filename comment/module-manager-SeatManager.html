@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Class: JNetworkOther</title>
+	<title>JBZWebSDK Class: SeatManager</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -79,18 +79,16 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: JNetworkOther</h1>
+	<h1 class="page-title">Class: SeatManager</h1>
 <section>
 
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-network.html">network</a>.</span>
+            <span class="ancestors"><a href="module-manager.html">manager</a>~</span>
         
-        JNetworkOther
+        SeatManager
         </h2>
-        
-            <div class="class-description">其他接口</div>
         
     
 </header>
@@ -102,12 +100,16 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="JNetworkOther"><span class="type-signature"></span>new JNetworkOther()</h4>
+    <h4 class="name" id="SeatManager"><span class="type-signature"></span>new SeatManager()</h4>
     
     
 </dt>
 <dd>
 
+    
+    <div class="description">
+        构造器
+    </div>
     
 
     
@@ -168,6 +170,26 @@
     
 
     
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">*</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -194,7 +216,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="banners"><span class="type-signature"></span>banners(position, cityId)</h4>
+    <h4 class="name" id=".defaultManager"><span class="type-signature">&lt;static> </span>defaultManager()</h4>
     
     
 </dt>
@@ -202,8 +224,105 @@
 
     
     <div class="description">
-        +
-广告接口
+        单例方法
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">SeatManager</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".seatParasFromScreening"><span class="type-signature">&lt;static> </span>seatParasFromScreening(platform, screening)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        获取座位图时需要的参数
     </div>
     
 
@@ -238,7 +357,7 @@
 
         <tr>
             
-                <td class="name"><code>position</code></td>
+                <td class="name"><code>platform</code></td>
             
 
             <td class="type">
@@ -249,14 +368,14 @@
 
             
 
-            <td class="description last">广告使用地点</td>
+            <td class="description last">平台类型</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>cityId</code></td>
+                <td class="name"><code>screening</code></td>
             
 
             <td class="type">
@@ -267,7 +386,171 @@
 
             
 
-            <td class="description last">当前城市</td>
+            <td class="description last">平台数据</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    平台需要的参数
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".smartAutoSelected"><span class="type-signature">&lt;static> </span>smartAutoSelected(smartSeats, count)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        智能选座
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>smartSeats</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>count</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
         </tr>
 
     
@@ -355,7 +638,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="hotSearchKeyword"><span class="type-signature"></span>hotSearchKeyword()</h4>
+    <h4 class="name" id="handleTaoBaoSeatData"><span class="type-signature"></span>handleTaoBaoSeatData(seatData)</h4>
     
     
 </dt>
@@ -363,7 +646,7 @@
 
     
     <div class="description">
-        热搜词汇
+        淘票票座位图处理
     </div>
     
 
@@ -372,6 +655,50 @@
     
 
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>seatData</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -436,9 +763,6 @@
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
-|
-
 <span class="param-type">*</span>
 
 
@@ -456,7 +780,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="otherBanners"><span class="type-signature"></span>otherBanners(location, cityId)</h4>
+    <h4 class="name" id="smartSeatDataFromSeats"><span class="type-signature"></span>smartSeatDataFromSeats(type, seatData)</h4>
     
     
 </dt>
@@ -464,7 +788,7 @@
 
     
     <div class="description">
-        广告接口
+        对原始座位图进行智能转换
     </div>
     
 
@@ -499,7 +823,7 @@
 
         <tr>
             
-                <td class="name"><code>location</code></td>
+                <td class="name"><code>type</code></td>
             
 
             <td class="type">
@@ -510,14 +834,14 @@
 
             
 
-            <td class="description last">广告使用地点</td>
+            <td class="description last">平台类型</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>cityId</code></td>
+                <td class="name"><code>seatData</code></td>
             
 
             <td class="type">
@@ -528,7 +852,7 @@
 
             
 
-            <td class="description last">当前城市</td>
+            <td class="description last">座位图原始数据</td>
         </tr>
 
     
@@ -591,6 +915,10 @@
     <h5>Returns:</h5>
     
             
+<div class="param-desc">
+    智能座位图详细信息
+</div>
+
 
 
 <dl>
@@ -599,7 +927,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise</span>
+<span class="param-type">Object</span>
 
 
 
@@ -616,7 +944,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="search"><span class="type-signature"></span>search(cityId, searchKey, nextPageFirstKey)</h4>
+    <h4 class="name" id="smartSeatDataFromSmartSeats"><span class="type-signature"></span>smartSeatDataFromSmartSeats(type, smartSeats)</h4>
     
     
 </dt>
@@ -624,7 +952,7 @@
 
     
     <div class="description">
-        搜索
+        获取智能座位图元数据
     </div>
     
 
@@ -659,7 +987,7 @@
 
         <tr>
             
-                <td class="name"><code>cityId</code></td>
+                <td class="name"><code>type</code></td>
             
 
             <td class="type">
@@ -670,14 +998,14 @@
 
             
 
-            <td class="description last">城市Id</td>
+            <td class="description last">平台类型</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>searchKey</code></td>
+                <td class="name"><code>smartSeats</code></td>
             
 
             <td class="type">
@@ -688,14 +1016,160 @@
 
             
 
-            <td class="description last">关键字</td>
+            <td class="description last">智能座位图</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    智能座位图详细信息
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="smartSeatsFromSeats"><span class="type-signature"></span>smartSeatsFromSeats(type, seatData)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        对原始座位图进行智能转换
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">平台类型</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>nextPageFirstKey</code></td>
+                <td class="name"><code>seatData</code></td>
             
 
             <td class="type">
@@ -706,7 +1180,153 @@
 
             
 
-            <td class="description last">下一页的句柄</td>
+            <td class="description last">座位图原始数据</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    智能座位图列表
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="smartSeatsWithTBSeats"><span class="type-signature"></span>smartSeatsWithTBSeats(seatList)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        获取淘票票智能座位图
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>seatList</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
         </tr>
 
     
@@ -777,7 +1397,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise</span>
+<span class="param-type">Array</span>
 
 
 

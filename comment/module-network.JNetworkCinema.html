@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JBZWebSDK Class: JNetworkOther</title>
+	<title>JBZWebSDK Class: JNetworkCinema</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -79,7 +79,7 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: JNetworkOther</h1>
+	<h1 class="page-title">Class: JNetworkCinema</h1>
 <section>
 
 <header>
@@ -87,10 +87,10 @@
         <h2>
             <span class="ancestors"><a href="module-network.html">network</a>.</span>
         
-        JNetworkOther
+        JNetworkCinema
         </h2>
         
-            <div class="class-description">其他接口</div>
+            <div class="class-description">影院接口</div>
         
     
 </header>
@@ -102,7 +102,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="JNetworkOther"><span class="type-signature"></span>new JNetworkOther()</h4>
+    <h4 class="name" id="JNetworkCinema"><span class="type-signature"></span>new JNetworkCinema()</h4>
     
     
 </dt>
@@ -194,7 +194,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="banners"><span class="type-signature"></span>banners(position, cityId)</h4>
+    <h4 class="name" id="cinemaCancelFavoriteCinema"><span class="type-signature"></span>cinemaCancelFavoriteCinema(cinemaId)</h4>
     
     
 </dt>
@@ -202,8 +202,7 @@
 
     
     <div class="description">
-        +
-广告接口
+        取消收藏影院
     </div>
     
 
@@ -238,7 +237,7 @@
 
         <tr>
             
-                <td class="name"><code>position</code></td>
+                <td class="name"><code>cinemaId</code></td>
             
 
             <td class="type">
@@ -249,129 +248,13 @@
 
             
 
-            <td class="description last">广告使用地点</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>cityId</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">当前城市</td>
+            <td class="description last">影院Id</td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="hotSearchKeyword"><span class="type-signature"></span>hotSearchKeyword()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        热搜词汇
-    </div>
-    
-
-    
-
-    
-
-    
     
 
     
@@ -456,7 +339,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="otherBanners"><span class="type-signature"></span>otherBanners(location, cityId)</h4>
+    <h4 class="name" id="cinemaDetail"><span class="type-signature"></span>cinemaDetail(cinemaId)</h4>
     
     
 </dt>
@@ -464,7 +347,322 @@
 
     
     <div class="description">
-        广告接口
+        获取影院详情
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cinemaId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">影院ID</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    promise
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="cinemaFavoriteCinema"><span class="type-signature"></span>cinemaFavoriteCinema(cinemaId, cinemaName)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        收藏影院
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cinemaId</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">影院Id</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cinemaName</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">影院名字</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="cinemaList"><span class="type-signature"></span>cinemaList(location, CinemaFilterParas)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        影院列表
     </div>
     
 
@@ -510,17 +708,23 @@
 
             
 
-            <td class="description last">广告使用地点</td>
+            <td class="description last"></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>cityId</code></td>
+                <td class="name"><code>CinemaFilterParas</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">cinemaFilter</span>
+
+
+
             
             </td>
 
@@ -528,7 +732,7 @@
 
             
 
-            <td class="description last">当前城市</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -616,7 +820,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="search"><span class="type-signature"></span>search(cityId, searchKey, nextPageFirstKey)</h4>
+    <h4 class="name" id="cinemaScreeningDateList"><span class="type-signature"></span>cinemaScreeningDateList(cinemaId, filmId)</h4>
     
     
 </dt>
@@ -624,7 +828,7 @@
 
     
     <div class="description">
-        搜索
+        获取指定影院排片日期安排
     </div>
     
 
@@ -659,7 +863,7 @@
 
         <tr>
             
-                <td class="name"><code>cityId</code></td>
+                <td class="name"><code>cinemaId</code></td>
             
 
             <td class="type">
@@ -670,14 +874,14 @@
 
             
 
-            <td class="description last">城市Id</td>
+            <td class="description last">影院Id</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>searchKey</code></td>
+                <td class="name"><code>filmId</code></td>
             
 
             <td class="type">
@@ -688,25 +892,7 @@
 
             
 
-            <td class="description last">关键字</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>nextPageFirstKey</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">下一页的句柄</td>
+            <td class="description last">影片Id</td>
         </tr>
 
     
@@ -777,7 +963,656 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise</span>
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="cinemaScreeningFilmList"><span class="type-signature"></span>cinemaScreeningFilmList(cinemaId)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        获取指定影院排片
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cinemaId</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">影院Id</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="cinemaScreeningItems"><span class="type-signature"></span>cinemaScreeningItems(cinemaId, filmId, date)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        获取指定影院排片放映厅安排
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cinemaId</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">影院Id</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>filmId</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">影片Id</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>date</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">日期（时间戳标示）</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">*</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="cinemaSeats"><span class="type-signature"></span>cinemaSeats(type, paras)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        实时座位图
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">平台类型 （必须）</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>paras</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">（根据不同平台变化）</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">*</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="cinemaSmartSeats"><span class="type-signature"></span>cinemaSmartSeats(type, paras)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        智能实时座位图
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">平台类型 （必须）</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>paras</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">（根据不同平台变化）</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">*</span>
 
 
 
