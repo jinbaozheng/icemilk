@@ -1,4 +1,6 @@
-'use strict';
+/**
+ * Created by cuppi on 2016/12/14.
+ */
 
 /**
  * 字符串工具类
