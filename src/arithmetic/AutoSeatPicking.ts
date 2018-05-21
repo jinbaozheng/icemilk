@@ -9,6 +9,10 @@ import SmartSeatModel from "../model/SmartSeatModel";
 
 let instance = null;
 class AutoSeatPicking {
+  /*
+  *  @member AutoSeatPicking#needSeatCount
+  *  @type {string}
+  */
   private needSeatCount: number;
   private rowCount: number;
   private colCount: number;

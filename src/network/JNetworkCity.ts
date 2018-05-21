@@ -2,10 +2,8 @@
  * Created by cuppi on 2016/11/30.
  */
 'use strict';
-import JNetwork from './JNetwork';
 import {cityUrl} from '../unify/JUrlList';
 import _ from '../unify/JDataUnify';
-import JPromise from "../structure/JPromise";
 import JNetworkRoot from "./JNetworkRoot";
 
 /**
@@ -15,7 +13,7 @@ import JNetworkRoot from "./JNetworkRoot";
  */
 class JNetworkCity extends JNetworkRoot{
   /**
-   *  获取城市列表
+   * 获取城市列表
    * @returns {*}
    */
   cityList() {

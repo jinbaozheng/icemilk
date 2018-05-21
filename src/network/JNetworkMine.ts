@@ -3,7 +3,6 @@
  */
 'use strict';
 import _ from '../unify/JDataUnify';
-import JNetwork from './JNetwork';
 import {mineUrl} from '../unify/JUrlList';
 import JNetworkRoot from './JNetworkRoot';
 
@@ -12,7 +11,6 @@ import JNetworkRoot from './JNetworkRoot';
  * @memberOf module:network
  */
 class JNetworkMine extends JNetworkRoot{
-
   /**
    * 我的订单
    * @private
@@ -22,8 +20,9 @@ class JNetworkMine extends JNetworkRoot{
     return this.prefixPromise(mineUrl.userorders);
   }
 
-  /***
+  /**
    * 我的收藏(影院)
+   * @returns {*}
    */
   mineFavoriteCinema() {
     return new Promise((resolve, reject) => {
@@ -44,7 +43,6 @@ class JNetworkMine extends JNetworkRoot{
     return this.prefixPromise(mineUrl.collectedcinemalist);
   }
 
-  /***/
   static mineOrder() {
     return this.instance().mineOrder();
   }

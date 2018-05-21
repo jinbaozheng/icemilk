@@ -41,18 +41,17 @@
     "left-pad": "^1.2.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.22.0",
-    "babel-preset-es2015": "*",
-    "babel-preset-stage-2": "^6.24.1",
-    "babel-runtime": "^6.26.0",
+    "@babel/core": "^7.0.0-beta.47",
+    "@babel/plugin-transform-typescript": "^7.0.0-beta.47",
+    "@babel/preset-typescript": "^7.0.0-beta.47",
+    "@babel/preset-stage-2": "^7.0.0-beta.47",
     "commander": "^2.15.1",
     "gulp": "^3.9.1 ",
     "gulp-babel": "^7.0.1",
     "gulp-concat": "^2.6.1",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-typescript": "^3.2.4",
-    "jsdoc-babel": "^0.3.0",
+    "jsdoc-babel": "^0.4.0-alpha.0",
     "run-sequence": "^2.2.1",
     "typescript": "^2.8.3"
   },

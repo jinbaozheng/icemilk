@@ -4,17 +4,20 @@
     "dictionaries": ["jsdoc","closure"]
   },
   "source": {
+//    "includePattern": ".+\\.ts(doc|x)?$",
     "includePattern": ".+\\.ts(doc|x)?$",
     "excludePattern": "(node_modules/|docs)"
   },
   "plugins": ["node_modules/jsdoc-babel"],
   "babel": {
-    "extensions": ["js", "es6", "jsx"],
+    "extensions": ["ts", "es6", "jsx"],
     "presets": [
-      "stage-2"
+      ["@babel/stage-2", { "decoratorsLegacy": true }],
+      "@babel/preset-typescript"
     ],
     "comments": true,
-    "babelrc": false
+    "babelrc": false,
+    "plugins": ["@babel/plugin-transform-typescript"]
   },
   "templates": {
     "cleverLinks": false,
@@ -38,5 +41,6 @@
   },
   "opts": {
 //    "template": "node_modules/minami"
+//    "template": "templates/default"
   }
 }

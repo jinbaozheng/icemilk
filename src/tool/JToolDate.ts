@@ -2,14 +2,17 @@
  * Created by cuppi on 2016/11/25.
  */
 
-import NumberTool from './JToolNumber';
-
 /**
  * 时间工具类
  * @memberOf module:tool
  */
 class DateTool {
-
+  /**
+   * 当前日期是什么类型
+   * @param {Date | string | number} _ 日期
+   * @private
+   * @returns {string}
+   */
   static whatType(_: Date|string|number): string{
     if (typeof(_) === 'object') {
       if (_ instanceof Date) {
@@ -19,6 +22,15 @@ class DateTool {
     return typeof(_);
   }
 
+  /**
+   * 这个如期要做什么
+   * @param {Date | string | number} _ 日期
+   * @param {Function} dateDoing 日期格式做的事情
+   * @param {Function} strDoing 字符串格式做的事情
+   * @param {Function} numDoing 数字格式做的事情
+   * @param {Function} otherDoing  其他格式做的事情
+   * @private
+   */
   static whatTypeDoing(_: Date|string|number, dateDoing: Function, strDoing: Function, numDoing: Function, otherDoing?: Function): void {
     if (typeof(_) === 'string') {
       strDoing();
@@ -34,6 +46,11 @@ class DateTool {
     }
   }
 
+  /**
+   * 想要日期格式的日期
+   * @param {Date | string | number} _ 日期
+   * @returns {Date}
+   */
   static wantDate(_: Date|string|number): Date {
     let result = null;
     DateTool.whatTypeDoing(_, () => {
@@ -46,6 +63,11 @@ class DateTool {
     return result;
   }
 
+  /**
+   * 想要时间戳格式的日期
+   * @param {Date | string | number} _ 日期
+   * @returns {number}
+   */
   static wantTimeInterval(_: Date|string|number): number {
     let result = null;
     DateTool.whatTypeDoing(_, () => {
