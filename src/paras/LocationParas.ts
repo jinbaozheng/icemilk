@@ -3,8 +3,8 @@
  */
 
 interface LocationParas{
-  cityId: number,
-  longitude: number,
+  cityId: number
+  longitude: number
   latitude: number
 }
 

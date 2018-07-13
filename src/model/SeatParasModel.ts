@@ -6,21 +6,21 @@
  * 座位图参数模型
  * @memberOf module:model
  */
-class SeatParasModel{
+interface SeatParasModel{
 
   /**
    * string 影院Id wangpiao | spider
    */
-  static cinemaId;
+  cinemaId: string;
 
   /**
    * string 场次Id wangpiao | spider | maizuo | danche | maoyan | meituan | dazhong | baidu
    */
-  static showId;
+  showId: string;
 
   /**
    * string 放映厅Id spider */
-  static hallId;
+  hallId: string;
 }
 
 export default SeatParasModel;

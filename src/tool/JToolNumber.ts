@@ -46,7 +46,7 @@ class NumberTool {
    */
   static positiveText(number: number, text: string): string {
     if (number <= 0) {
-      return text ? text : '';
+      return text || '';
     } else {
       return number + '';
     }

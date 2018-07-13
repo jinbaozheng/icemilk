@@ -5,7 +5,6 @@ import NetworkManager from './JNetwork';
 import {UseConfig as UseUrlConfig} from '../unify/JUrlList'
 import {UseConfig as UseDataConfig} from '../unify/JDataUnify'
 import {defaultInterceptor} from "../delegate/NetworkDelegate";
-import axios from 'axios';
 
 /**
  * 请求配置类

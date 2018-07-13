@@ -1,6 +1,7 @@
 /**
  * Created by cuppi on 2017/4/14.
  */
+/* eslint-disable */
 import Network from './network/JNetwork';
 import NetworkAccount from './network/JNetworkAccount';
 import NetworkCinema from './network/JNetworkCinema';
@@ -49,7 +50,6 @@ export {
 };
 
 import {jlink, jpara} from './network/JNetworkFunc';
-
 export {jlink, jpara};
 
-
+/* eslint-enable */
