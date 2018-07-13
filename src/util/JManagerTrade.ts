@@ -11,7 +11,6 @@ import NetworkTrade from '../network/JNetworkTrade';
 
 let instance: TradeManager = null;
 class TradeManager {
-
   callbackCityInfo: Function;
   constructor() {
     if (!instance) {
@@ -376,7 +375,5 @@ class TradeManager {
       });
     });
   }
-
 }
-
 export default TradeManager;

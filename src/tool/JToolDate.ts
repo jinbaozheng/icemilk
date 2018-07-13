@@ -14,12 +14,12 @@ class DateTool {
    * @returns {string}
    */
   static whatType(_: Date|string|number): string{
-    if (typeof(_) === 'object') {
+    if (typeof (_) === 'object') {
       if (_ instanceof Date) {
         return 'Date';
       }
     }
-    return typeof(_);
+    return typeof (_);
   }
 
   /**
@@ -32,13 +32,13 @@ class DateTool {
    * @private
    */
   static whatTypeDoing(_: Date|string|number, dateDoing: Function, strDoing: Function, numDoing: Function, otherDoing?: Function): void {
-    if (typeof(_) === 'string') {
+    if (typeof (_) === 'string') {
       strDoing();
     }
-    if (typeof(_) === 'number') {
+    if (typeof (_) === 'number') {
       numDoing();
     }
-    if (typeof(_) === 'object' && _ instanceof Date) {
+    if (typeof (_) === 'object' && _ instanceof Date) {
       dateDoing();
     }
     if (otherDoing) {
