@@ -57,8 +57,9 @@ var JNetworkMine = function (_JNetworkRoot_1$defau) {
         value: function mineOrder() {
             return this.prefixPromise(JUrlList_1.mineUrl.userorders);
         }
-        /***
+        /**
          * 我的收藏(影院)
+         * @returns {*}
          */
 
     }, {
@@ -85,8 +86,6 @@ var JNetworkMine = function (_JNetworkRoot_1$defau) {
         value: function mineFavorite() {
             return this.prefixPromise(JUrlList_1.mineUrl.collectedcinemalist);
         }
-        /***/
-
     }], [{
         key: "mineOrder",
         value: function mineOrder() {

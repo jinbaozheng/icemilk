@@ -106,7 +106,7 @@ var JNetwork = function () {
                 }, headers);
                 var jaxios = axios_1.default.create({
                     method: method,
-                    timeout: otherObject.timeout,
+                    timeout: otherObject ? otherObject.timeout : JNetwork.timeout,
                     params: parameters,
                     baseURL: baseUrl,
                     headers: iHeaders
@@ -180,7 +180,7 @@ var JNetwork = function () {
                 });
                 var _response = null;
                 // TODO: 隐性bug 只有post方法
-                jaxios.post(url).then(function (response) {
+                jaxios.request({ url: url }).then(function (response) {
                     isOk = response.status === 200;
                     _response = response;
                     return response.data;
