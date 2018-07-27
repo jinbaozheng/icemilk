@@ -1,14 +1,17 @@
-'use strict';
+"use strict";
+/**
+ * Created by cuppi on 2016/12/14.
+ */
 
-var _parseInt = require('babel-runtime/core-js/number/parse-int');
+var _parseInt = require("babel-runtime/core-js/number/parse-int");
 
 var _parseInt2 = _interopRequireDefault(_parseInt);
 
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _createClass2 = require('babel-runtime/helpers/createClass');
+var _createClass2 = require("babel-runtime/helpers/createClass");
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
@@ -26,7 +29,7 @@ var StringTool = function () {
     }
 
     (0, _createClass3.default)(StringTool, null, [{
-        key: 'isMobile',
+        key: "isMobile",
 
         /**
          * 校验是否为手机号码
@@ -44,7 +47,7 @@ var StringTool = function () {
          */
 
     }, {
-        key: 'isPhoneNumber',
+        key: "isPhoneNumber",
         value: function isPhoneNumber(phone) {
             return (/(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}/.test(phone)
             );
@@ -56,7 +59,7 @@ var StringTool = function () {
          */
 
     }, {
-        key: 'isEmail',
+        key: "isEmail",
         value: function isEmail(email) {
             return (/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(email)
             );
@@ -68,7 +71,7 @@ var StringTool = function () {
          */
 
     }, {
-        key: 'isEmpty',
+        key: "isEmpty",
         value: function isEmpty(string) {
             return !(string && string !== '');
         }
@@ -79,7 +82,7 @@ var StringTool = function () {
          */
 
     }, {
-        key: 'isVerifyCode',
+        key: "isVerifyCode",
         value: function isVerifyCode(verifycode) {
             return (/^[0-9]{6}$/.test(verifycode)
             );
@@ -93,7 +96,7 @@ var StringTool = function () {
          */
 
     }, {
-        key: 'isPassword',
+        key: "isPassword",
         value: function isPassword(password, minLength, maxLength) {
             if (minLength !== undefined && maxLength !== undefined) {
                 return new RegExp("^[a-zA-Z0-9]{" + minLength + "," + maxLength + "}$").test(password);
@@ -108,7 +111,7 @@ var StringTool = function () {
          */
 
     }, {
-        key: 'numberRemoveLeftZero',
+        key: "numberRemoveLeftZero",
         value: function numberRemoveLeftZero(c) {
             if (/^[0-9]*$/.test(c)) {
                 return (0, _parseInt2.default)(c) + '';
@@ -122,7 +125,7 @@ var StringTool = function () {
          */
 
     }, {
-        key: 'numberFromASC',
+        key: "numberFromASC",
         value: function numberFromASC(ascChar) {
             var asc = ascChar.charCodeAt(0);
             if (asc >= 65 && asc <= 90) {
@@ -145,7 +148,7 @@ var StringTool = function () {
          */
 
     }, {
-        key: 'numberFromString',
+        key: "numberFromString",
         value: function numberFromString(string, force, offset) {
             if (/^[0-9]*$/.test(string)) {
                 return (0, _parseInt2.default)(string);
@@ -165,7 +168,7 @@ var StringTool = function () {
          */
 
     }, {
-        key: 'clearSpace',
+        key: "clearSpace",
         value: function clearSpace(string) {
             // 过滤空格
             return string.replace(/\s+/g, '');
@@ -177,7 +180,7 @@ var StringTool = function () {
          */
 
     }, {
-        key: 'clearComma',
+        key: "clearComma",
         value: function clearComma(string) {
             // 过滤空格
             return string.replace(/\u002c+/g, '').replace(/，+/g, '');
@@ -189,7 +192,7 @@ var StringTool = function () {
          */
 
     }, {
-        key: 'clearVertical',
+        key: "clearVertical",
         value: function clearVertical(string) {
             // 过滤空格
             return string.replace(/\|+/g, '');
@@ -201,7 +204,7 @@ var StringTool = function () {
          */
 
     }, {
-        key: 'clearClutter',
+        key: "clearClutter",
         value: function clearClutter(string) {
             var clearString = StringTool.clearSpace(string);
             clearString = StringTool.clearComma(clearString);

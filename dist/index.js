@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Created by cuppi on 2017/4/14.
  */
+/* eslint-disable */
 var JNetwork_1 = require("./network/JNetwork");
 exports.JNetwork = JNetwork_1.default;
 var JNetworkAccount_1 = require("./network/JNetworkAccount");
@@ -45,4 +46,5 @@ exports.JManagerTrade = JManagerTrade_1.default;
 var JNetworkFunc_1 = require("./network/JNetworkFunc");
 exports.jlink = JNetworkFunc_1.jlink;
 exports.jpara = JNetworkFunc_1.jpara;
+/* eslint-enable */
 //# sourceMappingURL=index.js.map

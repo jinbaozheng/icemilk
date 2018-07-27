@@ -72,7 +72,7 @@ var NumberTool = function () {
         key: "positiveText",
         value: function positiveText(number, text) {
             if (number <= 0) {
-                return text ? text : '';
+                return text || '';
             } else {
                 return number + '';
             }

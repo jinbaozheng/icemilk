@@ -51,7 +51,7 @@ var JNetworkCity = function (_JNetworkRoot_1$defau) {
         key: "cityList",
 
         /**
-         *  获取城市列表
+         * 获取城市列表
          * @returns {*}
          */
         value: function cityList() {

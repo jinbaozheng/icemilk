@@ -30,6 +30,13 @@ var DateTool = function () {
 
     (0, _createClass3.default)(DateTool, null, [{
         key: "whatType",
+
+        /**
+         * 当前日期是什么类型
+         * @param {Date | string | number} _ 日期
+         * @private
+         * @returns {string}
+         */
         value: function whatType(_) {
             if ((typeof _ === "undefined" ? "undefined" : (0, _typeof3.default)(_)) === 'object') {
                 if (_ instanceof Date) {
@@ -38,6 +45,16 @@ var DateTool = function () {
             }
             return typeof _ === "undefined" ? "undefined" : (0, _typeof3.default)(_);
         }
+        /**
+         * 这个如期要做什么
+         * @param {Date | string | number} _ 日期
+         * @param {Function} dateDoing 日期格式做的事情
+         * @param {Function} strDoing 字符串格式做的事情
+         * @param {Function} numDoing 数字格式做的事情
+         * @param {Function} otherDoing  其他格式做的事情
+         * @private
+         */
+
     }, {
         key: "whatTypeDoing",
         value: function whatTypeDoing(_, dateDoing, strDoing, numDoing, otherDoing) {
@@ -54,6 +71,12 @@ var DateTool = function () {
                 otherDoing();
             }
         }
+        /**
+         * 想要日期格式的日期
+         * @param {Date | string | number} _ 日期
+         * @returns {Date}
+         */
+
     }, {
         key: "wantDate",
         value: function wantDate(_) {
@@ -67,6 +90,12 @@ var DateTool = function () {
             });
             return result;
         }
+        /**
+         * 想要时间戳格式的日期
+         * @param {Date | string | number} _ 日期
+         * @returns {number}
+         */
+
     }, {
         key: "wantTimeInterval",
         value: function wantTimeInterval(_) {

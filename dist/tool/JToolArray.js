@@ -10,9 +10,10 @@ var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 Object.defineProperty(exports, "__esModule", { value: true });
+/** @module tool*/
 /**
  * 数组工具类
- * @module tool
+ * @hideconstructor
  */
 
 var ArrayTool = function ArrayTool() {
