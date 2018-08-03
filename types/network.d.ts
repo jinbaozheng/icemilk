@@ -30,7 +30,6 @@ export declare class JNetwork{
   freedomGET(baseUrl: string, url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any>
   POST(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any>
   GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any>
-
 }
 
 export declare class JNetworkTrade extends JNetworkRoot{
