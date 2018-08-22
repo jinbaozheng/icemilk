@@ -1,12 +1,24 @@
 /**
  * Created by cuppi on 2016/11/25.
  */
+import {JToolDate} from "../../types";
+
+// 北京时区(东八区)早于协调世界时
+// const STANDARD_TIMEZONE = -480;
+const STANDARD_TIMEZONE = 480;
+import moment from 'moment';
 
 /**
  * 时间工具类
  * @memberOf module:tool
  */
 class DateTool {
+
+  // 距离标准时区(STANDARD_TIMEZONE)的位移 --单位为分钟
+  static offsetFromStandardTimezone(){
+    return new Date().getTimezoneOffset()
+  }
+
   /**
    * 当前日期是什么类型
    * @param {Date | string | number} _ 日期
@@ -23,7 +35,7 @@ class DateTool {
   }
 
   /**
-   * 这个如期要做什么
+   * 这个日期要做什么
    * @param {Date | string | number} _ 日期
    * @param {Function} dateDoing 日期格式做的事情
    * @param {Function} strDoing 字符串格式做的事情
@@ -80,6 +92,15 @@ class DateTool {
     return result;
   }
 
+  static transformFormatString(format: string){
+    if (format){
+      format = format.replace('yyyy', 'YYYY');
+      format = format.replace('dd', 'DD');
+      format = format.replace('hh', 'HH');
+    }
+    return format;
+  }
+
   /**
    * 日期转换时间戳
    * @static
@@ -87,7 +108,7 @@ class DateTool {
    * @returns {number} 时间戳
    */
   static timeIntervalFromDate(date: Date): number {
-    return Math.floor(date.getTime() / 1000);
+    return moment(date).unix();
   }
 
 
@@ -97,7 +118,7 @@ class DateTool {
    * @returns {Date} 日期
    */
   static dateFromTimeInterval(timeInterval: number): Date {
-    return new Date(timeInterval * 1000);
+    return moment(timeInterval * 1000).toDate();
   }
 
   /**
@@ -105,24 +126,32 @@ class DateTool {
    * 注：时间格式需满足Date规范
    * 如 2017-05-23 18:56:00、2017/05/23
    * @param {string} dateString 日期
+   * @param {string} timezone 时区
    * @returns {number} 时间戳
    */
-  static timeIntervalFromDateString(dateString: string, format?: string): number {
-    return DateTool.timeIntervalFromDate(new Date(dateString));
+  static timeIntervalFromDateString(dateString: string, timezone: number = STANDARD_TIMEZONE): number {
+    return DateTool.timeIntervalFromDate(moment(dateString).utcOffset(timezone, true).toDate());
   }
 
   /**
    * 时间戳转换日期字符串
    * @param {number} timeInterval 时间戳
-   * @param {string} format 日期格式 如: yyyy-MM-dd hh:mm:ss
+   * @param {string} format 日期格式 如: YYYY-MM-DD HH:mm:ss
    * @returns {string} 日期字符串
    */
-  static dateStringFromTimeInterval(timeInterval: number, format?: string): string {
-    if (format) {
-      return DateTool.dateStringFromDate(new Date(timeInterval * 1000), format);
-    } else {
-      return DateTool.dateStringFromDate(new Date(timeInterval * 1000), 'yyyy-MM-dd hh:mm:ss');
-    }
+  static dateStringFromTimeInterval(timeInterval: number, format: string = 'YYYY-MM-DD HH:mm:ss'): string {
+    format = DateTool.transformFormatString(format)
+    return moment(timeInterval * 1000).utcOffset(STANDARD_TIMEZONE).format(format);
+  }
+
+  /**
+   * 日期字符串转换日期 （待开发）
+   * @param {string} dateString 日期字符串
+   * @param {string} timezone 时区
+   * @returns {Date} 日期
+   */
+  static dateFromDateString(dateString: string, timezone: number = STANDARD_TIMEZONE): Date {
+    return moment(dateString).utcOffset(timezone, true).toDate();
   }
 
   /**
@@ -131,39 +160,35 @@ class DateTool {
    * @param {string} format 格式化信息
    * @returns {string} 日期字符串
    */
-  static dateStringFromDate(date: Date, format?: string): string {
-    let paddNum = function (num) {
-      num += '';
-      return num.replace(/^(\d)$/, '0$1');
-    };
-    // 指定格式字符
-    let cfg = {
-      yyyy: date.getFullYear(), // 年 : 4位
-      yy: date.getFullYear().toString().substring(2), // 年 : 2位
-      M: date.getMonth() + 1, // 月 : 如果1位的时候不补0
-      MM: paddNum(date.getMonth() + 1), // 月 : 如果1位的时候补0
-      d: date.getDate(), // 日 : 如果1位的时候不补0
-      dd: paddNum(date.getDate()), // 日 : 如果1位的时候补0
-      hh: date.getHours(), // 时
-      mm: paddNum(date.getMinutes()), // 分
-      ss: paddNum(date.getSeconds()) // 秒
-    };
-    format || (format = 'yyyy-MM-dd hh:mm:ss');
-    return format.replace(/([a-z])(\1)*/ig, function (m) {
-      return cfg[m];
-    });
+  static dateStringFromDate(date: Date, format: string = 'YYYY-MM-DD HH:mm:ss'): string {
+    format = DateTool.transformFormatString(format)
+    return moment(date).utcOffset(STANDARD_TIMEZONE).format(format)
   }
 
-  // TODO 待开发
   /**
-   * 日期字符串转换日期 （待开发）
-   * @since ~1.1.*
-   * @param {string} dateString 日期字符串
-   * @param {string} format 日期格式
-   * @returns {Date} 日期
+   * 获取当前日期对象
+   * @returns {Date} 当前日期对象
    */
-  static dateFromDateString(dateString: string, format?:string): Date {
-    return new Date(dateString);
+  static currentDate(): Date{
+    return moment().utcOffset(STANDARD_TIMEZONE).toDate();
+  }
+
+  /**
+   * 获取当前日期字符串
+   * @param {string} format 字符串格式
+   * @returns {string} 当前日期字符串
+   */
+  static currentDateString(format: string = 'YYYY-MM-DD HH:mm:ss'): string {
+    format = DateTool.transformFormatString(format)
+    return moment().utcOffset(STANDARD_TIMEZONE).format(format);
+  }
+
+  /**
+   * 获取当前时间戳
+   * @returns {number} 当前时间戳
+   */
+  static currentTimeInterval(): number {
+    return moment().unix();
   }
 
   // TODO 需要优化月份的算法
@@ -192,34 +217,6 @@ class DateTool {
     return [sec, min, hour, day, mou];
   }
 
-  /**
-   * 获取当前日期对象
-   * @returns {Date} 当前日期对象
-   */
-  static currentDate(): Date{
-    return new Date();
-  }
-
-  /**
-   * 获取当前日期字符串
-   * @param {string} format 字符串格式
-   * @returns {string} 当前日期字符串
-   */
-  static currentDateString(format?: string): string {
-    if (format) {
-      return DateTool.dateStringFromTimeInterval(DateTool.currentTimeInterval(), format);
-    }
-    return DateTool.dateStringFromTimeInterval(DateTool.currentTimeInterval());
-  }
-
-  /**
-   * 获取当前时间戳
-   * @returns {number} 当前时间戳
-   */
-  static currentTimeInterval(): number {
-    return Math.floor(Date.now() / 1000);
-  }
-
   // TODO 待开发
   /**
    * 变换日期字符串格式 （待开发）
@@ -230,8 +227,8 @@ class DateTool {
    * @returns {string} 字符串
    */
   static transformDateStringByFormat(dateString: string, fromFormat: string, toFormat: string): string {
-    let timeInterval = DateTool.timeIntervalFromDateString(dateString, fromFormat);
-    return DateTool.dateStringFromTimeInterval(timeInterval, toFormat);
+    toFormat = DateTool.transformFormatString(toFormat)
+    return moment(dateString).format(toFormat);
   }
 
   /**
@@ -257,29 +254,13 @@ class DateTool {
    * 获取(多态)日期某天后的日期字符串
    * @param {Date | string | number} beganDate 开始日期
    * @param {number} days 天数
+   * @param {string} format 格式化信息
    * @returns {string} 目的日期字符串
    */
-  static dateStringAfterDaysLater(beganDate: Date|string|number, days: number): string {
-    beganDate = DateTool.wantDate(beganDate);
-    let endDate = new Date(beganDate);
-    endDate.setDate(beganDate.getDate() + days);
-    let y = endDate.getFullYear();
-    let m;
-    let d;
-
-    if (endDate.getMonth() > 8) {
-      m = endDate.getMonth() + 1;
-    } else {
-      m = '0' + (endDate.getMonth() + 1);
-    }
-    if (endDate.getDate() > 9) {
-      d = endDate.getDate();
-    } else {
-      d = '0' + endDate.getDate();
-    }
-    return y + '-' + m + '-' + d;
+  static dateStringAfterDaysLater(beganDate: Date|string|number, days: number, format: string = 'YYYY-MM-DD'): string {
+    format = DateTool.transformFormatString(format)
+    return moment(beganDate).add(days, 'days').format(format);
   }
-
 }
 
 export default DateTool;
