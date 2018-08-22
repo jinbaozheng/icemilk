@@ -1,12 +1,11 @@
 /**
  * Created by cuppi on 2016/11/25.
  */
-import {JToolDate} from "../../types";
 
+import * as moment from 'moment';
 // 北京时区(东八区)早于协调世界时
 // const STANDARD_TIMEZONE = -480;
 const STANDARD_TIMEZONE = 480;
-import moment from 'moment';
 
 /**
  * 时间工具类
