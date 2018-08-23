@@ -19,9 +19,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var moment = require("moment");
-// if ((moment as any).default) {
-//   (moment as any) = (moment as any).default;
-// }
 // 北京时区(东八区)早于协调世界时
 // const STANDARD_TIMEZONE = -480;
 var STANDARD_TIMEZONE = 480;

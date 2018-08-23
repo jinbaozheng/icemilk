@@ -7,6 +7,35 @@ import * as moment from 'moment';
 // const STANDARD_TIMEZONE = -480;
 const STANDARD_TIMEZONE = 480;
 
+const _date_format_shim = (f) => {
+  if (f){
+    f = f.replace('yyyy', 'YYYY');
+    f = f.replace('dd', 'DD');
+    f = f.replace('hh', 'HH');
+  }
+  return f;
+}
+const _ti2d = (ti) => {
+  return moment(ti * 1000).toDate();
+}
+const _d2ti = (d) => {
+  return moment(d).unix();
+}
+const _ti2ds = (ti, f) => {
+  f = _date_format_shim(f)
+  return moment(ti * 1000).utcOffset(STANDARD_TIMEZONE).format(f);
+}
+const _ds2ti = (ds, z) => {
+  return DateTool.timeIntervalFromDate(moment(ds).utcOffset(z, true).toDate());
+}
+const _d2ds = (d, f) => {
+  f = _date_format_shim(f)
+  return moment(d).utcOffset(STANDARD_TIMEZONE).format(f)
+}
+const _ds2d = (ds, z) => {
+  return moment(ds).utcOffset(z, true).toDate();
+}
+
 /**
  * 时间工具类
  * @memberOf module:tool
@@ -91,15 +120,6 @@ class DateTool {
     return result;
   }
 
-  static transformFormatString(format: string){
-    if (format){
-      format = format.replace('yyyy', 'YYYY');
-      format = format.replace('dd', 'DD');
-      format = format.replace('hh', 'HH');
-    }
-    return format;
-  }
-
   /**
    * 日期转换时间戳
    * @static
@@ -107,7 +127,7 @@ class DateTool {
    * @returns {number} 时间戳
    */
   static timeIntervalFromDate(date: Date): number {
-    return moment(date).unix();
+    return _d2ti(date);
   }
 
 
@@ -117,19 +137,17 @@ class DateTool {
    * @returns {Date} 日期
    */
   static dateFromTimeInterval(timeInterval: number): Date {
-    return moment(timeInterval * 1000).toDate();
+    return _ti2d(timeInterval)
   }
 
   /**
    * 日期字符串转换时间戳
-   * 注：时间格式需满足Date规范
-   * 如 2017-05-23 18:56:00、2017/05/23
    * @param {string} dateString 日期
    * @param {string} timezone 时区
    * @returns {number} 时间戳
    */
   static timeIntervalFromDateString(dateString: string, timezone: number = STANDARD_TIMEZONE): number {
-    return DateTool.timeIntervalFromDate(moment(dateString).utcOffset(timezone, true).toDate());
+    return _ds2ti(dateString, timezone)
   }
 
   /**
@@ -139,8 +157,7 @@ class DateTool {
    * @returns {string} 日期字符串
    */
   static dateStringFromTimeInterval(timeInterval: number, format: string = 'YYYY-MM-DD HH:mm:ss'): string {
-    format = DateTool.transformFormatString(format)
-    return moment(timeInterval * 1000).utcOffset(STANDARD_TIMEZONE).format(format);
+    return _ti2ds(timeInterval, format)
   }
 
   /**
@@ -150,7 +167,7 @@ class DateTool {
    * @returns {Date} 日期
    */
   static dateFromDateString(dateString: string, timezone: number = STANDARD_TIMEZONE): Date {
-    return moment(dateString).utcOffset(timezone, true).toDate();
+    return _ds2d(dateString, timezone)
   }
 
   /**
@@ -160,8 +177,7 @@ class DateTool {
    * @returns {string} 日期字符串
    */
   static dateStringFromDate(date: Date, format: string = 'YYYY-MM-DD HH:mm:ss'): string {
-    format = DateTool.transformFormatString(format)
-    return moment(date).utcOffset(STANDARD_TIMEZONE).format(format)
+    return _d2ds(date, format);
   }
 
   /**
@@ -178,8 +194,7 @@ class DateTool {
    * @returns {string} 当前日期字符串
    */
   static currentDateString(format: string = 'YYYY-MM-DD HH:mm:ss'): string {
-    format = DateTool.transformFormatString(format)
-    return moment().utcOffset(STANDARD_TIMEZONE).format(format);
+    return _d2ds(DateTool.currentDate(), format);
   }
 
   /**
@@ -223,11 +238,11 @@ class DateTool {
    * @param {string} dateString 日期字符串
    * @param {string} fromFormat 输入格式
    * @param {string} toFormat 输出格式
+   * @param {string} timezone 时区
    * @returns {string} 字符串
    */
-  static transformDateStringByFormat(dateString: string, fromFormat: string, toFormat: string): string {
-    toFormat = DateTool.transformFormatString(toFormat)
-    return moment(dateString).format(toFormat);
+  static transformDateStringByFormat(dateString: string, fromFormat: string, toFormat: string = 'YYYY-MM-DD HH:mm:ss', timezone: number = STANDARD_TIMEZONE): string {
+    return _d2ds(_ds2d(dateString, timezone), toFormat);
   }
 
   /**
@@ -236,7 +251,7 @@ class DateTool {
    * @returns {number} 0~6  星期一~星期日
    */
   static weekDay(date: Date|string|number): number {
-    return (DateTool.wantDate(date).getDay() + 6) % 7;
+    return (moment(DateTool.wantDate(date)).utcOffset(STANDARD_TIMEZONE).day() + 6) % 7;
   }
 
   /**
@@ -246,7 +261,7 @@ class DateTool {
    * @returns {Date} 目的日期
    */
   static dateAfterDaysLater(beganDate: Date|string|number, days: number): Date {
-    return new Date(DateTool.dateStringAfterDaysLater(beganDate, days));
+    return moment(DateTool.wantDate(beganDate)).add(days, 'days').toDate();
   }
 
   /**
@@ -257,8 +272,7 @@ class DateTool {
    * @returns {string} 目的日期字符串
    */
   static dateStringAfterDaysLater(beganDate: Date|string|number, days: number, format: string = 'YYYY-MM-DD'): string {
-    format = DateTool.transformFormatString(format)
-    return moment(beganDate).add(days, 'days').format(format);
+    return _d2ds(DateTool.dateAfterDaysLater(beganDate, days), format);
   }
 }
 
