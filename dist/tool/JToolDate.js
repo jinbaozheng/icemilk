@@ -22,6 +22,34 @@ var moment = require("moment");
 // 北京时区(东八区)早于协调世界时
 // const STANDARD_TIMEZONE = -480;
 var STANDARD_TIMEZONE = 480;
+var _date_format_shim = function _date_format_shim(f) {
+    if (f) {
+        f = f.replace('yyyy', 'YYYY');
+        f = f.replace('dd', 'DD');
+        f = f.replace('hh', 'HH');
+    }
+    return f;
+};
+var _ti2d = function _ti2d(ti) {
+    return moment(ti * 1000).toDate();
+};
+var _d2ti = function _d2ti(d) {
+    return moment(d).unix();
+};
+var _ti2ds = function _ti2ds(ti, f) {
+    f = _date_format_shim(f);
+    return moment(ti * 1000).utcOffset(STANDARD_TIMEZONE).format(f);
+};
+var _ds2ti = function _ds2ti(ds, z) {
+    return DateTool.timeIntervalFromDate(moment(ds).utcOffset(z, true).toDate());
+};
+var _d2ds = function _d2ds(d, f) {
+    f = _date_format_shim(f);
+    return moment(d).utcOffset(STANDARD_TIMEZONE).format(f);
+};
+var _ds2d = function _ds2d(ds, z) {
+    return moment(ds).utcOffset(z, true).toDate();
+};
 /**
  * 时间工具类
  * @memberOf module:tool
@@ -120,16 +148,6 @@ var DateTool = function () {
             });
             return result;
         }
-    }, {
-        key: "transformFormatString",
-        value: function transformFormatString(format) {
-            if (format) {
-                format = format.replace('yyyy', 'YYYY');
-                format = format.replace('dd', 'DD');
-                format = format.replace('hh', 'HH');
-            }
-            return format;
-        }
         /**
          * 日期转换时间戳
          * @static
@@ -140,7 +158,7 @@ var DateTool = function () {
     }, {
         key: "timeIntervalFromDate",
         value: function timeIntervalFromDate(date) {
-            return moment(date).unix();
+            return _d2ti(date);
         }
         /**
          * 时间戳转换日期
@@ -151,12 +169,10 @@ var DateTool = function () {
     }, {
         key: "dateFromTimeInterval",
         value: function dateFromTimeInterval(timeInterval) {
-            return moment(timeInterval * 1000).toDate();
+            return _ti2d(timeInterval);
         }
         /**
          * 日期字符串转换时间戳
-         * 注：时间格式需满足Date规范
-         * 如 2017-05-23 18:56:00、2017/05/23
          * @param {string} dateString 日期
          * @param {string} timezone 时区
          * @returns {number} 时间戳
@@ -167,7 +183,7 @@ var DateTool = function () {
         value: function timeIntervalFromDateString(dateString) {
             var timezone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : STANDARD_TIMEZONE;
 
-            return DateTool.timeIntervalFromDate(moment(dateString).utcOffset(timezone, true).toDate());
+            return _ds2ti(dateString, timezone);
         }
         /**
          * 时间戳转换日期字符串
@@ -181,8 +197,7 @@ var DateTool = function () {
         value: function dateStringFromTimeInterval(timeInterval) {
             var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'YYYY-MM-DD HH:mm:ss';
 
-            format = DateTool.transformFormatString(format);
-            return moment(timeInterval * 1000).utcOffset(STANDARD_TIMEZONE).format(format);
+            return _ti2ds(timeInterval, format);
         }
         /**
          * 日期字符串转换日期 （待开发）
@@ -196,7 +211,7 @@ var DateTool = function () {
         value: function dateFromDateString(dateString) {
             var timezone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : STANDARD_TIMEZONE;
 
-            return moment(dateString).utcOffset(timezone, true).toDate();
+            return _ds2d(dateString, timezone);
         }
         /**
          * 日期转换日期字符串
@@ -210,8 +225,7 @@ var DateTool = function () {
         value: function dateStringFromDate(date) {
             var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'YYYY-MM-DD HH:mm:ss';
 
-            format = DateTool.transformFormatString(format);
-            return moment(date).utcOffset(STANDARD_TIMEZONE).format(format);
+            return _d2ds(date, format);
         }
         /**
          * 获取当前日期对象
@@ -234,8 +248,7 @@ var DateTool = function () {
         value: function currentDateString() {
             var format = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'YYYY-MM-DD HH:mm:ss';
 
-            format = DateTool.transformFormatString(format);
-            return moment().utcOffset(STANDARD_TIMEZONE).format(format);
+            return _d2ds(DateTool.currentDate(), format);
         }
         /**
          * 获取当前时间戳
@@ -282,14 +295,17 @@ var DateTool = function () {
          * @param {string} dateString 日期字符串
          * @param {string} fromFormat 输入格式
          * @param {string} toFormat 输出格式
+         * @param {string} timezone 时区
          * @returns {string} 字符串
          */
 
     }, {
         key: "transformDateStringByFormat",
-        value: function transformDateStringByFormat(dateString, fromFormat, toFormat) {
-            toFormat = DateTool.transformFormatString(toFormat);
-            return moment(dateString).format(toFormat);
+        value: function transformDateStringByFormat(dateString, fromFormat) {
+            var toFormat = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'YYYY-MM-DD HH:mm:ss';
+            var timezone = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : STANDARD_TIMEZONE;
+
+            return _d2ds(_ds2d(dateString, timezone), toFormat);
         }
         /**
          * 获取指定(多态)日期为星期几
@@ -300,7 +316,7 @@ var DateTool = function () {
     }, {
         key: "weekDay",
         value: function weekDay(date) {
-            return (DateTool.wantDate(date).getDay() + 6) % 7;
+            return (moment(DateTool.wantDate(date)).utcOffset(STANDARD_TIMEZONE).day() + 6) % 7;
         }
         /**
          * 获取(多态)日期某天后的日期()
@@ -312,7 +328,7 @@ var DateTool = function () {
     }, {
         key: "dateAfterDaysLater",
         value: function dateAfterDaysLater(beganDate, days) {
-            return new Date(DateTool.dateStringAfterDaysLater(beganDate, days));
+            return moment(DateTool.wantDate(beganDate)).add(days, 'days').toDate();
         }
         /**
          * 获取(多态)日期某天后的日期字符串
@@ -327,8 +343,7 @@ var DateTool = function () {
         value: function dateStringAfterDaysLater(beganDate, days) {
             var format = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'YYYY-MM-DD';
 
-            format = DateTool.transformFormatString(format);
-            return moment(beganDate).add(days, 'days').format(format);
+            return _d2ds(DateTool.dateAfterDaysLater(beganDate, days), format);
         }
     }]);
     return DateTool;
