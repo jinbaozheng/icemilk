@@ -1,6 +1,3 @@
-import DateTool from "../src/tool/JToolDate";
-import StringTool from "../src/tool/JToolString";
-
 export declare class JToolArray {
 }
 

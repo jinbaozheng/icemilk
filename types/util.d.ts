@@ -1,6 +1,3 @@
-import NetworkTrade from "../src/network/JNetworkTrade";
-import TradeManager from "../src/util/JManagerTrade";
-
 export declare class JManagerSeat {
   /**
    * 单例方法
