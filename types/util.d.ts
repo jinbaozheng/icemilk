@@ -4,6 +4,7 @@ export declare class JManagerSeat {
    * @returns {SeatManager}
    */
   static defaultManager()
+
   /**
    * 智能选座
    * @param smartSeats
@@ -11,6 +12,7 @@ export declare class JManagerSeat {
    * @returns {Promise}
    */
   static smartAutoSelected(smartSeats, count)
+
   /**
    * 获取座位图时需要的参数
    * @param platform 平台类型
@@ -18,6 +20,7 @@ export declare class JManagerSeat {
    * @returns {Object} 平台需要的参数
    */
   static seatParasFromScreening(platform, screening)
+
   /**
    * 对原始座位图进行智能转换
    * @param type 平台类型
@@ -25,6 +28,7 @@ export declare class JManagerSeat {
    * @returns {Array} 智能座位图列表
    */
   smartSeatsFromSeats(type, seatData)
+
   /**
    * 获取智能座位图元数据
    * @param type 平台类型
@@ -32,6 +36,7 @@ export declare class JManagerSeat {
    * @returns {{smartSeats: Array, seatRowData: Array.<*>}} 智能座位图详细信息
    */
   smartSeatDataFromSmartSeats(type, smartSeats)
+
   /**
    * 对原始座位图进行智能转换
    * @param type 平台类型
@@ -39,6 +44,13 @@ export declare class JManagerSeat {
    * @returns {{smartSeats: Array, seatRowData: Array.<*>}} 智能座位图详细信息
    */
   smartSeatDataFromSeats(type, seatData)
+
+  /**
+   * 使用猫眼的规范进行空位检测
+   * @param selectedSeats 选择的座位
+   * @param smartSeats 智能座位图
+   */
+  static maoyanSeatCheck(selectedSeats, smartSeats)
 }
 
 export declare class JManagerTrade {

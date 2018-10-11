@@ -688,6 +688,91 @@ class SeatManager {
       return a.rowNumber.toString().localeCompare(b.rowNumber.toString());
     })
   }
+
+  static maoyanSeatCheck(selectedSeats, smartSeats){
+    let rows:number[] = [];
+    selectedSeats.forEach(seat => {
+      if (rows.indexOf(seat.row) === -1){
+        rows.push(seat.row);
+      }
+    })
+    let simpleSmartSeatsList: any[] = smartSeats.map(seat => {
+      let isSel = selectedSeats.some(selSeat => {
+        return selSeat.row === seat.row && selSeat.col === seat.col;
+      })
+      return {row: seat.row, col: seat.col, status: isSel ? -1 : seat.status};
+    }).filter(seat => {
+      return rows.indexOf(seat.row) !== -1;
+    });
+    let simpleSmartSeatsRowList = rows.map(row => {
+      return simpleSmartSeatsList.filter(seat => {
+        return seat.row === row
+      })
+    });
+    for (let i = 0; i < simpleSmartSeatsRowList.length; i++){
+      let simpleSmartSeatsRow = simpleSmartSeatsRowList[i];
+      simpleSmartSeatsRow.sort((a: any, b: any) => {
+        if (a.col > b.col){
+          return 1;
+        } else {
+          return -1;
+        }
+      })
+      let simpleSmartSeatsRowPieceList = [];
+      let headIndex = Number.MIN_VALUE;
+      let curPieceList = [];
+      simpleSmartSeatsRow.forEach((seat, index) => {
+        if (seat.col - index !== headIndex){
+          curPieceList = [seat];
+          simpleSmartSeatsRowPieceList.push(curPieceList);
+          headIndex = seat.col - index;
+        } else {
+          curPieceList.push(seat);
+        }
+      })
+      let visible = simpleSmartSeatsRowPieceList.map(simpleSmartSeatsRowPiece => {
+        return this.isVisibleChooseWithinRow(simpleSmartSeatsRowPiece)
+      }).reduce((pre, cur) => pre && cur, true)
+      if (!visible){
+        return false;
+      }
+    }
+    return true;
+  }
+
+  static isVisibleChooseWithinRow(simpleSmartSeats){
+    let left_space = 0;
+    let right_space = 0;
+    let sel_space = -1;
+    for (let i = 0; i < simpleSmartSeats.length; i++){
+      let seat = simpleSmartSeats[i];
+      if (Math.abs(seat.status) !== 1){
+        left_space++;
+        if (sel_space !== -1){
+          sel_space++;
+        }
+      }
+      if (seat.status === 1)  {
+        if ((right_space === 1 || left_space === 1) && (right_space * left_space)) {
+          return false;
+        }
+        right_space = 0;
+        left_space = 0;
+        sel_space = -1;
+      }
+      if (seat.status === -1){
+        if (left_space !== 0){
+          right_space = left_space;
+          left_space = 0;
+        }
+        if(sel_space === 1){
+          return false;
+        }
+        sel_space = 0;
+      }
+    }
+    return !((right_space === 1 || left_space === 1) && (right_space * left_space))
+  }
 }
 
 export default SeatManager;
