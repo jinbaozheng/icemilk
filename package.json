@@ -1,6 +1,6 @@
 {
  "bugs": {
-  "url": "https://github.com/cuppi/JBZWebSDK/issues"
+  "url": "https://github.com/jinbaozheng/JBZWebSDK/issues"
  },
  "author": {
   "email": "cuppi413@163.com",
@@ -61,7 +61,7 @@
  "types": "types/index.d.ts",
  "name": "jbzwebsdk",
  "description": "Shanghai jinbaozheng easy network technology Co.,Ltd sdk",
- "homepage": "https://github.com/cuppi/JBZWebSDK/blob/version-2.0.1/README.md",
+ "homepage": "https://github.com/jinbaozheng/JBZWebSDK/blob/version-2.0.1/README.md",
  "publishConfig": {
   "registry": "https://registry.npmjs.org/"
  }
