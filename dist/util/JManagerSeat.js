@@ -3,6 +3,10 @@
  * Created by cuppi on 2016/12/5.
  */
 
+var _typeof2 = require("babel-runtime/helpers/typeof");
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
 var _promise = require("babel-runtime/core-js/promise");
 
 var _promise2 = _interopRequireDefault(_promise);
@@ -750,6 +754,106 @@ var SeatManager = function () {
                 };
             }
             return paras;
+        }
+    }, {
+        key: "maoyanSeatCheck",
+        value: function maoyanSeatCheck(selectedSeats, smartSeats) {
+            var _this = this;
+
+            var rows = [];
+            selectedSeats.forEach(function (seat) {
+                if (rows.indexOf(seat.row) === -1) {
+                    rows.push(seat.row);
+                }
+            });
+            var simpleSmartSeatsList = smartSeats.map(function (seat) {
+                var isSel = selectedSeats.some(function (selSeat) {
+                    return selSeat.row === seat.row && selSeat.col === seat.col;
+                });
+                return { row: seat.row, col: seat.col, status: isSel ? -1 : seat.status };
+            }).filter(function (seat) {
+                return rows.indexOf(seat.row) !== -1;
+            });
+            var simpleSmartSeatsRowList = rows.map(function (row) {
+                return simpleSmartSeatsList.filter(function (seat) {
+                    return seat.row === row;
+                });
+            });
+
+            var _loop = function _loop(i) {
+                var simpleSmartSeatsRow = simpleSmartSeatsRowList[i];
+                simpleSmartSeatsRow.sort(function (a, b) {
+                    if (a.col > b.col) {
+                        return 1;
+                    } else {
+                        return -1;
+                    }
+                });
+                var simpleSmartSeatsRowPieceList = [];
+                var headIndex = Number.MIN_VALUE;
+                var curPieceList = [];
+                simpleSmartSeatsRow.forEach(function (seat, index) {
+                    if (seat.col - index !== headIndex) {
+                        curPieceList = [seat];
+                        simpleSmartSeatsRowPieceList.push(curPieceList);
+                        headIndex = seat.col - index;
+                    } else {
+                        curPieceList.push(seat);
+                    }
+                });
+                var visible = simpleSmartSeatsRowPieceList.map(function (simpleSmartSeatsRowPiece) {
+                    return _this.isVisibleChooseWithinRow(simpleSmartSeatsRowPiece);
+                }).reduce(function (pre, cur) {
+                    return pre && cur;
+                }, true);
+                if (!visible) {
+                    return {
+                        v: false
+                    };
+                }
+            };
+
+            for (var i = 0; i < simpleSmartSeatsRowList.length; i++) {
+                var _ret = _loop(i);
+
+                if ((typeof _ret === "undefined" ? "undefined" : (0, _typeof3.default)(_ret)) === "object") return _ret.v;
+            }
+            return true;
+        }
+    }, {
+        key: "isVisibleChooseWithinRow",
+        value: function isVisibleChooseWithinRow(simpleSmartSeats) {
+            var left_space = 0;
+            var right_space = 0;
+            var sel_space = -1;
+            for (var i = 0; i < simpleSmartSeats.length; i++) {
+                var seat = simpleSmartSeats[i];
+                if (Math.abs(seat.status) !== 1) {
+                    left_space++;
+                    if (sel_space !== -1) {
+                        sel_space++;
+                    }
+                }
+                if (seat.status === 1) {
+                    if ((right_space === 1 || left_space === 1) && right_space * left_space) {
+                        return false;
+                    }
+                    right_space = 0;
+                    left_space = 0;
+                    sel_space = -1;
+                }
+                if (seat.status === -1) {
+                    if (left_space !== 0) {
+                        right_space = left_space;
+                        left_space = 0;
+                    }
+                    if (sel_space === 1) {
+                        return false;
+                    }
+                    sel_space = 0;
+                }
+            }
+            return !((right_space === 1 || left_space === 1) && right_space * left_space);
         }
     }]);
     return SeatManager;

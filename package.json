@@ -1,6 +1,6 @@
 {
  "bugs": {
-  "url": "https://git.oschina.net/cuppi/jbzwebsdk/issues"
+  "url": "https://github.com/cuppi/JBZWebSDK/issues"
  },
  "author": {
   "email": "cuppi413@163.com",
@@ -15,7 +15,7 @@
   "build": "gulp transform-ts-to-js"
  },
  "repository": {
-  "url": "git@git.oschina.net:cuppi/jbzwebsdk.git",
+  "url": "git@github.com:cuppi/JBZWebSDK.git",
   "type": "git"
  },
  "keywords": [
@@ -25,7 +25,7 @@
   "jbzwebsdk"
  ],
  "license": "MIT",
- "version": "2.0.36",
+ "version": "2.0.37",
  "babel": {
   "presets": [
    "es2015",
@@ -61,7 +61,7 @@
  "types": "types/index.d.ts",
  "name": "jbzwebsdk",
  "description": "Shanghai jinbaozheng easy network technology Co.,Ltd sdk",
- "homepage": "https://git.oschina.net/cuppi/jbzwebsdk#readme",
+ "homepage": "https://github.com/cuppi/JBZWebSDK/blob/version-2.0.1/README.md",
  "publishConfig": {
   "registry": "https://registry.npmjs.org/"
  }
