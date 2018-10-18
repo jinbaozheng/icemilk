@@ -15,7 +15,7 @@
   "build": "gulp transform-ts-to-js"
  },
  "repository": {
-  "url": "git@github.com:cuppi/JBZWebSDK.git",
+  "url": "git@github.com:jinbaozheng/JBZWebSDK.git",
   "type": "git"
  },
  "keywords": [
