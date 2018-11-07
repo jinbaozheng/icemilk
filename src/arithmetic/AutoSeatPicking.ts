@@ -1,9 +1,6 @@
 /**
  * Created by cuppi on                                              2016/12/21.
  */
-
-// 此代码开源的 外人随便看 并希望大家对开源献出自己的一份力量
-// 此代码有很多需优化的细节... 遍历顺序，时间复杂度，可定制型什么的... balabala... 时间来不及了...
 // import _ from 'lodash';
 import SmartSeatModel from "../model/SmartSeatModel";
 
