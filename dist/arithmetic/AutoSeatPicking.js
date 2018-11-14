@@ -1,7 +1,4 @@
 "use strict";
-/**
- * Created by cuppi on                                              2016/12/21.
- */
 
 var _map = require("babel-runtime/core-js/map");
 
