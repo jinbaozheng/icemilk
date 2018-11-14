@@ -1,7 +1,6 @@
 /**
  * Created by cuppi on 2017/9/4.
  */
-import {otherUrl} from "../unify/JUrlList";
 
 class JPromise<T> extends Promise<T>{
 

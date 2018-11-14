@@ -2,7 +2,6 @@
  * Created by cuppi on 2017/9/6.
  */
 import JNetwork from './JNetwork';
-import _ from '../unify/JDataUnify';
 
 class JNetworkRoot{
   otherParas: Array<string|object> = [];

@@ -2,8 +2,6 @@
  * Created by cuppi on 2017/9/4.
  */
 
-import CityParas from "../paras/CityParas";
-import CoordinateParas from '../paras/CoordinateParas';
 import {AxiosRequestConfig, AxiosResponse} from "axios";
 import UrlTool from "../tool/JToolUrl";
 
