@@ -23,13 +23,13 @@ gulp.task("do-typescript-process", function() {
 gulp.task("do-babel-process", function() {
   return gulp
     .src("./ts-middleware/**/*.js")
-    .pipe(sourcemaps.init())
+    // .pipe(sourcemaps.init())
     .pipe(babel({
       plugins: ["transform-runtime"],
       presets: ["es2015", "stage-2"],
       comments: true
     }))
-    .pipe(sourcemaps.write('.'))
+    // .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest("dist"))
 });
 
