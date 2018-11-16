@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../dist/index.js"></script>
+</head>
+<body>
+<script>
+    function cityParas() {
+        return {id: 2, name: '上海'};
+    }
+
+    function coordinateParas() {
+        return {
+            latitude: 37.3380080241,
+            longitude: 122.024831358
+        };
+    }
+
+    function globalParas(){
+        return {
+            cityParas: () => {
+                return {location: 2, cityid: 2};
+            },
+            location: () => {
+                return 2;
+            },
+            cityid: () => {
+                return 2;
+            }
+        }
+    }
+
+    // https://sandbox.idoupiao.com/bcmfilm/main?
+    jbzwebsdk.JNetworkConfig.setConfig({
+        baseUrl: '',
+        delegate: this
+    });
+    jbzwebsdk.JNetwork.freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
+        cityId: 2,
+        longitude: 121.4834974484,
+        latitude: 31.237037783
+    }).then(data => {
+        console.log(data);
+    }, error => {
+        console.log(error);
+    })
+</script>
+</body>
+</html>
