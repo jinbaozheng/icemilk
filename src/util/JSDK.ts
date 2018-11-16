@@ -2,11 +2,9 @@
  * Created by cuppi on 2017/4/19.
  */
 
-import packageInfo from '../../package.json';
-
 class JSDK {
   static version() {
-    return packageInfo.version;
+    return process.env.NODE_ENV;
   }
 
   static readme(){
