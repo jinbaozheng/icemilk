@@ -13,7 +13,6 @@ import JPromise from '../structure/JPromise';
  * @hideconstructor
  */
 class JNetwork {
-
   static inType: string = '';
   static baseUrl: string = '';
   static delegate: NetworkDelegate = null;
@@ -271,7 +270,7 @@ class JNetwork {
    * @returns {Promise} 异步请求块
    */
   static freedomPOST(baseUrl, url, parameters, headers, otherObject): JPromise<any> {
-    return this.instance().freedomPOST(...arguments)
+    return this.instance().freedomPOST(...Array.from(arguments))
   }
 
   /**
@@ -284,7 +283,7 @@ class JNetwork {
    * @returns {Promise} 异步请求块
    */
   static freedomGET(baseUrl: string, url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
-    return this.instance().freedomGET(...arguments)
+    return this.instance().freedomGET(...Array.from(arguments))
   }
 
   /**
@@ -296,7 +295,7 @@ class JNetwork {
    * @returns {Promise} 异步请求块
    */
   static POST(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
-    return this.instance().POST(...arguments)
+    return this.instance().POST(...Array.from(arguments))
   }
 
   /**
@@ -308,7 +307,7 @@ class JNetwork {
    * @returns {Promise} 异步请求块
    */
   static GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
-    return this.instance().GET(...arguments)
+    return this.instance().GET(...Array.from(arguments))
   }
 
   getCarryData(): object{
