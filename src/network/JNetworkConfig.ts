@@ -1,24 +1,16 @@
-/**
- * Created by cuppi on 2017/4/14.
- */
-import NetworkManager from './JNetwork';
-import {defaultInterceptor} from "../delegate/NetworkDelegate";
+import JNetworkDelegate, {DEFAULT_DELEGATE} from "../delegate/JNetworkDelegate";
 
-/**
- * 请求配置类
- * @memberOf module:network
- */
 class JNetworkConfig {
-  static setConfig(config){
-    NetworkManager.baseUrl = config.baseUrl;
-    NetworkManager.delegate = {...defaultInterceptor, ...config.delegate};
-    NetworkManager.carryData = config.carryData;
-    let {urlMap, dataMap} = config;
-    if (!urlMap || !dataMap){
-      console.log('Didn\'t find out the urlMap value or dataMap, do you forget it?')
-    } else {
+    baseUrl: string;
+    delegate: JNetworkDelegate;
+    carryData: object | Function;
+    timeout: number;
+    static readonly DEFAULT_CONFIG: JNetworkConfig = {
+        baseUrl: '',
+        delegate: DEFAULT_DELEGATE,
+        carryData: {},
+        timeout: 10 * 1000
     }
-  }
 }
 
 export default JNetworkConfig;
