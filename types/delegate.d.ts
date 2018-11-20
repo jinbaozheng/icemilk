@@ -1,6 +1,6 @@
 import {AxiosRequestConfig, AxiosResponse} from "axios";
 
-export abstract class NetworkDelegate{
+export abstract class JNetworkDelegate{
   globalParas: Function;
   globalHeaders: Function;
   abstract requestInterceptor(config: AxiosRequestConfig): AxiosRequestConfig;
