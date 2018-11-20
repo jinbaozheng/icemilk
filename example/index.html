@@ -34,12 +34,14 @@
     }
 
     // https://sandbox.idoupiao.com/bcmfilm/main?
-    jbzwebsdk.JNetworkConfig.setConfig({
+    // jbzwebsdk.JNetworkConfig.setConfig();
+    let n1 = new jbzwebsdk.JNetwork({
         baseUrl: '',
-        delegate: this
+        delegate: null
     });
-    jbzwebsdk.JNetwork.freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
-        cityId: 2,
+    console.log(n1);
+    n1.useParas({'cityId': 15})
+    n1.freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
         longitude: 121.4834974484,
         latitude: 31.237037783
     }).then(data => {
@@ -47,6 +49,19 @@
     }, error => {
         console.log(error);
     })
+    //
+    // // console.log(jbzwebsdk.JNetwork.instance());
+    // jbzwebsdk.JNetwork.freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
+    //     cityId: 2,
+    //     longitude: 121.4834974484,
+    //     latitude: 31.237037783
+    // }).then(data => {
+    //     console.log(data);
+    // }, error => {
+    //     console.log(error);
+    // })
+
+
 </script>
 </body>
 </html>
