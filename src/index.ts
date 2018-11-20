@@ -6,9 +6,9 @@ import Network from './network/JNetwork';
 import NetworkConfig from './network/JNetworkConfig';
 import NetworkRoot from './network/JNetworkRoot';
 export {
-  Network as JNetwork,
-  NetworkConfig as JNetworkConfig,
-  NetworkRoot as JNetworkRoot
+    Network as JNetwork,
+    NetworkConfig as JNetworkConfig,
+    NetworkRoot as JNetworkRoot
 };
 
 import ToolDate from './tool/JToolDate';
@@ -18,17 +18,17 @@ import ToolString from './tool/JToolString';
 import ToolArray from './tool/JToolArray';
 import ToolObject from './tool/JToolObject';
 export {
-  ToolDate as JToolDate,
-  ToolNumber as JToolNumber,
-  ToolUrl as JToolUrl,
-  ToolString as JToolString,
-  ToolArray as JToolArray,
-  ToolObject as JToolObject
+    ToolDate as JToolDate,
+    ToolNumber as JToolNumber,
+    ToolUrl as JToolUrl,
+    ToolString as JToolString,
+    ToolArray as JToolArray,
+    ToolObject as JToolObject
 };
 
 import JSDK from './util/JSDK';
 export {
-  JSDK
+    JSDK
 };
 
 import {jlink, jpara} from './network/JNetworkFunc';
