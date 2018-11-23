@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="../dist/index.js"></script>
+    <!--<script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
+    <!--<script src="../dist/index.js"></script>-->
+    <script src="../src/util/JPromise.js"></script>
 </head>
 <body>
 <script>
@@ -32,23 +33,111 @@
             }
         }
     }
+    console.log(jbzwebsdk.JNetwork);
+    // let a = new JPromise((resolve) => {
+    //     let c = new JPromise((resolve1) => {
+    //         resolve1('aaaa');
+    //     })
+    //     resolve(c);
+    // })
+    //
+    // let b = new JPromise((resolve, reject) => {
+    //     resolve()
+    // })
+    //
+    // a.then(data => {
+    //     console.log(data);
+    // })
+
+    // Resolve一个thenable对象
+    // var p1 = Promise.resolve({
+    //     then: function(onFulfill, onReject) {
+    //         console.log('bbbb');
+    //         onFulfill("fulfilled!");
+    //     }
+    // });
+    // p1.then(function(v) {
+    //     console.log(v); // 输出"fulfilled!"
+    // }, function(e) {
+    //     // 不会被调用
+    // });
+
+
+
 
     // https://sandbox.idoupiao.com/bcmfilm/main?
     // jbzwebsdk.JNetworkConfig.setConfig();
+    /*
     let n1 = new jbzwebsdk.JNetwork({
-        baseUrl: '',
-        delegate: null
+        baseUrl: ''
     });
-    console.log(n1);
-    n1.useParas({'cityId': 15})
-    n1.freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
-        longitude: 121.4834974484,
-        latitude: 31.237037783
-    }).then(data => {
-        console.log(data);
-    }, error => {
-        console.log(error);
+
+    let temp = 0;
+
+    let p = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('收到数据')
+            let b = resolve('aaaa');
+            console.log(temp);
+            console.log(`结束处理数据${b}`)
+        }, 1000);
     })
+
+    p.then(data => {
+        temp++
+        console.log(`1******${temp}`);
+        console.log(`处理数据${data}`);
+        return '呵呵';
+    })
+
+    p.then(data => {
+        temp++
+        console.log(`2******${temp}`);
+        console.log(`1处理数据${data}`);
+        return '1呵呵';
+    })
+*/
+
+    // let g1 = n1.useParas({'cityId': 1}).createGroup({
+    //     isSync: true
+    // });
+    // g1.useParas({'cityId': 5}).freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
+    //     longitude: 121.4834974484,
+    //     latitude: 31.237037783
+    // }).then(response => {
+    //     console.log('处理数据');
+    // }, error => {
+    //     console.log(error);
+    // })
+    // g1.useParas({'cityId': 6}).freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
+    //     longitude: 121.4834974484,
+    //     latitude: 31.237037783
+    // }).then(response => {
+    //     console.log('处理数据');
+    // }, error => {
+    //     console.log(error);
+    // })
+    // g1.useParas({'cityId': 7}).freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
+    //     longitude: 121.4834974484,
+    //     latitude: 31.237037783
+    // }).then(response => {
+    //     console.log('处理数据');
+    // }, error => {
+    //     console.log(error);
+    // })
+
+    //
+    // g1.useParas({'cityId': 8}).freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
+    //     longitude: 121.4834974484,
+    //     latitude: 31.237037783
+    // }).then(response => {
+    //     console.log('bbbbbb');
+    //     console.log(response.data);
+    // }, error => {
+    //     console.log(error);
+    // })
+
+
     //
     // // console.log(jbzwebsdk.JNetwork.instance());
     // jbzwebsdk.JNetwork.freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
@@ -60,6 +149,7 @@
     // }, error => {
     //     console.log(error);
     // })
+
 
 
 </script>

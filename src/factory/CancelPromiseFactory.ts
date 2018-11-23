@@ -11,7 +11,7 @@ export default class CancelPromiseFactory{
     constructor(args){
         return {
             ...new Promise(args),
-            terminate: null
+            terminate: () => {}
         } as CancelPromiseFactory
     }
 

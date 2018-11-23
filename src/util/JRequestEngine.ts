@@ -2,6 +2,7 @@ import JRequester from "../network/JRequester";
 import CancelPromiseFactory, {JPromise} from "../factory/CancelPromiseFactory";
 import {AxiosResponse} from "axios";
 import JNetworkError from "../network/JNetworkError";
+import {listeners} from "cluster";
 
 
 class Event{
@@ -16,7 +17,7 @@ class Event{
     }
     removeCallback(callback){
         this.callbacks = this.callbacks.filter(c => {
-          return c !== callback
+            return c !== callback
         })
     }
 }
@@ -49,49 +50,54 @@ class Reactor{
 
 export default class JRequestEngine {
     isRunning:boolean = false;
-    private readonly runList:any[] = [];
-    private readonly reactor;
+    private readonly runQueue:any[] = [];
+
+    // private readonly reactor;
     constructor(){
-        let reactor = new Reactor();
-        this.reactor = reactor;
-        reactor.registerEvent('requestCanLoad');
+        // let reactor = new Reactor();
+        // this.reactor = reactor;
+        // reactor.registerEvent('requestCanLoad');
+    }
+
+    _pushRunQueue(request: JRequester, resolve, reject){
+        this.runQueue.push({
+            request,
+            resolve,
+            reject
+        });
+    }
+
+    _popRunQueue(){
+       let task = this.runQueue.shift();
+       return task;
     }
 
     addRequest(request:JRequester): JPromise<any>{
         return CancelPromiseFactory.createJPromise((resolve, reject) => {
-            let listener = (requesterId) => {
-                console.log('dddd' + requesterId);
-                if (request.requesterId === requesterId){
-                    console.log('eeee');
-                    request.request().then(data => {
-                        resolve(data);
-                        let lasReq = this.runList.shift();
-                        if (lasReq){
-                            this.reactor.dispatchEvent('requestCanLoad', lasReq.requesterId);
-                            this.reactor.removeEventListener('requestCanLoad', listener);
-                        } else {
-                            this.isRunning = false;
-                        }
-                    }, error => {
-                        reject(error)
-                    })
-                }
-            }
-            this.reactor.addEventListener('requestCanLoad', listener);
             if (!this.isRunning){
                 this.isRunning = true;
-                this.reactor.dispatchEvent('requestCanLoad', request.requesterId);
-                this.reactor.removeEventListener('requestCanLoad', listener);
+                this.do(request, resolve, reject);
             } else {
-                this.runList.push(request);
+                this._pushRunQueue(request, resolve, reject)
             }
         })
     }
 
-    do(request: JRequester): Promise<any>{
-        return new Promise((resolve, reject) => {
-            request.request().then()
-        });
+    do(request: JRequester, resolve, reject){
+        console.log('开始请求');
+        request.request().then(data => {
+             console.log('结束请求');
+             resolve(data);
+             console.log('处理完数据');
+             let task = this._popRunQueue();
+             if (task){
+                 this.do(task.request, task.resolve, task.reject);
+             } else {
+                 this.isRunning = false;
+             }
+        }, error => {
+            reject(error)
+        })
     }
 
     // async do(){

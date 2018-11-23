@@ -3,6 +3,7 @@ import axios, {AxiosInstance} from "axios";
 import JNetworkDelegate from "../delegate/JNetworkDelegate";
 import CancelPromiseFactory, {JPromise} from "../factory/CancelPromiseFactory";
 import {AxiosResponse} from 'axios';
+let REQUESTER_COUNT = 0;
 
 export default class JRequester{
     readonly method: string;
@@ -12,6 +13,7 @@ export default class JRequester{
     readonly headers: object;
     readonly otherObject: any;
     readonly delegate: JNetworkDelegate;
+    readonly requesterId: number;
     jaxios: AxiosInstance;
     constructor(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any, delegate: JNetworkDelegate){
         this.method = method;
@@ -21,6 +23,7 @@ export default class JRequester{
         this.headers = headers;
         this.otherObject = otherObject;
         this.delegate = delegate;
+        this.requesterId = ++REQUESTER_COUNT;
     }
 
     /**
@@ -80,4 +83,13 @@ export default class JRequester{
         });
     }
 
+    repeat(): JPromise<AxiosResponse>{
+        return CancelPromiseFactory.createJPromise((resolve, reject) => {
+            this.jaxios.request({url: this.url}).then((response: AxiosResponse) => {
+                resolve(response);
+            }, error => {
+                reject(error);
+            })
+        });
+    }
 }

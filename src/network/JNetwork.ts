@@ -9,40 +9,12 @@ import JRequester from './JRequester';
 import CancelPromiseFactory, {JPromise} from '../factory/CancelPromiseFactory';
 import JNetworkConfig from './JNetworkConfig';
 import {AxiosResponse} from 'axios';
+import {jgetGlobalValue} from './JNetworkFunc';
+import JNetworkGroup from './JNetworkGroup';
+import JNetworkError from './JNetworkError';
 
 let INSTANCE_COUNT = 0
 
-const GET_GLOBAL_VALUE = (key, globalValueRegistry) => {
-    let otherParas = {};
-    if (!globalValueRegistry){
-        throw new Error('未找到全局参数，请确认是否设置globalParas');
-    }
-    let globalParaFunc = null;
-    if (typeof globalValueRegistry == "function"){
-        globalParaFunc = globalValueRegistry()[key];
-    } else if (typeof globalValueRegistry == "object") {
-        globalParaFunc = globalValueRegistry[key];
-    }
-
-    if (globalParaFunc){
-        let globalPara:any|string|number = null;
-        if (typeof globalParaFunc == "function"){
-            globalPara = globalParaFunc();
-        } else {
-            globalPara = globalParaFunc;
-        }
-        if (typeof globalPara == "object"){
-            otherParas = {...otherParas, ...globalPara};
-        } else if (typeof globalPara === 'string' || typeof globalPara === 'number'){
-            otherParas[key] = globalPara;
-        } else {
-            throw new Error(`全局变量类型不正确:${key}`);
-        }
-    } else {
-        throw new Error(`不存在的全局变量:${key}`);
-    }
-    return otherParas;
-}
 /** @module network*/
 
 /**
@@ -51,15 +23,15 @@ const GET_GLOBAL_VALUE = (key, globalValueRegistry) => {
  */
 class JNetwork{
     static _instance: any;
-    readonly config = JNetworkConfig.DEFAULT_CONFIG
+    readonly config = JNetworkConfig.DEFAULT_CONFIG;
     readonly baseUrl: string;
     readonly delegate: JNetworkDelegate;
     readonly carryData: object | Function;
     readonly timeout: number;
-    readonly instance_id: number;
-
-    otherParas: Array<string|object> = [];
-    otherHeaders: Array<string|object> = [];
+    readonly instanceId: number;
+    private readonly groupList: Array<JNetworkGroup> = [];
+    extraParas: Array<string|object> = [];
+    extraHeaders: Array<string|object> = [];
 
     constructor(config: JNetworkConfig = JNetworkConfig.DEFAULT_CONFIG){
         config = {...JNetworkConfig.DEFAULT_CONFIG, ...config};
@@ -68,29 +40,29 @@ class JNetwork{
         this.carryData = config.carryData;
         this.timeout = config.timeout;
         this.config = config;
-        this.instance_id = ++INSTANCE_COUNT;
+        this.instanceId = ++INSTANCE_COUNT;
         return this;
     }
 
-    static useParas(...paras: Array<string|object>){
+    static useParas(...paras: Array<string|object>): JNetwork{
         let instance = JNetwork.call(this);
-        instance.otherParas = paras;
+        instance.extraParas = paras;
         return instance;
     }
 
-    static useHeaders(...headers: Array<string|object>) {
+    static useHeaders(...headers: Array<string|object>): JNetwork{
         let instance = new this();
-        instance.otherHeaders = headers;
+        instance.extraHeaders = headers;
         return instance;
     }
 
     useParas(...paras: Array<string|object>): JNetwork {
-        this.otherParas = paras;
+        this.extraParas = paras;
         return this;
     }
 
     useHeaders(...headers: Array<string|object>): JNetwork {
-        this.otherHeaders = headers;
+        this.extraHeaders = headers;
         return this;
     }
 
@@ -99,6 +71,30 @@ class JNetwork{
             this._instance = new this();
         }
         return this._instance;
+    }
+
+    createGroup(options?){
+        options = {
+            ...{
+                notClearExtraData: false,
+                isSync: false
+            },
+            ...options
+        };
+        let group = new JNetworkGroup(this.baseUrl, this.getCarryData(), this.timeout, this.delegate, {
+            freezeParas: this.extraParas,
+            freezeHeaders: this.extraHeaders,
+            isSync: options.isSync
+        });
+        if (!options.notClearExtraData){
+            this.clearExtraData();
+        }
+        this.groupList.push(group);
+        return group;
+    }
+
+    clearGroup(){
+        this.groupList.splice(0);
     }
 
     /**
@@ -123,39 +119,10 @@ class JNetwork{
         });
     }
 
-    /**
-     * 普通异常
-     * @param {error} errorMessage
-     * @param {number} code
-     * @returns {Error}
-     */
-    static generalError(errorMessage: string, code: number): Error {
-        let resultError: Error = new Error(errorMessage);
-        Reflect.defineProperty(resultError, 'errorCode', {value: code});
-        return resultError;
+    clearExtraData(){
+        this.extraParas = [];
+        this.extraHeaders = [];
     }
-
-    /**
-     * 没有登录异常
-     * @param code
-     * @returns {any}
-     */
-    static notLoginError(code: number): Error {
-        let error: Error = new Error('NotLogin');
-        Reflect.defineProperty(error, 'errorCode', {value: code});
-        return error;
-    }
-
-    /**
-     * 包裹可取消的请求 （使用fetch请求时使用，目前通过axios请求，无需使用）
-     * @private
-     * @param promise 异步请求块
-     * @returns {Promise} 被包裹后的异步请求块
-     */
-    static wrapCancelablePromise(promise: Promise<any>): JPromise<any> {
-        return CancelPromiseFactory.createJPromise(promise);
-    }
-
     /***
      * 检查是否配置SDK
      * @private
@@ -177,36 +144,34 @@ class JNetwork{
      * @param otherObject 其他相关设置
      * @returns {CancelPromiseFactory<any>}
      */
-    fetchRequest(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any): JPromise<any> {
-        let otherParas = this.otherParas;
-        let otherHeaders = this.otherHeaders;
-        this.otherParas = [];
-        this.otherHeaders = [];
+    fetchRequest(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any): JPromise<AxiosResponse|JNetworkError> {
+        let extraParas = this.extraParas;
+        let extraHeaders = this.extraHeaders;
+        this.clearExtraData();
         let isOk;
         const delegate = this.delegate;
-
         headers = Object.assign({
             'Accept': 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded'
         }, headers);
 
         let globalOtherParas = {};
-        otherParas.forEach(key => {
+        extraParas.forEach(key => {
             if (typeof key == "object"){
                 globalOtherParas = {...globalOtherParas, ...key};
                 return;
             }
             if (!delegate) return;
-            globalOtherParas = {...GET_GLOBAL_VALUE(key, delegate.globalParas)}
+            globalOtherParas = {...jgetGlobalValue(key, delegate.globalParas)}
         });
         let globalOtherHeaders = {};
-        otherHeaders.forEach(key => {
+        extraHeaders.forEach(key => {
             if (typeof key == "object"){
                 globalOtherHeaders = {...globalOtherHeaders, ...key};
                 return;
             }
             if (!delegate) return;
-            globalOtherHeaders = {...GET_GLOBAL_VALUE(key, delegate.globalHeaders)}
+            globalOtherHeaders = {...jgetGlobalValue(key, delegate.globalHeaders)}
         });
         let request: JRequester = JRequester.create(
             method,
@@ -218,41 +183,14 @@ class JNetwork{
             delegate
         );
         return CancelPromiseFactory.createJPromise((resolve, reject) => {
-            let isOk = false;
-            let _response = null;
             request.request().then((response: AxiosResponse) => {
-                isOk = response.status === 200;
-                _response = response;
-                return response.data;
-            }).then((responseJson: { errorCode: number, data: any, message: string }) => {
-                if (isOk) {
-                    if (!responseJson.errorCode) {
-                        if (delegate && delegate.resolveInterceptor){
-                            if (delegate.resolveInterceptor(_response, responseJson.data)){
-                                resolve(responseJson.data);
-                            }
-                        } else {
-                            resolve(responseJson.data);
-                        }
-                    } else {
-                        if (delegate && delegate.rejectInterceptor){
-                            if (delegate.rejectInterceptor(_response, JNetwork.generalError(responseJson.message, responseJson.errorCode))) {
-                                reject(JNetwork.generalError(responseJson.message, responseJson.errorCode));
-                            }
-                        } else {
-                            reject(JNetwork.generalError(responseJson.message, responseJson.errorCode));
-                        }
-                    }
+                if (response.status === 200) {
+                    resolve(response);
                 } else {
-                    reject(responseJson);
+                    reject(new JNetworkError(response.statusText, response.status));
                 }
             }).catch(error => {
-                // 请求超时
-                if (error.message.indexOf('timeout') != -1) {
-                    reject(new Error('请求超时, 请稍后重试'));
-                } else {
-                    reject(error);
-                }
+                reject(error);
             });
         })
     }
@@ -266,7 +204,7 @@ class JNetwork{
      * @param {object} otherObject 其他可用配置
      * @returns {Promise} 异步请求块
      */
-    static freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
+    static freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse> {
         return this.instance().freedomPOST.apply(this._instance, Array.from(arguments))
     }
 
@@ -279,7 +217,7 @@ class JNetwork{
      * @param {object} otherObject
      * @returns {Promise} 异步请求块
      */
-    static freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
+    static freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse> {
         return this.instance().freedomGET.apply(this._instance, Array.from(arguments))
     }
 
@@ -291,7 +229,7 @@ class JNetwork{
      * @param {object} otherObject 其他参数
      * @returns {Promise} 异步请求块
      */
-    static POST(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
+    static POST(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse> {
         return this.instance().POST.apply(this._instance, Array.from(arguments))
     }
 
@@ -303,7 +241,7 @@ class JNetwork{
      * @param {object} otherObject 其他参数
      * @returns {Promise} 异步请求块
      */
-    static GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
+    static GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse> {
         return this.instance().GET.apply(this._instance, Array.from(arguments))
     }
 
@@ -320,22 +258,22 @@ class JNetwork{
         return carryData || {};
     }
 
-    freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
+    freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
         return this.fetchRequest('post', baseUrl, url || '', parameters || {}, headers || {}, otherObject || {});
     }
 
-    freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
+    freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
         return this.fetchRequest('get', baseUrl, url || '', parameters || {}, headers || {}, otherObject || {});
     }
 
-    POST(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
+    POST(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
         return this.freedomPOST(this.baseUrl, url, {
             ...this.getCarryData(),
             ...parameters
         }, headers, {timeout: this.timeout, ...otherObject})
     }
 
-    GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any> {
+    GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
         return this.freedomGET(this.baseUrl, url, {
             ...this.getCarryData(),
             ...parameters
