@@ -44,7 +44,7 @@ function getThen(obj) {
  * 安全执行方法 通过一个参数
  * @param fn 需要执行的方法
  * @param a 参数
- * @return {error|undefined} 如果执行报错，则返回错误
+ * @return {error|vale} 如果执行报错，则返回错误，否则返回执行后的返回值
  */
 function tryCallOne(fn, a) {
     try {
@@ -60,7 +60,7 @@ function tryCallOne(fn, a) {
  * @param fn 需要执行的方法
  * @param a 参数1
  * @param b 参数2
- * @return {error|undefined} 如果执行报错，则返回错误
+ * @return {error|undefined} 如果执行报错，则返回错误，否则无返回值
  */
 function tryCallTwo(fn, a, b) {
     try {
@@ -85,15 +85,19 @@ function JPromise(fn) {
     if (typeof fn !== 'function') {
         throw new TypeError('JPromise constructor\'s argument is not a function');
     }
-    // 当前promise的状态
+    // 当前promise链中的状态
     this._state = 0;
+    // 当前promise链中存储的最终值
     this._value = null;
     this._deferredState = 0;
+    // 当前promise链所有的待处理Handler对象列表
     this._deferreds = null;
     if (fn === noop) return;
     doResolve(fn, this);
 }
+// JPromise handle监听器
 JPromise._onHandle = null;
+// JPromise reject监听器
 JPromise._onReject = null;
 JPromise._noop = noop;
 
@@ -114,13 +118,21 @@ function safeThen(self, onFulfilled, onRejected) {
     });
 }
 
+/**
+ * 处理方法指定promise链
+ * @param self 当前promise对象
+ * @param deferred 待处理的Handler对象列表
+ */
 function handle(self, deferred) {
+    // 一直向promise链末尾移动，直到发现某个promise的最终状态不是依赖于它的下一个promise
     while (self._state === 3) {
         self = self._value;
     }
+    // 如果JPromise有全局的handle监听器，进行回调
     if (JPromise._onHandle) {
         JPromise._onHandle(self);
     }
+    // 如果promise处于混沌状态
     if (self._state === 0) {
         if (self._deferredState === 0) {
             self._deferredState = 1;
@@ -135,10 +147,19 @@ function handle(self, deferred) {
         self._deferreds.push(deferred);
         return;
     }
+    // promise已经确定状态，进行处理
     handleResolved(self, deferred);
 }
 
+/**
+ * 处理当前promise与它下一个相关promise - 可能引起递归过程
+ * @param self 当前promise
+ * @param deferred 它的下一个相关promise
+ */
 function handleResolved(self, deferred) {
+    /**********************************************************/
+    /*************         进行异步处理           ***************/
+    /**********************************************************/
     setTimeout(function() {
         var cb = self._state === 1 ? deferred.onFulfilled : deferred.onRejected;
         if (cb === null) {
@@ -162,7 +183,7 @@ function handleResolved(self, deferred) {
  * 执行指定JPromise的resolve
  * @param self 当前promise引用
  * @param newValue resolve用到的回调参数 - 类似 resolve('aaa') 中的 'aaa'
- * @note new Value 可能是JPromise
+ * @note newValue 可能是JPromise
  */
 function resolve(self, newValue) {
     // JPromise Resolution Procedure: https://github.com/promises-aplus/promises-spec#the-promise-resolution-procedure
@@ -172,7 +193,7 @@ function resolve(self, newValue) {
             new TypeError('A promise cannot be resolved with itself.')
         );
     }
-    // 确定是否还是一个JPromise
+    // newValue 是否是个合法值
     if (
         newValue &&
         (typeof newValue === 'object' || typeof newValue === 'function')
@@ -181,6 +202,7 @@ function resolve(self, newValue) {
         if (then === IS_ERROR) {
             return reject(self, LAST_ERROR);
         }
+        // 确定是否还是一个JPromise
         if (
             then === self.then &&
             newValue instanceof JPromise
@@ -189,6 +211,7 @@ function resolve(self, newValue) {
             self._value = newValue;
             finale(self);
             return;
+        // 确定是否还是一个thenable对象
         } else if (typeof then === 'function') {
             doResolve(then.bind(newValue), self);
             return;
@@ -199,6 +222,11 @@ function resolve(self, newValue) {
     finale(self);
 }
 
+/**
+ * 执行指定JPromise的reject
+ * @param self 当前promise引用
+ * @param newValue reject用到的回调参数 - 类似 reject(err) 中的 err
+ */
 function reject(self, newValue) {
     self._state = 2;
     self._value = newValue;
@@ -209,6 +237,7 @@ function reject(self, newValue) {
 }
 
 function finale(self) {
+    console.log(self._deferredState);
     if (self._deferredState === 1) {
         handle(self, self._deferreds);
         self._deferreds = null;
@@ -219,12 +248,6 @@ function finale(self) {
         }
         self._deferreds = null;
     }
-}
-
-function Handler(onFulfilled, onRejected, promise){
-    this.onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : null;
-    this.onRejected = typeof onRejected === 'function' ? onRejected : null;
-    this.promise = promise;
 }
 
 /**
@@ -253,6 +276,19 @@ function doResolve(fn, promise) {
         done = true;
         reject(promise, LAST_ERROR);
     }
+}
+
+/**
+ * 处理类构造方法
+ * @param onFulfilled 成功回调方法
+ * @param onRejected 失败回调方法
+ * @param promise promise类
+ * @constructor
+ */
+function Handler(onFulfilled, onRejected, promise){
+    this.onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : null;
+    this.onRejected = typeof onRejected === 'function' ? onRejected : null;
+    this.promise = promise;
 }
 
 /** eslint-enable **/
