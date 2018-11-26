@@ -12,6 +12,8 @@ import {AxiosResponse} from 'axios';
 import {jgetGlobalValue} from './JNetworkFunc';
 import JNetworkGroup from './JNetworkGroup';
 import JNetworkError from './JNetworkError';
+import JNetworkFetch from '../interface/JNetworkFetch'
+import JNetworkExtra from '../interface/JNetworkExtra'
 
 let INSTANCE_COUNT = 0;
 
@@ -21,7 +23,7 @@ let INSTANCE_COUNT = 0;
  * 网络请求类
  * @hideconstructor
  */
-class JNetwork{
+class JNetwork implements JNetworkFetch, JNetworkExtra{
     static _instance: any;
     readonly config = JNetworkConfig.DEFAULT_CONFIG;
     readonly baseUrl: string;

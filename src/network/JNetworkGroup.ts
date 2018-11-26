@@ -1,16 +1,18 @@
+import {AxiosResponse} from "axios";
 import JRequester from "./JRequester";
 import CancelPromiseFactory, {JPromise} from "../factory/CancelPromiseFactory";
-import {AxiosResponse} from "axios";
 import {jgetGlobalValue} from './JNetworkFunc';
 import JNetworkDelegate from "../delegate/JNetworkDelegate";
 import JNetworkError from './JNetworkError';
 import JRequestEngine from '../util/JRequestEngine';
+import JNetworkFetch from "../interface/JNetworkFetch";
+import JNetworkExtra from "../interface/JNetworkExtra";
 let GROUP_COUNT = 0
 
 /**
  * @private
  */
-export default class JNetworkGroup {
+export default class JNetworkGroup implements JNetworkFetch, JNetworkExtra{
     readonly baseUrl: string;
     readonly carryData: object;
     readonly timeout: number;
@@ -21,16 +23,16 @@ export default class JNetworkGroup {
     private readonly freezeParas:Array<string|object>;
     private readonly freezeHeaders:Array<string|object>;
     private readonly requestEngine:JRequestEngine = new JRequestEngine();
-    otherParas: Array<string|object> = [];
-    otherHeaders: Array<string|object> = [];
+    extraParas: Array<string|object> = [];
+    extraHeaders: Array<string|object> = [];
 
     useParas(...paras: Array<string|object>): JNetworkGroup {
-        this.otherParas = paras;
+        this.extraParas = paras;
         return this;
     }
 
     useHeaders(...headers: Array<string|object>): JNetworkGroup {
-        this.otherHeaders = headers;
+        this.extraHeaders = headers;
         return this;
     }
 
@@ -58,10 +60,10 @@ export default class JNetworkGroup {
      * @returns {CancelPromiseFactory<any>}
      */
     fetchRequest(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any): JPromise<AxiosResponse|JNetworkError> {
-        let otherParas = [...this.freezeParas, ...this.otherParas];
-        let otherHeaders = [...this.freezeHeaders, ...this.otherHeaders];
-        this.otherParas = [];
-        this.otherHeaders = [];
+        let extraParas = [...this.freezeParas, ...this.extraParas];
+        let extraHeaders = [...this.freezeHeaders, ...this.extraHeaders];
+        this.extraParas = [];
+        this.extraHeaders = [];
         const delegate = this.delegate;
         headers = Object.assign({
             'Accept': 'application/json',
@@ -69,7 +71,7 @@ export default class JNetworkGroup {
         }, headers);
 
         let globalOtherParas = {};
-        otherParas.forEach(key => {
+        extraParas.forEach(key => {
             if (typeof key == "object"){
                 globalOtherParas = {...globalOtherParas, ...key};
                 return;
@@ -78,7 +80,7 @@ export default class JNetworkGroup {
             globalOtherParas = {...jgetGlobalValue(key, delegate.globalParas)}
         });
         let globalOtherHeaders = {};
-        otherHeaders.forEach(key => {
+        extraHeaders.forEach(key => {
             if (typeof key == "object"){
                 globalOtherHeaders = {...globalOtherHeaders, ...key};
                 return;
