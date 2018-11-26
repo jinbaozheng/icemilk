@@ -1,8 +1,8 @@
 import JRequester from "../network/JRequester";
 import CancelPromiseFactory, {JPromise} from "../factory/CancelPromiseFactory";
-import {AxiosResponse} from "axios";
-import JNetworkError from "../network/JNetworkError";
-import {listeners} from "cluster";
+// import {AxiosResponse} from "axios";
+// import JNetworkError from "../network/JNetworkError";
+// import {listeners} from "cluster";
 
 
 class Event{
@@ -32,14 +32,12 @@ class Reactor{
     }
 
     dispatchEvent(eventName, eventArgs){
-        console.log('***************')
         this.events[eventName].callbacks.forEach((callback) => {
             callback(eventArgs);
         });
     }
 
     addEventListener(eventName, callback){
-        console.log('+++++++++++++++')
         this.events[eventName].registerCallback(callback);
     }
 
@@ -68,8 +66,7 @@ export default class JRequestEngine {
     }
 
     _popRunQueue(){
-       let task = this.runQueue.shift();
-       return task;
+        return this.runQueue.shift();
     }
 
     addRequest(request:JRequester): JPromise<any>{
@@ -84,11 +81,8 @@ export default class JRequestEngine {
     }
 
     do(request: JRequester, resolve, reject){
-        console.log('开始请求');
         request.request().then(data => {
-             console.log('结束请求');
-             resolve(data);
-             console.log('处理完数据');
+             setTimeout(resolve(data), 0);
              let task = this._popRunQueue();
              if (task){
                  this.do(task.request, task.resolve, task.reject);
