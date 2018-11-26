@@ -13,7 +13,7 @@ import {jgetGlobalValue} from './JNetworkFunc';
 import JNetworkGroup from './JNetworkGroup';
 import JNetworkError from './JNetworkError';
 
-let INSTANCE_COUNT = 0
+let INSTANCE_COUNT = 0;
 
 /** @module network*/
 
