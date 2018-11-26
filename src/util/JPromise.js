@@ -89,6 +89,8 @@ function JPromise(fn) {
     this._state = 0;
     // 当前promise链中存储的最终值
     this._value = null;
+    // 当前promise的后续相关promise的进展状态
+    // 0：为无后续相关promise 1：为只有一个后续相关promise 2：为大于一个后续相关promise
     this._deferredState = 0;
     // 当前promise链所有的待处理Handler对象列表
     this._deferreds = null;
@@ -102,10 +104,12 @@ JPromise._onReject = null;
 JPromise._noop = noop;
 
 JPromise.prototype.then = function(onFulfilled, onRejected) {
+    // 如果当前对象不是JPromise(可能是继承来的), 则进行JPromise化包装并进行handler包装处理。
     if (this.constructor !== JPromise) {
         return safeThen(this, onFulfilled, onRejected);
     }
     var res = new JPromise(noop);
+    // 进行handler包装处理
     handle(this, new Handler(onFulfilled, onRejected, res));
     return res;
 };
@@ -119,9 +123,9 @@ function safeThen(self, onFulfilled, onRejected) {
 }
 
 /**
- * 处理方法指定promise链
+ * 处理promise链中指定promise及它的下一个相关promise
  * @param self 当前promise对象
- * @param deferred 待处理的Handler对象列表
+ * @param deferred 它的下一个相关promise的Handler
  */
 function handle(self, deferred) {
     // 一直向promise链末尾移动，直到发现某个promise的最终状态不是依赖于它的下一个promise
@@ -144,24 +148,27 @@ function handle(self, deferred) {
             self._deferreds = [self._deferreds, deferred];
             return;
         }
+
         self._deferreds.push(deferred);
         return;
     }
-    // promise已经确定状态，进行处理
+    // promise已经确定状态，进行处理它和它的下一个相关promise
     handleResolved(self, deferred);
 }
 
 /**
- * 处理当前promise与它下一个相关promise - 可能引起递归过程
+ * 处理当前promise与它下一个相关promise的回调执行 - 可能引起递归过程
  * @param self 当前promise
- * @param deferred 它的下一个相关promise
+ * @param deferred 它的下一个相关promise的Handler
  */
 function handleResolved(self, deferred) {
+    console.log(deferred)
     /**********************************************************/
     /*************         进行异步处理           ***************/
     /**********************************************************/
     setTimeout(function() {
         var cb = self._state === 1 ? deferred.onFulfilled : deferred.onRejected;
+        // 如果出现 promise.then().then(data => {...});的情况 需要继续进行下去
         if (cb === null) {
             if (self._state === 1) {
                 resolve(deferred.promise, self._value);
@@ -170,6 +177,7 @@ function handleResolved(self, deferred) {
             }
             return;
         }
+        // 执行下一个相关promise的回调处理方法
         var ret = tryCallOne(cb, self._value);
         if (ret === IS_ERROR) {
             reject(deferred.promise, LAST_ERROR);
@@ -236,8 +244,12 @@ function reject(self, newValue) {
     finale(self);
 }
 
+
+/**
+ * then结束，开始处理deferred中缓存的promise的handler
+ * @param self
+ */
 function finale(self) {
-    console.log(self._deferredState);
     if (self._deferredState === 1) {
         handle(self, self._deferreds);
         self._deferreds = null;
