@@ -8,8 +8,8 @@
   "url": "https://github.com/cuppi"
  },
  "scripts": {
-  "dev": "rollup -c --watch",
-  "build": "rollup -c",
+  "dev": "rollup -c --watch --config config/rollup.config.dev.js",
+  "build": "rollup -c --config config/rollup.config.prod.js",
   "test": "echo \"Error: no test specified\" && exit 1",
   "cp-publish": "node ./cp_publish.js",
   "generate-docs": "node ./generate_docs.js",
@@ -39,8 +39,8 @@
   "axios": "^0.18.0",
   "left-pad": "^1.2.0",
   "moment": "^2.22.2",
-  "url-pattern": "^1.0.3",
-  "url-regex": "^4.1.1"
+  "url-parse": "^1.4.4",
+  "url-pattern": "^1.0.3"
  },
  "devDependencies": {
   "@types/node": "^10.12.8",
@@ -65,6 +65,7 @@
   "rollup-plugin-json": "^3.1.0",
   "rollup-plugin-node-resolve": "^3.4.0",
   "rollup-plugin-typescript": "^1.0.0",
+  "rollup-plugin-uglify": "^6.0.0",
   "run-sequence": "^2.2.1",
   "tslib": "^1.9.3",
   "typescript": "^3.1.6"
