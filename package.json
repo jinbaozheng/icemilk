@@ -70,7 +70,7 @@
   "tslib": "^1.9.3",
   "typescript": "^3.1.6"
  },
- "main": "dist/index.js",
+ "main": "dist/index.min.js",
  "types": "types/index.d.ts",
  "name": "icemilk",
  "description": "Shanghai jinbaozheng easy network technology Co.,Ltd sdk",
