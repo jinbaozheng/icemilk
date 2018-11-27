@@ -304,3 +304,60 @@ function Handler(onFulfilled, onRejected, promise){
 }
 
 /** eslint-enable **/
+
+
+
+// console.log(icemilk.JNetwork);
+// let a = new JPromise((resolve) => {
+//     let c = new JPromise((resolve1) => {
+//         resolve1('aaaa');
+//     })
+//     resolve(c);
+// })
+
+// let d = new JPromise((resolve, reject) => {
+//     // resolve('data1')
+//     reject('error1')
+// });
+//
+// d.then(data => {
+//     console.log(data);
+//     return 'data2';
+// }, e => {
+//     console.log(e);
+//     return new JPromise((resolve, reject) => {
+//         reject('error2');
+//     });
+// }).then().then(data => {
+//     console.log('**********')
+//     console.log(data);
+// }, e => {
+//     console.log('**********')
+//     console.log(e);
+// });
+
+// let b = new JPromise((resolve, reject) => {
+//     resolve(b)
+// })
+//
+//
+// b.then((data) => {
+//     console.log(data);
+//     return b;
+//     // setTimeout(() => {
+//     //     return {then: (resolve, reject) => resolve('tetet111')}
+//     // }, 2);
+// })
+
+// Resolve一个thenable对象
+// var p1 = Promise.resolve({
+//     then: function(onFulfill, onReject) {
+//         console.log('bbbb');
+//         onFulfill("fulfilled!");
+//     }
+// });
+// p1.then(function(v) {
+//     console.log(v); // 输出"fulfilled!"
+// }, function(e) {
+//     // 不会被调用
+// });
