@@ -21,6 +21,7 @@ module.exports = () => {
             commonjs(),
             typescript({lib: ["es5", "es6", "dom"], target: "es5"})
         ],
-        external: [ 'moment', 'axios' ]
+        external: [ 'moment', 'axios' ],
+        treeshake: false
     }
 };
