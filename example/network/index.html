@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <!--<script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
-    <!--<script src="../dist/index.js"></script>-->
-    <script src="../src/util/JPromise.js"></script>
+    <title>network example</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../../dist/index.js"></script>
 </head>
 <body>
 <script>
@@ -33,150 +32,47 @@
             }
         }
     }
-    // console.log(icemilk.JNetwork);
-    // let a = new JPromise((resolve) => {
-    //     let c = new JPromise((resolve1) => {
-    //         resolve1('aaaa');
-    //     })
-    //     resolve(c);
-    // })
 
-    let d = new JPromise((resolve, reject) => {
-        // resolve('data1')
-        reject('error1')
+    let network = new icemilk.JNetwork()
+    let g1 = network.useParas({'cityId': 1}).createGroup({
+        isSync: true
     });
-
-    d.then(data => {
-        console.log(data);
-        return 'data2';
-    }, e => {
-        console.log(e);
-        return new JPromise((resolve, reject) => {
-            reject('error2');
-        });
-    }).then().then(data => {
-        console.log('**********')
-        console.log(data);
-    }, e => {
-        console.log('**********')
-        console.log(e);
-    });
-
-    // let b = new JPromise((resolve, reject) => {
-    //     resolve(b)
-    // })
-    //
-    //
-    // b.then((data) => {
-    //     console.log(data);
-    //     return b;
-    //     // setTimeout(() => {
-    //     //     return {then: (resolve, reject) => resolve('tetet111')}
-    //     // }, 2);
-    // })
-
-    // Resolve一个thenable对象
-    // var p1 = Promise.resolve({
-    //     then: function(onFulfill, onReject) {
-    //         console.log('bbbb');
-    //         onFulfill("fulfilled!");
-    //     }
-    // });
-    // p1.then(function(v) {
-    //     console.log(v); // 输出"fulfilled!"
-    // }, function(e) {
-    //     // 不会被调用
-    // });
-
-
-
-
-    // https://sandbox.idoupiao.com/bcmfilm/main?
-    // icemilk.JNetworkConfig.setConfig();
-    /*
-    let n1 = new icemilk.JNetwork({
-        baseUrl: ''
-    });
-
-    let temp = 0;
-
-    let p = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            console.log('收到数据')
-            let b = resolve('aaaa');
-            console.log(temp);
-            console.log(`结束处理数据${b}`)
-        }, 1000);
+    g1.useParas({'cityId': 5}).freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
+        longitude: 121.4834974484,
+        latitude: 31.237037783
+    }).then(response => {
+        console.log(`cityId: 5`)
+        console.log(response.data);
+        return g1.useParas({'cityId': 6}).freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
+            longitude: 121.4834974484,
+            latitude: 31.237037783
+        })
+    }).then(response => {
+        console.log(`cityId: 6`)
+        console.log(response.data);
+    }).catch(error => {
+        console.log(error);
+    })
+    g1.useParas({'cityId': 7}).freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
+        longitude: 121.4834974484,
+        latitude: 31.237037783
+    }).then(response => {
+        console.log(`cityId: 7`)
+        console.log(response.data);
+    }, error => {
+        console.log(error);
     })
 
-    p.then(data => {
-        temp++
-        console.log(`1******${temp}`);
-        console.log(`处理数据${data}`);
-        return '呵呵';
+
+    g1.useParas({'cityId': 8}).freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
+        longitude: 121.4834974484,
+        latitude: 31.237037783
+    }).then(response => {
+        console.log(`cityId: 8`)
+        console.log(response.data);
+    }, error => {
+        console.log(error);
     })
-
-    p.then(data => {
-        temp++
-        console.log(`2******${temp}`);
-        console.log(`1处理数据${data}`);
-        return '1呵呵';
-    })
-*/
-
-    // let g1 = n1.useParas({'cityId': 1}).createGroup({
-    //     isSync: true
-    // });
-    // g1.useParas({'cityId': 5}).freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
-    //     longitude: 121.4834974484,
-    //     latitude: 31.237037783
-    // }).then(response => {
-    //     console.log('处理数据');
-    // }, error => {
-    //     console.log(error);
-    // })
-    // g1.useParas({'cityId': 6}).freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
-    //     longitude: 121.4834974484,
-    //     latitude: 31.237037783
-    // }).then(response => {
-    //     console.log('处理数据');
-    // }, error => {
-    //     console.log(error);
-    // })
-    // g1.useParas({'cityId': 7}).freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
-    //     longitude: 121.4834974484,
-    //     latitude: 31.237037783
-    // }).then(response => {
-    //     console.log('处理数据');
-    // }, error => {
-    //     console.log(error);
-    // })
-
-    //
-    // g1.useParas({'cityId': 8}).freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
-    //     longitude: 121.4834974484,
-    //     latitude: 31.237037783
-    // }).then(response => {
-    //     console.log('bbbbbb');
-    //     console.log(response.data);
-    // }, error => {
-    //     console.log(error);
-    // })
-
-
-    //
-    // // console.log(icemilk.JNetwork.instance());
-    // icemilk.JNetwork.freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
-    //     cityId: 2,
-    //     longitude: 121.4834974484,
-    //     latitude: 31.237037783
-    // }).then(data => {
-    //     console.log(data);
-    // }, error => {
-    //     console.log(error);
-    // })
-
-
 
 </script>
 </body>

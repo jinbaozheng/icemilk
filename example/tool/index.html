@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tool example</title>
+    <script src="http://momentjs.com/downloads/moment-with-locales.js"></script>
+    <script src="../../dist/index.js"></script>
+</head>
+<body>
+<script>
+    let data = icemilk.JToolDate.currentDate();
+    console.log(data);
+    let urlObj = icemilk.JToolUrl.portionFromUrl('http://www.example.com:8080/package?name=ice&subname=milk#/user?name=cuppi&from=B612')
+    console.log(urlObj);
+</script>
+</body>
+</html>
