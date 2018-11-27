@@ -1,6 +1,6 @@
 {
  "bugs": {
-  "url": "https://github.com/jinbaozheng/JBZWebSDK/issues"
+  "url": "https://github.com/jinbaozheng/icemilk/issues"
  },
  "author": {
   "email": "cuppi413@163.com",
@@ -16,17 +16,16 @@
   "update-docs": "node ./publish.js"
  },
  "repository": {
-  "url": "git@github.com:jinbaozheng/JBZWebSDK.git",
+  "url": "git@github.com:jinbaozheng/icemilk.git",
   "type": "git"
  },
  "keywords": [
-  "jbz",
-  "jinbaozheng",
-  "jbzweb",
-  "jbzwebsdk"
+  "milk",
+  "ice",
+  "icemilk"
  ],
  "license": "MIT",
- "version": "2.1.0",
+ "version": "1.0.0",
  "babel": {
   "presets": [
    "es2015",
@@ -72,9 +71,9 @@
  },
  "main": "dist/index.js",
  "types": "types/index.d.ts",
- "name": "jbzwebsdk",
+ "name": "icemilk",
  "description": "Shanghai jinbaozheng easy network technology Co.,Ltd sdk",
- "homepage": "https://github.com/jinbaozheng/JBZWebSDK/blob/version-2.0.1/README.md",
+ "homepage": "https://github.com/jinbaozheng/icemilk/blob/1.0.0/README.md",
  "publishConfig": {
   "registry": "https://registry.npmjs.org/"
  }

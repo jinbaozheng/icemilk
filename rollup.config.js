@@ -5,7 +5,7 @@ import json from 'rollup-plugin-json';
 module.exports = {
     input: './src/index.ts',
     output: {
-        name: 'jbzwebsdk',
+        name: 'icemilk',
         globals: {
             moment: 'moment',
             axios: 'axios'
