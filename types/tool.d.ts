@@ -248,7 +248,7 @@ export declare class JToolUrl {
    * 分析Url并解析为对象结构
    * @param url 待分析Url
    * @param options 分析Url配置
-   * @return Promise<object> 参数为解析后的结果，url无效时返回Null
+   * @return {object} 返回解析后的结果，url无效时返回Null
    */
   static portionFromUrl(url, options?)
 }
