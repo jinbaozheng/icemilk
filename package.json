@@ -26,12 +26,6 @@
  ],
  "license": "MIT",
  "version": "1.0.0",
- "babel": {
-  "presets": [
-   "es2015",
-   "react"
-  ]
- },
  "engines": {
   "node": ">= 0.6"
  },
@@ -47,7 +41,7 @@
   "@types/url-regex": "^4.1.0",
   "@babel/core": "^7.1.6",
   "@babel/plugin-transform-runtime": "^7.1.0",
-  "@babel/preset-env": "*",
+  "@babel/preset-env": "^7.1.6",
   "commander": "^2.15.1",
   "del": "^3.0.0",
   "gulp": "^4.0.0",
