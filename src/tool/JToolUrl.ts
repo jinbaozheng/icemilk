@@ -3,7 +3,6 @@
  */
 
 import UrlPattern from 'url-pattern';
-// import UrlParse from 'url-parse';
 
 /**
  * 网络地址工具类
