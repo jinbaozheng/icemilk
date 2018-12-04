@@ -25,7 +25,7 @@
   "icemilk"
  ],
  "license": "MIT",
- "version": "1.0.0",
+ "version": "1.0.1",
  "engines": {
   "node": ">= 0.6"
  },
@@ -54,7 +54,7 @@
   "jsdoc-babel": "^0.5.0",
   "typescript": "^3.2.1"
  },
- "main": "dist/index.min.js",
+ "main": "dist/index.js",
  "types": "types/index.d.ts",
  "name": "icemilk",
  "description": "Shanghai jinbaozheng easy network technology Co.,Ltd sdk",
