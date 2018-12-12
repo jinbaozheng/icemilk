@@ -171,7 +171,7 @@ class JNetwork implements INetworkFetch, INetworkExtra{
                 return;
             }
             if (!delegate) return;
-            globalOtherParas = {...jgetGlobalValue(key, delegate.globalParas)}
+            globalOtherParas = {...globalOtherParas, ...jgetGlobalValue(key, delegate.globalParas)}
         });
         let globalOtherHeaders = {};
         extraHeaders.forEach(key => {
@@ -180,7 +180,7 @@ class JNetwork implements INetworkFetch, INetworkExtra{
                 return;
             }
             if (!delegate) return;
-            globalOtherHeaders = {...jgetGlobalValue(key, delegate.globalHeaders)}
+            globalOtherHeaders = {...globalOtherParas, ...jgetGlobalValue(key, delegate.globalHeaders)}
         });
         let request: JRequester = JRequester.create(
             method,
