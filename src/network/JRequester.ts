@@ -1,6 +1,6 @@
 
 import axios, {AxiosInstance} from "axios";
-import JNetworkDelegate from "../delegate/JNetworkDelegate";
+import INetworkDelegate, {DEFAULT_DELEGATE} from "../interface/INetworkDelegate";
 import CancelPromiseFactory, {JPromise} from "../factory/CancelPromiseFactory";
 import {AxiosResponse} from 'axios';
 let REQUESTER_COUNT = 0;
@@ -12,10 +12,10 @@ export default class JRequester{
     readonly parameters: object;
     readonly headers: object;
     readonly otherObject: any;
-    readonly delegate: JNetworkDelegate;
+    readonly delegate: INetworkDelegate;
     readonly requesterId: number;
     jaxios: AxiosInstance;
-    constructor(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any, delegate: JNetworkDelegate){
+    constructor(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any, delegate: INetworkDelegate){
         this.method = method;
         this.baseUrl = baseUrl;
         this.url = url;
@@ -47,7 +47,7 @@ export default class JRequester{
      * @param delegate 网络请求代理
      * @returns {CancelPromiseFactory<any>}
      */
-    static create(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any, delegate: JNetworkDelegate): JRequester{
+    static create(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any, delegate: INetworkDelegate): JRequester{
         let requester = new JRequester(method, baseUrl, url, parameters, headers, otherObject, delegate);
         let jaxios = axios.create({
             method: method,
@@ -56,6 +56,7 @@ export default class JRequester{
             headers,
             ...otherObject
         })
+        delegate = {...DEFAULT_DELEGATE, ...delegate};
         requester.jaxios = jaxios;
         jaxios.interceptors.request.use(config => {
             config.params = {...parameters};

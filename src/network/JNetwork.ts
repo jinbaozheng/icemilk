@@ -4,16 +4,16 @@
 
 
 'use strict';
-import JNetworkDelegate from "../delegate/JNetworkDelegate";
+import INetworkDelegate from "../interface/INetworkDelegate";
 import JRequester from './JRequester';
 import CancelPromiseFactory, {JPromise} from '../factory/CancelPromiseFactory';
-import JNetworkConfig from './JNetworkConfig';
-import {AxiosResponse} from 'axios';
+import INetworkConfig, {DEFAULT_CONFIG} from '../interface/INetworkConfig';
+import {AxiosRequestConfig, AxiosResponse} from 'axios';
 import {jgetGlobalValue} from './JNetworkFunc';
 import JNetworkGroup from './JNetworkGroup';
 import JNetworkError from './JNetworkError';
-import JNetworkFetch from '../interface/JNetworkFetch'
-import JNetworkExtra from '../interface/JNetworkExtra'
+import INetworkFetch from '../interface/INetworkFetch'
+import INetworkExtra from '../interface/INetworkExtra'
 
 let INSTANCE_COUNT = 0;
 
@@ -23,31 +23,33 @@ let INSTANCE_COUNT = 0;
  * 网络请求类
  * @hideconstructor
  */
-class JNetwork implements JNetworkFetch, JNetworkExtra{
+class JNetwork implements INetworkFetch, INetworkExtra{
     static _instance: any;
-    readonly config = JNetworkConfig.DEFAULT_CONFIG;
+    readonly config: INetworkConfig = DEFAULT_CONFIG;
     readonly baseUrl: string;
-    readonly delegate: JNetworkDelegate;
+    readonly delegate: INetworkDelegate;
     readonly carryData: object | Function;
-    readonly timeout: number;
+    readonly axiosConfig: AxiosRequestConfig;
     readonly instanceId: number;
     private readonly groupList: Array<JNetworkGroup> = [];
     extraParas: Array<string|object> = [];
     extraHeaders: Array<string|object> = [];
 
-    constructor(config: JNetworkConfig = JNetworkConfig.DEFAULT_CONFIG){
-        config = {...JNetworkConfig.DEFAULT_CONFIG, ...config};
+    constructor(config: INetworkConfig = DEFAULT_CONFIG){
+        config = {...DEFAULT_CONFIG, ...config};
         this.baseUrl = config.baseUrl;
         this.delegate = config.delegate;
         this.carryData = config.carryData;
-        this.timeout = config.timeout;
+        this.axiosConfig = config.axiosConfig || {
+            timeout: 10 * 1000
+        };
         this.config = config;
         this.instanceId = ++INSTANCE_COUNT;
         return this;
     }
 
     static useParas(...paras: Array<string|object>): JNetwork{
-        let instance = JNetwork.call(this);
+        let instance = new this();
         instance.extraParas = paras;
         return instance;
     }
@@ -83,7 +85,7 @@ class JNetwork implements JNetworkFetch, JNetworkExtra{
             },
             ...options
         };
-        let group = new JNetworkGroup(this.baseUrl, this.getCarryData(), this.timeout, this.delegate, {
+        let group = new JNetworkGroup(this.baseUrl, this.getCarryData(), this.axiosConfig, this.delegate, {
             freezeParas: this.extraParas,
             freezeHeaders: this.extraHeaders,
             isSync: options.isSync
@@ -96,6 +98,7 @@ class JNetwork implements JNetworkFetch, JNetworkExtra{
     }
 
     clearGroup(){
+        // TODO: 冻结每组活动
         this.groupList.splice(0);
     }
 
@@ -181,7 +184,7 @@ class JNetwork implements JNetworkFetch, JNetworkExtra{
             url,
             {...parameters, ...globalOtherParas},
             {...headers, ...globalOtherHeaders},
-            {timeout: this.timeout, ...otherObject},
+            {...this.axiosConfig, ...otherObject},
             delegate
         );
         return CancelPromiseFactory.createJPromise((resolve, reject) => {
@@ -272,14 +275,14 @@ class JNetwork implements JNetworkFetch, JNetworkExtra{
         return this.freedomPOST(this.baseUrl, url, {
             ...this.getCarryData(),
             ...parameters
-        }, headers, {timeout: this.timeout, ...otherObject})
+        }, headers, {...this.axiosConfig, ...otherObject})
     }
 
     GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
         return this.freedomGET(this.baseUrl, url, {
             ...this.getCarryData(),
             ...parameters
-        }, headers, {timeout: this.timeout, ...otherObject})
+        }, headers, {...this.axiosConfig, ...otherObject})
     }
 }
 
