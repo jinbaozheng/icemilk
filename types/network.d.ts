@@ -1,10 +1,9 @@
 import {JPromise} from "./structure";
-import {JNetworkDelegate} from "./delegate";
-import JNetworkFetch from "./interface";
-import {AxiosResponse} from "axios";
-import JNetworkExtra from "../src/interface/JNetworkExtra";
+import {INetworkFetch, INetworkExtra, INetworkConfig} from "./interface";
+import {AxiosRequestConfig, AxiosResponse} from "axios";
+import {INetworkDelegate} from "./interface";
 
-export declare class JNetworkRoot {
+export declare class JNetworkRoot extends JNetwork{
     otherParas: Array<string|object>;
     otherHeaders: Array<string|object>;
     static useParas(...paras: Array<string|object>): JNetworkRoot
@@ -15,18 +14,15 @@ export declare class JNetworkRoot {
     prefixPromise(url, paras?: object, headers?: object, options?: object): Promise<any>
 }
 
-export declare class JNetworkConfig{
-    baseUrl: string;
-    delegate: JNetworkDelegate;
-    carryData: object | Function;
-    timeout: number;
-    static readonly DEFAULT_CONFIG: JNetworkConfig;
-}
-
-export declare class JNetwork implements JNetworkFetch, JNetworkExtra{
+export declare class JNetwork implements INetworkFetch, INetworkExtra{
+    readonly baseUrl: string;
+    readonly carryData: object | Function;
+    readonly axiosConfig: AxiosRequestConfig;
+    readonly delegate: INetworkDelegate;
+    readonly instanceId: number;
     extraParas: Array<string|object>;
     extraHeaders: Array<string|object>;
-    constructor(config: JNetworkConfig)
+    constructor(config: INetworkConfig)
     static useParas(...paras: Array<string|object>)
     static useHeaders(...headers: Array<string|object>)
     useParas(...paras: Array<string|object>): JNetwork
@@ -43,7 +39,13 @@ export declare class JNetwork implements JNetworkFetch, JNetworkExtra{
     GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError>;
 }
 
-export declare class JNetworkGroup implements JNetworkFetch, JNetworkExtra{
+export declare class JNetworkGroup implements INetworkFetch, INetworkExtra{
+    readonly baseUrl: string;
+    readonly carryData: object;
+    readonly axiosConfig: AxiosRequestConfig;
+    readonly delegate: INetworkDelegate;
+    readonly groupId: number;
+    readonly isSync: boolean;
     extraParas: Array<string|object>;
     extraHeaders: Array<string|object>;
     useParas(...paras: Array<string|object>): JNetwork
