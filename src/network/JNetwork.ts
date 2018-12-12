@@ -71,6 +71,10 @@ class JNetwork implements INetworkFetch, INetworkExtra{
     }
 
     static instance(): JNetwork {
+        return new this();
+    }
+
+    static defaultInstance(): JNetwork {
         if (!this._instance) {
             this._instance = new this();
         }
