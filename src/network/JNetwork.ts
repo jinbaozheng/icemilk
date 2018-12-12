@@ -213,8 +213,8 @@ class JNetwork implements INetworkFetch, INetworkExtra{
      * @param {object} otherObject 其他可用配置
      * @returns {Promise} 异步请求块
      */
-    static freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse> {
-        return this.instance().freedomPOST.apply(this._instance, Array.from(arguments))
+    static freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
+        return this.instance().freedomPOST(baseUrl, url, parameters, headers, otherObject)
     }
 
     /**
@@ -226,8 +226,8 @@ class JNetwork implements INetworkFetch, INetworkExtra{
      * @param {object} otherObject
      * @returns {Promise} 异步请求块
      */
-    static freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse> {
-        return this.instance().freedomGET.apply(this._instance, Array.from(arguments))
+    static freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
+        return this.instance().freedomGET(baseUrl, url, parameters, headers, otherObject)
     }
 
     /**
@@ -238,8 +238,8 @@ class JNetwork implements INetworkFetch, INetworkExtra{
      * @param {object} otherObject 其他参数
      * @returns {Promise} 异步请求块
      */
-    static POST(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse> {
-        return this.instance().POST.apply(this._instance, Array.from(arguments))
+    static POST(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
+        return this.instance().POST(url, parameters, headers, otherObject)
     }
 
     /**
@@ -250,8 +250,8 @@ class JNetwork implements INetworkFetch, INetworkExtra{
      * @param {object} otherObject 其他参数
      * @returns {Promise} 异步请求块
      */
-    static GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse> {
-        return this.instance().GET.apply(this._instance, Array.from(arguments))
+    static GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
+        return this.instance().GET(url, parameters, headers, otherObject)
     }
 
     getCarryData(): object{
