@@ -3,12 +3,14 @@
  */
 /* eslint-disable */
 import Network from './network/JNetwork';
-import NetworkConfig from './network/JNetworkConfig';
+import NetworkGroup from './network/JNetworkGroup';
 import NetworkRoot from './network/JNetworkRoot';
+import NetworkError from './network/JNetworkError';
 export {
     Network as JNetwork,
-    NetworkConfig as JNetworkConfig,
-    NetworkRoot as JNetworkRoot
+    NetworkGroup as JNetworkGroup,
+    NetworkRoot as JNetworkRoot,
+    NetworkError as JNetworkError
 };
 
 import ToolDate from './tool/JToolDate';
