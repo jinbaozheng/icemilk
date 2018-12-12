@@ -1,22 +1,22 @@
-import {AxiosResponse} from "axios";
+import {AxiosRequestConfig, AxiosResponse} from "axios";
 import JRequester from "./JRequester";
 import CancelPromiseFactory, {JPromise} from "../factory/CancelPromiseFactory";
 import {jgetGlobalValue} from './JNetworkFunc';
-import JNetworkDelegate from "../delegate/JNetworkDelegate";
+import INetworkDelegate from "../interface/INetworkDelegate";
 import JNetworkError from './JNetworkError';
 import JRequestEngine from '../util/JRequestEngine';
-import JNetworkFetch from "../interface/JNetworkFetch";
-import JNetworkExtra from "../interface/JNetworkExtra";
+import INetworkFetch from "../interface/INetworkFetch";
+import INetworkExtra from "../interface/INetworkExtra";
 let GROUP_COUNT = 0
 
 /**
  * @private
  */
-export default class JNetworkGroup implements JNetworkFetch, JNetworkExtra{
+export default class JNetworkGroup implements INetworkFetch, INetworkExtra{
     readonly baseUrl: string;
     readonly carryData: object;
-    readonly timeout: number;
-    readonly delegate: JNetworkDelegate;
+    readonly axiosConfig: AxiosRequestConfig;
+    readonly delegate: INetworkDelegate;
     readonly groupId: number;
     readonly isSync: boolean;
 
@@ -36,10 +36,10 @@ export default class JNetworkGroup implements JNetworkFetch, JNetworkExtra{
         return this;
     }
 
-    constructor(baseUrl: string, carryData: object, timeout: number, delegate: JNetworkDelegate, options?:any){
+    constructor(baseUrl: string, carryData: object, axiosConfig: AxiosRequestConfig, delegate: INetworkDelegate, options?:any){
         this.baseUrl = baseUrl;
         this.carryData = carryData;
-        this.timeout = timeout;
+        this.axiosConfig = axiosConfig;
         this.delegate = delegate;
         this.groupId = ++GROUP_COUNT;
         if (options){
@@ -94,7 +94,7 @@ export default class JNetworkGroup implements JNetworkFetch, JNetworkExtra{
             url,
             {...parameters, ...globalOtherParas},
             {...headers, ...globalOtherHeaders},
-            {timeout: this.timeout, ...otherObject},
+            {axiosConfig: this.axiosConfig, ...otherObject},
             delegate
         );
         if (this.isSync){
@@ -126,13 +126,13 @@ export default class JNetworkGroup implements JNetworkFetch, JNetworkExtra{
         return this.freedomPOST(this.baseUrl, url, {
             ...this.carryData,
             ...parameters
-        }, headers, {timeout: this.timeout, ...otherObject})
+        }, headers, {...this.axiosConfig, ...otherObject})
     }
 
     GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
         return this.freedomGET(this.baseUrl, url, {
             ...this.carryData,
             ...parameters
-        }, headers, {timeout: this.timeout, ...otherObject})
+        }, headers, {...this.axiosConfig, ...otherObject})
     }
 }
