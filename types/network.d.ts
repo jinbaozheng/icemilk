@@ -8,7 +8,8 @@ export declare class JNetworkRoot extends JNetwork{
     otherHeaders: Array<string|object>;
     static useParas(...paras: Array<string|object>): JNetworkRoot
     static useHeaders(...headers: Array<string|object>): JNetworkRoot
-    static instance(): any
+    static instance(): JNetwork
+    static defaultInstance(): JNetwork
     useParas(...paras: Array<string|object>): JNetworkRoot
     useHeaders(...headers: Array<string|object>): JNetworkRoot
     prefixPromise(url, paras?: object, headers?: object, options?: object): Promise<any>
