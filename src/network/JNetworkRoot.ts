@@ -3,46 +3,22 @@
  */
 import JNetwork from './JNetwork';
 
-class JNetworkRoot{
-  otherParas: Array<string|object> = [];
-  otherHeaders: Array<string|object> = [];
-  static _instance: any;
-
-  static useParas(...paras: Array<string|object>) {
-    let instance = new this();
-    instance.otherParas = paras;
-    return instance;
-  }
-
-  static useHeaders(...headers: Array<string|object>) {
-    let instance = new this();
-    instance.otherHeaders = headers;
-    return instance;
-  }
-
-  useParas(...paras: Array<string|object>): JNetworkRoot {
-    this.otherParas = paras;
-    return this;
-  }
-
-  useHeaders(...headers: Array<string|object>): JNetworkRoot {
-    this.otherHeaders = headers;
-    return this;
-  }
-
-  static instance(): any {
-    if (!this._instance) {
-      this._instance = new this();
-      this._instance.test = Math.random();
+class JNetworkRoot extends JNetwork{
+    /**
+     * 便捷添加全局paras及headers
+     * @deprecated
+     * @param url
+     * @param {object} paras
+     * @param {object} headers
+     * @param {object} options
+     * @return {Promise<AxiosResponse>}
+     */
+    prefixPromise(url, paras?: object, headers?: object, options?: object){
+        console.warn('the Function <prefixPromise> is deprecated since icemilk-1.0.1, please use freedomPOST or POST method instead of.');
+        return this.useParas(...this.extraParas).useHeaders(...this.extraHeaders).POST(url, paras, headers).then(data => {
+            return data;
+        });
     }
-    return this._instance;
-  }
-
-  prefixPromise(url, paras?: object, headers?: object, options?: object){
-    return JNetwork.useParas(...this.otherParas).useHeaders(...this.otherHeaders).POST(url, paras, headers).then(data => {
-      return data;
-    });
-  }
 }
 
 export default JNetworkRoot;
