@@ -5,21 +5,18 @@
 import {AxiosRequestConfig, AxiosResponse} from "axios";
 import UrlTool from "../tool/JToolUrl";
 
-abstract class JNetworkDelegate{
+export default interface INetworkDelegate{
     globalParas: Function;
     globalHeaders: Function;
-    abstract requestInterceptor(config: AxiosRequestConfig): AxiosRequestConfig;
-    abstract requestInterceptorError(error: Error): Promise<never>;
-    abstract responseInterceptor(response: AxiosResponse): AxiosResponse;
-    abstract responseInterceptorError(error: Error): Promise<never>;
-    abstract resolveInterceptor(response: AxiosResponse, data: any): boolean;
-    abstract rejectInterceptor(response: AxiosResponse, error: Error): boolean;
+    requestInterceptor(config: AxiosRequestConfig): AxiosRequestConfig;
+    requestInterceptorError(error: Error): Promise<never>;
+    responseInterceptor(response: AxiosResponse): AxiosResponse;
+    responseInterceptorError(error: Error): Promise<never>;
+    resolveInterceptor(response: AxiosResponse, data: any): boolean;
+    rejectInterceptor(response: AxiosResponse, error: Error): boolean;
 }
 
-export default JNetworkDelegate;
-
-// export const defaultInterceptor = {
-export const DEFAULT_DELEGATE: JNetworkDelegate = {
+export const DEFAULT_DELEGATE: INetworkDelegate = {
     globalParas: () => {},
     globalHeaders: () => {},
     requestInterceptor: (config: AxiosRequestConfig): AxiosRequestConfig => {

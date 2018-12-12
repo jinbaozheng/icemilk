@@ -1,4 +1,4 @@
-export default interface JNetworkExtra {
+export default interface INetworkExtra {
     useParas(...paras: Array<string|object>);
     useHeaders(...headers: Array<string|object>);
     extraParas: Array<string|object>;
