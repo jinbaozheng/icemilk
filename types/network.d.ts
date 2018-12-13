@@ -10,8 +10,6 @@ export declare class JNetworkRoot extends JNetwork{
     static useHeaders(...headers: Array<string|object>): JNetworkRoot
     static instance(): JNetwork
     static defaultInstance(): JNetwork
-    useParas(...paras: Array<string|object>): JNetworkRoot
-    useHeaders(...headers: Array<string|object>): JNetworkRoot
     prefixPromise(url, paras?: object, headers?: object, options?: object): Promise<any>
 }
 
@@ -26,8 +24,8 @@ export declare class JNetwork implements INetworkFetch, INetworkExtra{
     constructor(config: INetworkConfig)
     static useParas(...paras: Array<string|object>)
     static useHeaders(...headers: Array<string|object>)
-    useParas(...paras: Array<string|object>): JNetwork
-    useHeaders(...headers: Array<string|object>): JNetwork
+    useParas<T extends JNetwork>(...paras: Array<string|object>): T;
+    useHeaders<T extends JNetwork>(...headers: Array<string|object>): T;
     static instance(): JNetwork
     static defaultInstance(): JNetwork
     static freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any>
@@ -48,8 +46,8 @@ export declare class JNetworkGroup implements INetworkFetch, INetworkExtra{
     readonly isSync: boolean;
     extraParas: Array<string|object>;
     extraHeaders: Array<string|object>;
-    useParas(...paras: Array<string|object>): JNetwork
-    useHeaders(...headers: Array<string|object>): JNetwork
+    useParas<T extends JNetwork>(...paras: Array<string|object>): T;
+    useHeaders<T extends JNetwork>(...headers: Array<string|object>): T;
     fetchRequest(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any): JPromise<AxiosResponse|JNetworkError>;
     freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError>;
     freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError>;

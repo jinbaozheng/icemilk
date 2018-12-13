@@ -7,6 +7,7 @@ import JNetworkError from './JNetworkError';
 import JRequestEngine from '../util/JRequestEngine';
 import INetworkFetch from "../interface/INetworkFetch";
 import INetworkExtra from "../interface/INetworkExtra";
+import JNetwork from "./JNetwork";
 let GROUP_COUNT = 0
 
 /**
@@ -26,14 +27,14 @@ export default class JNetworkGroup implements INetworkFetch, INetworkExtra{
     extraParas: Array<string|object> = [];
     extraHeaders: Array<string|object> = [];
 
-    useParas(...paras: Array<string|object>): JNetworkGroup {
+    useParas<T extends JNetwork>(...paras: Array<string|object>): T {
         this.extraParas = paras;
-        return this;
+        return this as any as T;
     }
 
-    useHeaders(...headers: Array<string|object>): JNetworkGroup {
+    useHeaders<T extends JNetwork>(...headers: Array<string|object>): T {
         this.extraHeaders = headers;
-        return this;
+        return this as any as T;
     }
 
     constructor(baseUrl: string, carryData: object, axiosConfig: AxiosRequestConfig, delegate: INetworkDelegate, options?:any){
