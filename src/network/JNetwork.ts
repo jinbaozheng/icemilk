@@ -49,13 +49,13 @@ class JNetwork implements INetworkFetch, INetworkExtra{
     }
 
     static useParas(...paras: Array<string|object>): JNetwork{
-        let instance = new this();
+        let instance = this.defaultInstance();
         instance.extraParas = paras;
         return instance;
     }
 
     static useHeaders(...headers: Array<string|object>): JNetwork{
-        let instance = new this();
+        let instance = this.defaultInstance();
         instance.extraHeaders = headers;
         return instance;
     }
@@ -70,13 +70,13 @@ class JNetwork implements INetworkFetch, INetworkExtra{
         return this;
     }
 
-    static instance(): JNetwork {
-        return new this();
+    static instance(config: INetworkConfig = DEFAULT_CONFIG): JNetwork {
+        return new JNetwork(config);
     }
 
     static defaultInstance(): JNetwork {
         if (!this._instance) {
-            this._instance = new this();
+            this._instance = new JNetwork();
         }
         return this._instance;
     }
@@ -214,7 +214,7 @@ class JNetwork implements INetworkFetch, INetworkExtra{
      * @returns {Promise} 异步请求块
      */
     static freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
-        return this.instance().freedomPOST(baseUrl, url, parameters, headers, otherObject)
+        return this.defaultInstance().freedomPOST(baseUrl, url, parameters, headers, otherObject)
     }
 
     /**
@@ -227,31 +227,7 @@ class JNetwork implements INetworkFetch, INetworkExtra{
      * @returns {Promise} 异步请求块
      */
     static freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
-        return this.instance().freedomGET(baseUrl, url, parameters, headers, otherObject)
-    }
-
-    /**
-     * post请求
-     * @param {string} url 相对地址
-     * @param {object} parameters 地址参数
-     * @param {object} headers 头参数
-     * @param {object} otherObject 其他参数
-     * @returns {Promise} 异步请求块
-     */
-    static POST(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
-        return this.instance().POST(url, parameters, headers, otherObject)
-    }
-
-    /**
-     * get请求
-     * @param {string} url 相对地址
-     * @param {object} parameters 地址参数
-     * @param {object} headers 头参数
-     * @param {object} otherObject 其他参数
-     * @returns {Promise} 异步请求块
-     */
-    static GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
-        return this.instance().GET(url, parameters, headers, otherObject)
+        return this.defaultInstance().freedomGET(baseUrl, url, parameters, headers, otherObject)
     }
 
     getCarryData(): object{
