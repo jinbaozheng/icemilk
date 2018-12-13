@@ -32,8 +32,6 @@ export declare class JNetwork implements INetworkFetch, INetworkExtra{
     static defaultInstance(): JNetwork
     static freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any>
     static freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any>
-    static POST(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any>
-    static GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any>
     fetchRequest(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any): JPromise<AxiosResponse|JNetworkError>;
     freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError>;
     freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError>;
