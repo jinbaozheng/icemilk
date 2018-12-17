@@ -61,14 +61,14 @@ class JNetwork implements INetworkFetch, INetworkExtra{
         return instance;
     }
 
-    useParas<T extends JNetwork>(...paras: Array<string|object>): T {
+    useParas(...paras: Array<string|object>): this {
         this.extraParas = paras;
-        return this as any as T;
+        return this;
     }
 
-    useHeaders<T extends JNetwork>(...headers: Array<string|object>): T {
+    useHeaders(...headers: Array<string|object>): this {
         this.extraHeaders = headers;
-        return this as any as T;
+        return this;
     }
 
     static instance(config: INetworkConfig = DEFAULT_CONFIG): JNetwork {

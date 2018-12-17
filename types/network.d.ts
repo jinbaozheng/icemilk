@@ -22,14 +22,14 @@ export declare class JNetwork implements INetworkFetch, INetworkExtra{
     extraParas: Array<string|object>;
     extraHeaders: Array<string|object>;
     constructor(config: INetworkConfig)
-    static useParas(...paras: Array<string|object>)
-    static useHeaders(...headers: Array<string|object>)
-    useParas<T extends JNetwork>(...paras: Array<string|object>): T;
-    useHeaders<T extends JNetwork>(...headers: Array<string|object>): T;
+    static useParas(...paras: Array<string|object>): JNetwork;
+    static useHeaders(...headers: Array<string|object>): JNetwork;
     static instance(): JNetwork
     static defaultInstance(): JNetwork
     static freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any>
     static freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<any>
+    useParas(...paras: Array<string|object>): this;
+    useHeaders(...headers: Array<string|object>): this;
     fetchRequest(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any): JPromise<AxiosResponse|JNetworkError>;
     freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError>;
     freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError>;
@@ -46,8 +46,8 @@ export declare class JNetworkGroup implements INetworkFetch, INetworkExtra{
     readonly isSync: boolean;
     extraParas: Array<string|object>;
     extraHeaders: Array<string|object>;
-    useParas<T extends JNetwork>(...paras: Array<string|object>): T;
-    useHeaders<T extends JNetwork>(...headers: Array<string|object>): T;
+    useParas(...paras: Array<string|object>): this;
+    useHeaders(...headers: Array<string|object>): this;
     fetchRequest(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any): JPromise<AxiosResponse|JNetworkError>;
     freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError>;
     freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError>;

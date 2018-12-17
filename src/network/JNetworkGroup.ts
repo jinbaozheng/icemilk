@@ -27,14 +27,14 @@ export default class JNetworkGroup implements INetworkFetch, INetworkExtra{
     extraParas: Array<string|object> = [];
     extraHeaders: Array<string|object> = [];
 
-    useParas<T extends JNetwork>(...paras: Array<string|object>): T {
+    useParas(...paras: Array<string|object>): this {
         this.extraParas = paras;
-        return this as any as T;
+        return this;
     }
 
-    useHeaders<T extends JNetwork>(...headers: Array<string|object>): T {
+    useHeaders(...headers: Array<string|object>): this {
         this.extraHeaders = headers;
-        return this as any as T;
+        return this;
     }
 
     constructor(baseUrl: string, carryData: object, axiosConfig: AxiosRequestConfig, delegate: INetworkDelegate, options?:any){
