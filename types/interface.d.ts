@@ -3,6 +3,7 @@ import {JPromise} from "./structure";
 import {JNetworkError} from "./network";
 import {INetworkDelegate} from "./interface";
 
+export type INetworkStandardPromiseType<T> = JPromise<T>;
 export declare interface INetworkExtra {
     useParas(...paras: Array<string|object>);
     useHeaders(...headers: Array<string|object>);
@@ -14,8 +15,8 @@ export declare interface INetworkFetch {
     fetchRequest(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any): JPromise<AxiosResponse|JNetworkError>;
     freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError>;
     freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError>;
-    POST(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError>;
-    GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError>;
+    POST(url: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<any>;
+    GET(url: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<any>;
 }
 
 

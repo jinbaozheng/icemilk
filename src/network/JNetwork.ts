@@ -6,7 +6,7 @@
 'use strict';
 import INetworkDelegate from "../interface/INetworkDelegate";
 import JRequester from './JRequester';
-import CancelPromiseFactory, {JPromise} from '../factory/CancelPromiseFactory';
+import CancelPromiseFactory from '../factory/CancelPromiseFactory';
 import INetworkConfig, {DEFAULT_CONFIG} from '../interface/INetworkConfig';
 import {AxiosRequestConfig, AxiosResponse} from 'axios';
 import {jgetGlobalValue} from './JNetworkFunc';
@@ -14,6 +14,7 @@ import JNetworkGroup from './JNetworkGroup';
 import JNetworkError from './JNetworkError';
 import INetworkFetch from '../interface/INetworkFetch'
 import INetworkExtra from '../interface/INetworkExtra'
+import {INetworkStandardPromiseType} from "../../types";
 
 let INSTANCE_COUNT = 0;
 
@@ -153,7 +154,7 @@ class JNetwork implements INetworkFetch, INetworkExtra{
      * @param otherObject 其他相关设置
      * @returns {CancelPromiseFactory<any>}
      */
-    fetchRequest(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any): JPromise<AxiosResponse|JNetworkError> {
+    fetchRequest(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
         let extraParas = this.extraParas;
         let extraHeaders = this.extraHeaders;
         this.clearExtraData();
@@ -213,7 +214,7 @@ class JNetwork implements INetworkFetch, INetworkExtra{
      * @param {object} otherObject 其他可用配置
      * @returns {Promise} 异步请求块
      */
-    static freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
+    static freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
         return this.defaultInstance().freedomPOST(baseUrl, url, parameters, headers, otherObject)
     }
 
@@ -226,7 +227,7 @@ class JNetwork implements INetworkFetch, INetworkExtra{
      * @param {object} otherObject
      * @returns {Promise} 异步请求块
      */
-    static freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
+    static freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
         return this.defaultInstance().freedomGET(baseUrl, url, parameters, headers, otherObject)
     }
 
@@ -243,22 +244,22 @@ class JNetwork implements INetworkFetch, INetworkExtra{
         return carryData || {};
     }
 
-    freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
+    freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
         return this.fetchRequest('post', baseUrl, url || '', parameters || {}, headers || {}, otherObject || {});
     }
 
-    freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
+    freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
         return this.fetchRequest('get', baseUrl, url || '', parameters || {}, headers || {}, otherObject || {});
     }
 
-    POST(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
+    POST(url: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
         return this.freedomPOST(this.baseUrl, url, {
             ...this.getCarryData(),
             ...parameters
-        }, headers, {...this.axiosConfig, ...otherObject})
+        }, headers, {...this.axiosConfig, ...otherObject});
     }
 
-    GET(url: string, parameters?: object, headers?: object, otherObject?: object): JPromise<AxiosResponse|JNetworkError> {
+    GET(url: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
         return this.freedomGET(this.baseUrl, url, {
             ...this.getCarryData(),
             ...parameters
