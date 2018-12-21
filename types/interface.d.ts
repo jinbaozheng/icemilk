@@ -24,7 +24,7 @@ export declare interface INetworkConfig{
     baseUrl: string;
     delegate: INetworkDelegate;
     carryData: object | Function;
-    timeout: number;
+    axiosConfig: AxiosRequestConfig;
 }
 
 
