@@ -249,7 +249,7 @@ function jpara(...paras) {
 function jgetGlobalValue(key, globalValueRegistry){
     let otherParas = {};
     if (!globalValueRegistry){
-        throw new Error('未找到全局参数，请确认是否设置globalParas');
+        throw new Error('未找到全局参数，请确认是否设置global代理');
     }
     let globalParaFunc = null;
     if (typeof globalValueRegistry == "function"){
