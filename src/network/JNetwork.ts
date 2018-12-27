@@ -1,8 +1,3 @@
-/**
- * Created by cuppi on 2016/11/22.
- */
-
-
 'use strict';
 import INetworkDelegate from "../interface/INetworkDelegate";
 import JRequester from './JRequester';
@@ -15,6 +10,8 @@ import JNetworkError from './JNetworkError';
 import INetworkFetch from '../interface/INetworkFetch'
 import INetworkExtra from '../interface/INetworkExtra'
 import {INetworkStandardPromiseType} from "../../types";
+import JNetworkRoot from "./JNetworkRoot";
+import JToolObject from '../tool/JToolObject';
 
 let INSTANCE_COUNT = 0;
 
@@ -24,23 +21,26 @@ let INSTANCE_COUNT = 0;
  * 网络请求类
  * @hideconstructor
  */
-class JNetwork implements INetworkFetch, INetworkExtra{
+class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
     static _instance: any;
     readonly config: INetworkConfig = DEFAULT_CONFIG;
     readonly baseUrl: string;
     readonly delegate: INetworkDelegate;
-    readonly carryData: object | Function;
+    readonly carryParams: object | Function;
+    readonly carryHeaders: object | Function;
+    readonly carryBodyData: object | Function;
     readonly axiosConfig: AxiosRequestConfig;
     readonly instanceId: number;
     private readonly groupList: Array<JNetworkGroup> = [];
-    extraParas: Array<string|object> = [];
-    extraHeaders: Array<string|object> = [];
 
     constructor(config: INetworkConfig = DEFAULT_CONFIG){
+        super()
         config = {...DEFAULT_CONFIG, ...config};
         this.baseUrl = config.baseUrl;
-        this.delegate = config.delegate;
-        this.carryData = config.carryData;
+        this.delegate = config.delegate || null;
+        this.carryParams = config.carryParams || {};
+        this.carryHeaders = config.carryHeaders || {};
+        this.carryBodyData = config.carryBodyData || {};
         this.axiosConfig = config.axiosConfig || {
             timeout: 10 * 1000
         };
@@ -51,7 +51,7 @@ class JNetwork implements INetworkFetch, INetworkExtra{
 
     static useParas(...paras: Array<string|object>): JNetwork{
         let instance = this.defaultInstance();
-        instance.extraParas = paras;
+        instance.extraParams = paras;
         return instance;
     }
 
@@ -61,14 +61,10 @@ class JNetwork implements INetworkFetch, INetworkExtra{
         return instance;
     }
 
-    useParas(...paras: Array<string|object>): this {
-        this.extraParas = paras;
-        return this;
-    }
-
-    useHeaders(...headers: Array<string|object>): this {
-        this.extraHeaders = headers;
-        return this;
+    static useBodyData(...bodyData: Array<string|object>): JNetwork {
+        let instance = this.defaultInstance();
+        instance.extraBodyData = bodyData;
+        return instance;
     }
 
     static instance(config: INetworkConfig = DEFAULT_CONFIG): JNetwork {
@@ -90,9 +86,13 @@ class JNetwork implements INetworkFetch, INetworkExtra{
             },
             ...options
         };
-        let group = new JNetworkGroup(this.baseUrl, this.getCarryData(), this.axiosConfig, this.delegate, {
-            freezeParas: this.extraParas,
+        let group = new JNetworkGroup(this.baseUrl, this.axiosConfig, this.delegate, {
+            freezeParas: this.extraParams,
             freezeHeaders: this.extraHeaders,
+            freezeBodyData: this.extraBodyData,
+            freezeCarryParams: JToolObject.getObjOrFuncResult(this.carryParams),
+            freezeCarryHeaders: JToolObject.getObjOrFuncResult(this.carryHeaders),
+            freezeCarryBodyData: JToolObject.getObjOrFuncResult(this.carryBodyData),
             isSync: options.isSync
         });
         if (!options.notClearExtraData){
@@ -129,10 +129,6 @@ class JNetwork implements INetworkFetch, INetworkExtra{
         });
     }
 
-    clearExtraData(){
-        this.extraParas = [];
-        this.extraHeaders = [];
-    }
     /***
      * 检查是否配置SDK
      * @private
@@ -150,13 +146,18 @@ class JNetwork implements INetworkFetch, INetworkExtra{
      * @param baseUrl 基地址
      * @param url 相对地址
      * @param parameters 参数
+     * @param data data参数
      * @param headers 头参数
      * @param otherObject 其他相关设置
      * @returns {CancelPromiseFactory<any>}
      */
-    fetchRequest(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
-        let extraParas = this.extraParas;
-        let extraHeaders = this.extraHeaders;
+    fetchRequest(method: string, baseUrl: string, url: string, parameters: object, data: object, headers: object, otherObject: any): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
+        let extraParams: (string|object)[] = this.extraParams;
+        let extraHeaders: (string|object)[] = this.extraHeaders;
+        let extraBodyData: (string|object)[] = this.extraBodyData;
+        let carryParams: object = JToolObject.getObjOrFuncResult(this.carryParams);
+        let carryHeaders: object = JToolObject.getObjOrFuncResult(this.carryHeaders);
+        let carryBodyData: object = JToolObject.getObjOrFuncResult(this.carryBodyData);
         this.clearExtraData();
         let isOk;
         const delegate = this.delegate;
@@ -166,7 +167,7 @@ class JNetwork implements INetworkFetch, INetworkExtra{
         }, headers);
 
         let globalOtherParas = {};
-        extraParas.forEach(key => {
+        extraParams.forEach(key => {
             if (typeof key == "object"){
                 globalOtherParas = {...globalOtherParas, ...key};
                 return;
@@ -181,14 +182,26 @@ class JNetwork implements INetworkFetch, INetworkExtra{
                 return;
             }
             if (!delegate) return;
-            globalOtherHeaders = {...globalOtherParas, ...jgetGlobalValue(key, delegate.globalHeaders)}
+            globalOtherHeaders = {...globalOtherHeaders, ...jgetGlobalValue(key, delegate.globalHeaders)}
         });
+
+        let globalOtherBodyData = {};
+        extraBodyData.forEach(key => {
+            if (typeof key == "object"){
+                globalOtherBodyData = {...globalOtherBodyData, ...key};
+                return;
+            }
+            if (!delegate) return;
+            globalOtherBodyData = {...globalOtherBodyData, ...jgetGlobalValue(key, delegate.globalBodyData)}
+        });
+
         let request: JRequester = JRequester.create(
             method,
             baseUrl,
             url,
-            {...parameters, ...globalOtherParas},
-            {...headers, ...globalOtherHeaders},
+            {...carryParams, ...globalOtherParas, ...parameters},
+            {...carryBodyData,  ...globalOtherBodyData, ...data},
+            {...carryHeaders, ...globalOtherHeaders, ...headers},
             {...this.axiosConfig, ...otherObject},
             delegate
         );
@@ -231,39 +244,36 @@ class JNetwork implements INetworkFetch, INetworkExtra{
         return this.defaultInstance().freedomGET(baseUrl, url, parameters, headers, otherObject)
     }
 
-    getCarryData(): object{
-        let carryData: object = null;
-        if (this.carryData){
-            if (typeof this.carryData == "function"){
-                carryData = this.carryData();
-            }
-            if (typeof this.carryData == "object"){
-                carryData = this.carryData;
-            }
-        }
-        return carryData || {};
-    }
-
     freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
-        return this.fetchRequest('post', baseUrl, url || '', parameters || {}, headers || {}, otherObject || {});
+        return this.fetchRequest('post', baseUrl, url || '', parameters || {}, {},headers || {}, otherObject || {});
     }
 
     freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
-        return this.fetchRequest('get', baseUrl, url || '', parameters || {}, headers || {}, otherObject || {});
+        return this.fetchRequest('get', baseUrl, url || '', parameters || {},{},headers || {}, otherObject || {});
     }
 
     POST(url: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
-        return this.freedomPOST(this.baseUrl, url, {
-            ...this.getCarryData(),
-            ...parameters
-        }, headers, {...this.axiosConfig, ...otherObject});
+        return this.freedomPOST(this.baseUrl, url, parameters, headers, {...this.axiosConfig, ...otherObject});
     }
 
     GET(url: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
-        return this.freedomGET(this.baseUrl, url, {
-            ...this.getCarryData(),
-            ...parameters
-        }, headers, {...this.axiosConfig, ...otherObject})
+        return this.freedomGET(this.baseUrl, url, parameters, headers, {...this.axiosConfig, ...otherObject})
+    }
+
+    freedomDataPOST(baseUrl: string, url?: string, data?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>{
+        return this.fetchRequest('post', baseUrl, url || '', {}, data || {}, headers || {}, otherObject || {});
+    }
+
+    freedomDataGET(baseUrl: string, url?: string, data?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>{
+        return this.fetchRequest('get', baseUrl, url || '', {}, data || {}, headers || {}, otherObject || {});
+    }
+
+    dataPOST( url?: string, data?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>{
+        return this.freedomDataPOST(this.baseUrl, url,  data, headers, {...this.axiosConfig, ...otherObject});
+    }
+
+    dataGET(url?: string, data?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>{
+        return this.freedomDataGET(this.baseUrl, url,  data, headers, {...this.axiosConfig, ...otherObject});
     }
 }
 
