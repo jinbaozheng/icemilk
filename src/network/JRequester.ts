@@ -42,21 +42,23 @@ export default class JRequester{
      * @param baseUrl 基地址
      * @param url 相对地址
      * @param parameters 参数
+     * @param data data参数
      * @param headers 头参数
      * @param otherObject 其他相关设置
      * @param delegate 网络请求代理
      * @returns {CancelPromiseFactory<any>}
      */
-    static create(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any, delegate: INetworkDelegate): JRequester{
+    static create(method: string, baseUrl: string, url: string, parameters: object, data: object, headers: object, otherObject: any, delegate: INetworkDelegate): JRequester{
         let requester = new JRequester(method, baseUrl, url, parameters, headers, otherObject, delegate);
         let jaxios = axios.create({
             method: method,
             params: parameters,
             baseURL: baseUrl,
+            data: data,
             headers,
             ...otherObject
         })
-        delegate = {...DEFAULT_DELEGATE, ...delegate};
+        delegate = {...DEFAULT_DELEGATE, ...(delegate || {})};
         requester.jaxios = jaxios;
         jaxios.interceptors.request.use(config => {
             config.params = {...parameters};
