@@ -2,6 +2,7 @@ import {AxiosRequestConfig, AxiosResponse} from "axios";
 import {JPromise} from "./structure";
 import {JNetworkError} from "./network";
 import {INetworkDelegate} from "./interface";
+import {GlobalValueRegistry} from "./other";
 
 export type INetworkStandardPromiseType<T> = JPromise<T>;
 export declare interface INetworkExtra {
@@ -38,13 +39,15 @@ export declare interface INetworkConfig{
 
 
 export declare interface INetworkDelegate{
-    globalParas: Function;
-    globalHeaders: Function;
-    globalBodyData: Function;
+    globalParas: GlobalValueRegistry;
+    globalHeaders: GlobalValueRegistry;
+    globalBodyData: GlobalValueRegistry;
     requestInterceptor(config: AxiosRequestConfig): AxiosRequestConfig;
     requestInterceptorError(error: Error): Promise<never>;
     responseInterceptor(response: AxiosResponse): AxiosResponse;
     responseInterceptorError(error: Error): Promise<never>;
     resolveInterceptor(response: AxiosResponse, data: any): boolean;
     rejectInterceptor(response: AxiosResponse, error: Error): boolean;
+    responseDataInterceptor?(data: any, response?: AxiosResponse): any;
+    responseErrorInterceptor?(error: Error, response?: AxiosResponse): Error;
 }
