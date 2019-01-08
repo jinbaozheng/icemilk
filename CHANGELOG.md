@@ -4,7 +4,9 @@
  * 增加Network的body中的data的支持
  * 更改JNetworkRoot 为 JNetwork 及 JNetworkGroup父类
  * INetworkConfig可选
-
+ * 修复当传递空bodydata时默认传递 {} 问题 
+ * 增加JNetwork及JNetworkGroup实例获取外部注入参数方法
+ 
 ## 1.0.6
  * 优化链式调用
  
