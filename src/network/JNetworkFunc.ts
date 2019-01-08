@@ -1,6 +1,5 @@
-/**
- * Created by cuppi on 2017/5/9.
- */
+import INetworkDelegate from "../interface/INetworkDelegate";
+import {GlobalValueRegistry, ObjectPicker} from "../../types";
 
 /**
  * @private
@@ -241,41 +240,83 @@ function jpara(...paras) {
 // }
 
 /**
+ *
+ * @param {GlobalValueRegistry | ((delegate: INetworkDelegate) => GlobalValueRegistry)} x
+ * @return {x is (delegate: INetworkDelegate) => GlobalValueRegistry}
+ */
+function isGlobalValueRegistry(x: GlobalValueRegistry | ((delegate: INetworkDelegate) => GlobalValueRegistry)): x is ((delegate: INetworkDelegate) => GlobalValueRegistry){
+    return typeof x === 'function';
+}
+
+function isGlobalValueRegistryObject(x: GlobalValueRegistry): x is object {
+    return typeof x === 'object';
+}
+
+function isGlobalValueRegistryFunction(x: GlobalValueRegistry): x is ObjectPicker {
+    return typeof x === 'function';
+}
+
+/**
  * 获取全局指定参数
- * @param key 指定键
- * @param globalValueRegistry 全局参数代理对象
+ * @param extraValues 全局参数列表
+ * @param delegate 全局代理
+ * @param globalValueRegistryPicker 全局参数代理对象
  * @return {{}}
  */
-function jgetGlobalValue(key, globalValueRegistry){
-    let otherParas = {};
-    if (!globalValueRegistry){
-        throw new Error('未找到全局参数，请确认是否设置global代理');
-    }
-    let globalParaFunc = null;
-    if (typeof globalValueRegistry == "function"){
-        globalParaFunc = globalValueRegistry()[key];
-    } else if (typeof globalValueRegistry == "object") {
-        globalParaFunc = globalValueRegistry[key];
-    }
+function jgetGlobalValue(extraValues: (string|object)[],
+                         delegate: INetworkDelegate,
+                         globalValueRegistryPicker: GlobalValueRegistry | ((delegate: INetworkDelegate) => GlobalValueRegistry)): object{
+    const jgetGlobalValueWithKey = (key) => {
+        let otherValues = {};
+        if (!globalValueRegistryPicker){
+            throw new Error('未找到全局参数，请确认是否设置global代理');
+        }
 
-    if (globalParaFunc){
-        let globalPara:any|string|number = null;
-        if (typeof globalParaFunc == "function"){
-            globalPara = globalParaFunc();
+        let globalValueRegistry: GlobalValueRegistry;
+        if (isGlobalValueRegistry(globalValueRegistryPicker)){
+            globalValueRegistry = globalValueRegistryPicker(delegate);
         } else {
-            globalPara = globalParaFunc;
+            globalValueRegistry = globalValueRegistryPicker as GlobalValueRegistry;
         }
-        if (typeof globalPara == "object"){
-            otherParas = {...otherParas, ...globalPara};
-        } else if (typeof globalPara === 'string' || typeof globalPara === 'number'){
-            otherParas[key] = globalPara;
+
+        let globalParaFunc  = null;
+        if (isGlobalValueRegistryObject(globalValueRegistry)){
+            globalParaFunc = globalValueRegistry[key];
+        }
+        if (isGlobalValueRegistryFunction(globalValueRegistry)) {
+            globalParaFunc = globalValueRegistry()[key];
+        }
+
+        if (globalParaFunc){
+            let globalPara:any|string|number = null;
+            if (typeof globalParaFunc == "function"){
+                globalPara = globalParaFunc();
+            } else {
+                globalPara = globalParaFunc;
+            }
+            if (typeof globalPara == "object"){
+                otherValues = {...otherValues, ...globalPara};
+            } else if (typeof globalPara === 'string' || typeof globalPara === 'number'){
+                otherValues[key] = globalPara;
+            } else {
+                throw new Error(`全局变量类型不正确:${key}`);
+            }
         } else {
-            throw new Error(`全局变量类型不正确:${key}`);
+            throw new Error(`不存在的全局变量:${key}`);
         }
-    } else {
-        throw new Error(`不存在的全局变量:${key}`);
-    }
-    return otherParas;
+        return otherValues;
+    };
+
+    let globalOtherValues = {};
+    extraValues.forEach(key => {
+        if (typeof key == "object"){
+            globalOtherValues = {...globalOtherValues, ...key};
+        } else {
+            if (!delegate) return;
+            globalOtherValues = {...globalOtherValues, ...jgetGlobalValueWithKey(key)}
+        }
+    });
+    return globalOtherValues;
 }
 
 export {jlink, jpara, jgetGlobalValue};

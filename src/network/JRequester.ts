@@ -3,6 +3,7 @@ import axios, {AxiosInstance} from "axios";
 import INetworkDelegate, {DEFAULT_DELEGATE} from "../interface/INetworkDelegate";
 import CancelPromiseFactory, {JPromise} from "../factory/CancelPromiseFactory";
 import {AxiosResponse} from 'axios';
+import JToolObject from '../tool/JToolObject';
 let REQUESTER_COUNT = 0;
 
 export default class JRequester{
@@ -50,6 +51,9 @@ export default class JRequester{
      */
     static create(method: string, baseUrl: string, url: string, parameters: object, data: object, headers: object, otherObject: any, delegate: INetworkDelegate): JRequester{
         let requester = new JRequester(method, baseUrl, url, parameters, headers, otherObject, delegate);
+        if (JToolObject.isEmptyObject(data)){
+            data = null
+        }
         let jaxios = axios.create({
             method: method,
             params: parameters,

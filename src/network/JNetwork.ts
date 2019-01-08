@@ -49,7 +49,7 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
         return this;
     }
 
-    static useParas(...paras: Array<string|object>): JNetwork{
+    static useParams(...paras: Array<string|object>): JNetwork{
         let instance = this.defaultInstance();
         instance.extraParams = paras;
         return instance;
@@ -78,6 +78,27 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
         return this._instance;
     }
 
+    public pickInjectParams(): object{
+        return {
+            ...JToolObject.getObjOrFuncResult(this.carryParams),
+            ...jgetGlobalValue(this.extraParams, this.delegate, _ => _.globalParams)
+        }
+    }
+
+    public pickInjectHeaders(): object{
+        return {
+            ...JToolObject.getObjOrFuncResult(this.carryHeaders),
+            ...jgetGlobalValue(this.extraHeaders, this.delegate, _ => _.globalHeaders)
+        }
+    }
+
+    public pickInjectBodyData(): object{
+        return {
+            ...JToolObject.getObjOrFuncResult(this.carryBodyData),
+            ...jgetGlobalValue(this.extraBodyData, this.delegate, _ => _.globalBodyData)
+        }
+    }
+
     createGroup(options?){
         options = {
             ...{
@@ -87,7 +108,7 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
             ...options
         };
         let group = new JNetworkGroup(this.baseUrl, this.axiosConfig, this.delegate, {
-            freezeParas: this.extraParams,
+            freezeParams: this.extraParams,
             freezeHeaders: this.extraHeaders,
             freezeBodyData: this.extraBodyData,
             freezeCarryParams: JToolObject.getObjOrFuncResult(this.carryParams),
@@ -161,47 +182,24 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
         this.clearExtraData();
         let isOk;
         const delegate = this.delegate;
-        headers = Object.assign({
-            'Accept': 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }, headers);
 
-        let globalOtherParas = {};
-        extraParams.forEach(key => {
-            if (typeof key == "object"){
-                globalOtherParas = {...globalOtherParas, ...key};
-                return;
-            }
-            if (!delegate) return;
-            globalOtherParas = {...globalOtherParas, ...jgetGlobalValue(key, delegate.globalParas)}
-        });
-        let globalOtherHeaders = {};
-        extraHeaders.forEach(key => {
-            if (typeof key == "object"){
-                globalOtherHeaders = {...globalOtherHeaders, ...key};
-                return;
-            }
-            if (!delegate) return;
-            globalOtherHeaders = {...globalOtherHeaders, ...jgetGlobalValue(key, delegate.globalHeaders)}
-        });
-
-        let globalOtherBodyData = {};
-        extraBodyData.forEach(key => {
-            if (typeof key == "object"){
-                globalOtherBodyData = {...globalOtherBodyData, ...key};
-                return;
-            }
-            if (!delegate) return;
-            globalOtherBodyData = {...globalOtherBodyData, ...jgetGlobalValue(key, delegate.globalBodyData)}
-        });
+        let globalOtherParams = this.pickInjectParams();
+        let globalOtherHeaders = this.pickInjectHeaders();
+        let globalOtherBodyData = this.pickInjectBodyData();
 
         let request: JRequester = JRequester.create(
             method,
             baseUrl,
             url,
-            {...carryParams, ...globalOtherParas, ...parameters},
+            {...carryParams, ...globalOtherParams, ...parameters},
             {...carryBodyData,  ...globalOtherBodyData, ...data},
-            {...carryHeaders, ...globalOtherHeaders, ...headers},
+            {
+                'Accept': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                ...carryHeaders,
+                ...globalOtherHeaders,
+                ...headers
+            },
             {...this.axiosConfig, ...otherObject},
             delegate
         );

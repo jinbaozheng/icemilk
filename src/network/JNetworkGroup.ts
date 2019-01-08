@@ -23,7 +23,7 @@ export default class JNetworkGroup extends JNetworkRoot implements INetworkFetch
     readonly groupId: number;
     readonly isSync: boolean;
 
-    private readonly freezeParas:Array<string|object>;
+    private readonly freezeParams:Array<string|object>;
     private readonly freezeHeaders:Array<string|object>;
     private readonly freezeBodyData:Array<string|object>;
     private readonly requestEngine:JRequestEngine = new JRequestEngine();
@@ -35,13 +35,34 @@ export default class JNetworkGroup extends JNetworkRoot implements INetworkFetch
         this.delegate = delegate || null;
         this.groupId = ++GROUP_COUNT;
         if (options){
-            this.freezeParas = options.freezeParas || [];
+            this.freezeParams = options.freezeParams || [];
             this.freezeHeaders = options.freezeHeaders || [];
             this.freezeBodyData = options.freezeBodyData || [];
             this.freezeCarryParams = options.freezeCarryParams || {};
             this.freezeCarryHeaders = options.freezeCarryHeaders || {};
             this.freezeCarryBodyData = options.freezeCarryBodyData || {};
             this.isSync = options.isSync;
+        }
+    }
+
+    public pickInjectParams(): object{
+        return {
+            ...JToolObject.getObjOrFuncResult(this.freezeCarryParams),
+            ...jgetGlobalValue([...this.freezeParams, ...this.extraParams], this.delegate, _ => _.globalParams)
+        }
+    }
+
+    public pickInjectHeaders(): object{
+        return {
+            ...JToolObject.getObjOrFuncResult(this.freezeCarryHeaders),
+            ...jgetGlobalValue([...this.freezeHeaders, ...this.extraHeaders], this.delegate, _ => _.globalHeaders)
+        }
+    }
+
+    public pickInjectBodyData(): object{
+        return {
+            ...JToolObject.getObjOrFuncResult(this.freezeCarryBodyData),
+            ...jgetGlobalValue([...this.freezeBodyData, ...this.extraBodyData], this.delegate, _ => _.globalBodyData)
         }
     }
 
@@ -57,53 +78,27 @@ export default class JNetworkGroup extends JNetworkRoot implements INetworkFetch
      * @returns {CancelPromiseFactory<any>}
      */
     fetchRequest(method: string, baseUrl: string, url: string, parameters: object, data: object, headers: object, otherObject: any): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
-        let extraParams = [...this.freezeParas, ...this.extraParams];
-        let extraHeaders = [...this.freezeHeaders, ...this.extraHeaders];
-        let extraBodyData = [...this.freezeBodyData, ...this.extraBodyData];
         let carryParams: object = JToolObject.getObjOrFuncResult(this.freezeCarryParams);
         let carryHeaders: object = JToolObject.getObjOrFuncResult(this.freezeHeaders);
         let carryBodyData: object = JToolObject.getObjOrFuncResult(this.freezeCarryBodyData);
         this.clearExtraData();
         const delegate = this.delegate;
-        headers = Object.assign({
-            'Accept': 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }, headers);
-
-        let globalOtherParas = {};
-        extraParams.forEach(key => {
-            if (typeof key == "object"){
-                globalOtherParas = {...globalOtherParas, ...key};
-                return;
-            }
-            if (!delegate) return;
-            globalOtherParas = {...globalOtherParas, ...jgetGlobalValue(key, delegate.globalParas)}
-        });
-        let globalOtherHeaders = {};
-        extraHeaders.forEach(key => {
-            if (typeof key == "object"){
-                globalOtherHeaders = {...globalOtherHeaders, ...key};
-                return;
-            }
-            if (!delegate) return;
-            globalOtherHeaders = {...globalOtherParas, ...jgetGlobalValue(key, delegate.globalHeaders)}
-        });
-        let globalOtherBodyData = {};
-        extraBodyData.forEach(key => {
-            if (typeof key == "object"){
-                globalOtherBodyData = {...globalOtherBodyData, ...key};
-                return;
-            }
-            if (!delegate) return;
-            globalOtherBodyData = {...globalOtherBodyData, ...jgetGlobalValue(key, delegate.globalBodyData)}
-        });
+        let globalOtherParams = this.pickInjectParams();
+        let globalOtherHeaders = this.pickInjectHeaders();
+        let globalOtherBodyData = this.pickInjectBodyData();
         let request: JRequester = JRequester.create(
             method,
             baseUrl,
             url,
-            {...carryParams, ...globalOtherParas, ...parameters},
+            {...carryParams, ...globalOtherParams, ...parameters},
             {...carryBodyData,  ...globalOtherBodyData, ...data},
-            {...carryHeaders, ...globalOtherHeaders, ...headers},
+            {
+                'Accept': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                ...carryHeaders,
+                ...globalOtherHeaders,
+                ...headers
+            },
             {axiosConfig: this.axiosConfig, ...otherObject},
             delegate
         );

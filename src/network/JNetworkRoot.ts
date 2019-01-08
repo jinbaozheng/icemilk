@@ -1,13 +1,9 @@
-/**
- * Created by cuppi on 2017/9/6.
- */
-
 class JNetworkRoot{
     extraParams: Array<string|object> = [];
     extraHeaders: Array<string|object> = [];
     extraBodyData: Array<string|object> = [];
 
-    useParas(...paras: Array<string|object>): this {
+    useParams(...paras: Array<string|object>): this {
         this.extraParams = paras;
         return this;
     }
@@ -29,4 +25,11 @@ class JNetworkRoot{
     }
 }
 
+
 export default JNetworkRoot;
+
+export const GLOBAL_TYPE = {
+    GLOBAL_PARAMS: 'GLOBAL_PARAMS',
+    GLOBAL_HEADERS: 'GLOBAL_HEADERS',
+    GLOBAL_BODYDATA: 'GLOBAL_BODYDATA',
+}
