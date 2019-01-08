@@ -2,103 +2,122 @@ export declare class JToolArray {
 }
 
 export declare class JToolDate {
-  /**
-   * 日期转换时间戳
-   * @static
-   * @param {Date} date 日期
-   * @returns {number} 时间戳
-   */
-  static timeIntervalFromDate(date: Date): number
-  /**
-   * 时间戳转换日期
-   * @param {number} timeInterval 时间戳
-   * @returns {Date} 日期
-   */
-  static dateFromTimeInterval(timeInterval: number): Date
-  /**
-   * 日期字符串转换时间戳
-   * 注：时间格式需满足Date规范
-   * 如 2017-05-23 18:56:00、2017/05/23
-   * @param {string} dateString 日期
-   * @param {string} format 格式化信息
-   * @returns {number} 时间戳
-   */
-  static timeIntervalFromDateString(dateString: string, format?: string): number
-  /**
-   * 时间戳转换日期字符串
-   * @param {number} timeInterval 时间戳
-   * @param {string} format 日期格式 如: yyyy-MM-dd hh:mm:ss
-   * @returns {string} 日期字符串
-   */
-  static dateStringFromTimeInterval(timeInterval: number, format?: string): string
-  /**
-   * 日期转换日期字符串
-   * @param {Date} date Date对象
-   * @param {string} format 格式化信息
-   * @returns {string} 日期字符串
-   */
-  static dateStringFromDate(date: Date, format?: string): string
-  /**
-   * 日期字符串转换日期 （待开发）
-   * @since ~1.1.*
-   * @param {string} dateString 日期字符串
-   * @param {string} format 日期格式
-   * @returns {Date} 日期
-   */
-  static dateFromDateString(dateString: string, format?:string): Date
-  /**
-   * 获取(多态)日期的距离
-   * @param {Date | string | number} startDate 起始日期
-   * @param {Date | string | number} endDate 结束日期
-   * @param {boolean} justSeconds 只需要秒的总数
-   * @returns {Array} [秒，分，小时，天，月, 年]
-   */
-  static distanceBetweenDate(startDate: Date|string|number, endDate: Date|string|number, justSeconds: boolean): number[]
-  /**
-   * 获取当前日期对象
-   * @returns {Date} 当前日期对象
-   */
-  static currentDate(): Date
-  /**
-   * 获取当前日期字符串
-   * @param {string} format 字符串格式
-   * @returns {string} 当前日期字符串
-   */
-  static currentDateString(format?: string): string
-  /**
-   * 获取当前时间戳
-   * @returns {number} 当前时间戳
-   */
-  static currentTimeInterval(): number
-  /**
-   * 变换日期字符串格式 （待开发）
-   * @since ~1.1.*
-   * @param {string} dateString 日期字符串
-   * @param {string} fromFormat 输入格式
-   * @param {string} toFormat 输出格式
-   * @returns {string} 字符串
-   */
-  static transformDateStringByFormat(dateString: string, fromFormat: string, toFormat: string): string
-  /**
-   * 获取指定(多态)日期为星期几
-   * @param {Date | string | number} date 日期
-   * @returns {number} 0~6  星期一~星期日
-   */
-  static weekDay(date: Date|string|number): number
-  /**
-   * 获取(多态)日期某天后的日期()
-   * @param {Date | string | number} beganDate
-   * @param {number} days
-   * @returns {Date} 目的日期
-   */
-  static dateAfterDaysLater(beganDate: Date|string|number, days: number): Date
-  /**
-   * 获取(多态)日期某天后的日期字符串
-   * @param {Date | string | number} beganDate 开始日期
-   * @param {number} days 天数
-   * @returns {string} 目的日期字符串
-   */
-  static dateStringAfterDaysLater(beganDate: Date|string|number, days: number): string
+
+    // 距离标准时区(STANDARD_TIMEZONE)的位移 --单位为分钟
+    static offsetFromStandardTimezone();
+
+    /**
+     * 日期转换时间戳
+     * @static
+     * @param {Date} date 日期
+     * @returns {number} 时间戳
+     */
+    static timeIntervalFromDate(date: Date): number;
+
+
+    /**
+     * 时间戳转换日期
+     * @param {number} timeInterval 时间戳
+     * @returns {Date} 日期
+     */
+    static dateFromTimeInterval(timeInterval: number): Date;
+
+    /**
+     * 日期字符串转换时间戳
+     * @param {string} dateString 日期
+     * @param {string} timezone 时区
+     * @returns {number} 时间戳
+     */
+    static timeIntervalFromDateString(dateString: string, timezone?: number): number;
+
+    /**
+     * 时间戳转换日期字符串
+     * @param {number} timeInterval 时间戳
+     * @param {string} format 日期格式 如: YYYY-MM-DD HH:mm:ss
+     * @returns {string} 日期字符串
+     */
+    static dateStringFromTimeInterval(timeInterval: number, format?: string): string;
+
+    /**
+     * 日期字符串转换日期 （待开发）
+     * @param {string} dateString 日期字符串
+     * @param {string} timezone 时区
+     * @returns {Date} 日期
+     */
+    static dateFromDateString(dateString: string, timezone?: number): Date;
+
+    /**
+     * 日期转换日期字符串
+     * @param {Date} date Date对象
+     * @param {string} format 格式化信息
+     * @returns {string} 日期字符串
+     */
+    static dateStringFromDate(date: Date, format?: string): string;
+
+    /**
+     * 获取当前日期对象
+     * @returns {Date} 当前日期对象
+     */
+    static currentDate(): Date;
+
+    /**
+     * 获取当前日期字符串
+     * @param {string} format 字符串格式
+     * @returns {string} 当前日期字符串
+     */
+    static currentDateString(format?: string): string;
+
+    /**
+     * 获取当前时间戳
+     * @returns {number} 当前时间戳
+     */
+    static currentTimeInterval(): number;
+
+    // TODO 需要优化月份的算法
+    /**
+     * 获取(多态)日期的距离
+     * @param {Date | string | number} startDate 起始日期
+     * @param {Date | string | number} endDate 结束日期
+     * @param {boolean} justSeconds 只需要秒的总数
+     * @returns {Array} [秒，分，小时，天，月, 年]
+     */
+    static distanceBetweenDate(startDate: Date|string|number, endDate: Date|string|number, justSeconds: boolean): number[];
+
+    // TODO 待开发
+    /**
+     * 变换日期字符串格式 （待开发）
+     * @since ~1.1.*
+     * @param {string} dateString 日期字符串
+     * @param {string} fromFormat 输入格式
+     * @param {string} toFormat 输出格式
+     * @param {string} timezone 时区
+     * @returns {string} 字符串
+     */
+    static transformDateStringByFormat(dateString: string, fromFormat: string, toFormat?: string, timezone?: number): string;
+
+    /**
+     * 获取指定(多态)日期为星期几
+     * @param {Date | string | number} date 日期
+     * @returns {number} 0~6  星期一~星期日
+     */
+    static weekDay(date: Date|string|number): number;
+
+    /**
+     * 获取(多态)日期某天后的日期()
+     * @param {Date | string | number} beganDate
+     * @param {number} days
+     * @returns {Date} 目的日期
+     */
+    static dateAfterDaysLater(beganDate: Date|string|number, days: number): Date;
+
+    /**
+     * 获取(多态)日期某天后的日期字符串
+     * @param {Date | string | number} beganDate 开始日期
+     * @param {number} days 天数
+     * @param {string} format 格式化信息
+     * @returns {string} 目的日期字符串
+     */
+    static dateStringAfterDaysLater(beganDate: Date|string|number, days: number, format?: string): string;
 }
 
 export declare class JToolNumber {
