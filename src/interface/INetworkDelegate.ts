@@ -1,29 +1,28 @@
-/**
- * Created by cuppi on 2017/9/4.
- */
-
 import {AxiosRequestConfig, AxiosResponse} from "axios";
 import UrlTool from "../tool/JToolUrl";
+import {GlobalValueRegistry} from "../../types";
 
 export default interface INetworkDelegate{
-    globalParas: Function;
-    globalHeaders: Function;
-    globalBodyData: Function;
-    requestInterceptor(config: AxiosRequestConfig): AxiosRequestConfig;
-    requestInterceptorError(error: Error): Promise<never>;
-    responseInterceptor(response: AxiosResponse): AxiosResponse;
-    responseInterceptorError(error: Error): Promise<never>;
-    resolveInterceptor(response: AxiosResponse, data: any): boolean;
-    rejectInterceptor(response: AxiosResponse, error: Error): boolean;
+    globalParams: GlobalValueRegistry;
+    globalHeaders: GlobalValueRegistry;
+    globalBodyData: GlobalValueRegistry;
+    requestInterceptor?(config: AxiosRequestConfig): AxiosRequestConfig;
+    requestInterceptorError?(error: Error): Promise<never>;
+    responseInterceptor?(response: AxiosResponse): AxiosResponse;
+    responseInterceptorError?(error: Error): Promise<never>;
+    resolveInterceptor?(response: AxiosResponse, data: any): boolean;
+    rejectInterceptor?(response: AxiosResponse, error: Error): boolean;
+    responseDataInterceptor?(data: any, response?: AxiosResponse): any;
+    responseErrorInterceptor?(error: Error, response?: AxiosResponse): Error;
 }
 
 export const DEFAULT_DELEGATE: INetworkDelegate = {
-    globalParas: () => {},
+    globalParams: () => {},
     globalHeaders: () => {},
     globalBodyData: () => {},
     requestInterceptor: (config: AxiosRequestConfig): AxiosRequestConfig => {
         // Do something before request is sent
-        console.log('POST ' + UrlTool.urlFromPortion(config.url, '', config.params));
+        console.log(`${config.method}  ${UrlTool.urlFromPortion(config.url, '', config.params)}`);
         return config;
     },
     requestInterceptorError: (error: Error): Promise<never> => {
@@ -43,5 +42,11 @@ export const DEFAULT_DELEGATE: INetworkDelegate = {
     },
     rejectInterceptor: (response: AxiosResponse, error: Error): boolean => {
         return true;
+    },
+    responseDataInterceptor: (data: any, response?: AxiosResponse): any => {
+        return data;
+    },
+    responseErrorInterceptor: (error: Error, response?: AxiosResponse): Error => {
+        return error;
     }
-}
+};
