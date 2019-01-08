@@ -38,6 +38,10 @@ class ObjectTool {
         return chainIndex === pChain.length ? property : undefined;
     }
 
+    static isEmptyObject(obj: object): boolean{
+        return Object.keys(obj).length === 0 && obj.constructor === Object
+    }
+
     static getObjOrFuncResult(obj): object{
         let o: object = null;
         if (obj){
