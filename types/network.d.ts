@@ -31,6 +31,7 @@ export declare class JNetwork extends JNetworkRoot implements INetworkFetch, INe
     public pickInjectParams(): object;
     public pickInjectHeaders(): object;
     public pickInjectBodyData(): object;
+    public createGroup(options?): JNetworkGroup;
     fetchRequest(method: string, baseUrl: string, url: string, parameters: object, data: object, headers: object, otherObject: any): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
     freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
     freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
