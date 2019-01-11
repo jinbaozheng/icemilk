@@ -108,7 +108,7 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
             },
             ...options
         };
-        if (!JNetworkGroup.isPrototypeOf(options.groupClass)){
+        if (options.groupClass !== JNetworkGroup && !JNetworkGroup.isPrototypeOf(options.groupClass)){
             throw new Error(`${options.groupClass.name} is not extends of class JNetworkGroup, please extends class JNetworkGroup`);
         }
         let group = new (options.groupClass)(this.baseUrl, this.axiosConfig, this.delegate, {
