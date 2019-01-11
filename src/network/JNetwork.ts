@@ -34,7 +34,7 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
     private readonly groupList: Array<JNetworkGroup> = [];
 
     constructor(config: INetworkConfig = DEFAULT_CONFIG){
-        super()
+        super();
         config = {...DEFAULT_CONFIG, ...config};
         this.baseUrl = config.baseUrl;
         this.delegate = config.delegate || null;
@@ -99,7 +99,7 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
         }
     }
 
-    createGroup(options?){
+    public createGroup(options?): JNetworkGroup{
         options = {
             ...{
                 notClearExtraData: false,
@@ -173,9 +173,6 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
      * @returns {CancelPromiseFactory<any>}
      */
     fetchRequest(method: string, baseUrl: string, url: string, parameters: object, data: object, headers: object, otherObject: any): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
-        let extraParams: (string|object)[] = this.extraParams;
-        let extraHeaders: (string|object)[] = this.extraHeaders;
-        let extraBodyData: (string|object)[] = this.extraBodyData;
         let carryParams: object = JToolObject.getObjOrFuncResult(this.carryParams);
         let carryHeaders: object = JToolObject.getObjOrFuncResult(this.carryHeaders);
         let carryBodyData: object = JToolObject.getObjOrFuncResult(this.carryBodyData);
