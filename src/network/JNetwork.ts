@@ -99,7 +99,7 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
         }
     }
 
-    public createGroup(options?): JNetworkGroup{
+    public createGroup<T extends JNetworkGroup>(options?): T{
         options = {
             ...{
                 notClearExtraData: false,
@@ -109,7 +109,7 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
             ...options
         };
         if (!JNetworkGroup.isPrototypeOf(options.groupClass)){
-            throw new Error(`${options.groupClass.name} is not extends of class JNetworkWorker, please extends class JNetworkWorker`);
+            throw new Error(`${options.groupClass.name} is not extends of class JNetworkGroup, please extends class JNetworkGroup`);
         }
         let group = new (options.groupClass)(this.baseUrl, this.axiosConfig, this.delegate, {
             freezeParams: this.extraParams,
