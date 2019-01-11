@@ -103,11 +103,15 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
         options = {
             ...{
                 notClearExtraData: false,
-                isSync: false
+                isSync: false,
+                groupClass: JNetworkGroup
             },
             ...options
         };
-        let group = new JNetworkGroup(this.baseUrl, this.axiosConfig, this.delegate, {
+        if (!JNetworkGroup.isPrototypeOf(options.groupClass)){
+            throw new Error(`${options.groupClass.name} is not extends of class JNetworkWorker, please extends class JNetworkWorker`);
+        }
+        let group = new (options.groupClass)(this.baseUrl, this.axiosConfig, this.delegate, {
             freezeParams: this.extraParams,
             freezeHeaders: this.extraHeaders,
             freezeBodyData: this.extraBodyData,
