@@ -14,7 +14,7 @@ class StringTool {
    * @returns {boolean} 结果
    */
   static isMobile(mobile: string): boolean {
-    return (/^1[345789]\d{9}$/.test(mobile));
+    return (/^1[1234567890]\d{9}$/.test(mobile));
   }
 
   /**
