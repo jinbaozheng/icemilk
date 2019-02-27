@@ -81,11 +81,11 @@ export default class JNetworkGroup extends JNetworkRoot implements INetworkFetch
         let carryParams: object = JToolObject.getObjOrFuncResult(this.freezeCarryParams);
         let carryHeaders: object = JToolObject.getObjOrFuncResult(this.freezeHeaders);
         let carryBodyData: object = JToolObject.getObjOrFuncResult(this.freezeCarryBodyData);
-        this.clearExtraData();
         const delegate = this.delegate;
         let globalOtherParams = this.pickInjectParams();
         let globalOtherHeaders = this.pickInjectHeaders();
         let globalOtherBodyData = this.pickInjectBodyData();
+        this.clearExtraData();
         let request: JRequester = JRequester.create(
             method,
             baseUrl,
@@ -110,7 +110,16 @@ export default class JNetworkGroup extends JNetworkRoot implements INetworkFetch
                     if (response.status === 200) {
                         resolve(response);
                     } else {
-                        reject(new JNetworkError(response.statusText, response.status));
+                        let errorMessage, errorStatus;
+                        if (response.hasOwnProperty('status')){
+                            errorMessage = response.statusText;
+                            errorStatus = response.status;
+                        } else {
+                            if (response.hasOwnProperty('message')){
+                                errorMessage = response['message'];
+                            }
+                        }
+                        reject(new JNetworkError(errorMessage, errorStatus))
                     }
                 }).catch(error => {
                     reject(error);

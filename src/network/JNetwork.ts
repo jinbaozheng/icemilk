@@ -180,14 +180,12 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
         let carryParams: object = JToolObject.getObjOrFuncResult(this.carryParams);
         let carryHeaders: object = JToolObject.getObjOrFuncResult(this.carryHeaders);
         let carryBodyData: object = JToolObject.getObjOrFuncResult(this.carryBodyData);
-        this.clearExtraData();
         let isOk;
         const delegate = this.delegate;
-
         let globalOtherParams = this.pickInjectParams();
         let globalOtherHeaders = this.pickInjectHeaders();
         let globalOtherBodyData = this.pickInjectBodyData();
-
+        this.clearExtraData();
         let request: JRequester = JRequester.create(
             method,
             baseUrl,
