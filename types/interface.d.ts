@@ -39,15 +39,15 @@ export declare interface INetworkConfig{
 
 
 export declare interface INetworkDelegate{
-    globalParas: GlobalValueRegistry;
-    globalHeaders: GlobalValueRegistry;
-    globalBodyData: GlobalValueRegistry;
-    requestInterceptor(config: AxiosRequestConfig): AxiosRequestConfig;
-    requestInterceptorError(error: Error): Promise<never>;
-    responseInterceptor(response: AxiosResponse): AxiosResponse;
-    responseInterceptorError(error: Error): Promise<never>;
-    resolveInterceptor(response: AxiosResponse, data: any): boolean;
-    rejectInterceptor(response: AxiosResponse, error: Error): boolean;
+    globalParas?: GlobalValueRegistry;
+    globalHeaders?: GlobalValueRegistry;
+    globalBodyData?: GlobalValueRegistry;
+    requestInterceptor?(config: AxiosRequestConfig): AxiosRequestConfig;
+    requestInterceptorError?(error: Error): Promise<never>;
+    responseInterceptor?(response: AxiosResponse): AxiosResponse;
+    responseInterceptorError?(error: Error): Promise<never>;
+    resolveInterceptor?(response: AxiosResponse, data: any): boolean;
+    rejectInterceptor?(response: AxiosResponse, error: Error): boolean;
     responseDataInterceptor?(data: any, response?: AxiosResponse): any;
     responseErrorInterceptor?(error: Error, response?: AxiosResponse): Error;
 }
