@@ -2,6 +2,8 @@ import {INetworkFetch, INetworkExtra, INetworkConfig} from "./interface";
 import {AxiosRequestConfig, AxiosResponse} from "axios";
 import {INetworkDelegate, INetworkStandardPromiseType} from "./interface";
 
+export type BodyData = object | FormData | Blob | File;
+
 export declare class JNetworkRoot{
     extraParams: Array<string|object>;
     extraHeaders: Array<string|object>;
@@ -32,16 +34,16 @@ export declare class JNetwork extends JNetworkRoot implements INetworkFetch, INe
     public pickInjectHeaders(): object;
     public pickInjectBodyData(): object;
     public createGroup(options?): JNetworkGroup;
-    fetchRequest(method: string, baseUrl: string, url: string, parameters: object, data: object, headers: object, otherObject: any): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
+    fetchRequest(method: string, baseUrl: string, url: string, parameters: object, data: BodyData, headers: object, otherObject: any): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
     freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
     freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
     POST(url: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
     GET(url: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
 
-    freedomDataPOST(baseUrl: string, url?: string, data?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
-    freedomDataGET(baseUrl: string, url?: string, data?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
-    dataPOST(url?: string, data?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
-    dataGET(url?: string, data?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
+    freedomDataPOST(baseUrl: string, url?: string, data?: BodyData, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
+    freedomDataGET(baseUrl: string, url?: string, data?: BodyData, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
+    dataPOST(url?: string, data?: BodyData, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
+    dataGET(url?: string, data?: BodyData, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
 }
 
 export declare class JNetworkGroup extends JNetworkRoot implements INetworkFetch, INetworkExtra{
@@ -56,16 +58,16 @@ export declare class JNetworkGroup extends JNetworkRoot implements INetworkFetch
     public pickInjectParams(): object;
     public pickInjectHeaders(): object;
     public pickInjectBodyData(): object;
-    fetchRequest(method: string, baseUrl: string, url: string, parameters: object, data: object, headers: object, otherObject: any): INetworkStandardPromiseType<AxiosResponse|JNetworkError>
+    fetchRequest(method: string, baseUrl: string, url: string, parameters: object, data: BodyData, headers: object, otherObject: any): INetworkStandardPromiseType<AxiosResponse|JNetworkError>
     freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
     freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
     POST(url: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
     GET(url: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
 
-    freedomDataPOST(baseUrl: string, url?: string, data?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
-    freedomDataGET(baseUrl: string, url?: string, data?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
-    dataPOST(url?: string, data?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
-    dataGET(url?: string, data?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
+    freedomDataPOST(baseUrl: string, url?: string, data?: BodyData, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
+    freedomDataGET(baseUrl: string, url?: string, data?: BodyData, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
+    dataPOST(url?: string, data?: BodyData, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
+    dataGET(url?: string, data?: BodyData, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>;
 }
 
 export declare class JNetworkError extends Error{
