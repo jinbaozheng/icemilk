@@ -12,16 +12,18 @@ export default class JRequester{
     readonly url: string;
     readonly parameters: object;
     readonly headers: object;
+    readonly bodyData: object;
     readonly otherObject: any;
     readonly delegate: INetworkDelegate;
     readonly requesterId: number;
     jaxios: AxiosInstance;
-    constructor(method: string, baseUrl: string, url: string, parameters: object, headers: object, otherObject: any, delegate: INetworkDelegate){
+    constructor(method: string, baseUrl: string, url: string, parameters: object, headers: object, bodyData: object, otherObject: any, delegate: INetworkDelegate){
         this.method = method;
         this.baseUrl = baseUrl;
         this.url = url;
         this.parameters = parameters;
         this.headers = headers;
+        this.bodyData = bodyData;
         this.otherObject = otherObject;
         this.delegate = delegate;
         this.requesterId = ++REQUESTER_COUNT;
@@ -43,25 +45,36 @@ export default class JRequester{
      * @param baseUrl 基地址
      * @param url 相对地址
      * @param parameters 参数
-     * @param data data参数
+     * @param bodyData data参数
      * @param headers 头参数
      * @param otherObject 其他相关设置
      * @param delegate 网络请求代理
      * @returns {CancelPromiseFactory<any>}
      */
-    static create(method: string, baseUrl: string, url: string, parameters: object, data: object, headers: object, otherObject: any, delegate: INetworkDelegate): JRequester{
-        let requester = new JRequester(method, baseUrl, url, parameters, headers, otherObject, delegate);
-        if (JToolObject.isEmptyObject(data)){
-            data = null
+    static create(method: string, baseUrl: string, url: string, parameters: object, bodyData: object, headers: object, otherObject: any, delegate: INetworkDelegate): JRequester{
+        let requester = new JRequester(method, baseUrl, url, parameters, headers, bodyData, otherObject, delegate);
+        if (JToolObject.isEmptyObject(bodyData)){
+            bodyData = null
         }
-        let jaxios = axios.create({
+        const axiosProps = {
             method: method,
             params: parameters,
             baseURL: baseUrl,
-            data: data,
+            data: bodyData,
             headers,
             ...otherObject
-        })
+        };
+        if (otherObject.hasOwnProperty('specific')){
+            [{k: 'params', ak: 'params'}, {k: 'headers', ak: 'headers'}, {k: 'bodyData', ak: 'data'}].forEach((_) => {
+                const v = otherObject.specific[_.k];
+                const apl = Object.keys(axiosProps[_.ak]) || [];
+                v && (axiosProps[_.ak] = apl
+                    .filter(_ => v.some(__ => _ === __))
+                    .map(k => ({k, v: axiosProps[_.ak][k]}))
+                    .reduce((_, {k, v}) => ({..._, [k]: v}), {}))
+            })
+        }
+        const jaxios = axios.create(axiosProps);
         delegate = {...DEFAULT_DELEGATE, ...(delegate || {})};
         requester.jaxios = jaxios;
         jaxios.interceptors.request.use(config => {

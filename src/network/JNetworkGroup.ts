@@ -91,7 +91,7 @@ export default class JNetworkGroup extends JNetworkRoot implements INetworkFetch
             baseUrl,
             url,
             {...carryParams, ...globalOtherParams, ...parameters},
-            {...carryBodyData,  ...globalOtherBodyData, ...data},
+            otherObject.notTransformData ? data : {...carryBodyData,  ...globalOtherBodyData, ...data},
             {
                 'Accept': 'application/json',
                 'Content-Type': 'application/x-www-form-urlencoded',

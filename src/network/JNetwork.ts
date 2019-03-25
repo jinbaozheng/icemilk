@@ -191,7 +191,7 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
             baseUrl,
             url,
             {...carryParams, ...globalOtherParams, ...parameters},
-            {...carryBodyData,  ...globalOtherBodyData, ...data},
+            otherObject.notTransformData ? data : {...carryBodyData,  ...globalOtherBodyData, ...data},
             {
                 'Accept': 'application/json',
                 'Content-Type': 'application/x-www-form-urlencoded',

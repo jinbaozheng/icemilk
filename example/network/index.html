@@ -7,7 +7,9 @@
     <script src="../../dist/index.js"></script>
 </head>
 <body>
+<input id="#file-input" type="file" style="width: 100px; height: 50px;">
 <script>
+
     function cityParas() {
         return {id: 2, name: '上海'};
     }
@@ -55,6 +57,7 @@
             globalBodyData
         }
     })
+
     let g1 = network.useBodyData('cityId', 'location').createGroup({
         isSync: false
     });
@@ -85,17 +88,35 @@
     // })
 
 
-    g1.freedomDataPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
-        longitude: 121.4834974484,
-        latitude: 31.237037783
-    }).then(response => {
-        console.log(`cityId: 8`)
-        console.log(response.data);
-    }, error => {
-        console.log(error);
+    // g1.freedomDataPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
+    //     longitude: 121.4834974484,
+    //     latitude: 31.237037783
+    // }).then(response => {
+    //     console.log(`cityId: 8`)
+    //     console.log(response.data);
+    // }, error => {
+    //     console.log(error);
+    // })
+
+
+
+    document.getElementById('#file-input').addEventListener('change', function (e) {
+        let file = e.target.files[0];
+        console.log(file);
+        let formData = new FormData();
+        formData.append('file', file);
+        (new icemilk.JNetwork({
+            baseUrl: 'http://10.1.1.71:9040/'
+        })).dataPOST('upload/uploadlocal', formData, {
+            authorization: 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJ1c2VyTmFtZVwiOlwiQWRtaW5cIixcInVzZXJJZFwiOlwiNWM5MzA2YmQ4ODU4ZTczODI4MDkxYThjXCJ9IiwiaWF0IjoxNTUzNTAyODk2fQ.eLiFIMJKZSH9hCVQUexRVkjjUl9q0JZksBzAtRl5VHA',
+            'Content-Type': 'multipart/form-data'
+        }, {
+            specific: {
+                bodyData: ['test']
+            },
+            notTransformData: true
+        })
     })
-
-
 </script>
 </body>
 </html>
