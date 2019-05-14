@@ -77,7 +77,7 @@ export default class JNetworkGroup extends JNetworkRoot implements INetworkFetch
      * @param otherObject 其他相关设置
      * @returns {CancelPromiseFactory<any>}
      */
-    fetchRequest(method: string, baseUrl: string, url: string, parameters: object, data: object, headers: object, otherObject: any): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
+    fetchRequest(method: string, baseUrl: string, url: string, parameters: object, data: object, headers: object, otherObject: any = {}): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
         let carryParams: object = JToolObject.getObjOrFuncResult(this.freezeCarryParams);
         let carryHeaders: object = JToolObject.getObjOrFuncResult(this.freezeHeaders);
         let carryBodyData: object = JToolObject.getObjOrFuncResult(this.freezeCarryBodyData);
