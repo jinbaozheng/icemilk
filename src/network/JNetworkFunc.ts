@@ -66,7 +66,7 @@ class Jtask {
         if (nextPara && nextPara.isJpara) {
             return nextPara.items();
         }
-        return Jpara.emptyPara().items();
+        return Jparam.emptyPara().items();
     }
 }
 
@@ -134,7 +134,7 @@ class Jlink {
             if (index === 0 && this._headTaskPara) {
                 return this._headTaskPara;
             }
-            return Jpara.emptyPara();
+            return Jparam.emptyPara();
         }
     }
 }
@@ -227,7 +227,7 @@ function jlink(...tasks) {
  * @returns {Jpara}
  */
 function jparam(...params) {
-    return new Jpara(...params);
+    return new Jparam(...params);
 }
 
 /**
