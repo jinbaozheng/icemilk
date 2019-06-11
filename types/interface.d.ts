@@ -6,7 +6,7 @@ import {GlobalValueRegistry} from "./other";
 
 export type INetworkStandardPromiseType<T> = JPromise<T>;
 export declare interface INetworkExtra {
-    useParas(...paras: Array<string|object>): this;
+    useParams(...params: Array<string|object>): this;
     useHeaders(...headers: Array<string|object>): this;
     useBodyData(...bodyData: Array<string|object>): this;
     extraParams: Array<string|object>;
@@ -39,7 +39,7 @@ export declare interface INetworkConfig{
 
 
 export declare interface INetworkDelegate{
-    globalParas?: GlobalValueRegistry;
+    globalParams?: GlobalValueRegistry;
     globalHeaders?: GlobalValueRegistry;
     globalBodyData?: GlobalValueRegistry;
     requestInterceptor?(config: AxiosRequestConfig): AxiosRequestConfig;

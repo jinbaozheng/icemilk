@@ -122,7 +122,7 @@ class Jlink {
     }
 
     /**
-     * 指定任务的paras的获取者 (目前实现会浪费内存，多个相同函数推入函数栈，后期优化）
+     * 指定任务的params的获取者 (目前实现会浪费内存，多个相同函数推入函数栈，后期优化）
      * @returns {Array}
      * @private
      */
@@ -169,7 +169,7 @@ class Jlink {
 //   _tasks: Function[];
 //   _headTaskPara: object;
 //   _taskIndex: number;
-//   _parasPicker: Function;
+//   _paramsPicker: Function;
 //   _headTask: Jtask;
 //
 //   constructor(...tasks) {
@@ -185,8 +185,8 @@ class Jlink {
 //     return this;
 //   }
 //
-//   paras(...paras) {
-//     this._allTaskPara = paras;
+//   params(...params) {
+//     this._allTaskPara = params;
 //     return this;
 //   }
 //
@@ -194,7 +194,7 @@ class Jlink {
 //     if (this._taskIndex >= this._tasks.length) {
 //       return this;
 //     }
-//     let nextTask = new Jtask(this._tasks[this._taskIndex], this._parasPicker(this._taskIndex), resolve, reject);
+//     let nextTask = new Jtask(this._tasks[this._taskIndex], this._paramsPicker(this._taskIndex), resolve, reject);
 //     this._taskIndex++;
 //     if (this._nextTask) {
 //       this._nextTask.setNextTask(nextTask);
@@ -206,7 +206,7 @@ class Jlink {
 //   }
 //
 //   run() {
-//     this._headTask.do(this._parasPicker(0)());
+//     this._headTask.do(this._paramsPicker(0)());
 //     return this;
 //   }
 // }
@@ -223,7 +223,7 @@ function jlink(...tasks) {
 
 /**
  * @private
- * @param paras
+ * @param params
  * @returns {Jpara}
  */
 function jparam(...params) {

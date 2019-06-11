@@ -8,7 +8,7 @@ export declare class JNetworkRoot{
     extraParams: Array<string|object>;
     extraHeaders: Array<string|object>;
     extraBodyData: Array<string|object>;
-    useParas(...paras: Array<string|object>): this;
+    useParams(...params: Array<string|object>): this;
     useHeaders(...headers: Array<string|object>): this;
     useBodyData(...bodyData: Array<string|object>): this;
     clearExtraData(): void;
@@ -24,7 +24,7 @@ export declare class JNetwork extends JNetworkRoot implements INetworkFetch, INe
     readonly instanceId: number;
 
     constructor(config: INetworkConfig)
-    static useParas(...paras: Array<string|object>): JNetwork;
+    static useParams(...params: Array<string|object>): JNetwork;
     static useHeaders(...headers: Array<string|object>): JNetwork;
     static instance(): JNetwork
     static defaultInstance(): JNetwork
