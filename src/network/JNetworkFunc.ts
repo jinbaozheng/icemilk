@@ -4,7 +4,7 @@ import {GlobalValueRegistry, ObjectPicker} from "../../types";
 /**
  * @private
  */
-class Jpara {
+class Jparam {
     _params: object[];
     isJpara: boolean;
     constructor(...params) {
@@ -20,7 +20,7 @@ class Jpara {
     }
 
     static emptyPara() {
-        return new Jpara();
+        return new Jparam();
     }
 }
 

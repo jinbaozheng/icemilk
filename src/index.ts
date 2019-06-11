@@ -33,7 +33,7 @@ export {
     JSDK
 };
 
-import {jlink, jpara} from './network/JNetworkFunc';
-export {jlink, jpara};
+import {jlink, jparam} from './network/JNetworkFunc';
+export {jlink, jparam};
 
 /* eslint-enable */
