@@ -5,18 +5,18 @@ import {GlobalValueRegistry, ObjectPicker} from "../../types";
  * @private
  */
 class Jpara {
-    _paras: object[];
+    _params: object[];
     isJpara: boolean;
-    constructor(...paras) {
-        this._paras = [];
-        for (let para of paras) {
-            this._paras.push(para);
+    constructor(...params) {
+        this._params = [];
+        for (let para of params) {
+            this._params.push(para);
         }
         this.isJpara = true;
     }
 
     items() {
-        return this._paras;
+        return this._params;
     }
 
     static emptyPara() {
@@ -32,30 +32,30 @@ class Jtask {
     _task: Function;
     _resolve: Function;
     _reject: Function;
-    _parasPicker: Function;
+    _paramsPicker: Function;
     _nextTask: Jtask;
 
-    constructor(task, parasPicker, resolve, reject) {
+    constructor(task, paramsPicker, resolve, reject) {
         this._task = task;
         this._resolve = resolve;
         this._reject = reject;
-        this._parasPicker = parasPicker;
+        this._paramsPicker = paramsPicker;
     }
 
     setNextTask(task) {
         this._nextTask = task;
     }
 
-    do(paras) {
-        paras = paras ? paras : this._parasPicker();
-        this._task(...this.paraItems(paras)).then(data => {
-            let nextPara = this._resolve(data, ...this.paraItems(paras));
+    do(params) {
+        params = params ? params : this._paramsPicker();
+        this._task(...this.paraItems(params)).then(data => {
+            let nextPara = this._resolve(data, ...this.paraItems(params));
             if (this._nextTask) {
                 this._nextTask.do(nextPara);
             }
         }, error => {
             if (this._reject){
-                this._reject(error, ...this.paraItems(paras))
+                this._reject(error, ...this.paraItems(params))
             } else {
                 console.log('ERROR: Don\'t find the error handler for task (' + this._task.name  + ')');
             }
@@ -96,8 +96,8 @@ class Jlink {
         return this;
     }
 
-    paras(...paras) {
-        this._allTaskPara = paras;
+    params(...params) {
+        this._allTaskPara = params;
         return this;
     }
 
@@ -105,7 +105,7 @@ class Jlink {
         if (this._taskIndex >= this._tasks.length) {
             return this;
         }
-        let nextTask = new Jtask(this._tasks[this._taskIndex], this._parasPicker(this._taskIndex), resolve, reject);
+        let nextTask = new Jtask(this._tasks[this._taskIndex], this._paramsPicker(this._taskIndex), resolve, reject);
         this._taskIndex++;
         if (this._nextTask) {
             this._nextTask.setNextTask(nextTask);
@@ -117,7 +117,7 @@ class Jlink {
     }
 
     run() {
-        this._headTask.do(this._parasPicker(0)());
+        this._headTask.do(this._paramsPicker(0)());
         return this;
     }
 
@@ -126,7 +126,7 @@ class Jlink {
      * @returns {Array}
      * @private
      */
-    _parasPicker(index) {
+    _paramsPicker(index) {
         return () => {
             if (this._allTaskPara && this._allTaskPara.length > index) {
                 return this._allTaskPara[index];
@@ -226,8 +226,8 @@ function jlink(...tasks) {
  * @param paras
  * @returns {Jpara}
  */
-function jpara(...paras) {
-    return new Jpara(...paras);
+function jparam(...params) {
+    return new Jpara(...params);
 }
 
 /**
@@ -319,4 +319,4 @@ function jgetGlobalValue(extraValues: (string|object)[],
     return globalOtherValues;
 }
 
-export {jlink, jpara, jgetGlobalValue};
+export {jlink, jparam, jgetGlobalValue};

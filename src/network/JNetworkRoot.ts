@@ -3,8 +3,8 @@ class JNetworkRoot{
     extraHeaders: Array<string|object> = [];
     extraBodyData: Array<string|object> = [];
 
-    useParams(...paras: Array<string|object>): this {
-        this.extraParams = paras;
+    useParams(...params: Array<string|object>): this {
+        this.extraParams = params;
         return this;
     }
 

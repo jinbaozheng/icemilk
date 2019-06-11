@@ -20,18 +20,18 @@ class UrlTool {
         if (!parameters) {
             parameters = {};
         }
-        let paras = [];
+        let params = [];
         for (let key in parameters) {
             if (!parameters.hasOwnProperty(key)) {
                 continue;
             }
             if (parameters[key] !== undefined) {
-                paras.push(key + '=' + parameters[key]);
+                params.push(key + '=' + parameters[key]);
             }
         }
         let iUrl = baseUrl + subUrl;
-        if (paras.length > 0) {
-            iUrl = iUrl + '?' + paras.join('&');
+        if (params.length > 0) {
+            iUrl = iUrl + '?' + params.join('&');
         }
         return iUrl;
     }

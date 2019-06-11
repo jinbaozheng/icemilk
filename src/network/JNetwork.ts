@@ -49,9 +49,9 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
         return this;
     }
 
-    static useParams(...paras: Array<string|object>): JNetwork{
+    static useParams(...params: Array<string|object>): JNetwork{
         let instance = this.defaultInstance();
-        instance.extraParams = paras;
+        instance.extraParams = params;
         return instance;
     }
 
