@@ -287,7 +287,7 @@ function jgetGlobalValue(extraValues: (string|object)[],
             globalParaFunc = globalValueRegistry()[key];
         }
 
-        if (globalParaFunc){
+        if (globalParaFunc !== null){
             let globalPara:any|string|number = null;
             if (typeof globalParaFunc == "function"){
                 globalPara = globalParaFunc();
