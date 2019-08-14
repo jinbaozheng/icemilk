@@ -4,6 +4,7 @@ import INetworkDelegate, {DEFAULT_DELEGATE} from "../interface/INetworkDelegate"
 import CancelPromiseFactory, {JPromise} from "../factory/CancelPromiseFactory";
 import {AxiosResponse} from 'axios';
 import JToolObject from '../tool/JToolObject';
+import INetworkOtherOption from "../interface/INetworkOtherOption";
 let REQUESTER_COUNT = 0;
 
 export default class JRequester{
@@ -51,7 +52,7 @@ export default class JRequester{
      * @param delegate 网络请求代理
      * @returns {CancelPromiseFactory<any>}
      */
-    static create(method: string, baseUrl: string, url: string, parameters: object, bodyData: object, headers: object, otherObject: any, delegate: INetworkDelegate): JRequester{
+    static create(method: string, baseUrl: string, url: string, parameters: object, bodyData: object, headers: object, otherObject: INetworkOtherOption, delegate: INetworkDelegate): JRequester{
         let requester = new JRequester(method, baseUrl, url, parameters, headers, bodyData, otherObject, delegate);
         if (JToolObject.isEmptyObject(bodyData)){
             bodyData = null
@@ -64,14 +65,31 @@ export default class JRequester{
             headers,
             ...otherObject
         };
-        if (otherObject.hasOwnProperty('specific')){
+
+        /**
+         * 只传指定的属性 或 忽略某些属性
+         * 只传 a 参数 头参数正常
+         * specific: {
+         *     params: ['a']
+         * }
+         * 参数 a 将被忽略
+         * ignore: {
+         *  params: ['a']
+         * }
+         */
+        if (otherObject.hasOwnProperty('specific') || otherObject.hasOwnProperty('ignore')){
             [{k: 'params', ak: 'params'}, {k: 'headers', ak: 'headers'}, {k: 'bodyData', ak: 'data'}].forEach((_) => {
-                const v = otherObject.specific[_.k];
+                const specV = otherObject.specific ? otherObject.specific[_.k] : null;
+                const ignoV = otherObject.ignore ? otherObject.ignore[_.k] : null;
                 const apl = Object.keys(axiosProps[_.ak]) || [];
-                v && (axiosProps[_.ak] = apl
-                    .filter(_ => v.some(__ => _ === __))
+                specV && (axiosProps[_.ak] = apl
+                    .filter(_ => specV.some(__ => _ === __))
                     .map(k => ({k, v: axiosProps[_.ak][k]}))
-                    .reduce((_, {k, v}) => ({..._, [k]: v}), {}))
+                    .reduce((_, {k, v}) => ({..._, [k]: v}), {}));
+                ignoV && (axiosProps[_.ak] = apl
+                    .filter(_ => ignoV.some(__ => _ !== __))
+                    .map(k => ({k, v: axiosProps[_.ak][k]}))
+                    .reduce((_, {k, v}) => ({..._, [k]: v}), {}));
             })
         }
         const jaxios = axios.create(axiosProps);

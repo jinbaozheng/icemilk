@@ -9,17 +9,26 @@ import JNetworkGroup from './JNetworkGroup';
 import JNetworkError from './JNetworkError';
 import INetworkFetch from '../interface/INetworkFetch'
 import INetworkExtra from '../interface/INetworkExtra'
+import INetworkOtherOption from '../interface/INetworkOtherOption'
+import INetworkGroupOption from '../interface/INetworkGroupOption'
 import {INetworkStandardPromiseType} from "../../types";
 import JNetworkRoot from "./JNetworkRoot";
 import JToolObject from '../tool/JToolObject';
 
-let INSTANCE_COUNT = 0;
+const DEFAULT_NETWORK_OTHER_OPTION = {
+    notTransformData: false
+} as INetworkOtherOption;
 
-/** @module network*/
+const DEFAULT_NETWORK_GROUP_OPTION = {
+    notClearExtraData: false,
+    isSync: false,
+    groupClass: JNetworkGroup
+} as INetworkGroupOption<JNetworkGroup>;
+
+let INSTANCE_COUNT = 0;
 
 /**
  * 网络请求类
- * @hideconstructor
  */
 class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
     static _instance: any;
@@ -99,13 +108,9 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
         }
     }
 
-    public createGroup<T extends JNetworkGroup>(options?): T{
+    public createGroup<T extends JNetworkGroup>(options?: INetworkGroupOption<T>): T{
         options = {
-            ...{
-                notClearExtraData: false,
-                isSync: false,
-                groupClass: JNetworkGroup
-            },
+            ...DEFAULT_NETWORK_GROUP_OPTION,
             ...options
         };
         if (options.groupClass !== JNetworkGroup && !JNetworkGroup.isPrototypeOf(options.groupClass)){
@@ -119,7 +124,7 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
             freezeCarryHeaders: JToolObject.getObjOrFuncResult(this.carryHeaders),
             freezeCarryBodyData: JToolObject.getObjOrFuncResult(this.carryBodyData),
             isSync: options.isSync
-        });
+        }) as T;
         if (!options.notClearExtraData){
             this.clearExtraData();
         }
@@ -127,7 +132,7 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
         return group;
     }
 
-    clearGroup(){
+    public clearGroup(){
         // TODO: 冻结每组活动
         this.groupList.splice(0);
     }
@@ -171,12 +176,19 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
      * @param baseUrl 基地址
      * @param url 相对地址
      * @param parameters 参数
-     * @param data data参数
+     * @param bodyData data参数
      * @param headers 头参数
      * @param otherObject 其他相关设置
      * @returns {CancelPromiseFactory<any>}
      */
-    fetchRequest(method: string, baseUrl: string, url: string, parameters: object, data: object, headers: object, otherObject: any = {}): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
+    fetchRequest(method: string,
+                 baseUrl: string,
+                 url: string,
+                 parameters: object,
+                 bodyData: object,
+                 headers: object,
+                 otherObject: INetworkOtherOption = DEFAULT_NETWORK_OTHER_OPTION
+    ): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
         let carryParams: object = JToolObject.getObjOrFuncResult(this.carryParams);
         let carryHeaders: object = JToolObject.getObjOrFuncResult(this.carryHeaders);
         let carryBodyData: object = JToolObject.getObjOrFuncResult(this.carryBodyData);
@@ -191,7 +203,7 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
             baseUrl,
             url,
             {...carryParams, ...globalOtherParams, ...parameters},
-            otherObject.notTransformData ? data : {...carryBodyData,  ...globalOtherBodyData, ...data},
+            otherObject.notTransformData ? bodyData : {...carryBodyData,  ...globalOtherBodyData, ...bodyData},
             {
                 'Accept': 'application/json',
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -224,7 +236,7 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
      * @param {object} otherObject 其他可用配置
      * @returns {Promise} 异步请求块
      */
-    static freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
+    static freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: INetworkOtherOption): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
         return this.defaultInstance().freedomPOST(baseUrl, url, parameters, headers, otherObject)
     }
 
@@ -237,40 +249,40 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
      * @param {object} otherObject
      * @returns {Promise} 异步请求块
      */
-    static freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
+    static freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: INetworkOtherOption): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
         return this.defaultInstance().freedomGET(baseUrl, url, parameters, headers, otherObject)
     }
 
-    freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
-        return this.fetchRequest('post', baseUrl, url || '', parameters || {}, {},headers || {}, otherObject || {});
+    freedomPOST(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: INetworkOtherOption): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
+        return this.fetchRequest('post', baseUrl, url || '', parameters || {}, {},headers || {}, otherObject || DEFAULT_NETWORK_OTHER_OPTION);
     }
 
-    freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
-        return this.fetchRequest('get', baseUrl, url || '', parameters || {},{},headers || {}, otherObject || {});
+    freedomGET(baseUrl: string, url?: string, parameters?: object, headers?: object, otherObject?: INetworkOtherOption): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
+        return this.fetchRequest('get', baseUrl, url || '', parameters || {},{},headers || {}, otherObject || DEFAULT_NETWORK_OTHER_OPTION);
     }
 
-    POST(url: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
+    POST(url: string, parameters?: object, headers?: object, otherObject?: INetworkOtherOption): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
         return this.freedomPOST(this.baseUrl, url, parameters, headers, {...this.axiosConfig, ...otherObject});
     }
 
-    GET(url: string, parameters?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
+    GET(url: string, parameters?: object, headers?: object, otherObject?: INetworkOtherOption): INetworkStandardPromiseType<AxiosResponse|JNetworkError> {
         return this.freedomGET(this.baseUrl, url, parameters, headers, {...this.axiosConfig, ...otherObject})
     }
 
-    freedomDataPOST(baseUrl: string, url?: string, data?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>{
-        return this.fetchRequest('post', baseUrl, url || '', {}, data || {}, headers || {}, otherObject || {});
+    freedomDataPOST(baseUrl: string, url?: string, bodyData?: object, headers?: object, otherObject?: INetworkOtherOption): INetworkStandardPromiseType<AxiosResponse|JNetworkError>{
+        return this.fetchRequest('post', baseUrl, url || '', {}, bodyData || {}, headers || {}, otherObject || DEFAULT_NETWORK_OTHER_OPTION);
     }
 
-    freedomDataGET(baseUrl: string, url?: string, data?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>{
-        return this.fetchRequest('get', baseUrl, url || '', {}, data || {}, headers || {}, otherObject || {});
+    freedomDataGET(baseUrl: string, url?: string, bodyData?: object, headers?: object, otherObject?: INetworkOtherOption): INetworkStandardPromiseType<AxiosResponse|JNetworkError>{
+        return this.fetchRequest('get', baseUrl, url || '', {}, bodyData || {}, headers || {}, otherObject || DEFAULT_NETWORK_OTHER_OPTION);
     }
 
-    dataPOST( url?: string, data?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>{
-        return this.freedomDataPOST(this.baseUrl, url,  data, headers, {...this.axiosConfig, ...otherObject});
+    dataPOST( url?: string, bodyData?: object, headers?: object, otherObject?: INetworkOtherOption): INetworkStandardPromiseType<AxiosResponse|JNetworkError>{
+        return this.freedomDataPOST(this.baseUrl, url,  bodyData, headers, {...this.axiosConfig, ...otherObject});
     }
 
-    dataGET(url?: string, data?: object, headers?: object, otherObject?: object): INetworkStandardPromiseType<AxiosResponse|JNetworkError>{
-        return this.freedomDataGET(this.baseUrl, url,  data, headers, {...this.axiosConfig, ...otherObject});
+    dataGET(url?: string, bodyData?: object, headers?: object, otherObject?: INetworkOtherOption): INetworkStandardPromiseType<AxiosResponse|JNetworkError>{
+        return this.freedomDataGET(this.baseUrl, url,  bodyData, headers, {...this.axiosConfig, ...otherObject});
     }
 }
 

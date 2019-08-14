@@ -1,6 +1,6 @@
 import {AxiosRequestConfig, AxiosResponse} from "axios";
 import {JPromise} from "./structure";
-import {JNetworkError} from "./network";
+import {JNetworkError, JNetworkGroup} from "./network";
 import {INetworkDelegate} from "./interface";
 import {GlobalValueRegistry} from "./other";
 
@@ -50,4 +50,16 @@ export declare interface INetworkDelegate{
     rejectInterceptor?(response: AxiosResponse, error: Error): boolean;
     responseDataInterceptor?(data: any, response?: AxiosResponse): any;
     responseErrorInterceptor?(error: Error, response?: AxiosResponse): Error;
+}
+
+export declare interface INetworkGroupOption <T extends JNetworkGroup>{
+    notClearExtraData: boolean,
+    isSync: boolean,
+    groupClass: new (...args: any[]) => T
+}
+
+export declare interface INetworkOtherOption extends AxiosRequestConfig{
+    notTransformData: boolean;
+    specific: any;
+    ignore: any;
 }
