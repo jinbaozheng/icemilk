@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2017"
+  },
+  "typedocOptions": {
+    "name": "icemilk document",
+    "out": "docs",
+    "includeDeclarations": true,
+    "excludeExternals": true,
+    "excludeNotExported": true
+  },
+  "exclude": [
+    "node_modules",
+    "src/**/*"
+  ],
+  "include": [
+    "types"
+  ]
+}
