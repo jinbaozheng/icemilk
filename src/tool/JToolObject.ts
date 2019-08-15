@@ -4,14 +4,13 @@
 
 /**
  * 对象工具类
- * @memberOf module:tool
  */
 class ObjectTool {
     /**
      * 删除对象某个属性
-     * @param {object} target 对象
-     * @param {string} propertyKey 属性
-     * @returns {boolean} 是否删除成功
+     * @param target 对象
+     * @param propertyKey 属性
+     * @returns 是否删除成功
      */
     static deleteProperty(target: object, propertyKey: string): boolean {
         if (target) {

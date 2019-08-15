@@ -4,19 +4,43 @@
 
 import UrlPattern from 'url-pattern';
 
+interface UrlOption {
+    complete: boolean
+}
+
+interface CommonUrlObj {
+    host: string
+    href:string
+    pathname: string
+    protocol: string
+    query: any
+    hashpath: string
+    hashquery: any
+}
+
+interface ComplexUrlObj extends CommonUrlObj{
+    origin: string,
+    hostname: string,
+    port: string,
+    search: string,
+    username: string,
+    password: string,
+    hashsearch: string,
+    hash: string
+}
+
 /**
  * 网络地址工具类
- * @memberOf module:tool
  */
 class UrlTool {
     /**
      * 合成URL完整地址
-     * @param {string} baseUrl 基础地址
-     * @param {string} subUrl 相对地址
-     * @param {string} parameters 参数
-     * @returns {string} 返回拼接后的地址
+     * @param baseUrl 基础地址
+     * @param subUrl 相对地址
+     * @param parameters 参数
+     * @returns 返回拼接后的地址
      */
-    static urlFromPortion(baseUrl, subUrl, parameters) {
+    static urlFromPortion(baseUrl: string, subUrl: string, parameters: object): string {
         if (!parameters) {
             parameters = {};
         }
@@ -40,13 +64,13 @@ class UrlTool {
      * 分析Url并解析为对象结构
      * @param url 待分析Url
      * @param options 分析Url配置
-     * @return Promise<object> 参数为解析后的结果，url无效时返回Null
+     * @return 返回解析后的结果，url无效时返回Null
      */
-    static portionFromUrl(url, options?){
+    static portionFromUrl(url: string, options?: UrlOption): CommonUrlObj | ComplexUrlObj{
         options = {
             complete: false,
             ...options
-        }
+        };
         try {
             let urlObj = null;
             try{
