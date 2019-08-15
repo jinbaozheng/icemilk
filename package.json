@@ -14,8 +14,7 @@
   "test": "echo \"Error: no test specified\" && exit 1",
   "cp-publish": "node ./cp_publish.js",
   "make-doc": "typedoc --tsconfig docconfig.json",
-  "generate-docs": "node old/generate_docs.js",
-  "update-docs": "node ./publish.js"
+  "update-docs": "node ./publish_doc.js"
  },
  "repository": {
   "url": "git@github.com:jinbaozheng/icemilk.git",

@@ -70,3 +70,4 @@ typings/
 package-lock.json
 dist/
 /docs/
+publish_doc.js
