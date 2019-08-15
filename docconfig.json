@@ -4,7 +4,7 @@
     "target": "es2017"
   },
   "typedocOptions": {
-    "name": "icemilk document",
+    "name": "Icemilk Document",
     "out": "docs",
     "includeDeclarations": true,
     "excludeExternals": true,
