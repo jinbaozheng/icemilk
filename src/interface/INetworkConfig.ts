@@ -8,6 +8,7 @@ export default interface INetworkConfig {
     carryHeaders?: object | Function;
     carryBodyData?: object | Function;
     axiosConfig?: AxiosRequestConfig;
+    otherContent?: object;
 }
 
 export const DEFAULT_CONFIG: INetworkConfig = {
@@ -18,5 +19,6 @@ export const DEFAULT_CONFIG: INetworkConfig = {
     carryBodyData: {},
     axiosConfig: {
         timeout: 10 * 1000
-    }
+    },
+    otherContent: null
 }

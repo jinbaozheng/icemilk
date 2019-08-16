@@ -37,6 +37,10 @@ export declare interface INetworkConfig{
      * axios库配置
      */
     axiosConfig?: AxiosRequestConfig;
+    /**
+     * 额外信息
+     */
+    otherContent?: object;
 }
 
 /**

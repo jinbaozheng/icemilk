@@ -39,6 +39,7 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
     readonly carryHeaders: object | Function;
     readonly carryBodyData: object | Function;
     readonly axiosConfig: AxiosRequestConfig;
+    readonly otherContent: object;
     readonly instanceId: number;
     private readonly groupList: Array<JNetworkGroup> = [];
 
@@ -53,6 +54,7 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
         this.axiosConfig = config.axiosConfig || {
             timeout: 10 * 1000
         };
+        this.otherContent = config.otherContent;
         this.config = config;
         this.instanceId = ++INSTANCE_COUNT;
         return this;
