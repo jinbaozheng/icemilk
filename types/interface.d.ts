@@ -246,17 +246,17 @@ export declare interface INetworkGroupOption <T extends JNetworkGroup>{
     /**
      * 是否清除当前所有注入数据
      */
-    notClearExtraData: boolean,
+    notClearExtraData?: boolean,
     /**
      * 是否为异步请求组
      * - 请求将在上个请求完成后发出
      */
-    isSync: boolean,
+    isSync?: boolean,
     /**
      * 网络请求组自定义类
      * @param args
      */
-    groupClass: new (...args: any[]) => T
+    groupClass?: new (...args: any[]) => T
 }
 
 /**+
