@@ -201,6 +201,12 @@ export declare class JToolObject {
      * @returns {*}
      */
     static safeGet(target: object, ...pChain: any[]): any
+    /**
+     * 如果未知参数是对象 f返回该对象 如果是方法 则返回方法该方法的运行结果
+     * @param obj 未知参数
+     * @param args 如果是方法，则为方法参数
+     */
+    static getObjOrFuncResult(obj: object | Function, ...args: any): object
 }
 
 export declare class JToolString {
