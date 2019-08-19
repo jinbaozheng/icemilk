@@ -9,6 +9,7 @@ import INetworkFetch from "../interface/INetworkFetch";
 import INetworkExtra from "../interface/INetworkExtra";
 import {INetworkStandardPromiseType} from "../../types";
 import JNetworkRoot from "./JNetworkRoot";
+import JNetwork from "./JNetwork";
 import JToolObject from "../tool/JToolObject";
 let GROUP_COUNT = 0
 
@@ -22,6 +23,7 @@ export default class JNetworkGroup extends JNetworkRoot implements INetworkFetch
     readonly delegate: INetworkDelegate;
     readonly groupId: number;
     readonly isSync: boolean;
+    readonly parent: JNetwork;
 
     private readonly freezeParams:Array<string|object>;
     private readonly freezeHeaders:Array<string|object>;
@@ -42,6 +44,7 @@ export default class JNetworkGroup extends JNetworkRoot implements INetworkFetch
             this.freezeCarryHeaders = options.freezeCarryHeaders || {};
             this.freezeCarryBodyData = options.freezeCarryBodyData || {};
             this.isSync = options.isSync;
+            this.parent = options.parent;
         }
     }
 
