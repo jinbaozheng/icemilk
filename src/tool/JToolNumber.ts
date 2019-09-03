@@ -1,5 +1,4 @@
 'use strict';
-import leftPad from 'left-pad';
 
 /**
  * 数字工具类
@@ -12,7 +11,7 @@ class NumberTool {
    * @returns 整数字符串
    */
   static zeroPad(number: number, length: number): string {
-    return leftPad(number, length, 0);
+    return String(number).padStart(length, String(0));
   }
 
   /**
@@ -23,7 +22,7 @@ class NumberTool {
    * @returns 字符串
    */
   static leftPad(pad: string | number, length: number, placeholder: string | number = 0): string {
-    return leftPad(pad, length, placeholder);
+    return String(pad).padStart(length, String(placeholder));
   }
 
   /**
