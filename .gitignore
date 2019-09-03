@@ -69,5 +69,6 @@ typings/
 
 package-lock.json
 dist/
+lib/
 /docs/
 publish_doc.js
