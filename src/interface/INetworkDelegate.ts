@@ -10,8 +10,6 @@ export default interface INetworkDelegate{
     requestInterceptorError?(error: Error): Promise<never>;
     responseInterceptor?(response: AxiosResponse): AxiosResponse;
     responseInterceptorError?(error: Error): Promise<never>;
-    resolveInterceptor?(response: AxiosResponse, data: any): boolean;
-    rejectInterceptor?(response: AxiosResponse, error: Error): boolean;
     responseDataInterceptor?(data: any, response?: AxiosResponse): any;
     responseErrorInterceptor?(error: Error, response?: AxiosResponse): Error;
 }
@@ -36,12 +34,6 @@ export const DEFAULT_DELEGATE: INetworkDelegate = {
     responseInterceptorError: (error: Error): Promise<never> => {
         // Do something with response error
         return Promise.reject(error);
-    },
-    resolveInterceptor: (response: AxiosResponse, data: any): boolean => {
-        return true;
-    },
-    rejectInterceptor: (response: AxiosResponse, error: Error): boolean => {
-        return true;
     },
     responseDataInterceptor: (data: any, response?: AxiosResponse): any => {
         return data;

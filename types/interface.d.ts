@@ -213,19 +213,6 @@ export declare interface INetworkDelegate{
 
     /**
      * @hidden
-     * @param response
-     * @param data
-     */
-    resolveInterceptor?(response: AxiosResponse, data: any): boolean;
-    /**
-     * @hidden
-     * @param response
-     * @param error
-     */
-    rejectInterceptor?(response: AxiosResponse, error: Error): boolean;
-
-    /**
-     * @hidden
      * @param data
      * @param response
      */
