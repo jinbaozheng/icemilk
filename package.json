@@ -9,6 +9,7 @@
  },
  "scripts": {
   "dev": "rollup -c --watch --config config/rollup.config.dev.js",
+  "build:link": "rollup -c --watch --config config/rollup.config.link.js",
   "build:dist": "rollup -c --config config/rollup.config.prod.js",
   "build:lib": "rollup -c --config config/rollup.config.lib.js",
   "test": "echo \"Error: no test specified\" && exit 1",
@@ -49,6 +50,7 @@
   "rollup-plugin-node-resolve": "^3.4.0",
   "rollup-plugin-typescript": "^1.0.0",
   "rollup-plugin-uglify": "^6.0.0",
+  "rollup-plugin-sourcemaps": "^0.4.2",
   "tslib": "^1.9.3",
   "typedoc": "^0.15.0",
   "typescript": "^3.2.1"
