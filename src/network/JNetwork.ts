@@ -125,7 +125,8 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
             freezeCarryParams: JToolObject.getObjOrFuncResult(this.carryParams),
             freezeCarryHeaders: JToolObject.getObjOrFuncResult(this.carryHeaders),
             freezeCarryBodyData: JToolObject.getObjOrFuncResult(this.carryBodyData),
-            isSync: options.isSync
+            isSync: options.isSync,
+            parent: this
         }) as T;
         if (!options.notClearExtraData){
             this.clearExtraData();

@@ -207,6 +207,11 @@ export declare class JNetworkGroup extends JNetworkRoot implements INetworkFetch
      * 是否为异步请求组
      */
     readonly isSync: boolean;
+    /**
+     * @readonly
+     * 组的归属者
+     */
+    readonly parent: JNetwork;
 
     /**
      * 构造方法
