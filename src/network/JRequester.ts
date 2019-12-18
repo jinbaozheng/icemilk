@@ -98,14 +98,14 @@ export default class JRequester{
         jaxios.interceptors.request.use(config => {
             config.params = {...parameters};
             config.headers = {...headers};
-            return delegate ? delegate.requestInterceptor(config) : config;
+            return delegate.requestInterceptor(config);
         }, error => {
-            return delegate ? delegate.requestInterceptorError(error) : error;
+            return delegate.requestInterceptorError(error);
         });
         jaxios.interceptors.response.use(response => {
-            return delegate ? delegate.responseInterceptor(response) : response;
+            return delegate.responseInterceptor(response);
         }, error => {
-            return delegate ? delegate.responseInterceptorError(error) : error;
+            return delegate.responseInterceptorError(error);
         });
         return requester;
 
