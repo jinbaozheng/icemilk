@@ -1,7 +1,8 @@
+import resolve from '@rollup/plugin-node-resolve';
+import json from '@rollup/plugin-json';
 import typescript from 'rollup-plugin-typescript';
-import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
-import json from 'rollup-plugin-json';
+import olaf from '@olaf-mix/rollup-plugin-olaf-mix';
 module.exports = () => {
     return {
         input: './src/index.ts',
@@ -16,10 +17,11 @@ module.exports = () => {
             format: 'umd'
         },
         plugins: [
+            olaf(),
             json(),
             resolve(),
             commonjs(),
-            typescript({lib: ["es5", "es6", "dom"], target: "es5"})
+            typescript({lib: ["es5", "es6", "dom"], target: "es5"}),
         ],
         external: [ 'moment', 'axios' ],
         treeshake: false
