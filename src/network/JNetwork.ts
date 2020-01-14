@@ -219,10 +219,15 @@ class JNetwork extends JNetworkRoot implements INetworkFetch, INetworkExtra{
         );
         return CancelPromiseFactory.createJPromise((resolve, reject) => {
             request.request().then((response: AxiosResponse) => {
-                if (response.status === 200) {
+                const {status, statusText} = response || {};
+                if (status === 200) {
                     resolve(response);
                 } else {
-                    reject(new JNetworkError(response.statusText, response.status));
+                    if (status && statusText){
+                        reject(new JNetworkError(response.statusText, response.status));
+                    } else {
+                        reject(new JNetworkError('请求发送错误', -1));
+                    }
                 }
             }).catch(error => {
                 reject(error);
