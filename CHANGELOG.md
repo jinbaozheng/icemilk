@@ -39,3 +39,6 @@
  
 ## 1.0.10-beta2
  * 增加 网络请求代理 shouldResolveInterceptor 及 shouldRejectInterceptor
+  
+## 1.0.10-beta3
+ * 修复返回值非200报错的问题

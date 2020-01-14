@@ -27,7 +27,7 @@
   "icemilk"
  ],
  "license": "MIT",
- "version": "1.0.10-beta2",
+ "version": "1.0.10-beta3",
  "engines": {
   "node": ">= 0.6"
  },
