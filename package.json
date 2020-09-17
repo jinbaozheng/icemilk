@@ -12,10 +12,9 @@
   "build:link": "rollup -c --watch --config config/rollup.config.link.js",
   "build:dist": "rollup -c --config config/rollup.config.prod.js",
   "build:lib": "rollup -c --config config/rollup.config.lib.js",
-  "test": "echo \"Error: no test specified\" && exit 1",
   "cp-publish": "node ./cp_publish.js",
   "make-doc": "typedoc --tsconfig docconfig.json",
-  "update-docs": "node ./publish_doc.js"
+  "test": "test"
  },
  "repository": {
   "url": "git@github.com:jinbaozheng/icemilk.git",
@@ -32,15 +31,15 @@
   "node": ">= 0.6"
  },
  "dependencies": {
-  "@babel/runtime": "^7.1.5",
+  "@babel/runtime": "^7.11.2",
   "axios": "^0.18.0",
   "moment": "^2.22.2",
   "url-pattern": "^1.0.3"
  },
  "devDependencies": {
-  "@babel/core": "^7.1.6",
-  "@babel/plugin-transform-runtime": "^7.1.0",
-  "@babel/preset-env": "^7.1.6",
+  "@babel/core": "^7.11.6",
+  "@babel/plugin-transform-runtime": "^7.11.5",
+  "@babel/preset-env": "^7.11.5",
   "@rollup/plugin-json": "^4.0.0",
   "@rollup/plugin-node-resolve": "^6.0.0",
   "@olaf-mix/rollup-plugin-olaf-mix": "^0.0.3-beta1",
@@ -51,7 +50,7 @@
   "rollup-plugin-commonjs": "^10.1.0",
   "rollup-plugin-sourcemaps": "^0.4.2",
   "rollup-plugin-typescript": "^1.0.0",
-  "rollup-plugin-uglify": "^6.0.0",
+  "rollup-plugin-uglify": "^6.0.4",
   "tslib": "^1.9.3",
   "typedoc": "^0.15.0",
   "typescript": "^3.2.1"
