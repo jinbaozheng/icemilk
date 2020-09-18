@@ -3,7 +3,7 @@ import json from '@rollup/plugin-json';
 import typescript from 'rollup-plugin-typescript';
 import commonjs from 'rollup-plugin-commonjs';
 import { uglify } from "rollup-plugin-uglify";
-import olaf from '@olaf-mix/rollup-plugin-olaf-mix';
+// import olaf from '@olaf-mix/rollup-plugin-olaf-mix';
 module.exports = () => {
     return [{
         input: './src/index.ts',
@@ -17,7 +17,7 @@ module.exports = () => {
             format: 'umd'
         },
         plugins: [
-            olaf(),
+            // olaf(),
             json(),
             resolve(),
             commonjs(),
@@ -38,7 +38,7 @@ module.exports = () => {
             format: 'umd'
         },
         plugins: [
-            olaf(),
+            // olaf(),
             json(),
             resolve(),
             commonjs(),
