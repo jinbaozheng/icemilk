@@ -19,13 +19,15 @@ import ToolUrl from './tool/JToolUrl';
 import ToolString from './tool/JToolString';
 import ToolArray from './tool/JToolArray';
 import ToolObject from './tool/JToolObject';
+import ToolFunction from './tool/JToolFunction';
 export {
     ToolDate as JToolDate,
     ToolNumber as JToolNumber,
     ToolUrl as JToolUrl,
     ToolString as JToolString,
     ToolArray as JToolArray,
-    ToolObject as JToolObject
+    ToolObject as JToolObject,
+    ToolFunction as JToolFunction,
 };
 
 import JSDK from './util/JSDK';

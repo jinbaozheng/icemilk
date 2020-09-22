@@ -316,3 +316,11 @@ export declare class JToolUrl {
      */
     static portionFromUrl(url: string, options?: IToolUrlOption): IToolCommonUrlObj | IToolComplexUrlObj
 }
+
+/**
+ * 函数工具类
+ */
+export declare class JToolFuntion {
+    static curry(func: Function, arity?: number): Function;
+}
+
