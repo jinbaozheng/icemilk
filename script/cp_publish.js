@@ -1,7 +1,3 @@
-/**
- * Created by cuppi on 2017/9/1.
- */
-
 const exec = require('child_process').exec;
 const fs = require("fs");
 
