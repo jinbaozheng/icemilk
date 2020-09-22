@@ -8,10 +8,10 @@
   "url": "https://github.com/cuppi"
  },
  "scripts": {
-  "dev": "rollup -c --watch --config config/rollup.config.dev.js",
-  "build:link": "rollup -c --watch --config config/rollup.config.link.js",
-  "build:dist": "rollup -c --config config/rollup.config.prod.js",
-  "build:lib": "rollup -c --config config/rollup.config.lib.js",
+  "dev": "rollup --watch --config config/rollup.config.dev.js",
+  "build:link": "rollup --watch --config config/rollup.config.link.js",
+  "build:dist": "rollup --config config/rollup.config.prod.js",
+  "build:lib": "rollup --config config/rollup.config.lib.js",
   "make-doc": "typedoc --tsconfig docconfig.json",
   "test": "test"
  },

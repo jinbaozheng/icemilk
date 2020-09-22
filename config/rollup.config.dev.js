@@ -1,7 +1,7 @@
 import resolve from '@rollup/plugin-node-resolve';
 import json from '@rollup/plugin-json';
-import typescript from 'rollup-plugin-typescript';
-import commonjs from 'rollup-plugin-commonjs';
+import typescript from '@rollup/plugin-typescript';
+import commonjs from '@rollup/plugin-commonjs';
 // import olaf from '@olaf-mix/rollup-plugin-olaf-mix';
 module.exports = () => {
     return {
@@ -13,8 +13,8 @@ module.exports = () => {
                 axios: 'axios'
             },
             file: './dist/index.js',
-            // dir: './dist',
-            format: 'umd'
+            format: 'umd',
+            sourcemap: true,
         },
         plugins: [
             // olaf(),

@@ -1,15 +1,13 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "module": "umd",
     "target": "es5",
     "sourceMap": true,
     "lib": [
-      "dom",
-      "es6",
-      "dom.iterable",
-      "scripthost",
-      "es2017"
+      "DOM",
+      "ES6",
+      "ScriptHost",
+      "WebWorker"
     ],
     // 解决类似 import leftPad from "left-pad"; 的问题
     "allowSyntheticDefaultImports": true,
