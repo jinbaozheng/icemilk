@@ -8,12 +8,23 @@
 </head>
 <body>
 <script>
-    let data = icemilk.JToolDate.currentDate();
-    console.log(data);
-    let urlObj = icemilk.JToolUrl.portionFromUrl('http://www.example.com:8080/package?name=ice&subname=milk#/user?name=cuppi&from=B612')
-    console.log(urlObj);
-    let JToolNumber = icemilk.JToolNumber;
-    console.log(JToolNumber.leftPad(10, 5, '-'));
+
+    let JToolNumber = new icemilk.JToolNumber
+    console.log(JToolNumber)
+
+    // let curry = icemilk.JToolFunction.curry;
+    // const logLocation = curry(function (province, city, area, address) {
+    //     console.log(`当前位置为: ${province}省 ${city}市 ${area}区 ${address}`)
+    // });
+    // const logJiangSu = logLocation('浙江');
+    // logJiangSu('杭州', '西湖')('断桥残雪');
+
+    // let data = icemilk.JToolDate.currentDate();
+    // console.log(data);
+    // let urlObj = icemilk.JToolUrl.portionFromUrl('http://www.example.com:8080/package?name=ice&subname=milk#/user?name=cuppi&from=B612')
+    // console.log(urlObj);
+    // let JToolNumber = icemilk.JToolNumber;
+    // console.log(JToolNumber.leftPad(10, 5, '-'));
 </script>
 </body>
 </html>
