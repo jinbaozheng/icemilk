@@ -1,4 +1,3 @@
-
 import axios, {AxiosInstance} from "axios";
 import INetworkDelegate, {DEFAULT_DELEGATE} from "../interface/INetworkDelegate";
 import CancelPromiseFactory, {JPromise} from "../factory/CancelPromiseFactory";

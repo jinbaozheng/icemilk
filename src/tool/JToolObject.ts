@@ -1,8 +1,4 @@
 /**
- * Created by cuppi on 2017/5/10.
- */
-
-/**
  * 对象工具类
  */
 class ObjectTool {

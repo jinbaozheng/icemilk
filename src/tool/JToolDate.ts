@@ -1,7 +1,3 @@
-/**
- * Created by cuppi on 2016/11/25.
- */
-
 import moment from 'moment';
 type DateString = string;
 type SmartDate = Date|DateString|number

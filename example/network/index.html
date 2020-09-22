@@ -10,6 +10,7 @@
 <input id="#file-input" type="file" style="width: 100px; height: 50px;">
 <script>
 
+
     function cityParas() {
         return {id: 2, name: '上海'};
     }
@@ -51,16 +52,23 @@
 
 
 
-    let network = new icemilk.JNetwork({
-        delegate: {
-            globalParas,
-            globalBodyData
-        }
+    // let network = new icemilk.JNetwork({
+    //     delegate: {
+    //         globalParas,
+    //         globalBodyData
+    //     }
+    // })
+
+    // let g1 = network.useBodyData('cityId', 'location').createGroup({
+    //     isSync: false
+    // });
+
+
+    const req = icemilk.JNetwork.freedomGET('http://www.cuppno.com/api')
+    req.then(({data}) => {
+        console.log(data);
     })
 
-    let g1 = network.useBodyData('cityId', 'location').createGroup({
-        isSync: false
-    });
     // g1.useParas({'cityId': 5}).freedomPOST('https://sandbox.idoupiao.com', '/bcmfilm/main', {
     //     longitude: 121.4834974484,
     //     latitude: 31.237037783
@@ -100,23 +108,23 @@
 
 
 
-    document.getElementById('#file-input').addEventListener('change', function (e) {
-        let file = e.target.files[0];
-        console.log(file);
-        let formData = new FormData();
-        formData.append('file', file);
-        (new icemilk.JNetwork({
-            baseUrl: 'http://10.1.1.71:9040/'
-        })).dataPOST('upload/uploadlocal', formData, {
-            authorization: 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJ1c2VyTmFtZVwiOlwiQWRtaW5cIixcInVzZXJJZFwiOlwiNWM5MzA2YmQ4ODU4ZTczODI4MDkxYThjXCJ9IiwiaWF0IjoxNTUzNTAyODk2fQ.eLiFIMJKZSH9hCVQUexRVkjjUl9q0JZksBzAtRl5VHA',
-            'Content-Type': 'multipart/form-data'
-        }, {
-            specific: {
-                bodyData: ['test']
-            },
-            notTransformData: true
-        })
-    })
+    // document.getElementById('#file-input').addEventListener('change', function (e) {
+    //     let file = e.target.files[0];
+    //     console.log(file);
+    //     let formData = new FormData();
+    //     formData.append('file', file);
+    //     (new icemilk.JNetwork({
+    //         baseUrl: 'http://10.1.1.71:9040/'
+    //     })).dataPOST('upload/uploadlocal', formData, {
+    //         authorization: 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJ1c2VyTmFtZVwiOlwiQWRtaW5cIixcInVzZXJJZFwiOlwiNWM5MzA2YmQ4ODU4ZTczODI4MDkxYThjXCJ9IiwiaWF0IjoxNTUzNTAyODk2fQ.eLiFIMJKZSH9hCVQUexRVkjjUl9q0JZksBzAtRl5VHA',
+    //         'Content-Type': 'multipart/form-data'
+    //     }, {
+    //         specific: {
+    //             bodyData: ['test']
+    //         },
+    //         notTransformData: true
+    //     })
+    // })
 </script>
 </body>
 </html>
