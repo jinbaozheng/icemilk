@@ -1,4 +1,3 @@
-//Or async function
 module.exports = async () => {
     return {
         rootDir: __dirname,
