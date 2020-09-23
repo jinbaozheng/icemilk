@@ -1,19 +1,17 @@
 {
- "bugs": {
-  "url": "https://github.com/jinbaozheng/icemilk/issues"
- },
- "author": {
-  "email": "cuppi413@163.com",
-  "name": "cuppi",
-  "url": "https://github.com/cuppi"
- },
+ "name": "icemilk",
+ "version": "1.0.11-beta1",
+ "main": "lib/index.js",
+ "types": "types/index.d.ts",
+ "description": "Shanghai jinbaozheng easy network technology Co.,Ltd sdk",
+ "homepage": "https://github.com/jinbaozheng/icemilk/blob/1.0.x/README.md",
  "scripts": {
   "dev": "rollup --watch --config config/rollup.config.dev.js",
   "build:link": "rollup --watch --config config/rollup.config.link.js",
   "build:dist": "rollup --config config/rollup.config.prod.js",
   "build:lib": "rollup --config config/rollup.config.lib.js",
   "make-doc": "typedoc --tsconfig docconfig.json",
-  "test": "test"
+  "test": "jest --config test/jest.config.js --passWithNoTests"
  },
  "repository": {
   "url": "git@github.com:jinbaozheng/icemilk.git",
@@ -24,11 +22,6 @@
   "ice",
   "icemilk"
  ],
- "license": "MIT",
- "version": "1.0.10-beta3",
- "engines": {
-  "node": ">= 0.6"
- },
  "dependencies": {
   "@babel/runtime": "^7.11.2",
   "axios": "^0.18.0",
@@ -49,17 +42,22 @@
   "rollup-plugin-terser": "^7.0.2",
   "tslib": "^1.9.3",
   "typedoc": "^0.19.1",
-  "typescript": "^4.0.2"
+  "typescript": "^4.0.2",
+  "jest": "^26.4.2"
  },
- "main": "lib/index.js",
- "types": "types/index.d.ts",
- "name": "icemilk",
- "description": "Shanghai jinbaozheng easy network technology Co.,Ltd sdk",
- "homepage": "https://github.com/jinbaozheng/icemilk/blob/1.0.x/README.md",
  "publishConfig": {
   "registry": "https://registry.npmjs.org/"
  },
  "resolutions": {
   "rollup-plugin-uglify/serialize-javascript": "3.1.0"
- }
+ },
+ "bugs": {
+  "url": "https://github.com/jinbaozheng/icemilk/issues"
+ },
+ "author": {
+  "email": "cuppi413@163.com",
+  "name": "cuppi",
+  "url": "https://github.com/cuppi"
+ },
+ "license": "MIT"
 }
