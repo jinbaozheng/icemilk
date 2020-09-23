@@ -30,6 +30,11 @@ export {
     ToolFunction as JToolFunction,
 };
 
+import Price from './widget/Price';
+export {
+    Price as JWidgetPrice
+}
+
 import JSDK from './util/JSDK';
 export {
     JSDK
