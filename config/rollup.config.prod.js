@@ -1,7 +1,7 @@
 import resolve from '@rollup/plugin-node-resolve';
 import json from '@rollup/plugin-json';
-import typescript from 'rollup-plugin-typescript';
-import commonjs from 'rollup-plugin-commonjs';
+import typescript from '@rollup/plugin-typescript';
+import commonjs from '@rollup/plugin-commonjs';
 import { terser } from "rollup-plugin-terser";
 // import olaf from '@olaf-mix/rollup-plugin-olaf-mix';
 module.exports = () => {
@@ -14,14 +14,15 @@ module.exports = () => {
                 axios: 'axios'
             },
             file: './dist/index.js',
-            format: 'umd'
+            format: 'umd',
+            sourcemap: false,
         },
         plugins: [
             // olaf(),
             json(),
             resolve(),
             commonjs(),
-            typescript({lib: ["es5", "es6", "dom"], target: "es5"})
+            typescript({sourceMap: false}),
         ],
         external: [ 'moment', 'axios' ],
         treeshake: true
@@ -34,15 +35,15 @@ module.exports = () => {
                 axios: 'axios'
             },
             file: './dist/index.min.js',
-            // dir: './dist',
-            format: 'umd'
+            format: 'umd',
+            sourcemap: false,
         },
         plugins: [
             // olaf(),
             json(),
             resolve(),
             commonjs(),
-            typescript(),
+            typescript({sourceMap: false}),
             terser()
         ],
         external: [ 'moment', 'axios' ],
